@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AHM International
 
-## Getting Started
+Apparel manufacturing and FOB export — Karachi, Pakistan.
 
-First, run the development server:
+A production website for international sourcing managers, uniform program
+managers and procurement teams. Built to convert a visitor into an RFQ or a
+tech-pack submission.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3100
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · React Hook Form · Zod
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+No animation library: the motion system is CSS driven by a single
+IntersectionObserver hook.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Does |
+|---|---|
+| `npm run dev` | Development server on port 3100 |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run images:build` | Rebuild web derivatives from `assets-master/` at spec sizes |
+| `npm run images:audit` | Audit served images → `reports/image-audit.json` |
+| `npm run assets` | Reindex `public/assets`, regenerate blur placeholders |
+| `npm run assets:report` | Regenerate `assets-needed.md` |
+| `npm run audit` | SEO and accessibility crawl of a running server |
+| `npm run typecheck` | TypeScript, no emit |
+| `npm run shoot <route> <width> <name>` | Screenshot a route for visual QA |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Where things live
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/                 routes, API, sitemap, robots, llms.txt, OG image
+components/
+  layout/            header, mega menu, mobile nav, footer, breadcrumbs
+  sections/          homepage and shared page sections
+  products/          product and industry cards
+  forms/             RFQ forms, fields, upload
+  ui/                buttons, section zoning, spec tables, FAQ, images
+  motion/            CSS-driven reveal primitives
+data/                all content — company config, products, guides, routes
+lib/                 SEO, analytics, validation, rate limiting, utilities
+asset-pack/          supplied prompts, manifest and design references (not served)
+assets-master/       high-resolution originals — archived, never deployed
+reports/             generated audit output
+```
 
-## Deploy on Vercel
+## Image pipeline
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Masters live in `assets-master/` at the repo root, outside `public/`, so they are
+archived but never deployed or publicly downloadable. `npm run images:build`
+cuts web derivatives from them into `public/assets/` at the sizes and per-role
+quality defined in `data/image-spec.ts`; next/image then generates the
+responsive variants below those at request time, in AVIF and WebP.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A first-time mobile visitor downloads **21 kB of imagery** on the homepage.
+`npm run images:audit` enforces the budgets and fails the build on anything over
+the 500 kB hard ceiling, an unoptimised master, a broken registry path or a
+missing alt.
+
+## Read next
+
+- `CLAUDE.md` — architecture decisions and the two rules that shape the codebase
+- `LAUNCH.md` — everything that must be verified or configured before going live
+- `assets-needed.md` — the photography checklist, generated from the registry
+
+## Measured
+
+Lighthouse against the production build:
+
+| | Desktop | Mobile |
+|---|---|---|
+| Performance | 97–100 | 91 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
+
+CLS 0 on every page tested.

@@ -1,0 +1,498 @@
+[
+  {
+    "path": "public/assets/brand/ahm-logo-dark.svg",
+    "category": "brand",
+    "orientation": "vector",
+    "label": "Logo dark",
+    "master_dimensions": "SVG",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. AHM International dark wordmark; clean geometric export-manufacturer identity; transparent background; vector-only."
+  },
+  {
+    "path": "public/assets/brand/ahm-logo-light.svg",
+    "category": "brand",
+    "orientation": "vector",
+    "label": "Logo light",
+    "master_dimensions": "SVG",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. AHM International light wordmark; clean geometric export-manufacturer identity; transparent background; vector-only."
+  },
+  {
+    "path": "public/assets/brand/ahm-mark.svg",
+    "category": "brand",
+    "orientation": "vector",
+    "label": "AHM mark",
+    "master_dimensions": "SVG",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Minimal monogram mark based on AHM; geometric, industrial/editorial; vector-only; no gradients."
+  },
+  {
+    "path": "public/assets/brand/favicon.png",
+    "category": "brand",
+    "orientation": "square",
+    "label": "Favicon",
+    "master_dimensions": "1024x1024",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Minimal AHM monogram on dark graphite background; crisp edges; centered."
+  },
+  {
+    "path": "public/assets/hero/hero-sewing-01.webp",
+    "category": "hero",
+    "orientation": "landscape",
+    "label": "Hero sewing",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close cinematic photograph of an industrial sewing machine stitching a premium charcoal workwear garment, operator hands guiding fabric naturally, visible seam construction, clean modern factory softly blurred, space on left for large website headline, shallow depth of field."
+  },
+  {
+    "path": "public/assets/hero/hero-fabric-01.webp",
+    "category": "hero",
+    "orientation": "landscape",
+    "label": "Hero fabric",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Extreme macro of premium charcoal textile folds, visible weave and tactile surface, dramatic soft side-lighting, elegant abstract composition, room for overlay text."
+  },
+  {
+    "path": "public/assets/hero/hero-production-01.webp",
+    "category": "hero",
+    "orientation": "landscape",
+    "label": "Hero production",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Wide authentic modern garment production floor in Karachi, organized sewing lines, natural Pakistani workforce, bright but sophisticated daylight, no posing, editorial documentary quality."
+  },
+  {
+    "path": "public/assets/hero/hero-video.webm",
+    "category": "hero",
+    "orientation": "video",
+    "label": "Hero video",
+    "master_dimensions": "4K video",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. 6-10 second seamless cinematic loop: fabric under sewing foot, hands guiding seam, subtle rack focus, premium slow motion, no logos or text."
+  },
+  {
+    "path": "public/assets/products/aprons/apron-black-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Apron front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional black uniform bib apron on neutral warm-cream studio background, full front view, realistic poly-cotton twill, functional pockets, adjustable neck detail, no logo."
+  },
+  {
+    "path": "public/assets/products/aprons/apron-black-back.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Apron back",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Same black uniform bib apron from rear view, ties and construction clearly visible, exact lighting and background match to front image."
+  },
+  {
+    "path": "public/assets/products/aprons/apron-detail-pocket.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Apron pocket detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro detail of professional bib apron pocket stitching and reinforcement, premium black twill texture, technical garment photography."
+  },
+  {
+    "path": "public/assets/products/aprons/apron-fabric-macro.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Apron fabric macro",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro black poly-cotton twill surface with subtle stain-resistant water droplets, realistic weave, laboratory-clean commercial photography."
+  },
+  {
+    "path": "public/assets/products/polos/polo-blue-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Blue polo front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Premium cobalt/navy performance polo shirt, full front three-quarter studio view, clean collar and placket, realistic pique/performance knit texture, cream background, no logo."
+  },
+  {
+    "path": "public/assets/products/polos/polo-blue-back.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Blue polo back",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Matching premium cobalt/navy performance polo back view; identical background, lighting, garment proportions."
+  },
+  {
+    "path": "public/assets/products/polos/polo-collar-detail.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Polo collar detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close detail of navy polo collar, three-button placket, clean topstitching and fabric texture, premium technical catalog photography."
+  },
+  {
+    "path": "public/assets/products/polos/polo-fabric-macro.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Polo fabric macro",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Extreme macro of cobalt performance pique knit, high textile detail, soft directional light."
+  },
+  {
+    "path": "public/assets/products/fleece/fleece-jacket-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Fleece front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Premium black full-zip fleece jacket front, technical uniform fit, clean zipper, subtle structured silhouette, cream studio background, no logo."
+  },
+  {
+    "path": "public/assets/products/fleece/fleece-jacket-back.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Fleece back",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Matching black fleece jacket back view, same light and framing."
+  },
+  {
+    "path": "public/assets/products/fleece/fleece-fabric-macro.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Fleece macro",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Extreme macro of dense black anti-pill fleece surface, realistic pile and softness, sophisticated lighting."
+  },
+  {
+    "path": "public/assets/products/fleece/fleece-zipper-detail.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Fleece zipper",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close-up of durable black zipper, chin guard and seam finishing on fleece jacket, technical apparel detail."
+  },
+  {
+    "path": "public/assets/products/tshirts/performance-tee-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Performance tee front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Performance crew-neck T-shirt, deep graphite, clean athletic workwear cut, full front studio image, no branding."
+  },
+  {
+    "path": "public/assets/products/tshirts/tee-fabric-macro.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Tee fabric macro",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro moisture-management polyester knit texture, visible microstructure, premium textile photography."
+  },
+  {
+    "path": "public/assets/products/woven-shirts/work-shirt-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Work shirt front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Modern long-sleeve woven work shirt, slate blue, structured collar, chest pocket, clean industrial-uniform fit, front studio view."
+  },
+  {
+    "path": "public/assets/products/woven-shirts/work-shirt-detail.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Work shirt detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close detail of collar, button, pocket reinforcement and topstitching on slate blue woven work shirt."
+  },
+  {
+    "path": "public/assets/products/bottoms/work-pant-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Work pant front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Modern charcoal work trouser, straight professional fit, functional pockets, clean studio front view."
+  },
+  {
+    "path": "public/assets/products/bottoms/work-pant-detail.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Work pant detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro technical detail of waistband, pocket opening, bartack reinforcement and durable twill surface."
+  },
+  {
+    "path": "public/assets/products/outerwear/softshell-front.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Softshell front",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Premium black/graphite softshell work jacket front view, clean technical construction, subtle weather-resistant surface, no logo."
+  },
+  {
+    "path": "public/assets/products/outerwear/softshell-detail.webp",
+    "category": "products",
+    "orientation": "square",
+    "label": "Softshell detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close-up of softshell zipper, seam, pocket and water-beading surface."
+  },
+  {
+    "path": "public/assets/industries/grocery-uniform.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Grocery uniform",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional grocery employee in modern supermarket wearing tasteful dark polo and apron, authentic candid working pose, no visible brand signage."
+  },
+  {
+    "path": "public/assets/industries/hospitality-uniform.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Hospitality uniform",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional hospitality employee in refined black service uniform inside premium restaurant/hotel environment, authentic working moment."
+  },
+  {
+    "path": "public/assets/industries/chef-uniform.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Chef uniform",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional chef in crisp white chef jacket and apron in real commercial kitchen, candid preparation moment."
+  },
+  {
+    "path": "public/assets/industries/retail-uniform.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Retail uniform",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Retail team member in contemporary polo and apron on shop floor, authentic service moment, no brand marks."
+  },
+  {
+    "path": "public/assets/industries/industrial-workwear.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Industrial workwear",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Worker in practical high-visibility industrial uniform in clean modern facility, real PPE context, no logos."
+  },
+  {
+    "path": "public/assets/industries/corporate-uniform.webp",
+    "category": "industries",
+    "orientation": "portrait",
+    "label": "Corporate uniform",
+    "master_dimensions": "2160x2880",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Small diverse corporate service team in coordinated premium uniforms, candid workplace environment, not a handshake pose."
+  },
+  {
+    "path": "public/assets/factory/fabric-inspection.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Fabric inspection",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close documentary view of fabric inspection table/roll, worker checking textile surface and shade under controlled light, clean factory."
+  },
+  {
+    "path": "public/assets/factory/cutting.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Cutting",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Modern garment cutting operation, layered fabric, cutting table, skilled operator, organized industrial setting."
+  },
+  {
+    "path": "public/assets/factory/sewing.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Sewing",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Industrial sewing close-medium shot, operator constructing workwear garment, authentic posture and machine detail."
+  },
+  {
+    "path": "public/assets/factory/embroidery.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Embroidery",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Multi-head commercial embroidery machines running clean geometric test embroidery on apparel panels, no trademarks."
+  },
+  {
+    "path": "public/assets/factory/printing.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Printing",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional garment printing station producing clean non-branded test graphic, organized modern setup."
+  },
+  {
+    "path": "public/assets/factory/finishing.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Finishing",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Garment finishing and pressing station with skilled worker inspecting and preparing uniform garment."
+  },
+  {
+    "path": "public/assets/factory/quality-control.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Quality control",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Quality inspector measuring finished garment against specification sheet on clean inspection table, detailed tape measure and seam review."
+  },
+  {
+    "path": "public/assets/factory/packing.webp",
+    "category": "factory",
+    "orientation": "landscape",
+    "label": "Packing",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Organized apparel packing line with folded garments, polybags/cartons, barcode and carton-marking process, no customer logos."
+  },
+  {
+    "path": "public/assets/development/tech-pack.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Tech pack",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Overhead desk scene with apparel tech pack pages, technical flat sketches, measurement callouts and fabric notes, no readable customer identifiers."
+  },
+  {
+    "path": "public/assets/development/pattern.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Pattern",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Professional garment pattern pieces, rulers and technical tools on pattern-development table, clean editorial composition."
+  },
+  {
+    "path": "public/assets/development/fabric-swatches.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Fabric swatches",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Curated premium fabric swatch library in controlled brand palette, close textile detail, sourcing table aesthetic."
+  },
+  {
+    "path": "public/assets/development/trims.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Trims",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Buttons, zippers, labels, tapes, drawcords and hardware arranged as a premium sourcing board, no logos."
+  },
+  {
+    "path": "public/assets/development/sample-development.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Sample development",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Sample room with mannequin and in-progress uniform garment, pattern and measurement tools, product developer making adjustments."
+  },
+  {
+    "path": "public/assets/development/measurement.webp",
+    "category": "development",
+    "orientation": "landscape",
+    "label": "Measurement",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Garment laid flat while technician checks measurements using tape and spec sheet, precise QA/development mood."
+  },
+  {
+    "path": "public/assets/fabrics/polycotton-twill.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Polycotton twill",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro beige poly-cotton twill showing diagonal weave, soft premium side-light."
+  },
+  {
+    "path": "public/assets/fabrics/cotton-pique.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Cotton pique",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro cobalt/navy cotton pique knit, highly detailed loops and texture."
+  },
+  {
+    "path": "public/assets/fabrics/polyester-performance.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Performance polyester",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro dark performance polyester knit with breathable microstructure and subtle technical sheen."
+  },
+  {
+    "path": "public/assets/fabrics/fleece.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Fleece",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro black fleece pile, dense soft texture, anti-pill visual quality."
+  },
+  {
+    "path": "public/assets/fabrics/woven.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Woven",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro dark woven shirting/workwear fabric showing refined yarn structure."
+  },
+  {
+    "path": "public/assets/fabrics/softshell.webp",
+    "category": "fabrics",
+    "orientation": "square",
+    "label": "Softshell",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro charcoal softshell textile with water droplets and subtle stretch surface."
+  },
+  {
+    "path": "public/assets/export/cartons.webp",
+    "category": "export",
+    "orientation": "landscape",
+    "label": "Export cartons",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Neatly palletized apparel export cartons in clean warehouse, generic AHM-style neutral carton marking only if supplied later."
+  },
+  {
+    "path": "public/assets/export/carton-marking.webp",
+    "category": "export",
+    "orientation": "landscape",
+    "label": "Carton marking",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close-up of professional garment export carton labels and markings, all buyer/customer data fictional or blank."
+  },
+  {
+    "path": "public/assets/export/warehouse.webp",
+    "category": "export",
+    "orientation": "landscape",
+    "label": "Warehouse",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Modern organized apparel export warehouse with racks/pallets and packed cartons, documentary commercial image."
+  },
+  {
+    "path": "public/assets/export/container-loading.webp",
+    "category": "export",
+    "orientation": "landscape",
+    "label": "Container loading",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Shipping container loading apparel cartons at export facility/warehouse, clean logistics process, no brand logos."
+  },
+  {
+    "path": "public/assets/case-studies/uniform-apron-program/hero.webp",
+    "category": "case-study",
+    "orientation": "landscape",
+    "label": "Apron case hero",
+    "master_dimensions": "3840x2160",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Anonymized U.S.-style uniform program case study: black bib apron in professional food-service environment, no customer branding."
+  },
+  {
+    "path": "public/assets/case-studies/uniform-apron-program/product.webp",
+    "category": "case-study",
+    "orientation": "square",
+    "label": "Apron case product",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Technical front product shot of black bib apron used for anonymized uniform-program case study."
+  },
+  {
+    "path": "public/assets/case-studies/uniform-apron-program/fabric.webp",
+    "category": "case-study",
+    "orientation": "square",
+    "label": "Apron case fabric",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Macro 65/35 polyester-cotton twill visual, clean technical textile photography, no claim text embedded."
+  },
+  {
+    "path": "public/assets/case-studies/uniform-apron-program/detail.webp",
+    "category": "case-study",
+    "orientation": "square",
+    "label": "Apron case detail",
+    "master_dimensions": "3000x3000",
+    "prompt": "Premium editorial industrial apparel photography for AHM International, an international apparel manufacturing and export company in Karachi, Pakistan. Authentic modern garment-production environment, realistic Pakistani workers where people appear, sophisticated natural lighting, subtle cinematic contrast, highly detailed fabric texture, realistic industrial equipment, premium commercial campaign photography, contemporary global sourcing-company aesthetic, no futuristic machinery, no text, no logos, no distorted anatomy, no staged corporate handshakes, no stock-photo look, consistent color grade across the full website asset library, photorealistic, extremely detailed. Close-up of apron pocket, bar tack, stitching, strap hardware and construction detail."
+  }
+]

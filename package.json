@@ -3,15 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "assets": "node scripts/scan-assets.mjs",
+    "audit": "node scripts/seo-audit.mjs",
+    "shoot": "node scripts/shoot.mjs",
+    "typecheck": "tsc --noEmit",
+    "assets:report": "node scripts/assets-report.mjs",
+    "images:build": "node scripts/optimize-images.mjs",
+    "images:audit": "node scripts/audit-images.mjs",
+    "images:prompts": "node scripts/build-prompt-pack.mjs",
+    "dates": "node scripts/content-dates.mjs",
+    "photos": "node scripts/build-photography.mjs",
+    "reports": "node scripts/build-reports.mjs",
+    "test": "node --experimental-strip-types --import ./tests/register.mjs --test \"tests/*.test.ts\"",
+    "links": "node scripts/check-links.mjs",
+    "images:missing": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-images.mjs",
+    "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.33.0",
     "next": "16.3.1",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-hook-form": "^7.85.0",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
