@@ -193,6 +193,43 @@ for (const [src, role] of Object.entries({
   });
 }
 
+
+/**
+ * Supplied fabric texture library.
+ *
+ * Replaces the previous fabric macros, which were crops from concept boards and
+ * rendered as near-flat dark rectangles with almost no visible weave. These are
+ * square at source, so the recipe scales rather than crops.
+ *
+ * Caveat worth knowing: the library shares one lighting sweep and a similar grid
+ * across every swatch, so pique and jersey read alike to anyone who knows fabric.
+ * They are a clear improvement on featureless rectangles, not a substitute for
+ * photographed macros of AHM's actual cloth.
+ */
+const FABRIC_TEXTURES = {
+  "01_Woven_Workwear/05_cotton-canvas": "fabrics/canvas.webp",
+  "01_Woven_Workwear/02_polyester-twill": "fabrics/polycotton-twill.webp",
+  "01_Woven_Workwear/11_poplin": "fabrics/woven.webp",
+  "03_Knits_Fleece/32_pique-knit": "fabrics/cotton-pique.webp",
+  "03_Knits_Fleece/33_jersey-knit": "fabrics/single-jersey.webp",
+  "03_Knits_Fleece/29_fleece": "fabrics/fleece.webp",
+  "03_Knits_Fleece/34_rib-knit": "fabrics/rib.webp",
+  "04_Technical_Performance/36_mesh-fabric": "fabrics/mesh.webp",
+  "04_Technical_Performance/44_softshell": "fabrics/softshell.webp",
+  "05_Specialty_Premium/55_micro-polyester": "fabrics/polyester-performance.webp",
+};
+
+for (const [src, out] of Object.entries(FABRIC_TEXTURES)) {
+  const s = SPEC.fabricMacro;
+  recipes.push({
+    src: `fabric-textures/${src}.jpg`,
+    out,
+    role: "fabricMacro",
+    vf: `scale=${s.w}:${s.h}:flags=lanczos`,
+    q: 68,
+  });
+}
+
 /* ------------------------------------------------------------------ */
 
 let built = 0, skipped = 0, failed = 0;

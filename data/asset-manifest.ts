@@ -75,52 +75,52 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/fabrics/canvas.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoQABAABIB0JZwABDOAAP7p7LzgQAAA"
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQABAABIB0JZACdAEN9ZkkPQAA/ufOtDLd6iPryWZY3uWir/7Hl0AA"
   },
   "/assets/fabrics/cotton-pique.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7vTEAAAA=="
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADwAQCdASoQABAABIB0JZwAAud70GQrBQAA/vImMW1u9RCe/6dvqDgA"
   },
   "/assets/fabrics/fleece.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7wGCAAAA=="
+    "blur": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAQCdASoQABAABIB0JQBOgCB/4sdCyBAA/r4BYpkUBiZDIrqkugtjzXhsjOT9EYAAAA=="
   },
   "/assets/fabrics/mesh.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoQABAABIB0JZwABAAAAP7tBxvugIAA"
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAAuRye3mpAAD+58+RCpIt1W+YIsbOBAAA"
   },
   "/assets/fabrics/polycotton-twill.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAPzEgQAAAA=="
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQABAABIB0JQBOgCHhT8MhOAD+20G0Qs0YReEazJu2T++iEYZ1gAAA"
   },
   "/assets/fabrics/polyester-performance.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoQABAABIB0JZwABAAAAP7uQxDy8IAA"
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQABAABIB0JaACdAEK6EJlsgD+LLVaDSkTy+DbHFFFH/195Q7FEIAA"
   },
   "/assets/fabrics/rib.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7vckAAAA=="
+    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoQABAABIB0JQBOgCHhm8S+cqAA/uS9nnV9pf1sJX3snejVygAAAA=="
   },
   "/assets/fabrics/single-jersey.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7lCDCAAA=="
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAApPBx2KQAAD+sxLWjkm17Je4P4docAAA"
   },
   "/assets/fabrics/softshell.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoQABAABIB0JZwABAAAAP7u09Dy8IAA"
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoQABAABIB0JaQAAl1/b71F4AD+26Rva+aBQBNw6neSogFyMnNlAAAA"
   },
   "/assets/fabrics/woven.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoQABAABIB0JZwABDOAAP7p7LzgQAAA"
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQABAABIB0JQBOgCG+sEpO8AAA/tWBSk+2eB4QS6LQZbapImPRMAAA"
   },
   "/assets/factory/cutting.webp": {
     "width": 1600,
