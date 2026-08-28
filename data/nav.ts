@@ -59,6 +59,33 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Vests", href: "/products/outerwear" },
     ],
   },
+  {
+    title: "Hospitality & Service",
+    href: "/products/hospitality-food-service",
+    links: [
+      { label: "Chef Wear", href: "/products/hospitality-food-service" },
+      { label: "Server Apparel", href: "/products/hospitality-food-service" },
+      { label: "Aprons", href: "/products/aprons" },
+    ],
+  },
+  {
+    title: "Denim & Athleisure",
+    href: "/products/denim",
+    links: [
+      { label: "Denim", href: "/products/denim" },
+      { label: "Joggers & Lounge", href: "/products/athleisure" },
+      { label: "Performance Knits", href: "/products/athleisure" },
+    ],
+  },
+  {
+    title: "Womenswear & Kidswear",
+    href: "/products/womenswear",
+    links: [
+      { label: "Women's Uniform", href: "/products/womenswear" },
+      { label: "Women's Knits", href: "/products/womenswear" },
+      { label: "Kidswear", href: "/products/kidswear" },
+    ],
+  },
 ];
 
 /** Footer columns. */

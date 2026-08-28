@@ -54,9 +54,9 @@ const blocks: ContentBlock[] = [
     type: "prose",
     heading: "Where the leverage actually is",
     body: [
-      "In uniform and workwear programs the dominant environmental cost is replacement frequency. A garment that survives twice as many wash cycles halves the volume produced, shipped and disposed of for the same coverage, which is a larger effect than most material substitutions.",
-      "That makes fabric durability, construction reinforcement and correct sizing genuine sustainability decisions, not just quality ones. A program where a third of the garments are the wrong size gets replaced early regardless of what the fabric is made from.",
-      "It is also the part a manufacturer can influence honestly. We can specify for wash durability and evidence it through testing. We cannot, today, hand you a certification we do not hold.",
+      "A uniform garment that lasts twice as many wash cycles covers the same workforce for half the units produced, shipped and disposed of. That is arithmetic rather than an environmental claim, and it is the part of the picture a manufacturer can actually influence.",
+      "So fabric durability, seam reinforcement and correct sizing are commercial and environmental decisions at once. A program where a third of the garments are the wrong size gets replaced early regardless of what the fabric is made from.",
+      "We can specify for wash durability and evidence it through testing against your acceptance standard. Where your program requires a named certification, nominate it and we will answer directly on whether it can be met and how.",
     ],
   },
   {

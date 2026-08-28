@@ -5,6 +5,7 @@ import { publicValue, company } from "../data/company.ts";
 import { caseStudies } from "../data/caseStudies.ts";
 import { productCategories } from "../data/products.ts";
 import { trims } from "../data/trims.ts";
+import { megaMenu, footerNav } from "../data/nav.ts";
 
 /**
  * The rules from spec §2, asserted rather than trusted.
@@ -61,4 +62,20 @@ test("protective and children's items are never presented as already qualified",
   for (const a of bodysuits) {
     assert.equal(a.capabilityStatus, "technical_qualification_required", a.name);
   }
+});
+
+test("every product family is reachable from navigation", () => {
+  // Five families once shipped with pages and sitemap entries but no menu link,
+  // so a buyer could not find them. The taxonomy has one source — the category
+  // list — and navigation has to cover all of it.
+  const linked = new Set(
+    [...megaMenu.flatMap((g) => [g.href, ...g.links.map((l) => l.href)]),
+     ...footerNav.flatMap((c) => c.links.map((l) => l.href))]
+      .filter((h): h is string => Boolean(h))
+      .filter((h) => h.startsWith("/products/"))
+      .map((h) => h.replace("/products/", "")),
+  );
+
+  const missing = productCategories.filter((c) => !linked.has(c.slug)).map((c) => c.slug);
+  assert.deepEqual(missing, [], `families with no navigation link: ${missing.join(", ")}`);
 });
