@@ -230,22 +230,22 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/henley-green.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQAAYcz5xrtrF4oMSAD+5+4YzCUj9jXm7AxoYNpaIkV/W6JStp4Y8s/OzLNf3LN65GjVsz3p/1yCDHpTZfTT5WphgkYE71vA4gAA"
+    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZQAAUYALmTb2sEAA/ufuGMwVuAS5WJRrXWJmPzvvJE8hyDMC1sZ6DOIkae9kHobd3iCNl5yn02CDHqQzRl1BCXnvh116V6L212AA"
   },
   "/assets/products/photography/henley-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZQAAYcmONFZ6N56SbcAA/ufsFpJQrPykYKsc7BRSQ2ob/XGRkpEW7mdQDo2j6ZmXYm2Ls38OwyI5DSis2770kivKBlHAQAA="
+    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQAAUYBlFx96QWCAAP7n7BZsjv4t+DFO1eepbt3IxFQy/Zd0UsPZXvDi9D0UUbcTbHpy7s3KxB7O8946yuOFpNpWP1DYqAA="
   },
   "/assets/products/photography/henley-tee-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQAFEALa2JP16NLqB+oAAP7rJbMGW6DVNOhp6WTe+hr+NmUS3DbiWFrLAvK3HGKtyx5l30ZpEsORw6slF2ECwy4E2XLxj0/QAA=="
+    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZQAAUXgvNR4p44MAAP7rJbJWqGiovd5u2uLAOSFjGoHbHYHXMHg1F97dIaHtM1TIPlemEg+2HJS9h+TLO1ZH1Wk6xaiDsAAAAA=="
   },
   "/assets/products/photography/henley-waffle-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAwBACdASoQABQAPyl+tVIuKCUisAgBwCUJYwDE33gAiCavCIBIGO9HEIAA/uqEJRu8MF8imOFd2ED+Uj3GL8SwdAWeDB/jawcJO/EjFNRuVvdIITh52y9W2hh3g7IA"
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoQABQAPyl+tlKuKCUisAgBwCUJYwAAUOVq46REDF9jyAD+6pI/KhsHvJ2r296A4kOotH2X8j2VECoDDVQfS8I+z5K1JuI4TPqRi0QT4oqHnumqp4scAAAA"
   },
   "/assets/products/photography/hoodie-black.webp": {
     "width": 1280,
@@ -260,12 +260,12 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/hoodie-navy-alt.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJYwAAXoFPG5hJxfTB5AAA/uqIQcKlVruIYHI2HLXBrwGI4ffmmCAAO+Ts8mjAWABv8PcRs+3XfVFfXaBEix/+FxjQXQ3hEt3QegwvQ1N6gAAA"
+    "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJYwAAXrV/Avqsen5W8xQAAP7qiEHCpVa1UARiABCxZJUivzTAwYK3c+BvnWCcV+1DykGI2fh5o4ueiVGtAkA/7GLHcBBCJ2YdRkG/4NLSeMuwAAA="
   },
   "/assets/products/photography/hoodie-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwAwCdASoQABQAPyl+tVKuKCUisAgBwCUJZQAARmYI2v6noVlcAAD+6n+8lk0AD0lq5PNK4AcSwiqbDP2L1H0ZsDvkrpub6riHQD1ATbHs3/4ueiVGtAsD/wtJoS4u6yAu68e5kbVIPRAA"
+    "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZQAARmYI2v6ko5uPQAD+6n+8lk0AD0lq5PNK4AcSwiqbDP2L1H0ZsDvkrpubkOi0A9QE2x9II+lqJRFzgnav/E285r3EHyUk/iGRppmLSliAAAA="
   },
   "/assets/products/photography/hoodie-pink-graphic.webp": {
     "width": 1280,
@@ -310,17 +310,17 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/polo-black-crest.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAV7HzeHXxCxe4AAD+6pXWZShVTIbsPyNRbrSNW9m/ue2yNkyB2gpQAUDMiYVDTP8HXvR2489nnmCMSpX5+hevvPxUAAA="
+    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAV7HzfgFkrNJVwAD+6pXWZShVTIbsPyNRbtZlR83ubcLfNOCHNrRCmUQO17/+aWv0utz7tcxY/rAqvAbfPrpXd2CrnAAAAA=="
   },
   "/assets/products/photography/polo-black-embroidered.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAATGNMoebS2/KiAAD+5+4YzW+RUxO+sfAZ/vZKbwJtewAlokjK7n4TNWPXTyx01EyiDOu9e1Vr9ao3pVK9+6RFAAAA"
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAATGNMoebRYNM+AAD+5+4YzW+RUxO+sfAZ/vZKbwJtewAlokjK7n4TNWPXTyx01Eyh9rLGWa/5XpSyRnAeSgoAAA=="
   },
   "/assets/products/photography/polo-black-service.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZwAAYdKP3YLJhJBO1IAA/uHjP4AlHMhJrN9+DhtUmjBD5bU85p0n59CeJEWtz6Cd90Isn+WychLrW8gva63j2BJGh8AA"
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAYdKP3YLJhJBwfOAA/uHjP4AlHMhJrN9+DhtUmjBD5bU85p0n59CeJEWtz6Cd90Isn+b2Nl1Cs37n6UqJTvAkWAAA"
   },
   "/assets/products/photography/polo-cream.webp": {
     "width": 1280,
@@ -330,37 +330,37 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/polo-dress-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQAwCdASoQABQAPyl+t1KuKCWisAgBwCUJZwDG9BI3lASPGa5a9AAA/uqXzfDudMIBlM0yot1E6njFmDBXaEtMte9yXxV0/B+ss3Bn1uK0HrUD5FxhqbJmPz98WIMBr1OtIsXivSFSPNeRpXOgAA=="
+    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAACwAwCdASoQABQAPyl+tlIuKCUisAgBwCUJZwDG9BI3mcwSJCmiYAD+6pfN8O50wgGUzTKi3UTqeMWYMFdoS0zGo/RDeYtK9VZ3PXtzRcKeROyzfawrLK2llZrXjGZHcB82HODl8K2MwhZgxgAAAA=="
   },
   "/assets/products/photography/polo-green-ribbed.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQDE2B7BFm9SvIjU2pXAAP7rJbJWqGdYmpzd2KQE9cTlWBP1Yns35TajWK/JcPcBMpNvazVrJTMPfTMwK/4mzcZ4gAAA"
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQDE2B7BFm9SvIjU2pXAAP7rJbJWqGdYmpzd2KQE9cTlWBP1Yns35TajWK/JcPcBMpNvazWU+GHAWTTMFgjHEKsAAA=="
   },
   "/assets/products/photography/polo-lime.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdAB3ebQce2zJAAP7qkjcncoy+T469OAkK02uaXhD7YyzbtlEIYuewuBsyDCn0gx0pojsBz2gJOOg5mZdSfcfiysAA"
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJbACdACB/0UXXFELoAP7qlaK3spoCsPjuyveQ6F8UAuS3rzrWrJTFDAGRWfoaScJpYwyoKNdEeC9fGYczMupPuPhAAAAA"
   },
   "/assets/products/photography/polo-maroon.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABQBACdASoQABQAPyl8tlIuJ6UisAgBwCUJbACdMoADgrS58KJ1vklKorGAAP7n7hjNYMMocp1atsh1Onc+D2AfKIo5WqKP3QcWLXKeLcJF/LWXvsVXosv+/tdYc1ORa1RVMy1T6zy/J+/T3ZiXAAAA"
+    "blur": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdACPytWfLsUkSq4UuAAD+5+4YzWDDKHKdVXoYNyttQmvK5hbggzsQYRtEZPFcbEmlojV/mmOxkonpMlR/iXBsjJGSJsGMIce2yBaxth9txSMyAAAA"
   },
   "/assets/products/photography/polo-navy-corporate.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAQBACdASoQABQAPyl+tVIuKCUisAgBwCUJZwDDNCPwHQ78/+bPaFVkAAD+4eM/gCXR7v3H44q3TeAjiOtvBwFc0rZUn0+bDTYEECUkQiq1vOynEYNb4lScR25xQo9kAAA="
+    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoQABQAPyl8tlIuJ6UisAgBwCUJZwDDNCPwHQ72Gjn7cRkWpQAA/uHjP4Al0pmCb5gCjpj5h/FWJaB2SgQMkrpf8fULhvdVJmrSy5L464ePD5uhBnmcC6ezHHa2iwAA"
   },
   "/assets/products/photography/polo-navy-embroidered.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJQBOgBH5WrPwkpG9OmniAAP7n7iJgVRqisKWioS6SyCdTwWA48Do1IC0APVsPavrqfHWJvKDEQ/0roecL9ao3t4ih0MS2ho4URxwsAAA="
+    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoQABQAPyl+tVKuKCUisAgBwCUJQBOgBH1RkKr7xXCAfWQCwAD+5+4iYFVPlB45teJC6S4hvcvJqs6l73rvarpJUPhOin4AaxN5R9ovKqHo/7/yEeSZhgQkIbuBjg04AAA="
   },
   "/assets/products/photography/polo-navy-grocery.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwDKABnPAyB+fqZcQAD+6qKDWGdYqM3eBmTSz7MjzwutBb0cIybmxE7fWaMow0MYe28ghPa/6DqhrZK0nsJgGvyu1boAAAA="
+    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZwDKABnPAyCx4F04rAAA/uqii88mONvATsTCQX42AZ0oYQgt6Ok/x9y1jz4900S0x3X+3Ep2fyyxLBnOxlwsNdhYl0SziAAAAA=="
   },
   "/assets/products/photography/polo-navy-tipped.webp": {
     "width": 1280,
@@ -375,17 +375,17 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/polo-red-grocery.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABQBACdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdMoLUABR4e15hfGuxjDEAAP7h4z+AfFD6TGvZ8lPVe8I/HRnwTDHOwnB3O+k3OENQcp990S3vprswph9fljSivvA53o3O8DFYwuIOa2JvDHwEg6I5RU9bD+fled4EynrcAAA="
+    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABwBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdMoLUABR4e15hfGwXr++nAAD+4eM/gHxQ+kxr2fJT1XvCPx0Z8EwxzsJwdzvpNzhDUHKffdEt76XtoYQzS9PfmHx8SredqbT+vbok91KCTSGvqXChN85v1ki9jHudRBQOGcAAAA=="
   },
   "/assets/products/photography/polo-red.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdABn7iDf8gy00IOyMAP7qfm2ejyfY+8GmHDqLYCAfrtO9UQfLKtivyX7/JgeEbaR3vl5Yl+6lvvh3pdE8tqUSuPrnC05pfURtPgoOS6RKh/UA6oSqG1Fsd3wAAAA="
+    "blur": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAQBACdASoQABQAPyl+tlIuKCUisAgBwCUJbACdACBTafYVqsvBwVxpgAD+6n5tno8Hj6OlrbM/cvcyPcFVqIPllWxX8/lNe8wgukR5eWJfupb74d6XRPLalHZvNXMvbygyrD45jSFzQOAcJkEYP0JVdngoAA=="
   },
   "/assets/products/photography/polo-royal-embroidered.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoQABQAPyl8tlIuJ6UisAgBwCUJbACdMoAC8bVE8Dvgg8NzcgD+6n+XVyHLD4XBV+5je91zbEoelUcIHBIcfGTg3ipTqjzdLNuD+TqtcoHBfa4y9KuGQjFkHVkAauN1NXqDTUHRgewAAA=="
+    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdMoAChVqDxkLB5c0hAAD+6n+XVyHL9jkorIveODcLq355fNFeogABja78zMqwkwHXKWbcH8sUPLDP2uybyGCneduIVdqCUyCWJtlBHXm5Y4GgAA=="
   },
   "/assets/products/photography/polo-taupe-long-sleeve.webp": {
     "width": 1280,
@@ -415,7 +415,7 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/polo-yellow.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJZgCdACHhW31nwq09jrMAAP7qjlCZ1s1BtWw2G2kZ9vyLIlqdkJ1GFKK4AAAA"
+    "blur": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAwCdASoQABQAPyl+t1IuKCWisAgBwCUJZgCdACHhW31nwq09jrMAAP7qjlCZ1s1BtWw2G2kZ9vyLIlqdkJ1GFKK4AAAA"
   },
   "/assets/products/photography/scarf-camel.webp": {
     "width": 1280,
@@ -425,12 +425,12 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/scarf-herringbone.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAWnv57htezEcrV28AAP7gzfPEUAu1nPYkZTugwOedC2uJg4klRy/eV4qhvTv6ssoGxuVhpa0gr92PgWdWydPKjHYsOmjwfY4AAAA="
+    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAWnv57gRtJZXxed+AAP7gzfPEUAu1nPYkZTugwNUSxohhmjGEinwmSt9SyjzVXDJILEMzbgzbwHJ2p55NU1HsNBslqznUfhQAAAA="
   },
   "/assets/products/photography/scarf-navy-looped.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoQABQAPyl8tVIuJ6UisAgBwCUJZQDImCKKeyKOadiLOPFTAAD+15Utoaav7H+BSO45zK9zy43DniMrLX3hCAR05GYzP49xeMoP+usYUDr5Wog8INZlLgC3+xpQdl0h9AuDwAAA"
+    "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZQAAXdPPuCJqMajBAAD+15Utoaav7H+BSO45zK9zy43DniMrLX3hCAR05GYzP49xeMoP+usYUDr7ve0A3b6Ns2WteHCHGN9WSwm0aKfAAA=="
   },
   "/assets/products/photography/scarf-navy.webp": {
     "width": 1280,
@@ -480,12 +480,12 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/tee-pink.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABwAwCdASoQABQAPyl+t1KuKCWisAgBwCUJbAAAXd1fjd6RtNwA/ufr9ksbp+XBqqIFWTvxnK0cw8CRf6l+SIUiTpX7Wb4fVYDvKsBuKqZo1lxAd6oHenRjaIAAAA=="
+    "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABwAwCdASoQABQAPymAtVIuKCUisAgBwCUJbAAAXeplMyNlrrwA/ufr3HGUoQGbmUZGYfm9nrsS0tWP9S/JEKRJ0r9rN8PqsB3jFUlg1KFnslq03W7aTVr0QAA="
   },
   "/assets/products/photography/tee-sky-blue.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJaACdAB2QN4qHOw6AAP7qlX/Xbik/bgHU4aDTP6efYORgPP2c+Ryg6+PzCC6QLb+G3OfARuZzXUHJd8deEn+1gAAAAA=="
+    "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJaACdAB2QN4rzt7OwAP7qlXy+r5U8D41hHhBMlpXhNNGK4UQVfI5bHLNhG2kdrvtV5b6Orc99N2I6wNV/4JXywAA="
   },
   "/assets/products/photography/thermal-sage-alt.webp": {
     "width": 1280,
@@ -525,7 +525,7 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/zip-hoodie-navy.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJZQAAV7H7/YLTyAO6wAD+6pLFDLYUt6YcJ9SOTTkGWqjqS/GcnXXIQRbN/I1fjGy3MohacRs/Zbd+lAJXdEnv6aBs3AgjPT32NpwjOet3QAAA"
+    "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQAAV7H7/YLTu3rFoAD+6pLFDLYUt6YcJ9SOTTkGWqjqS/GcnXXIQRbN/I1fjGy3MohacRs/ik+NJYXw6F+Y/9pZTGKJ8A6A5XO04c0IAA=="
   },
   "/assets/products/polos/polo-fabric-macro.webp": {
     "width": 1200,
