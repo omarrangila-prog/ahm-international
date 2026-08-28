@@ -89,7 +89,7 @@ export const company = {
     value: process.env.NEXT_PUBLIC_SALES_EMAIL ?? null,
     verified: Boolean(process.env.NEXT_PUBLIC_SALES_EMAIL),
     public: Boolean(process.env.NEXT_PUBLIC_SALES_EMAIL),
-    note: "Set NEXT_PUBLIC_SALES_EMAIL. Until then the RFQ form is the only contact route.",
+    note: "LAUNCH BLOCKER. Set NEXT_PUBLIC_SALES_EMAIL to a verified company-domain address (sales@ or info@). Until then the footer routes to /send-tech-pack rather than showing 'Available on request', which reads as evasive to an international buyer. Do not invent an address.",
   }),
   phone: field<string>({
     value: process.env.NEXT_PUBLIC_PHONE ?? null,
@@ -182,7 +182,21 @@ export const company = {
     }),
   },
 
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ahminternational.com",
+  /**
+   * The canonical production origin. Everything derives from this: canonical
+   * links, Open Graph and Twitter URLs, the sitemap, robots, and the
+   * Organization and WebSite schema.
+   *
+   * The default is the live deployment, not the intended domain. Pointing
+   * canonical at ahminternational.com while it does not resolve tells a crawler
+   * the authoritative copy lives at a dead URL, which is worse than having no
+   * canonical at all.
+   *
+   * When the real domain is live and pointed at this deployment, set
+   * NEXT_PUBLIC_SITE_URL to it — no code change needed — and the whole SEO
+   * surface follows in one step.
+   */
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ahm-international.vercel.app",
 } as const;
 
 export type Certification = {

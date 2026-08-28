@@ -490,12 +490,12 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/products/photography/thermal-sage-alt.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoQABQAPymAtlKuKCUisAgBwCUJZwAAW49Pt8AESamLAAD+5+4Oe/kbr8S1ITUM1FPjnh0MJ3F9fR79fBbccYHY1oHjIaW2gAAAAA=="
+    "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAW49Pt8cJzvoeQAD+5+4Oe/kbr8S1ITUM1FPjnh0MJ2nMcn4eakJzD/9bfXK6fiJY4AAAAA=="
   },
   "/assets/products/photography/thermal-sage.webp": {
     "width": 1280,
     "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAUXoTuHCUJzSCiAD+6pV/7x/HXsgY1dyPFzzefWcm3964HQ4sTpK5/LJnD3LyP61lgAAAAA=="
+    "blur": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACwAwCdASoQABQAPymAtlKuKCUisAgBwCUJZwAAUXoTuHCRyGYuMAD+6pV/7x/HXsgPvMndTTU7zBa1/LuoYjtcOIxL95XtNzu41IAAAAA="
   },
   "/assets/products/photography/utility-bomber-charcoal.webp": {
     "width": 1280,

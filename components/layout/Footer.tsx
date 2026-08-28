@@ -68,7 +68,12 @@ export function Footer() {
                     {email}
                   </a>
                 ) : (
-                  <p className="text-cream/60">{NOT_PUBLISHED}</p>
+                  <Link
+                    href="/send-tech-pack"
+                    className="inline-block py-1.5 text-cream/80 underline-offset-4 transition-colors hover:text-lime hover:underline"
+                  >
+                    Send a tech pack &rarr;
+                  </Link>
                 )}
               </li>
               <li>
