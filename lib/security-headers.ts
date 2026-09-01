@@ -27,27 +27,41 @@
  *
  * If analytics are added later behind consent, add that origin to `script-src`
  * and `connect-src` explicitly rather than widening to a wildcard.
+ *
+ * `'unsafe-eval'` is added in development and never in production. React's dev
+ * build uses `eval()` for debugging features — reconstructing a callstack from
+ * another environment, chiefly — and logs a console error when the policy blocks
+ * it. React's own message says it "will never use eval() in production mode",
+ * and Next's production bundles do not call it either, so allowing it while
+ * developing costs the shipped site nothing. The switch reads `NODE_ENV`, which
+ * `next build` pins to "production" regardless of the surrounding shell, and
+ * `tests/security-headers.test.ts` asserts the production policy cannot contain
+ * it.
  */
-const csp = [
-  "default-src 'self'",
-  // Next's hydration bootstrap is inline; see the note above.
-  "script-src 'self' 'unsafe-inline'",
-  // Tailwind and React style props emit inline styles.
-  "style-src 'self' 'unsafe-inline'",
-  // data: for blur placeholders, blob: for the file previews in the RFQ form.
-  "img-src 'self' data: blob:",
-  "font-src 'self'",
-  "connect-src 'self'",
-  "media-src 'self'",
-  // The RFQ form must not be able to post anywhere but this origin.
-  "form-action 'self'",
-  // Clickjacking: the modern replacement for X-Frame-Options.
-  "frame-ancestors 'none'",
-  "frame-src 'none'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "upgrade-insecure-requests",
-].join("; ");
+export function buildCsp({ development }: { development: boolean }) {
+  return [
+    "default-src 'self'",
+    // Next's hydration bootstrap is inline; see the note above.
+    `script-src 'self' 'unsafe-inline'${development ? " 'unsafe-eval'" : ""}`,
+    // Tailwind and React style props emit inline styles.
+    "style-src 'self' 'unsafe-inline'",
+    // data: for blur placeholders, blob: for the file previews in the RFQ form.
+    "img-src 'self' data: blob:",
+    "font-src 'self'",
+    "connect-src 'self'",
+    "media-src 'self'",
+    // The RFQ form must not be able to post anywhere but this origin.
+    "form-action 'self'",
+    // Clickjacking: the modern replacement for X-Frame-Options.
+    "frame-ancestors 'none'",
+    "frame-src 'none'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "upgrade-insecure-requests",
+  ].join("; ");
+}
+
+const csp = buildCsp({ development: process.env.NODE_ENV === "development" });
 
 export const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
