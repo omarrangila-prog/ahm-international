@@ -8,6 +8,7 @@ export function AnnouncementBar() {
     <aside
       aria-label="Business model and location"
       data-persist=""
+      data-print="hide"
       className="relative z-50 bg-ink text-cream"
     >
       <div className="shell-wide flex h-9 items-center justify-between gap-4">

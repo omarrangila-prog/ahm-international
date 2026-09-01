@@ -96,6 +96,21 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   `h3-js`, which three-globe needs to tile countries into hexagons. Dropping the
   hex-dot look means dropping three-globe entirely.
 
+## The site has a print mode
+
+`@media print` in `app/globals.css` lays the same document out for paper —
+sourcing managers print supplier pages and circulate them internally. Zones lose
+their colour, the header, footer and conversion bands drop out, and
+`PrintHeader` adds a provenance line naming the page.
+
+There is deliberately no `a::after { content: attr(href) }`. Spelling out every
+destination sounds helpful and reads as noise: it put a forty-character URL
+inside every button label and pushed `/capabilities` onto a blank second sheet.
+
+New screen-only sections need `data-print="hide"`, which `<Section>` accepts and
+forwards. Anything hidden behind a `lg:` breakpoint is hidden in print too —
+print width is narrow — so a fact that must survive needs `print:block`.
+
 ## No root `loading.tsx`
 
 Deliberately absent. Every route in this site is statically prerendered (`○` in

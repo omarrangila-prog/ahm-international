@@ -624,3 +624,101 @@
   outline: 2px solid var(--color-lime);
   outline-offset: 2px;
 }
+
+/* ============================================================
+   PRINT
+   ============================================================
+
+   A sourcing manager who is shortlisting suppliers prints or PDFs the pages
+   they are comparing and circulates them internally. Unstyled, this site prints
+   badly: dark zones burn a cartridge for no information, the sticky header
+   lands on top of the first paragraph, and every link becomes an unreachable
+   phrase because paper has no hover.
+
+   Nothing here is a separate print template — it is the same document, laid out
+   for paper. So it stays true by construction: a claim removed from the page is
+   removed from the print.
+   ============================================================ */
+
+@media print {
+  /* Ink is expensive and a coloured ground carries no information on paper. */
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* A rule between sections, but not above the first — the provenance strip
+     already draws one there, and two hairlines read as a mistake. */
+  [data-zone] + [data-zone],
+  [data-zone] ~ [data-zone] {
+    border-top: 1px solid #999;
+  }
+
+  /* Screen rhythm is built for scrolling past; on paper it is empty sheets.
+     /capabilities printed a blank second page purely on section padding. */
+  [data-zone] {
+    padding-top: 8mm !important;
+    padding-bottom: 8mm !important;
+  }
+
+  /* Screen affordances: navigation, conversion bands, the skip link, and the
+     sticky mobile bar, which otherwise reprints its buttons on every sheet. */
+  header,
+  footer,
+  nav,
+  .read-progress,
+  .fixed,
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 0 !important;
+  }
+
+  /* Motion never runs: entrance states must not print as blank space. */
+  [data-inview],
+  [data-img-reveal],
+  [data-rule-draw] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Deliberately no `a::after { content: attr(href) }`.
+     Spelling out every destination sounds helpful and reads as noise — on this
+     site it put a forty-character URL inside every button label and pushed the
+     page it was meant to clarify onto a second sheet. The provenance a printed
+     page actually needs is where the sheet came from, once, which is what
+     `PrintHeader` supplies. */
+
+  /* Keep a heading with what it introduces, and never split a spec row. */
+  h1, h2, h3, h4 {
+    break-after: avoid-page;
+  }
+  li, dl > div, tr, figure {
+    break-inside: avoid;
+  }
+  img {
+    max-height: 7cm;
+    width: auto !important;
+    object-fit: contain;
+  }
+
+  @page {
+    margin: 16mm 14mm;
+  }
+}
+
+/* Print-only provenance strip; see components/layout/PrintHeader.tsx. */
+.print-only {
+  display: none;
+}
+@media print {
+  .print-only {
+    display: block !important;
+  }
+}

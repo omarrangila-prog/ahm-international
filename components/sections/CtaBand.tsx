@@ -25,7 +25,7 @@ export function CtaBand({
   const dark = ["ink", "graphite", "forest", "cobalt", "plum"].includes(zone);
 
   return (
-    <Section zone={zone} spacing="md" tooth>
+    <Section data-print="hide" zone={zone} spacing="md" tooth>
       <div className="shell-wide relative z-10 grid grid-cols-12 items-end gap-y-8 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-7">
           <MaskedHeading

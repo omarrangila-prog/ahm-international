@@ -2,61 +2,21 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { CatalogueExplorer } from "@/components/products/CatalogueExplorer";
-import { ProductCard } from "@/components/products/ProductCard";
-import { SpecTable } from "@/components/ui/SpecTable";
+import { ProductIndex } from "@/components/products/ProductIndex";
+import { QuoteReadiness } from "@/components/products/QuoteReadiness";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
-import { SIZES } from "@/components/ui/SmartImage";
 import { productCategories } from "@/data/products";
 import { pageMetadata, itemListSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
-import type { AssetKey } from "@/data/assets";
 
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Product Range",
   description:
-    "Seven apparel families made to buyer specification in Karachi: uniform and workwear, knits, aprons, woven shirts, bottoms and outerwear.",
+    "Twelve apparel families made to buyer specification in Karachi: uniform and workwear, polos, fleece, aprons, woven shirts, bottoms, outerwear and more.",
   path: "/products",
 });
-
-/** Zone and render paired per category so every card keeps its contrast. */
-/**
- * Card art overrides. A category already carries its own `zone` and `heroAsset`,
- * so this map exists only where the card wants a different image from the page
- * hero — typically a clean render rather than a photograph. Anything absent
- * falls back to the category, which is why adding a category cannot break this
- * page.
- */
-const cardVisuals: Record<string, { zone: string; asset: AssetKey; secondary?: AssetKey }> = {
-  "uniform-workwear": { zone: "forest", asset: "renders.workJacket", secondary: "products.wovenShirt.front" },
-  "polos-tshirts": { zone: "cobalt", asset: "photo.poloWhiteTipped", secondary: "products.polo.front" },
-  "fleece-sweatshirts": { zone: "plum", asset: "photo.hoodieNavy", secondary: "products.fleece.front" },
-  aprons: { zone: "orange", asset: "products.apron.front", secondary: "products.apron.front" },
-  "woven-shirts": { zone: "sky", asset: "renders.utilityWorkShirt", secondary: "products.wovenShirt.front" },
-  bottoms: { zone: "sand", asset: "renders.workTrouser", secondary: "products.bottoms.front" },
-  outerwear: { zone: "ink", asset: "photo.zipHoodieNavy", secondary: "products.outerwear.front" },
-  "hospitality-food-service": { zone: "plum", asset: "renders.chefCoat", secondary: "products.apron.front" },
-  denim: { zone: "ink", asset: "photo.denimWorkShirt", secondary: "photo.denimUtilityJacket" },
-  athleisure: { zone: "sky", asset: "photo.joggerGreyGraphic", secondary: "photo.hoodieHeatherGraphic" },
-  womenswear: { zone: "orange", asset: "photo.poloCream", secondary: "photo.hoodiePinkGraphic" },
-  kidswear: { zone: "sand", asset: "photo.onesieWhitePrint", secondary: "photo.onesieWhiteText" },
-};
-
-/** What AHM needs in order to quote anything, regardless of category. */
-const quoteRequirements = [
-  { label: "Article", value: "What the garment is, and a reference or sketch if you have one" },
-  { label: "Construction", value: "Tech pack, an existing garment, or a written description" },
-  { label: "Fabric", value: "Composition and weight, or the requirement it has to meet" },
-  { label: "Quantity", value: "Per style and per colour, even approximately" },
-  { label: "Colours", value: "How many, and against what reference" },
-  { label: "Sizes", value: "Size range and your measurement specification if one exists" },
-  { label: "Decoration", value: "Embroidery, print or labels, with artwork where available" },
-  { label: "Packing", value: "Folded or hanging, ratio or solid pack, carton marking" },
-  { label: "Destination", value: "Port and target delivery window" },
-  { label: "Target price", value: null },
-];
 
 export default function ProductsPage() {
   return (
@@ -87,34 +47,14 @@ export default function ProductsPage() {
         secondaryCta={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
       />
 
+      {/* Twelve families as a list that opens in place, not twelve cards.
+          See components/products/ProductIndex.tsx. */}
       <Section zone="cream" spacing="none" aria-labelledby="range-heading">
         <div className="shell-wide pb-24">
           <h2 id="range-heading" className="sr-only">
             Product categories
           </h2>
-          <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
-            {productCategories.map((category) => {
-              const visual =
-                cardVisuals[category.slug] ??
-                { zone: category.zone, asset: category.heroAsset };
-              return (
-                <RevealItem key={category.slug}>
-                  <ProductCard
-                    index={category.index}
-                    name={category.name}
-                    href={`/products/${category.slug}`}
-                    zone={visual.zone}
-                    items={category.subcategories.slice(0, 4)}
-                    asset={visual.asset}
-                    secondaryAsset={visual.secondary}
-                    capabilityStatus={category.capabilityStatus}
-                    sizes={SIZES.third}
-                    className="h-full min-h-[28rem]"
-                  />
-                </RevealItem>
-              );
-            })}
-          </RevealGroup>
+          <ProductIndex />
         </div>
       </Section>
 
@@ -151,17 +91,13 @@ export default function ProductsPage() {
               lines={[{ text: "What we need" }, { text: "to quote." }]}
             />
             <p className="mt-6 text-ink/70">
-              You do not need all of it. Send what you have and we will tell you what is missing. 
-              but a request carrying these answers gets an accurate quotation instead of a cautious
-              one.
+              You do not need all of it. Send what you have and we will tell you what is
+              missing — but a request carrying these answers gets an accurate quotation
+              instead of a cautious one.
             </p>
           </div>
           <div className="col-span-12 lg:col-span-8">
-            <SpecTable rows={quoteRequirements} />
-            <p className="mt-6 text-xs text-ink/70">
-              A target price is genuinely useful and is not used against you. It tells us which
-              fabric and construction options are worth presenting.
-            </p>
+            <QuoteReadiness />
           </div>
         </div>
       </Section>

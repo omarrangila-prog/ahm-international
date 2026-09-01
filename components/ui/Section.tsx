@@ -61,6 +61,8 @@ type Props = {
   as?: "section" | "div" | "article";
   "aria-labelledby"?: string;
   "aria-label"?: string;
+  /** Marks a section as screen-only. See the print block in globals.css. */
+  "data-print"?: "hide";
 };
 
 const spacingStyles = {
@@ -78,7 +80,7 @@ export function Section({
   tooth = false,
   id,
   as: Tag = "section",
-  ...aria
+  ...passthrough
 }: Props) {
   const style = zoneStyles[zone];
 
@@ -93,7 +95,7 @@ export function Section({
         tooth && "tooth",
         className,
       )}
-      {...aria}
+      {...passthrough}
     >
       {children}
     </Tag>

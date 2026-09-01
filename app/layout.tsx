@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
+import { PrintHeader } from "@/components/layout/PrintHeader";
 import { RouteTransition } from "@/components/motion/RouteTransition";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <AnnouncementBar />
         <Header />
+        <PrintHeader />
 
         {/* Bottom padding clears the sticky mobile CTA bar. */}
         <main id="main" className="pb-14 lg:pb-0">
