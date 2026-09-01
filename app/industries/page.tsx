@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { IndustryCard } from "@/components/products/IndustryCard";
+import { IndustryRows } from "@/components/sections/IndustryRows";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
-import { SIZES } from "@/components/ui/SmartImage";
-import { industries, performanceOptions, PERFORMANCE_DISCLAIMER } from "@/data/industries";
-import { industryDetail } from "@/data/industry-detail";
+import { performanceOptions, PERFORMANCE_DISCLAIMER } from "@/data/industries";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -20,8 +17,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function IndustriesPage() {
-  const withPages = industries.filter((i) => industryDetail[i.slug]);
-
   return (
     <>
       <PageHero
@@ -38,20 +33,13 @@ export default function IndustriesPage() {
         secondaryCta={{ label: "See product range", href: "/products" }}
       />
 
+      {/* Rows rather than tiles; see components/sections/IndustryRows.tsx. */}
       <Section zone="cream" spacing="none" aria-labelledby="ind-heading">
         <div className="shell-wide pb-24">
           <h2 id="ind-heading" className="sr-only">
             Industries served
           </h2>
-          <RevealGroup className="grid grid-cols-2 gap-6 lg:grid-cols-4" stagger={0.06}>
-            {withPages.map((industry) => (
-              <RevealItem key={industry.slug}>
-                <Link href={`/industries/${industry.slug}`} className="block">
-                  <IndustryCard industry={industry} tone="light" sizes={SIZES.quarter} />
-                </Link>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <IndustryRows />
         </div>
       </Section>
 

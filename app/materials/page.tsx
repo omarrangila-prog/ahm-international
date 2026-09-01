@@ -4,6 +4,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { TrimsLibrary } from "@/components/products/TrimsLibrary";
+import { FabricCompare } from "@/components/sections/FabricCompare";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
@@ -126,6 +127,28 @@ export default function MaterialsPage() {
 
       {/* Spec §15 — trims sit with fabrics because to a buyer they are the same
           question: what is this garment actually made of, and what must I decide. */}
+      {/* Two constructions side by side, because that is the shape of the real
+          decision. See components/sections/FabricCompare.tsx. */}
+      <Section zone="ivory" spacing="lg" aria-labelledby="compare-heading">
+        <div className="shell-wide">
+          <Eyebrow>Compare</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="compare-heading"
+            className="mt-5 max-w-3xl font-display text-h1 text-ink"
+            lines={[{ text: "Two constructions," }, { text: "one decision.", className: "text-cobalt" }]}
+          />
+          <p className="mt-6 max-w-xl text-ink/70">
+            Drag the seam to put one weave against another. The photographs are
+            macros of the construction; the table beneath them is where the
+            difference is actually decided.
+          </p>
+          <div className="mt-12">
+            <FabricCompare />
+          </div>
+        </div>
+      </Section>
+
       <Section zone="paper" spacing="lg" aria-labelledby="trims-heading">
         <div className="shell-wide">
           <Eyebrow>Trims</Eyebrow>

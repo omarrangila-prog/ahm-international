@@ -580,3 +580,47 @@
 @media (prefers-reduced-motion: reduce) {
   .loading-sweep { animation: none; width: 100%; opacity: 0.4; }
 }
+
+/* ============================================================
+   FABRIC COMPARE SLIDER
+   ============================================================
+
+   The seam handle on /materials is a native `<input type="range">` stretched
+   over the whole frame, so keyboard, touch and screen-reader support come from
+   the platform rather than from re-implemented pointer handlers. Everything
+   here is presentation: the track disappears and the thumb becomes the grip.
+   ============================================================ */
+
+.compare-range::-webkit-slider-runnable-track {
+  height: 100%;
+  background: transparent;
+}
+.compare-range::-moz-range-track {
+  height: 100%;
+  background: transparent;
+}
+
+/* The native thumb is the hit target and nothing else. WebKit aligns it to the
+   top of a full-height track and gives no way to centre it that survives a
+   fluid frame, so the visible grip is drawn by the component at the seam and
+   this stays invisible — full size, so touch and pointer still land on it. */
+.compare-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 44px;
+  width: 44px;
+  opacity: 0;
+  cursor: ew-resize;
+}
+.compare-range::-moz-range-thumb {
+  height: 44px;
+  width: 44px;
+  border: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+.compare-range:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 2px;
+}

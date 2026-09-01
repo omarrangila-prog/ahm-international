@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
@@ -32,6 +33,7 @@ export default function GlossaryPage() {
 
   return (
     <>
+      <ReadingProgress />
       <JsonLd
         data={{
           "@context": "https://schema.org",

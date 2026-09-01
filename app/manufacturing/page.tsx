@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { WorkflowMap } from "@/components/sections/WorkflowMap";
+import { ManufacturingScroll } from "@/components/sections/ManufacturingScroll";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
-import { manufacturingStages } from "@/data/manufacturing";
 import { pageMetadata } from "@/lib/seo";
-import { numeral } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Manufacturing Process",
@@ -39,51 +34,25 @@ export default function ManufacturingPage() {
         secondaryCta={{ label: "See capabilities", href: "/capabilities" }}
       />
 
-      <Section zone="cream" spacing="none" aria-labelledby="stages-heading">
-        <div className="shell-wide pb-24">
-          <h2 id="stages-heading" className="sr-only">
-            Manufacturing stages
-          </h2>
-
-          <RevealGroup className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3" stagger={0.05}>
-            {manufacturingStages.map((stage) => (
-              <RevealItem key={stage.slug}>
-                <Link
-                  href={`/manufacturing/${stage.slug}`}
-                  className="group flex h-full flex-col bg-cream transition-colors duration-300 hover:bg-white"
-                >
-                  <div className="aspect-[16/10] w-full overflow-hidden bg-ivory">
-                    <SmartImage
-                      asset={stage.asset}
-                      sizes={SIZES.third}
-                      className="h-full w-full"
-                      imageClassName="object-cover transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col justify-between p-6">
-                    <div>
-                      <div className="flex items-start justify-between gap-4">
-                        <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-cobalt">
-                          {numeral(stage.index)}
-                        </span>
-                        <ArrowUpRight
-                          className="h-4 w-4 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cobalt"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <h3 className="mt-3 font-display text-lg font-bold tracking-[-0.025em] text-ink">
-                        {stage.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink/65">
-                        {stage.intro.split(". ")[0]}.
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+      {/* The nine stages, read in order rather than compared as a grid. See
+          components/sections/ManufacturingScroll.tsx for why. */}
+      <Section zone="ink" spacing="lg" tooth aria-labelledby="stages-heading">
+        <div className="shell-wide">
+          <Eyebrow>The nine stages</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="stages-heading"
+            className="mt-5 max-w-3xl font-display text-h1 text-cream"
+            lines={[{ text: "From your spec" }, { text: "to on board.", className: "text-lime" }]}
+          />
+          <p className="mt-6 max-w-xl text-cream/75">
+            Read it in order. Each stage names what you receive and the failure that
+            stage is prone to, because the point where a program stalls is almost
+            always the point nobody was watching.
+          </p>
+          <div className="mt-14">
+            <ManufacturingScroll />
+          </div>
         </div>
       </Section>
 

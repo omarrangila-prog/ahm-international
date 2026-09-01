@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
@@ -60,6 +61,7 @@ export default async function CaseStudyPage({ params }: Params) {
 
   return (
     <>
+      <ReadingProgress />
       <PageViewEvent event="case_study_viewed" detail={slug} />
       <PageHero
         eyebrow="Case study"
