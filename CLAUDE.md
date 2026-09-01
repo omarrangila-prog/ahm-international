@@ -96,6 +96,22 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   `h3-js`, which three-globe needs to tile countries into hexagons. Dropping the
   hex-dot look means dropping three-globe entirely.
 
+## `three` is pinned to 0.182
+
+Not a floating range, and not an oversight. three r183 deprecated `THREE.Clock`
+and logs a console warning whenever one is constructed; `@react-three/fiber`
+9.7.0 — the latest stable — still constructs one on every canvas. The result was
+a deprecation warning on `/export` in dev and production alike, from library
+code we do not own.
+
+Both `@react-three/fiber` and `three-globe` declare an open-ended peer range
+(`three >= 0.156` and `>= 0.154`), so the resolver was free to pick a version
+neither had been updated for. 0.182.0 is the last release before the
+deprecation.
+
+Lift the pin once react-three-fiber moves to `THREE.Timer`, and confirm by
+loading `/export` with the console open — the warning is the only symptom.
+
 ## The site has a print mode
 
 `@media print` in `app/globals.css` lays the same document out for paper —
