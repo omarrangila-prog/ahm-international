@@ -10,7 +10,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { guides, getGuide } from "@/data/guides";
 import { REVIEWED_BY, LAST_REVIEWED } from "@/data/editorial";
-import { pageMetadata, articleSchema, faqSchema } from "@/lib/seo";
+import { pageMetadata, articleSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export function generateStaticParams() {
@@ -53,7 +53,6 @@ export default async function GuidePage({ params }: Params) {
           section: guide.category,
         })}
       />
-      <JsonLd data={faqSchema(guide.faqs)} />
 
       <PageHero
         eyebrow={guide.category}

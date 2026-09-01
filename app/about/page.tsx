@@ -241,6 +241,7 @@ export default function AboutPage() {
       />
 
       <RelatedLinks
+        guidesFor="/about"
         title="Explore next"
         links={[
           { label: "Manufacturing capabilities", href: "/capabilities", description: "Thirteen capabilities, each described by what it produces for you." },

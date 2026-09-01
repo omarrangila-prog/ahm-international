@@ -155,10 +155,11 @@ export default function CapabilitiesPage() {
       />
 
       <RelatedLinks
+        guidesFor="/capabilities"
         title="Explore next"
         links={[
           { label: "Manufacturing process", href: "/manufacturing", description: "Nine stages, each with its outputs and its characteristic failure." },
-          { label: "Product range", href: "/products", description: "Seven apparel families manufactured to buyer specification." },
+          { label: "Product range", href: "/products", description: "Twelve apparel families manufactured to buyer specification." },
           { label: "Quality assurance", href: "/quality", description: "Inspection across incoming material, production, finishing and packing." },
         ]}
       />

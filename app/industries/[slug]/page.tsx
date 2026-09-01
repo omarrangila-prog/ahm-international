@@ -14,8 +14,7 @@ import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { industries } from "@/data/industries";
 import { getIndustryDetail, industryDetail } from "@/data/industry-detail";
 import { getCategory } from "@/data/products";
-import { pageMetadata, faqSchema } from "@/lib/seo";
-import { JsonLd } from "@/components/ui/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import { numeral } from "@/lib/utils";
 
 /**
@@ -75,7 +74,6 @@ export default async function IndustryPage({ params }: Params) {
     <>
       <PageViewEvent event="industry_viewed" detail={slug} />
       <ReadingProgress />
-      <JsonLd data={faqSchema(detail.faqs)} />
 
       <PageHero
         eyebrow={`Industries: ${industry.name}`}

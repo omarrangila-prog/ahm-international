@@ -10,7 +10,7 @@ import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { manufacturingStages, getManufacturingStage } from "@/data/manufacturing";
-import { pageMetadata, serviceSchema, faqSchema } from "@/lib/seo";
+import { pageMetadata, serviceSchema } from "@/lib/seo";
 import { hasAsset } from "@/data/assets";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { numeral } from "@/lib/utils";
@@ -65,7 +65,6 @@ export default async function ManufacturingStagePage({ params }: Params) {
           path: `/manufacturing/${stage.slug}`,
         })}
       />
-      <JsonLd data={faqSchema(stage.faqs)} />
 
       <PageHero
         eyebrow={`Manufacturing: stage ${numeral(stage.index)} of ${manufacturingStages.length}`}

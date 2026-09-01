@@ -535,7 +535,7 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.onesieWhitePrint",
     detailAssets: ["photo.onesieWhiteText", "fabrics.singleJersey", "factory.sewing"],
     photography: ["photo.onesieWhitePrint", "photo.onesieWhiteText"],
-    seoTitle: "Kidswear & Infant Apparel Manufacturing",
+    seoTitle: "Kidswear & Infant Apparel",
     seoDescription:
       "Infant bodysuits, kids' knits and school uniform developed against destination-market safety requirements in Karachi and supplied FOB.",
   },

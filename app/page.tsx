@@ -9,9 +9,6 @@ import { ExportSection } from "@/components/sections/ExportSection";
 import { CaseStudyFeature } from "@/components/sections/CaseStudyFeature";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { pageMetadata } from "@/lib/seo";
-import { JsonLd } from "@/components/ui/JsonLd";
-import { faqSchema } from "@/lib/seo";
-import { commercialAnswers } from "@/data/company";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -28,7 +25,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={faqSchema(commercialAnswers)} />
       {/* 01 · Hero */}  <Hero />
       {/* 02 · Credibility */}  <TrustStrip />
       {/* 04 · Benchmark a style */}  <Benchmark />

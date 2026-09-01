@@ -168,6 +168,7 @@ export default function QualityPage() {
       />
 
       <RelatedLinks
+        guidesFor="/quality"
         title="Explore next"
         links={[
           { label: "Quality control process", href: "/manufacturing/quality-control", description: "Stage-by-stage detail and what usually goes wrong." },

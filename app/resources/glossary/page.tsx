@@ -24,7 +24,7 @@ import { glossary, glossaryGroups } from "@/data/glossary";
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Sourcing Glossary",
   description:
-    "Plain definitions of the specification, materials, sampling, quality, commercial and export terms used in apparel sourcing — including the ones most often confused.",
+    "Plain definitions of the specification, materials, sampling, quality and export terms used in apparel sourcing — including the ones most often confused.",
   path: "/resources/glossary",
 });
 

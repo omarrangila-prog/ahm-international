@@ -93,6 +93,7 @@ export default function RequestQuotePage() {
       </Section>
 
       <RelatedLinks
+        guidesFor="/request-a-quote"
         title="Useful before quoting"
         links={[
           { label: "Tech pack checklist", href: "/development", description: "What a complete apparel tech pack contains, and the gaps we most often find." },

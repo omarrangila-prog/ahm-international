@@ -131,6 +131,7 @@ export default function ManufacturingPage() {
       />
 
       <RelatedLinks
+        guidesFor="/manufacturing"
         title="Explore next"
         links={[
           { label: "Quality assurance process", href: "/quality", description: "Where inspection happens and what is checked at each stage." },

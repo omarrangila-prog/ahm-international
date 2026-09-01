@@ -134,6 +134,7 @@ export default function ProductDevelopmentPage() {
       />
 
       <RelatedLinks
+        guidesFor="/development"
         title="Explore next"
         links={[
           { label: "Product development stage", href: "/manufacturing/product-development", description: "Detail, outputs and what usually goes wrong." },

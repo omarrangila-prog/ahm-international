@@ -163,6 +163,7 @@ export default function ExportPage() {
       />
 
       <RelatedLinks
+        guidesFor="/export"
         title="Explore next"
         links={[
           { label: "FOB apparel manufacturing explained", href: "/fob-apparel-manufacturing", description: "FOB compared with EXW and CIF, and who carries what." },

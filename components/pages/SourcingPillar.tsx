@@ -8,8 +8,7 @@ import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { getSourcingPillar } from "@/data/sourcing";
-import { pageMetadata, faqSchema } from "@/lib/seo";
-import { JsonLd } from "@/components/ui/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import { REVIEWED_BY, LAST_REVIEWED } from "@/data/editorial";
 
 
@@ -56,7 +55,6 @@ export function SourcingPillar({ slug, basePath }: { slug: string; basePath: str
 return (
     <>
       <ReadingProgress />
-      <JsonLd data={faqSchema(pillar.faqs)} />
 
       <PageHero
         eyebrow={pillar.eyebrow}

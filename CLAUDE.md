@@ -96,6 +96,29 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   `h3-js`, which three-globe needs to tile countries into hexagons. Dropping the
   hex-dot look means dropping three-globe entirely.
 
+## FAQ schema comes from the component, not the page
+
+`<Faq>` is a server wrapper that renders the questions *and* emits the
+`FAQPage` structured data from the same array. Do not add a separate
+`faqSchema` JsonLd to a page — it would produce two FAQPage blocks on one URL.
+
+They used to be separate and drifted both ways: seven pages showed a buyer FAQ
+with no schema, and the homepage emitted `FAQPage` for questions it never
+rendered, which Google's policy forbids. Binding them makes both unreachable.
+
+`<Faq>` may appear at most once per page. Two lists on one page must be
+concatenated into one call.
+
+## Guide back-links are derived
+
+`guidesLinkingTo(route)` in `data/guides.ts` reads each guide's own `related`
+list in reverse, and `<RelatedLinks guidesFor="/route">` appends the result. Add
+the route to a guide's `related` and the back-link appears; there is no second
+place to update.
+
+Seven of the nine guides previously had one inbound link, all from `/resources`.
+`tests/internal-links.test.ts` holds the invariants.
+
 ## `three` is pinned to 0.182
 
 Not a floating range, and not an oversight. three r183 deprecated `THREE.Clock`

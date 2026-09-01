@@ -1,20 +1,28 @@
-"use client";
-
-import { useState } from "react";
-import { Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { faqSchema } from "@/lib/seo";
+import { FaqList } from "./FaqList";
 
 /**
  * Buyer FAQ.
  *
- * Answers are in the server-rendered HTML and only *visually* collapsed, so the
- * content is available to crawlers and to a reader without JavaScript.
- * Collapsing content that only exists after a click is a real indexing risk;
- * collapsing content already in the document is not.
+ * A server component that renders the questions *and* their `FAQPage`
+ * structured data together, from the same array.
  *
- * The open/close transition uses `grid-template-rows: 0fr -> 1fr`, which
- * animates to the content's natural height with no measurement and no
- * animation library.
+ * They were separate before, and the two drifted in both directions. Seven
+ * pages — export, materials, quality, development, sourcing, sustainability
+ * and request-a-quote — showed a buyer FAQ with no schema at all, so none of
+ * them was eligible for the rich result. The homepage had the opposite problem:
+ * it emitted `FAQPage` for the commercial answers while rendering none of them,
+ * which is the case Google's structured data policy explicitly forbids, since
+ * the content has to be visible on the page it is claimed for.
+ *
+ * Binding the two makes both failures unreachable. A page cannot show an FAQ
+ * without describing it, and cannot describe one it does not show.
+ *
+ * `<Faq>` appears at most once per page, so this emits exactly one FAQPage
+ * block per document. If a page ever needs two lists, they must be concatenated
+ * into one `<Faq>` rather than rendered twice — two FAQPage blocks on one URL
+ * is not a supported shape.
  */
 
 export type FaqItem = { question: string; answer: string };
@@ -28,64 +36,12 @@ export function Faq({
   tone?: "light" | "dark";
   className?: string;
 }) {
-  const [open, setOpen] = useState<number | null>(0);
-  const dark = tone === "dark";
+  if (!items.length) return null;
 
   return (
-    <div className={cn("border-t", dark ? "border-current/15" : "border-line", className)}>
-      {items.map((item, i) => {
-        const expanded = open === i;
-        return (
-          <div key={item.question} className={cn("border-b", dark ? "border-current/15" : "border-line")}>
-            <h3>
-              <button
-                type="button"
-                onClick={() => setOpen(expanded ? null : i)}
-                aria-expanded={expanded}
-                aria-controls={`faq-panel-${i}`}
-                id={`faq-trigger-${i}`}
-                className="group flex w-full items-start justify-between gap-6 py-5 text-left"
-              >
-                <span
-                  className={cn(
-                    "font-display text-base font-bold tracking-[-0.02em] transition-colors sm:text-lg",
-                    dark ? "text-current group-hover:text-lime" : "text-ink group-hover:text-cobalt",
-                  )}
-                >
-                  {item.question}
-                </span>
-                <Plus
-                  className={cn(
-                    "mt-1 h-4 w-4 shrink-0 transition-transform duration-300 ease-[var(--ease-out-expo)]",
-                    expanded && "rotate-45",
-                    dark ? "text-current/70" : "text-ink/60",
-                  )}
-                  aria-hidden="true"
-                />
-              </button>
-            </h3>
-
-            <div
-              id={`faq-panel-${i}`}
-              role="region"
-              aria-labelledby={`faq-trigger-${i}`}
-              className="collapse-grid"
-              data-open={expanded ? "true" : "false"}
-            >
-              <div>
-                <p
-                  className={cn(
-                    "max-w-3xl pb-6 pr-10 text-[0.9375rem] leading-relaxed",
-                    dark ? "text-current/70" : "text-ink/70",
-                  )}
-                >
-                  {item.answer}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <JsonLd data={faqSchema(items)} />
+      <FaqList items={items} tone={tone} className={className} />
+    </>
   );
 }

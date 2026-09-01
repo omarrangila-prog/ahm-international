@@ -201,10 +201,11 @@ export default function MaterialsPage() {
       />
 
       <RelatedLinks
+        guidesFor="/materials"
         title="Explore next"
         links={[
           { label: "Fabric sourcing process", href: "/manufacturing/fabric-sourcing", description: "Lab dips, shade control and incoming inspection." },
-          { label: "Product range", href: "/products", description: "Seven apparel families manufactured to specification." },
+          { label: "Product range", href: "/products", description: "Twelve apparel families manufactured to specification." },
           { label: "Uniform program industries", href: "/industries", description: "How fabric requirements change by sector." },
         ]}
       />

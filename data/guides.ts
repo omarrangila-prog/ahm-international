@@ -687,7 +687,7 @@ export const guides: Guide[] = [
     related: [
       { label: "Polos and t-shirts", href: "/products/polos-tshirts", description: "The category where decoration route matters most." },
       { label: "Materials", href: "/materials", description: "How construction affects which route is viable." },
-      { label: "Trims", href: "/materials", description: "Labels, tapes and the rest of the decoration decision." },
+      { label: "Trims", href: "/materials#trims-heading", description: "Labels, tapes and the rest of the decoration decision." },
       { label: "Benchmark a style", href: "/benchmark-a-style", description: "Send a logo and a garment for a route recommendation." },
     ],
     seoTitle: "Embroidery vs Screen Printing",
@@ -921,3 +921,28 @@ export const plannedGuides: { title: string; category: Guide["category"] }[] = [
   { title: "Apparel Packing Requirements for Export", category: "Commercial guide" },
   { title: "Pakistan Apparel Manufacturing: Buyer Checklist", category: "Buyer guide" },
 ];
+
+/**
+ * Guides that name a route in their own `related` list.
+ *
+ * Derived, never hand-listed — the same rule the catalogue facets follow. A
+ * guide already declares what it is about by linking outward to the pages it
+ * relates to; this reads that in reverse so those pages can link back.
+ *
+ * The reason it matters is measurable. Before this existed, seven of the nine
+ * published guides had exactly one inbound link, all of them from `/resources`.
+ * A guide reachable only from its own index is one a buyer arriving on
+ * `/materials` will never see, whatever it says.
+ *
+ * Reciprocity also keeps the pair honest: a link can only appear here because a
+ * guide claims the relationship, so the two directions cannot disagree.
+ */
+export function guidesLinkingTo(route: string): { label: string; href: string; description: string }[] {
+  return guides
+    .filter((guide) => guide.related.some((related) => related.href === route))
+    .map((guide) => ({
+      label: guide.title,
+      href: `/resources/${guide.slug}`,
+      description: `${guide.summary.split(". ")[0].replace(/\.$/, "")}.`,
+    }));
+}

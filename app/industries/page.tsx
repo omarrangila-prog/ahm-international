@@ -85,6 +85,7 @@ export default function IndustriesPage() {
       />
 
       <RelatedLinks
+        guidesFor="/industries"
         title="Explore next"
         links={[
           { label: "Uniform & workwear manufacturing", href: "/products/uniform-workwear", description: "Work shirts, service apparel, chef wear and hi-vis." },

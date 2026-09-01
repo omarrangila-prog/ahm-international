@@ -131,6 +131,7 @@ export default function SustainabilityPage() {
       />
 
       <RelatedLinks
+        guidesFor="/sustainability"
         title="Explore next"
         links={[
           { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights and finish routes." },

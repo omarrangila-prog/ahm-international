@@ -19,7 +19,7 @@ import { getProductFaqs } from "@/data/product-faqs";
 import { industries } from "@/data/industries";
 import { processStages } from "@/data/process";
 import { caseStudies } from "@/data/caseStudies";
-import { pageMetadata, productSchema, faqSchema } from "@/lib/seo";
+import { pageMetadata, productSchema } from "@/lib/seo";
 import { firstAvailable, hasAsset, type AssetKey } from "@/data/assets";
 import { numeral } from "@/lib/utils";
 
@@ -101,7 +101,6 @@ export default async function ProductCategoryPage({ params }: Params) {
         })}
       />
 
-      {faqs.length > 0 && <JsonLd data={faqSchema(faqs)} />}
 
       <PageHero
         eyebrow={`Products: ${numeral(category.index)}`}

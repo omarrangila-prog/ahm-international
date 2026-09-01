@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Section, Eyebrow, type ZoneName } from "@/components/ui/Section";
+import { guidesLinkingTo } from "@/data/guides";
 
 /**
  * Related-content block.
@@ -9,6 +10,12 @@ import { Section, Eyebrow, type ZoneName } from "@/components/ui/Section";
  * the reader's language ("performance polo manufacturing"), which is both what a
  * buyer scans for and what makes the link meaningful to a crawler. Descriptions
  * keep each link from being an exact-match repeat of the last.
+ *
+ * `guidesFor` appends the published guides that name this route in their own
+ * `related` list. Hand-written blocks pointed at other hub pages and never at a
+ * guide, which left seven of the nine guides reachable only from `/resources`.
+ * Deriving the back-link means a new guide surfaces on the pages it is about the
+ * day it ships, without anyone remembering to add it in two places.
  */
 
 export type RelatedLink = { label: string; href: string; description: string };
@@ -17,12 +24,20 @@ export function RelatedLinks({
   title = "Related",
   links,
   zone = "ivory",
+  guidesFor,
 }: {
   title?: string;
   links: RelatedLink[];
   zone?: ZoneName;
+  /** Route whose published guides should be appended. */
+  guidesFor?: string;
 }) {
-  if (links.length === 0) return null;
+  const derived = guidesFor ? guidesLinkingTo(guidesFor) : [];
+  // A hand-written link wins: it was written for this page and says more.
+  const seen = new Set(links.map((l) => l.href));
+  const all = [...links, ...derived.filter((g) => !seen.has(g.href))];
+
+  if (all.length === 0) return null;
 
   return (
     <Section zone={zone} spacing="md" aria-labelledby="related-heading">
@@ -33,7 +48,7 @@ export function RelatedLinks({
         </h2>
 
         <ul className="mt-8 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {links.map((link) => (
+          {all.map((link) => (
             <li key={link.href + link.label}>
               <Link
                 href={link.href}
@@ -51,6 +66,14 @@ export function RelatedLinks({
                 />
               </Link>
             </li>
+          ))}
+
+          {/* The grid draws its hairlines with a `gap-px` over a `bg-line`
+              ground, so a part-filled last row shows the ground as an empty
+              tile. Three links always filled the row exactly; derived guides
+              made partial rows normal, so the remainder is padded out. */}
+          {Array.from({ length: (3 - (all.length % 3)) % 3 }).map((_, i) => (
+            <li key={`filler-${i}`} className="hidden bg-cream lg:block" aria-hidden="true" />
           ))}
         </ul>
       </div>

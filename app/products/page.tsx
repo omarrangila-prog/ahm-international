@@ -111,6 +111,7 @@ export default function ProductsPage() {
       />
 
       <RelatedLinks
+        guidesFor="/products"
         title="Explore next"
         links={[
           { label: "Manufacturing capabilities", href: "/capabilities", description: "Every stage from development through to FOB handover." },
