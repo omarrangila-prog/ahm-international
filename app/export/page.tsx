@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { ExportSection } from "@/components/sections/ExportSection";
+import { ExportGlobe } from "@/components/sections/ExportGlobe";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
@@ -11,7 +12,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { pageMetadata } from "@/lib/seo";
 import { hasAsset } from "@/data/assets";
-import { markets, MARKET_STATEMENT } from "@/data/markets";
+import { markets, MARKET_STATEMENT, ORIGIN } from "@/data/markets";
 
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Export from Pakistan",
@@ -62,42 +63,50 @@ export default function ExportPage() {
       <ExportSection />
 
       {/* Markets */}
-      <Section zone="cream" spacing="lg" aria-labelledby="markets-heading">
-        <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
-          <div className="col-span-12 lg:col-span-4">
+      <Section zone="forest" spacing="lg" tooth aria-labelledby="markets-heading">
+        <div className="shell-wide grid grid-cols-12 gap-y-14 lg:gap-x-12">
+          <div className="col-span-12 lg:col-span-5 lg:self-center">
             <Eyebrow>Markets</Eyebrow>
             <MaskedHeading
               as="h2"
               id="markets-heading"
-              className="mt-5 font-display text-h1 text-ink"
-              lines={[{ text: "Documented," }, { text: "and targeted." }]}
+              className="mt-5 font-display text-h1 text-cream"
+              lines={[{ text: "Documented," }, { text: "and targeted.", className: "text-lime" }]}
             />
-            <p className="mt-6 text-ink/70">
+            <p className="mt-6 text-cream/75">
               We separate the two deliberately. One is a shipment we can evidence; the rest are
               markets we sell into. A map covered in invented destinations is the fastest way for a
               supplier to lose a buyer&apos;s trust.
             </p>
-            <p className="mt-5 text-sm text-ink/70">{MARKET_STATEMENT}</p>
+            <p className="mt-5 text-sm text-cream/70">
+              So the globe draws one lane, not five: {ORIGIN.port}, Karachi to the United States.
+              The markets below it are listed, not plotted.
+            </p>
+            <p className="mt-5 text-sm text-cream/70">{MARKET_STATEMENT}</p>
           </div>
 
-          <div className="col-span-12 lg:col-span-8">
-            <ul className="border-t border-line">
+          <div className="col-span-12 lg:col-span-7">
+            <ExportGlobe />
+          </div>
+
+          <div className="col-span-12">
+            <ul className="border-t border-cream/20">
               {markets.map((market) => (
-                <li key={market.code} className="flex flex-wrap items-center justify-between gap-4 border-b border-line py-5">
+                <li key={market.code} className="flex flex-wrap items-center justify-between gap-4 border-b border-cream/20 py-5">
                   <div className="flex items-center gap-4">
-                    <span className="numeral w-9 text-sm text-ink/70">{market.code}</span>
+                    <span className="numeral w-9 text-sm text-cream/70">{market.code}</span>
                     <div>
-                      <p className="font-display text-base font-bold tracking-[-0.02em] text-ink">
+                      <p className="font-display text-base font-bold tracking-[-0.02em] text-cream">
                         {market.name}
                       </p>
-                      <p className="text-xs text-ink/70">Representative hub. {market.hub}</p>
+                      <p className="text-xs text-cream/70">Representative hub. {market.hub}</p>
                     </div>
                   </div>
                   <span
                     className={
                       market.documentedExport
-                        ? "border border-forest bg-forest px-3 py-1.5 label text-lime"
-                        : "border border-ink/20 px-3 py-1.5 label text-ink/70"
+                        ? "border border-lime bg-lime px-3 py-1.5 label text-ink"
+                        : "border border-cream/40 px-3 py-1.5 label text-cream/75"
                     }
                   >
                     {market.documentedExport ? "Documented export" : "Target market"}

@@ -40,7 +40,23 @@ async function loadRoutes() {
 }
 
 const BASE = process.env.AUDIT_BASE ?? "http://localhost:3100";
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ahminternational.com";
+import fs from "node:fs";
+
+/**
+ * Read from the same place the pages read it, not a copy.
+ *
+ * This was hardcoded to a domain that `data/company.ts` no longer publishes,
+ * so the audit failed every route on a canonical the site had got right. A
+ * check that carries its own copy of the truth eventually disagrees with it.
+ */
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? readSiteUrlFromCompanyData();
+
+function readSiteUrlFromCompanyData() {
+  const source = fs.readFileSync(new URL("../data/company.ts", import.meta.url), "utf8");
+  const match = source.match(/siteUrl:[^"']*["']([^"']+)["']/);
+  if (!match) throw new Error("could not read siteUrl from data/company.ts");
+  return match[1].replace(/\/$/, "");
+}
 
 const errors = [];
 const warnings = [];

@@ -82,6 +82,19 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   rasters are archived in `assets-master/brand/`.
 - `/resources` publishes five complete guides and a visible backlog of twenty
   more. Titles are not articles.
+- The export globe draws **one** arc. The component it came from ships forty
+  fabricated ones. One lane is what `data/markets.ts` flags `documentedExport`,
+  and the arcs are derived from that flag, so a market cannot appear on the
+  globe without also being documented in the data.
+- The globe does not spin, and its camera near plane is 100 rather than the
+  upstream 180. At 180 the arc's apex — the part nearest the viewer — is clipped
+  and the lane renders as two stubs at the coasts.
+- The WebGL stack is by far the heaviest thing on the site: **622 KB gzipped**,
+  against 223 KB for the whole of `/export` otherwise. It is a separate chunk,
+  loaded only when the markets section approaches the viewport, so it costs
+  first paint nothing and costs other routes nothing. Roughly a third of it is
+  `h3-js`, which three-globe needs to tile countries into hexagons. Dropping the
+  hex-dot look means dropping three-globe entirely.
 
 ## No root `loading.tsx`
 
