@@ -54,13 +54,28 @@ export function PageHero({
   const resolved = asset ? resolveAsset(asset) : null;
   const isRender = resolved?.kind === "garment" && resolved.src.includes("/renders/");
 
+  /**
+   * Whether to reserve the image column at all.
+   *
+   * This used to test `asset` — whether a key was *passed* — rather than
+   * whether its file exists. A page naming an unshot photograph therefore kept
+   * the five-column slot and filled it with SmartImage's empty tonal panel,
+   * which is the one thing this site's asset rule exists to prevent. Two
+   * manufacturing stage pages shipped that way.
+   *
+   * Gating on availability instead means the headline widens to nine columns,
+   * the same restructure `/capabilities` performs, and a hero can never render
+   * an empty frame again.
+   */
+  const showImage = Boolean(resolved?.available);
+
   return (
     <Section zone={zone} spacing="none" tooth={dark}>
       <div className="shell-wide relative z-10 pt-8 pb-16 lg:pb-24">
         <Breadcrumbs trail={trail} tone={tone} />
 
         <div className="mt-10 grid grid-cols-12 items-end gap-y-10 lg:mt-14 lg:gap-x-12">
-          <div className={cn("col-span-12", asset ? "lg:col-span-7" : "lg:col-span-9")}>
+          <div className={cn("col-span-12", showImage ? "lg:col-span-7" : "lg:col-span-9")}>
             <p className={cn("label mb-5", dark ? "text-current/70" : "text-ink/60")}>{eyebrow}</p>
 
             <MaskedHeading
@@ -99,7 +114,7 @@ export function PageHero({
             )}
           </div>
 
-          {asset && (
+          {showImage && asset && (
             <div className="col-span-12 lg:col-span-5">
               <div
                 className={cn(

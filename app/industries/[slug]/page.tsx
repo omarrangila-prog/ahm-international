@@ -8,6 +8,7 @@ import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { firstAvailable } from "@/data/assets";
 import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
@@ -84,7 +85,7 @@ export default async function IndustryPage({ params }: Params) {
           { name: industry.name, path: `/industries/${slug}` },
         ]}
         zone="cream"
-        asset={industry.asset}
+        asset={firstAvailable(industry.asset, industry.representative)}
         priority
         primaryCta={{ label: "Discuss a Program", href: "/request-a-quote" }}
         secondaryCta={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}

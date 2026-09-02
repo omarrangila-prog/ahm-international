@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { megaMenu } from "@/data/nav";
 import { productCategories } from "@/data/products";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { firstAvailable } from "@/data/assets";
 import { cn } from "@/lib/utils";
 
 /**
@@ -85,7 +86,13 @@ export function MegaMenu({
               >
                 <div className="relative overflow-hidden bg-ivory">
                   <SmartImage
-                    asset={preview.heroAsset}
+                    // `heroAsset` is chosen to head a page and several point at
+                    // environment photography that has not been shot, so on its
+                    // own this frame rendered an empty tonal panel — in the
+                    // navigation, on every page of the site. Falling through to
+                    // the family's first article means the menu always shows a
+                    // garment.
+                    asset={firstAvailable(preview.heroAsset, preview.articles[0].asset)}
                     sizes={SIZES.third}
                     className="aspect-[4/3] w-full"
                     imageClassName="object-cover transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/preview:scale-[1.04]"

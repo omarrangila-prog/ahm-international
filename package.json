@@ -11,7 +11,7 @@
     "audit": "node scripts/seo-audit.mjs",
     "shoot": "node scripts/shoot.mjs",
     "typecheck": "tsc --noEmit",
-    "assets:report": "node scripts/assets-report.mjs",
+    "assets:report": "node --experimental-strip-types --import ./tests/register.mjs scripts/assets-report.mjs",
     "images:build": "node scripts/optimize-images.mjs",
     "images:audit": "node scripts/audit-images.mjs",
     "images:prompts": "node scripts/build-prompt-pack.mjs",
@@ -21,6 +21,7 @@
     "test": "node --experimental-strip-types --import ./tests/register.mjs --test \"tests/*.test.ts\"",
     "links": "node scripts/check-links.mjs",
     "images:missing": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-images.mjs",
+    "images:gaps": "node scripts/empty-frames.mjs",
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs"
   },
   "dependencies": {

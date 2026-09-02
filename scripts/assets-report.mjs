@@ -1,60 +1,52 @@
 #!/usr/bin/env node
 /**
- * Regenerates assets-needed.md from the live asset registry.
- *
- * The checklist is generated rather than hand-written so it cannot drift out of
- * sync: every pending slot listed here is a key whose canonical image file
- * still needs to be supplied.
+ * Regenerates assets-needed.md — the shot list.
  *
  *   npm run assets:report
+ *
+ * Two things changed about how this counts, and both mattered.
+ *
+ * It used to read `data/assets.ts` as text and pull keys out with a regular
+ * expression. That silently disagreed with the site: it reported 27 slots
+ * "awaiting photography" when `assetCoverage()` — the function the components
+ * actually use — reported 12 missing files and zero visible gaps. Handing a
+ * photographer a list with fifteen shots on it that nobody needs is worse than
+ * handing them nothing. The registry is now imported through the same
+ * type-stripping loader the tests use, so this file and the site cannot
+ * disagree by construction.
+ *
+ * And "missing" was one bucket doing two jobs. A key with no file and no
+ * fallback leaves a hole on the page. A key whose canonical shot is missing but
+ * whose fallback renders shows a stand-in — a garment render where a factory
+ * floor was intended, say. The second is not broken, but it is the single
+ * biggest quality gap on the site, and it is invisible to a count that lumps
+ * the two together. They are separated below, and the stand-in list names what
+ * is showing instead so the value of each shot is legible.
  */
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const { assetRegistry, resolveAsset } = await import("../data/assets.ts");
+const { assetManifest } = await import("../data/asset-manifest.ts");
 
-// The registry is TypeScript; read it as text and extract what we need rather
-// than adding a build step to this script.
-const src = fs.readFileSync(path.join(root, "data", "assets.ts"), "utf8");
-const manifestSrc = fs.readFileSync(path.join(root, "data", "asset-manifest.ts"), "utf8");
-// The type declaration also contains braces; start from the record literal.
-const marker = "assetManifest: Record<string, ManifestEntry> = ";
-const manifest = JSON.parse(
-  manifestSrc.slice(manifestSrc.indexOf(marker) + marker.length, manifestSrc.lastIndexOf("}") + 1),
-);
-
-const entries = [];
-const blockRe = /"([\w.]+)":\s*\{([^}]*?)\}/gs;
-let m;
-while ((m = blockRe.exec(src))) {
-  const [, key, body] = m;
-  const src_ = body.match(/src:\s*"([^"]+)"/)?.[1];
-  const alt = body.match(/alt:\s*"([^"]+)"/)?.[1];
-  const kind = body.match(/kind:\s*"([^"]+)"/)?.[1];
-  if (src_) entries.push({ key, src: src_, alt, kind });
-}
-
-// The render() helper generates its own entries; add them from the public dir.
-const renderDir = path.join(root, "public", "assets", "products", "renders");
-if (fs.existsSync(renderDir)) {
-  for (const file of fs.readdirSync(renderDir)) {
-    const p = `/assets/products/renders/${file}`;
-    if (!entries.some((e) => e.src === p)) {
-      entries.push({ key: `renders.${file.replace(/\.\w+$/, "")}`, src: p, kind: "garment" });
-    }
+/** Where a key is asked for, so a shot can be traced to the page it fixes. */
+function referencedBy(key) {
+  try {
+    const out = execFileSync(
+      "grep",
+      ["-rl", "--include=*.tsx", "--include=*.ts", `"${key}"`, "app", "components", "data"],
+      { cwd: root, encoding: "utf8" },
+    );
+    return out
+      .split("\n")
+      .filter(Boolean)
+      .filter((f) => !f.startsWith("data/assets.ts") && !f.startsWith("data/asset-manifest.ts"));
+  } catch {
+    return [];
   }
-}
-
-const present = entries.filter((e) => manifest[e.src]);
-const missing = entries.filter((e) => !manifest[e.src]);
-
-const byCategory = new Map();
-for (const e of missing) {
-  const category = e.src.split("/")[2] ?? "other";
-  const list = byCategory.get(category) ?? [];
-  list.push(e);
-  byCategory.set(category, list);
 }
 
 const ORIENTATION = {
@@ -69,59 +61,94 @@ const ORIENTATION = {
   brand: "SVG vector",
 };
 
-let out = `# Assets Needed
+const keys = Object.keys(assetRegistry);
+const rows = keys.map((key) => {
+  const asset = assetRegistry[key];
+  const resolved = resolveAsset(key);
+  const canonicalPresent = Boolean(assetManifest[asset.src]?.width);
+  const standingIn = !canonicalPresent && resolved.available ? resolved.src : null;
+  return {
+    key,
+    src: asset.src,
+    alt: asset.alt,
+    canonicalPresent,
+    standingIn,
+    gap: !resolved.available,
+    used: referencedBy(key),
+    category: asset.src.split("/")[2] ?? "misc",
+  };
+});
+
+const complete = rows.filter((r) => r.canonicalPresent);
+const standIns = rows.filter((r) => r.standingIn);
+const gaps = rows.filter((r) => r.gap);
+const wanted = [...gaps, ...standIns];
+
+/* Rendered shots first: a slot no component asks for is not worth a day out. */
+const rank = (r) => (r.gap ? 0 : 1) * 100 - r.used.length;
+wanted.sort((a, b) => rank(a) - rank(b));
+
+let out = `# Shot list
 
 **Generated by \`npm run assets:report\` — do not edit by hand.**
 
-The site keeps its layout stable if a future asset is absent. The current visual
-library covers every registered image surface, so this report should be empty
-after the supplied asset pack is indexed.
-
-## How to add an asset
-
-1. Export the final file to the exact path listed below.
-2. Run \`npm run assets\` to reindex and generate its blur placeholder.
-3. Rebuild. No component or layout change is required.
+Counted through \`resolveAsset()\`, the same path the components use, so this
+cannot disagree with what the site renders.
 
 ## Status
 
 | | Count |
 |---|---|
-| Slots defined | ${entries.length} |
-| Files present | ${present.length} |
-| Awaiting photography | ${missing.length} |
+| Slots defined | ${keys.length} |
+| Canonical file in place | ${complete.length} |
+| Showing a stand-in | ${standIns.length} |
+| **Leaving a visible gap** | **${gaps.length}** |
 
-## Photography direction
+${
+  gaps.length === 0
+    ? "No slot is empty on the page. Every shot below replaces a stand-in with the\nthing it was meant to be — which is a quality problem, not a broken one."
+    : "Slots below marked **GAP** render nothing. Shoot those first."
+}
 
-Master prompts for every slot are in \`asset-pack/prompts/\`, and the shared
-photography language is in \`asset-pack/docs/4K_PHOTOGRAPHY_STANDARD.md\`.
+## How to add a shot
 
-Two rules override everything else:
+1. Export the master to \`assets-master/\` mirroring the path below.
+2. \`npm run images:build\` cuts the web derivative at the right size and quality.
+3. \`npm run assets\` reindexes and generates the blur placeholder.
+4. \`npm run images:audit\` gates it on byte budget.
 
-- **No logos, brand marks or identifiable organisations** in any image. The
-  industry photography shows the *kind* of environment a program serves; it must
-  never imply that anyone shown is a customer.
+No component or layout change is needed at any point.
+
+## Two rules that override everything
+
+- **No logos, brand marks or identifiable organisations** in any image.
 - **No image may present a concept visual as documentary proof** of a facility,
-  certification, capacity or client relationship.
+  a certification or a shipment.
 
 `;
 
-for (const [category, list] of [...byCategory].sort()) {
-  out += `\n### ${category}\n\n`;
-  out += `Master size: ${ORIENTATION[category] ?? "see manifest"}\n\n`;
-  out += `| Path | Semantic key | Subject |\n|---|---|---|\n`;
-  for (const e of list.sort((a, b) => a.src.localeCompare(b.src))) {
-    out += `| \`${e.src}\` | \`${e.key}\` | ${e.alt ?? "—"} |\n`;
+if (wanted.length) {
+  out += `## Wanted, most valuable first\n\n`;
+  out += `Ranked by whether the slot is empty, then by how many pages ask for it.\n\n`;
+  for (const r of wanted) {
+    out += `### ${r.key}${r.gap ? " — **GAP**" : ""}\n\n`;
+    out += `- **Path:** \`${r.src}\`\n`;
+    out += `- **Master size:** ${ORIENTATION[r.category] ?? "see manifest"}\n`;
+    out += `- **Subject:** ${r.alt || "—"}\n`;
+    if (r.standingIn) out += `- **Currently showing:** \`${r.standingIn}\`\n`;
+    out += `- **Used by:** ${r.used.length ? r.used.map((f) => `\`${f}\``).join(", ") : "no component yet"}\n\n`;
   }
 }
 
-out += `\n## Already supplied\n\n`;
-out += `${present.length} files are in place, including ${present.filter((e) => e.src.includes("/renders/")).length} representative product renders.\n\n`;
-out += `| Path | Dimensions |\n|---|---|\n`;
-for (const e of present.sort((a, b) => a.src.localeCompare(b.src))) {
-  const d = manifest[e.src];
-  out += `| \`${e.src}\` | ${d.width} × ${d.height} |\n`;
+out += `## In place\n\n${complete.length} canonical files, including ${
+  complete.filter((r) => r.src.includes("/renders/")).length
+} product renders.\n\n`;
+for (const r of complete.sort((a, b) => a.src.localeCompare(b.src))) {
+  const d = assetManifest[r.src];
+  out += `- \`${r.src}\`${d?.width ? ` — ${d.width}×${d.height}` : ""}\n`;
 }
 
 fs.writeFileSync(path.join(root, "assets-needed.md"), out);
-console.log(`assets-needed.md written — ${present.length} present, ${missing.length} pending`);
+console.log(
+  `assets-needed.md written — ${complete.length} in place, ${standIns.length} showing a stand-in, ${gaps.length} leaving a gap`,
+);
