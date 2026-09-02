@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
+import { Archivo, Instrument_Sans } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { PrintHeader } from "@/components/layout/PrintHeader";
 import { RouteTransition } from "@/components/motion/RouteTransition";
@@ -14,14 +14,21 @@ import "./globals.css";
 
 /* Self-hosted by next/font — no render-blocking request to Google. */
 /**
- * Bricolage Grotesque for display, Instrument Sans for text.
+ * Archivo for display, Instrument Sans for text.
  *
- * The previous pairing was Manrope and Inter, which is the default sound of a
- * SaaS landing page: neutral, competent and identical to a thousand other
- * sites. This is a manufacturer of physical goods, and the type should have a
- * hand in it. Bricolage carries real width and a slightly irregular skeleton at
- * display sizes, which reads as made rather than generated; Instrument Sans is
- * plain enough underneath it to keep specification tables legible.
+ * Manrope and Inter, the original pairing, are the default sound of a SaaS
+ * landing page: competent and identical to a thousand other sites. Bricolage
+ * Grotesque replaced them and was better, but at the size these headlines run
+ * its humanist wobble reads as design-school rather than as a factory.
+ *
+ * Archivo descends from industrial and newspaper grotesques and was drawn for
+ * headlines. Set large and uppercase it reads like signage on a building, which
+ * is the right voice for a manufacturer who ships under FOB terms. Its `wdth`
+ * axis is loaded and used: the display scale runs slightly expanded, which is
+ * where the character is and what keeps it from being another neutral grotesque.
+ *
+ * Instrument Sans stays underneath — plain enough to keep specification tables
+ * legible, which is most of this site.
  *
  * Both are variable fonts, so a full weight range costs one file each.
  *
@@ -34,10 +41,11 @@ import "./globals.css";
  * renders in the fallback if the font is not ready within the browser's first
  * ~100ms of layout and keeps that choice for the paint — no swap, no reflow.
  */
-const display = Bricolage_Grotesque({
+const display = Archivo({
   subsets: ["latin"],
   variable: "--font-display-face",
   display: "optional",
+  axes: ["wdth"],
 });
 
 const sans = Instrument_Sans({

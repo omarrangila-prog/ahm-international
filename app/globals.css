@@ -45,6 +45,10 @@
   --text-mega--line-height: 0.88;
   --text-mega--letter-spacing: -0.04em;
   --text-mega--font-weight: 800;
+  /* Archivo's `wdth` axis. The display sizes run expanded — that width is
+     where the face has character, and it is what stops these headlines
+     reading as another neutral grotesque. */
+  --display-stretch: 108%;
 
   --text-display: clamp(2.5rem, 6.2vw, 4.5rem);
   --text-display--line-height: 0.94;
@@ -92,6 +96,10 @@
    ============================================================ */
 
 @layer base {
+  .font-display {
+    font-stretch: var(--display-stretch);
+  }
+
   *,
   *::before,
   *::after {
@@ -224,27 +232,33 @@
    * A real cotton-canvas macro from the supplied texture library, not
    * procedural noise: high-passed so its lighting gradient is gone, then
    * mirrored into a 2x2 so it tiles seamlessly by construction rather than by
-   * luck. 9.7 kB, greyscale, and it is the only decoration the palette has left
-   * — with two colours doing the work of thirteen, the surface has to carry the
+   * luck. 9.7 kB, greyscale, and the only decoration the palette has left —
+   * with two colours doing the work of thirteen, the surface carries the
    * interest, and for a manufacturer of cloth the honest surface is cloth.
    *
-   * Multiply on paper darkens the weave into the warm ground. On ink the same
-   * tile is screened instead, so the threads lift rather than fill in — a
-   * multiply there would simply be invisible.
+   * Applied to every zoned surface, not to an opt-in class. As an opt-in it
+   * reached 88% of the average page and stopped exactly where a visitor starts
+   * reading, because a page hero and a footer are grounds too. Painting it on
+   * `body` instead does not work: each section carries its own opaque
+   * background and simply covers it.
    */
-  .tooth::after {
+  [data-zone]::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image: url("/assets/texture/weave.webp");
     background-size: 300px 300px;
-    opacity: 0.055;
+    opacity: 0.06;
     mix-blend-mode: multiply;
   }
 
-  [data-zone="dark"].tooth::after {
-    opacity: 0.075;
+  /**
+   * Dark grounds need the opposite blend: multiplying a weave into near-black
+   * erases it, so ink screens the same tile and the threads lift instead.
+   */
+  [data-zone="dark"]::after {
+    opacity: 0.085;
     mix-blend-mode: screen;
   }
 
