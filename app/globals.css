@@ -237,9 +237,16 @@
    * A real cotton-canvas macro from the supplied texture library, not
    * procedural noise: high-passed so its lighting gradient is gone, then
    * mirrored into a 2x2 so it tiles seamlessly by construction rather than by
-   * luck. 9.7 kB, greyscale, and the only decoration the palette has left —
+   * luck. 22 kB, greyscale, and the only decoration the palette has left —
    * with two colours doing the work of thirteen, the surface carries the
    * interest, and for a manufacturer of cloth the honest surface is cloth.
+   *
+   * Strength is calibrated, not guessed. Multiply at opacity a puts the ground
+   * at base * (1 - a + a * tile/255); the first attempt — a weak tile at 6% —
+   * spanned about three levels out of 255 on paper, which is arithmetically
+   * invisible however good it looks zoomed to 300%. The tile now carries twice
+   * the amplitude and runs at 13%, which spans roughly fifteen levels: felt as
+   * cloth at arm's length, still quiet behind text.
    *
    * Applied to every zoned surface, not to an opt-in class. As an opt-in it
    * reached 88% of the average page and stopped exactly where a visitor starts
@@ -253,8 +260,9 @@
     inset: 0;
     pointer-events: none;
     background-image: url("/assets/texture/weave.webp");
-    background-size: 300px 300px;
-    opacity: 0.06;
+    /* 250px is the tile's own pitch, so it renders 1:1 with no resampling. */
+    background-size: 250px 250px;
+    opacity: 0.13;
     mix-blend-mode: multiply;
   }
 
@@ -263,7 +271,7 @@
    * erases it, so ink screens the same tile and the threads lift instead.
    */
   [data-zone="dark"]::after {
-    opacity: 0.085;
+    opacity: 0.16;
     mix-blend-mode: screen;
   }
 
