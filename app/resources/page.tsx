@@ -26,14 +26,14 @@ export default function ResourcesPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        headingLines={[{ text: "Written for" }, { text: "people who", className: "text-cobalt" }, { text: "buy garments." }]}
+        headingLines={[{ text: "Written for" }, { text: "people who", className: "text-ink" }, { text: "buy garments." }]}
         intro="Technical guidance from the development side of the table. Each guide answers a question buyers actually ask before an order, and none of them require you to be a customer."
         trail={[{ name: "Resources", path: "/resources" }]}
-        zone="cream"
+        zone="paper"
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide pb-8">
           <nav aria-label="Guide categories" className="flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-ink/15 py-4">
             <span className="label text-ink/65">Jump to</span>
@@ -41,7 +41,7 @@ export default function ResourcesPage() {
               <a
                 key={c}
                 href={`#${categoryId(c)}`}
-                className="text-sm text-ink/70 underline-offset-4 transition-colors hover:text-cobalt hover:underline"
+                className="text-sm text-ink/70 underline-offset-4 transition-colors hover:text-ink hover:underline"
               >
                 {c}s{" "}
                 <span className="text-ink/65">
@@ -57,7 +57,7 @@ export default function ResourcesPage() {
         const inCategory = guides.filter((g) => g.category === category);
         if (inCategory.length === 0) return null;
         return (
-          <Section key={category} zone="cream" spacing="none">
+          <Section key={category} zone="paper" spacing="none">
             <div className="shell-wide pb-16">
               <h2
                 id={categoryId(category)}
@@ -70,15 +70,15 @@ export default function ResourcesPage() {
                   <Link
                     key={guide.slug}
                     href={`/resources/${guide.slug}`}
-                    className="group flex h-full flex-col justify-between gap-8 bg-cream p-7 transition-colors duration-300 hover:bg-white lg:p-9"
+                    className="group flex h-full flex-col justify-between gap-8 bg-paper p-7 transition-colors duration-300 hover:bg-white lg:p-9"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-cobalt">
+                        <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-ink">
                           {numeral(i + 1)}
                         </span>
                         <ArrowUpRight
-                          className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cobalt"
+                          className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
                           aria-hidden="true"
                         />
                       </div>
@@ -98,7 +98,7 @@ export default function ResourcesPage() {
         );
       })}
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide border-t border-line pt-5 pb-16">
           <p className="text-sm text-ink/60">
             Reviewed by {REVIEWED_BY}. Last reviewed {LAST_REVIEWED}.
@@ -108,7 +108,7 @@ export default function ResourcesPage() {
 
 
       {/* The backlog, published as a plan rather than as pages. */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="backlog-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="backlog-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>In progress</Eyebrow>
@@ -124,7 +124,7 @@ export default function ResourcesPage() {
             </p>
             <p className="mt-5 text-sm text-ink/70">
               Want one of them sooner, or a topic that isn&apos;t listed?{" "}
-              <Link href="/contact" className="text-cobalt underline underline-offset-4">
+              <Link href="/contact" className="text-ink underline underline-offset-4">
                 Tell us
               </Link>
               .

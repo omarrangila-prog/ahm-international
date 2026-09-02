@@ -17,10 +17,10 @@ const controlBase =
   "w-full border bg-transparent px-3.5 py-3 text-[0.9375rem] text-current outline-none transition-colors duration-200 placeholder:text-current/35";
 
 function controlTone(invalid?: boolean, tone: "light" | "dark" = "light") {
-  if (invalid) return "border-orange-deep focus:border-orange-deep";
+  if (invalid) return "border-ink focus:border-ink";
   return tone === "dark"
     ? "border-current/25 hover:border-current/45 focus:border-lime"
-    : "border-ink/20 hover:border-ink/40 focus:border-cobalt";
+    : "border-ink/20 hover:border-ink/40 focus:border-ink";
 }
 
 type FieldShellProps = {
@@ -47,7 +47,7 @@ export function FieldShell({
       <label htmlFor={htmlFor} className="label text-current/75">
         {label}
         {required && (
-          <span className="ml-1 text-orange" aria-hidden="true">
+          <span className="ml-1 text-ink" aria-hidden="true">
             *
           </span>
         )}
@@ -56,7 +56,7 @@ export function FieldShell({
       {children}
       {hint && !error && <p className="text-xs text-current/70">{hint}</p>}
       {error && (
-        <p id={`${htmlFor}-error`} role="alert" className="text-xs font-medium text-orange-deep">
+        <p id={`${htmlFor}-error`} role="alert" className="text-xs font-medium text-ink">
           {error}
         </p>
       )}
@@ -231,7 +231,7 @@ export function CheckChip({
       className={cn(
         "inline-flex cursor-pointer select-none items-center gap-2.5 border px-4 py-2.5 text-sm transition-colors duration-200",
         checked
-          ? "border-cobalt bg-cobalt text-white"
+          ? "border-ink bg-ink text-white"
           : "border-ink/20 text-ink/75 hover:border-ink/45",
       )}
     >
@@ -252,7 +252,7 @@ export function CheckChip({
         )}
       >
         {checked && (
-          <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-cobalt" aria-hidden="true">
+          <svg viewBox="0 0 10 10" className="h-2.5 w-2.5 text-ink" aria-hidden="true">
             <path d="M1.5 5.2 L4 7.5 L8.5 2.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
           </svg>
         )}
@@ -285,7 +285,7 @@ export function CheckboxField({
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="mt-0.5 h-4 w-4 shrink-0 accent-cobalt"
+        className="mt-0.5 h-4 w-4 shrink-0 accent-ink"
       />
       <label htmlFor={id} className="cursor-pointer text-sm text-current/80">
         {label}

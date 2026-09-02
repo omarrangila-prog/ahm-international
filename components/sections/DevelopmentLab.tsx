@@ -47,7 +47,7 @@ const outputs = [
 
 export function DevelopmentLab() {
   return (
-    <Section zone="cream" spacing="lg" aria-labelledby="lab-heading">
+    <Section zone="paper" spacing="lg" aria-labelledby="lab-heading">
       <div className="shell-wide">
         <div className="grid grid-cols-12 items-start gap-y-12 lg:gap-x-12">
           {/* Editorial column */}
@@ -74,7 +74,7 @@ export function DevelopmentLab() {
               <ul className="flex flex-col gap-2.5">
                 {outputs.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-ink/75">
-                    <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-orange" aria-hidden="true" />
+                    <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
@@ -82,7 +82,7 @@ export function DevelopmentLab() {
             </div>
 
             <div className="mt-9">
-              <Button href="/development" variant="orange" size="lg" withArrow>
+              <Button href="/development" variant="lime" size="lg" withArrow>
                 Start a Development
               </Button>
             </div>
@@ -91,7 +91,7 @@ export function DevelopmentLab() {
           {/* Visual column */}
           <div className="col-span-12 lg:col-span-7">
             <Reveal>
-              <div className="aspect-[16/10] w-full overflow-hidden bg-ivory">
+              <div className="aspect-[16/10] w-full overflow-hidden bg-paper">
                 <SmartImage
                   asset="development.techPack"
                   sizes={SIZES.half}
@@ -105,7 +105,7 @@ export function DevelopmentLab() {
               {inputs.map((item) => (
                 <RevealItem key={item.title}>
                   <article className="group h-full border border-line bg-white">
-                    <div className="aspect-[4/3] w-full overflow-hidden bg-ivory">
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
                       <SmartImage
                         asset={item.asset}
                         sizes={SIZES.third}

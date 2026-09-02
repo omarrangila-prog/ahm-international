@@ -41,7 +41,7 @@ export function SourcingPillar({ slug, basePath }: { slug: string; basePath: str
 
   const headingLines = pillar.headline.split("\n").map((text, i) => ({
     text,
-    className: i === 1 ? "text-cobalt" : undefined,
+    className: i === 1 ? "text-ink" : undefined,
   }));
 
   // The URL is root-level for keyword weight, but in the site's information
@@ -61,7 +61,7 @@ return (
         headingLines={headingLines}
         intro={pillar.intro}
         trail={trail}
-        zone="cream"
+        zone="paper"
         asset={pillar.heroAsset}
         priority
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
@@ -69,9 +69,9 @@ return (
       />
 
       {/* Short answer */}
-      <Section zone="ivory" spacing="md">
+      <Section zone="paper" spacing="md">
         <div className="shell-wide">
-          <div className="max-w-4xl border-l-2 border-cobalt pl-6 lg:pl-8">
+          <div className="max-w-4xl border-l-2 border-ink pl-6 lg:pl-8">
             <h2 className="font-display text-h3 text-ink">{pillar.definition.question}</h2>
             <p className="mt-4 text-lead text-ink/80">{pillar.definition.answer}</p>
           </div>
@@ -79,14 +79,14 @@ return (
       </Section>
 
       {/* Body */}
-      <Section zone="cream" spacing="lg">
+      <Section zone="paper" spacing="lg">
         <div className="shell-wide">
           <ContentBlocks blocks={pillar.blocks} />
         </div>
       </Section>
 
       {/* FAQ */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="pillar-faq-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="pillar-faq-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>

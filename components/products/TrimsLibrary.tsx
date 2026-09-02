@@ -41,7 +41,7 @@ export function TrimsLibrary() {
                   <th
                     scope="colgroup"
                     colSpan={4}
-                    className="pb-2 pt-7 font-display text-xs font-bold uppercase tracking-[0.12em] text-cobalt"
+                    className="pb-2 pt-7 font-display text-xs font-bold uppercase tracking-[0.12em] text-ink"
                   >
                     {category}
                   </th>

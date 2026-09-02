@@ -33,7 +33,7 @@ export function IndustryCard({
 
   if (hasPhoto) {
     return (
-      <figure className={cn("group relative overflow-hidden", dark ? "bg-forest-deep" : "bg-ivory")}>
+      <figure className={cn("group relative overflow-hidden", dark ? "bg-ink" : "bg-paper")}>
         <div className="aspect-[3/4] w-full overflow-hidden">
           <SmartImage
             asset={industry.asset}
@@ -46,14 +46,14 @@ export function IndustryCard({
           className={cn(
             "absolute inset-x-0 bottom-0 p-4 pt-12",
             dark
-              ? "bg-gradient-to-t from-forest-deep via-forest-deep/85 to-transparent"
+              ? "bg-gradient-to-t from-ink via-ink/85 to-transparent"
               : "bg-gradient-to-t from-ink via-ink/80 to-transparent",
           )}
         >
-          <p className="font-display text-base font-bold tracking-[-0.02em] text-cream">
+          <p className="font-display text-base font-bold tracking-[-0.02em] text-paper">
             {industry.name}
           </p>
-          <p className="mt-1.5 text-xs leading-snug text-cream/65">{industry.demand}</p>
+          <p className="mt-1.5 text-xs leading-snug text-paper/65">{industry.demand}</p>
         </figcaption>
       </figure>
     );
@@ -62,7 +62,7 @@ export function IndustryCard({
   return (
     <figure className="group flex h-full flex-col">
       {/* Light plate keeps every article legible whatever zone the card is in. */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-cream">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-paper">
         <SmartImage
           asset={industry.representative}
           sizes={sizes}
@@ -72,12 +72,12 @@ export function IndustryCard({
         />
       </div>
 
-      <figcaption className={cn("flex flex-1 flex-col pt-4", dark ? "text-cream" : "text-ink")}>
+      <figcaption className={cn("flex flex-1 flex-col pt-4", dark ? "text-paper" : "text-ink")}>
         <p className="font-display text-base font-bold tracking-[-0.02em]">{industry.name}</p>
-        <p className={cn("mt-1.5 text-xs leading-snug", dark ? "text-cream/60" : "text-ink/60")}>
+        <p className={cn("mt-1.5 text-xs leading-snug", dark ? "text-paper/60" : "text-ink/60")}>
           {industry.demand}
         </p>
-        <p className={cn("mt-3 text-[0.6875rem] leading-snug", dark ? "text-cream/70" : "text-ink/70")}>
+        <p className={cn("mt-3 text-[0.6875rem] leading-snug", dark ? "text-paper/70" : "text-ink/70")}>
           {industry.typicalGarments.join(" · ")}
         </p>
       </figcaption>

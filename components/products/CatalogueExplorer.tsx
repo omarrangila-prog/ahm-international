@@ -62,7 +62,7 @@ function FacetRow({
               className={cn(
                 "border px-3 py-1.5 text-xs font-medium transition-colors duration-200",
                 active
-                  ? "border-ink bg-ink text-cream"
+                  ? "border-ink bg-ink text-paper"
                   : "border-ink/20 text-ink/70 hover:border-ink/50 hover:text-ink",
               )}
             >
@@ -90,7 +90,7 @@ export function CatalogueExplorer() {
 
   return (
     <div>
-      <div className="border border-ink/15 bg-cream p-5 sm:p-7">
+      <div className="border border-ink/15 bg-paper p-5 sm:p-7">
         <label htmlFor="catalogue-search" className="label text-ink/65">
           Search the range
         </label>
@@ -105,7 +105,7 @@ export function CatalogueExplorer() {
             value={filter.q}
             onChange={(e) => setFilter((f) => ({ ...f, q: e.target.value }))}
             placeholder="Polo, apron, twill, hi-vis, embroidery…"
-            className="h-12 w-full border border-ink/20 bg-paper pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink/40 focus-visible:border-cobalt"
+            className="h-12 w-full border border-ink/20 bg-paper pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink/40 focus-visible:border-ink"
           />
         </div>
 
@@ -170,13 +170,13 @@ export function CatalogueExplorer() {
             <button
               type="button"
               onClick={() => setFilter(EMPTY_FILTER)}
-              className="border border-ink/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-cream"
+              className="border border-ink/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
             >
               Clear filters
             </button>
             <Link
               href="/send-tech-pack"
-              className="bg-cobalt px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-ink"
+              className="bg-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-lime hover:text-ink"
             >
               Send a tech pack
             </Link>

@@ -34,7 +34,7 @@ export function BuyerChallenge() {
             <Button
               href="/request-a-quote#files"
               size="lg"
-              className="border border-ink/30 bg-transparent text-ink hover:bg-ink hover:text-lime"
+              className="border border-ink/30 bg-transparent text-ink hover:bg-lime hover:text-ink hover:text-lime"
             >
               Send a Tech Pack
             </Button>

@@ -94,14 +94,14 @@ export default function SustainabilityPage() {
     <>
       <PageHero
         eyebrow="Sustainability"
-        headingLines={[{ text: "What we can" }, { text: "evidence, and", className: "text-cobalt" }, { text: "what we cannot." }]}
+        headingLines={[{ text: "What we can" }, { text: "evidence, and", className: "text-ink" }, { text: "what we cannot." }]}
         intro="This page is deliberately short. AHM publishes no environmental certification or statistic, because none has been verified for publication, and an unsupported claim is worth less than an honest gap."
         trail={[{ name: "Sustainability", path: "/sustainability" }]}
-        zone="cream"
+        zone="paper"
         asset="fabrics.polycottonTwill"
       />
 
-      <Section zone="cream" spacing="lg">
+      <Section zone="paper" spacing="lg">
         <div className="shell-wide">
           <ContentBlocks blocks={blocks} />
           <p className="mt-12 max-w-3xl border-t border-line pt-6 text-xs leading-relaxed text-ink/70">
@@ -110,7 +110,7 @@ export default function SustainabilityPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="sus-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="sus-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Compliance questions</Eyebrow>
@@ -127,7 +127,7 @@ export default function SustainabilityPage() {
         body="Tell us what your program requires and we will tell you exactly what can be documented. Before you spend time on a sample."
         primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondary={{ label: "Materials", href: "/materials" }}
-        zone="forest"
+        zone="ink"
       />
 
       <RelatedLinks

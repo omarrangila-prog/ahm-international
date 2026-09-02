@@ -23,7 +23,7 @@ export type RelatedLink = { label: string; href: string; description: string };
 export function RelatedLinks({
   title = "Related",
   links,
-  zone = "ivory",
+  zone = "paper",
   guidesFor,
 }: {
   title?: string;
@@ -52,7 +52,7 @@ export function RelatedLinks({
             <li key={link.href + link.label}>
               <Link
                 href={link.href}
-                className="group flex h-full flex-col justify-between gap-5 bg-cream p-6 transition-colors duration-300 hover:bg-white"
+                className="group flex h-full flex-col justify-between gap-5 bg-paper p-6 transition-colors duration-300 hover:bg-white"
               >
                 <div>
                   <p className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
@@ -61,7 +61,7 @@ export function RelatedLinks({
                   <p className="mt-2 text-sm leading-relaxed text-ink/60">{link.description}</p>
                 </div>
                 <ArrowUpRight
-                  className="h-4 w-4 text-ink/70 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cobalt"
+                  className="h-4 w-4 text-ink/70 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
                   aria-hidden="true"
                 />
               </Link>
@@ -73,7 +73,7 @@ export function RelatedLinks({
               tile. Three links always filled the row exactly; derived guides
               made partial rows normal, so the remainder is padded out. */}
           {Array.from({ length: (3 - (all.length % 3)) % 3 }).map((_, i) => (
-            <li key={`filler-${i}`} className="hidden bg-cream lg:block" aria-hidden="true" />
+            <li key={`filler-${i}`} className="hidden bg-paper lg:block" aria-hidden="true" />
           ))}
         </ul>
       </div>

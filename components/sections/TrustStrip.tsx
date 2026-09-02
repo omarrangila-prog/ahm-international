@@ -17,9 +17,9 @@ import { trustStrip } from "@/data/capabilities";
 export function TrustStrip() {
   return (
     <section
-      className="border-y border-line bg-cream"
+      className="border-y border-line bg-paper"
       aria-label="Manufacturing capabilities"
-      data-zone="light"
+      data-zone="paper"
     >
       {/* Mobile: ticker */}
       <div className="py-4 md:hidden">

@@ -40,10 +40,10 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        headingLines={[{ text: "A manufacturing" }, { text: "partner, not a", className: "text-cobalt" }, { text: "catalogue." }]}
+        headingLines={[{ text: "A manufacturing" }, { text: "partner, not a", className: "text-ink" }, { text: "catalogue." }]}
         intro="AHM International is a Pakistan-based apparel manufacturing and export partner focused on commercial product development and international sourcing programs."
         trail={[{ name: "About", path: "/about" }]}
-        zone="cream"
+        zone="paper"
         asset="factory.sewing"
         priority
         facts={facts}
@@ -51,7 +51,7 @@ export default function AboutPage() {
         secondaryCta={{ label: "See capabilities", href: "/capabilities" }}
       />
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="believe-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="believe-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>What we believe</Eyebrow>
@@ -66,7 +66,7 @@ export default function AboutPage() {
             <RevealGroup className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2" stagger={0.06}>
               {beliefs.map((belief, i) => (
                 <RevealItem key={belief.title}>
-                  <div className="h-full bg-cream p-7">
+                  <div className="h-full bg-paper p-7">
                     <span className="numeral text-lg text-ink/65">{numeral(i + 1)}</span>
                     <h3 className="mt-4 font-display text-lg font-bold leading-snug tracking-[-0.025em] text-ink">
                       {belief.title}
@@ -88,10 +88,10 @@ export default function AboutPage() {
             <MaskedHeading
               as="h2"
               id="record-heading"
-              className="mt-5 font-display text-h1 text-cream"
+              className="mt-5 font-display text-h1 text-paper"
               lines={[{ text: "What we can" }, { text: "evidence." }]}
             />
-            <p className="mt-6 max-w-md text-cream/65">
+            <p className="mt-6 max-w-md text-paper/65">
               Most supplier sites publish a capacity figure, a headcount and a wall of certification
               logos. We publish what we can produce a document for. If that list is shorter, at
               least every line of it survives a question.
@@ -99,7 +99,7 @@ export default function AboutPage() {
           </div>
 
           <div className="col-span-12 lg:col-span-7">
-            <dl className="border-t border-cream/15">
+            <dl className="border-t border-paper/15">
               {[
                 { label: "Manufacturing location", value: `${company.city}, ${company.country}`, status: "verified" },
                 { label: "Commercial model", value: "FOB", status: "verified" },
@@ -113,15 +113,15 @@ export default function AboutPage() {
               ].map((row) => (
                 // Only dt and dd may sit inside a dl's div wrapper, so the
                 // status rides inside the dd rather than as a third sibling.
-                <div key={row.label} className="grid grid-cols-1 gap-2 border-b border-cream/15 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                  <dt className="label pt-0.5 text-cream/60">{row.label}</dt>
-                  <dd className="flex flex-col gap-2 text-sm leading-relaxed text-cream/80 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                <div key={row.label} className="grid grid-cols-1 gap-2 border-b border-paper/15 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt className="label pt-0.5 text-paper/60">{row.label}</dt>
+                  <dd className="flex flex-col gap-2 text-sm leading-relaxed text-paper/80 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <span className="sm:flex-1">{row.value}</span>
                     <span
                       className={
                         row.status === "verified"
                           ? "label shrink-0 self-start text-lime sm:w-28"
-                          : "label shrink-0 self-start text-cream/70 sm:w-28"
+                          : "label shrink-0 self-start text-paper/70 sm:w-28"
                       }
                     >
                       {row.status === "verified" ? "Documented" : "Not published"}
@@ -144,7 +144,7 @@ export default function AboutPage() {
           Every item is framed as something the buyer can request or check, not
           as a promise AHM is making. That distinction matters: a promise needs
           verifying too, whereas an invitation to check is self-evidencing. */}
-      <Section zone="cream" spacing="lg" aria-labelledby="verify-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="verify-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
             <Eyebrow>Verification</Eyebrow>
@@ -195,7 +195,7 @@ export default function AboutPage() {
                   key={step.n}
                   className="grid grid-cols-1 gap-2 border-b border-ink/15 py-5 sm:grid-cols-[3rem_1fr] sm:gap-6"
                 >
-                  <span className="numeral text-lg text-cobalt">{step.n}</span>
+                  <span className="numeral text-lg text-ink">{step.n}</span>
                   <div>
                     <h3 className="font-display text-base font-bold uppercase tracking-tight text-ink">
                       {step.title}
@@ -209,7 +209,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section zone="cream" spacing="lg" aria-labelledby="work-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="work-heading">
         <div className="shell-wide">
           <Eyebrow>The work</Eyebrow>
           <MaskedHeading
@@ -223,7 +223,7 @@ export default function AboutPage() {
               .filter(hasAsset)
               .map((asset) => (
                 <RevealItem key={asset}>
-                  <div className="zoom-frame group aspect-[4/5] w-full overflow-hidden bg-ivory">
+                  <div className="zoom-frame group aspect-[4/5] w-full overflow-hidden bg-paper">
                     <SmartImage asset={asset} sizes={SIZES.quarter} className="h-full w-full" imageClassName="object-cover" />
                   </div>
                 </RevealItem>

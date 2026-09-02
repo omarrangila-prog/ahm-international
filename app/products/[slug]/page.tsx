@@ -87,7 +87,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
   const headingLines = category.headline.split("\n").map((line, i) => ({
     text: line,
-    className: i === 1 ? "text-cobalt" : undefined,
+    className: i === 1 ? "text-ink" : undefined,
   }));
 
   return (
@@ -110,7 +110,7 @@ export default async function ProductCategoryPage({ params }: Params) {
           { name: "Products", path: "/products" },
           { name: category.name, path: `/products/${category.slug}` },
         ]}
-        zone="cream"
+        zone="paper"
         // Photography first; otherwise the category's own representative render,
         // so an apron page shows an apron rather than a generic garment diagram.
         asset={firstAvailable(category.heroAsset, category.articles[0].asset)}
@@ -120,7 +120,7 @@ export default async function ProductCategoryPage({ params }: Params) {
       />
 
       {/* ---------------- Article range ---------------- */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="articles-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="articles-heading">
         <div className="shell-wide">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
@@ -144,7 +144,7 @@ export default async function ProductCategoryPage({ params }: Params) {
           <RevealGroup className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
             {category.articles.map((article) => (
               <RevealItem key={article.name}>
-                <article className="group flex h-full flex-col border border-line bg-cream">
+                <article className="group flex h-full flex-col border border-line bg-paper">
                   <div className="aspect-[4/5] w-full overflow-hidden bg-white">
                     <SmartImage
                       asset={article.asset}
@@ -170,7 +170,7 @@ export default async function ProductCategoryPage({ params }: Params) {
       </Section>
 
       {/* ---------------- Specification ---------------- */}
-      <Section zone="cream" spacing="lg" aria-labelledby="spec-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="spec-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>Specification</Eyebrow>
@@ -206,7 +206,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                 {category.decoration.map((item) => (
                   <li
                     key={item}
-                    className="border border-ink/20 px-4 py-2.5 text-sm text-ink/75 transition-colors hover:border-cobalt hover:text-cobalt"
+                    className="border border-ink/20 px-4 py-2.5 text-sm text-ink/75 transition-colors hover:border-ink hover:text-ink"
                   >
                     {item}
                   </li>
@@ -220,7 +220,7 @@ export default async function ProductCategoryPage({ params }: Params) {
             {detailRow.some(hasAsset) && (
             <div className="mt-14 grid grid-cols-3 gap-3">
               {detailRow.filter(hasAsset).map((asset) => (
-                <div key={asset} className="zoom-frame group aspect-[3/2] w-full overflow-hidden bg-ivory">
+                <div key={asset} className="zoom-frame group aspect-[3/2] w-full overflow-hidden bg-paper">
                   <SmartImage
                     asset={asset}
                     sizes={SIZES.third}
@@ -238,7 +238,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
       {/* ---------------- Photographed samples ---------------- */}
       {category.photography && category.photography.length > 0 && (
-        <Section zone="cream" spacing="lg" aria-labelledby="samples-heading">
+        <Section zone="paper" spacing="lg" aria-labelledby="samples-heading">
           <div className="shell-wide">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
@@ -285,10 +285,10 @@ export default async function ProductCategoryPage({ params }: Params) {
               <MaskedHeading
                 as="h2"
                 id="devpath-heading"
-                className="mt-5 font-display text-h1 text-cream"
+                className="mt-5 font-display text-h1 text-paper"
                 lines={[{ text: "How a " + category.shortName.toLowerCase() }, { text: "program starts." }]}
               />
-              <p className="mt-6 max-w-md text-cream/65">
+              <p className="mt-6 max-w-md text-paper/65">
                 The first five stages decide most of the cost. After approval, production is
                 execution against a document you have already signed.
               </p>
@@ -301,13 +301,13 @@ export default async function ProductCategoryPage({ params }: Params) {
 
             <ol className="col-span-12 lg:col-span-7">
               {devStages.map((stage) => (
-                <li key={stage.index} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-cream/15 py-5">
+                <li key={stage.index} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-paper/15 py-5">
                   <span className="numeral text-lg text-lime">{numeral(stage.index)}</span>
                   <div>
-                    <h3 className="font-display text-base font-bold tracking-[-0.02em] text-cream">
+                    <h3 className="font-display text-base font-bold tracking-[-0.02em] text-paper">
                       {stage.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-cream/60">{stage.body}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-paper/60">{stage.body}</p>
                   </div>
                 </li>
               ))}
@@ -318,7 +318,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
       {/* ---------------- Applications ---------------- */}
       {applicationIndustries.length > 0 && (
-        <Section zone="ivory" spacing="lg" aria-labelledby="apps-heading">
+        <Section zone="paper" spacing="lg" aria-labelledby="apps-heading">
           <div className="shell-wide">
             <Eyebrow>Applications</Eyebrow>
             <MaskedHeading
@@ -341,7 +341,7 @@ export default async function ProductCategoryPage({ params }: Params) {
             <div className="mt-8">
               <Link
                 href="/industries"
-                className="group inline-flex items-center gap-2 text-sm font-medium text-cobalt underline-offset-4 hover:underline"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
               >
                 All uniform program industries
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -353,13 +353,13 @@ export default async function ProductCategoryPage({ params }: Params) {
 
       {/* ---------------- Case study ---------------- */}
       {relevantCase && (
-        <Section zone="cream" spacing="lg" aria-labelledby="case-heading">
+        <Section zone="paper" spacing="lg" aria-labelledby="case-heading">
           <div className="shell-wide">
             <Eyebrow>Documented program</Eyebrow>
             <Reveal className="mt-8">
               <Link
                 href={`/case-studies/${relevantCase.slug}`}
-                className="group grid grid-cols-1 border border-line bg-ivory sm:grid-cols-3"
+                className="group grid grid-cols-1 border border-line bg-paper sm:grid-cols-3"
               >
                 <div className="aspect-square w-full overflow-hidden bg-white sm:aspect-auto">
                   <SmartImage
@@ -388,7 +388,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                       </div>
                     ))}
                   </dl>
-                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-cobalt">
+                  <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink">
                     Read the full program
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </span>
@@ -401,7 +401,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
       {/* ---------------- FAQ ---------------- */}
       {faqs.length > 0 && (
-        <Section zone="ivory" spacing="lg" aria-labelledby="faq-heading">
+        <Section zone="paper" spacing="lg" aria-labelledby="faq-heading">
           <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
             <div className="col-span-12 lg:col-span-4">
               <Eyebrow>Buyer questions</Eyebrow>

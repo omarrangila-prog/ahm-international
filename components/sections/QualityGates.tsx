@@ -27,7 +27,7 @@ export function QualityGates() {
             className="grid grid-cols-1 gap-x-8 gap-y-4 border-b border-ink/15 py-8 md:grid-cols-12"
           >
             <div className="md:col-span-3">
-              <span className="numeral text-3xl leading-none text-cobalt">
+              <span className="numeral text-3xl leading-none text-ink">
                 {numeral(g.index)}
               </span>
               <h3 className="mt-2 font-display text-lg font-extrabold uppercase leading-tight tracking-[-0.02em] text-ink">
@@ -52,8 +52,8 @@ export function QualityGates() {
                 <span className="label text-ink/65">Record produced</span>
                 <p className="mt-1 text-sm text-ink/70">{g.record}</p>
               </div>
-              <div className="mt-4 border-l-2 border-orange pl-3">
-                <span className="label text-orange-deep">If it fails</span>
+              <div className="mt-4 border-l-2 border-ink pl-3">
+                <span className="label text-ink">If it fails</span>
                 <p className="mt-1 text-sm leading-relaxed text-ink/70">{g.onFailure}</p>
               </div>
             </div>

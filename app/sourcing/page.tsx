@@ -24,15 +24,15 @@ export default function SourcingPage() {
     <>
       <PageHero
         eyebrow="Sourcing"
-        headingLines={[{ text: "Guides for" }, { text: "apparel buyers", className: "text-cobalt" }, { text: "working with Pakistan." }]}
+        headingLines={[{ text: "Guides for" }, { text: "apparel buyers", className: "text-ink" }, { text: "working with Pakistan." }]}
         intro="Written for sourcing managers evaluating Pakistan as an origin. Each guide covers what actually happens, what it costs you in effort, and what AHM can and cannot evidence."
         trail={[{ name: "Sourcing", path: "/sourcing" }]}
-        zone="cream"
+        zone="paper"
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondaryCta={{ label: "See product range", href: "/products" }}
       />
 
-      <Section zone="cream" spacing="none" aria-labelledby="guides-heading">
+      <Section zone="paper" spacing="none" aria-labelledby="guides-heading">
         <div className="shell-wide pb-24">
           <h2 id="guides-heading" className="sr-only">
             Sourcing guides
@@ -42,15 +42,15 @@ export default function SourcingPage() {
               <RevealItem key={pillar.slug}>
                 <Link
                   href={`/${pillar.slug}`}
-                  className="group flex h-full flex-col justify-between gap-8 bg-cream p-7 transition-colors duration-300 hover:bg-white lg:p-9"
+                  className="group flex h-full flex-col justify-between gap-8 bg-paper p-7 transition-colors duration-300 hover:bg-white lg:p-9"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-4">
-                      <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-cobalt">
+                      <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-ink">
                         {numeral(i + 1)}
                       </span>
                       <ArrowUpRight
-                        className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cobalt"
+                        className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
                         aria-hidden="true"
                       />
                     </div>
@@ -61,7 +61,7 @@ export default function SourcingPage() {
                       {pillar.intro}
                     </p>
                   </div>
-                  <p className="label text-cobalt">Read the guide</p>
+                  <p className="label text-ink">Read the guide</p>
                 </Link>
               </RevealItem>
             ))}
@@ -69,7 +69,7 @@ export default function SourcingPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="sourcing-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="sourcing-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Straight answers</Eyebrow>

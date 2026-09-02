@@ -37,7 +37,7 @@ export function MegaMenu({
     <div
       aria-hidden={!open}
       className={cn(
-        "absolute inset-x-0 top-full origin-top border-t border-line bg-cream shadow-[0_28px_60px_-30px_rgba(16,19,21,0.35)]",
+        "absolute inset-x-0 top-full origin-top border-t border-line bg-paper shadow-[0_28px_60px_-30px_rgba(16,19,21,0.35)]",
         "transition-[opacity,transform,visibility] duration-300 ease-[var(--ease-out-expo)]",
         open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
       )}
@@ -50,7 +50,7 @@ export function MegaMenu({
                   <p
                     className={cn(
                       "label mb-4 transition-colors duration-200",
-                      activeGroup === i ? "text-cobalt" : "text-ink/60",
+                      activeGroup === i ? "text-ink" : "text-ink/60",
                     )}
                   >
                     {group.title}
@@ -84,7 +84,7 @@ export function MegaMenu({
                 className="group/preview block"
                 aria-label={`Explore ${preview.name}`}
               >
-                <div className="relative overflow-hidden bg-ivory">
+                <div className="relative overflow-hidden bg-paper">
                   <SmartImage
                     // `heroAsset` is chosen to head a page and several point at
                     // environment photography that has not been shot, so on its
@@ -119,7 +119,7 @@ export function MegaMenu({
               <Link
                 href="/products"
                 onClick={onNavigate}
-                className="group label inline-flex items-center gap-2 text-cobalt transition-colors hover:text-ink"
+                className="group label inline-flex items-center gap-2 text-ink transition-colors hover:text-ink"
               >
                 Explore all products
                 <ArrowRight

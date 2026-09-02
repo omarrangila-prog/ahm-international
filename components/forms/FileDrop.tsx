@@ -107,7 +107,7 @@ export function FileDrop({
         className={cn(
           "flex flex-col items-center justify-center gap-3 border-2 border-dashed px-6 py-10 text-center transition-colors duration-200",
           dragging
-            ? "border-cobalt bg-cobalt/5"
+            ? "border-ink bg-ink/5"
             : dark
               ? "border-current/25 hover:border-current/45"
               : "border-ink/20 hover:border-ink/40",
@@ -121,7 +121,7 @@ export function FileDrop({
               track("techpack_upload_start", { location: "rfq_form" });
               inputRef.current?.click();
             }}
-            className="font-display text-sm font-bold uppercase tracking-[0.06em] text-cobalt underline-offset-4 hover:underline"
+            className="font-display text-sm font-bold uppercase tracking-[0.06em] text-ink underline-offset-4 hover:underline"
           >
             Choose files
           </button>
@@ -150,7 +150,7 @@ export function FileDrop({
       </div>
 
       {error && (
-        <p role="alert" className="mt-3 flex items-start gap-2 text-xs font-medium text-orange-deep">
+        <p role="alert" className="mt-3 flex items-start gap-2 text-xs font-medium text-ink">
           <AlertCircle className="mt-px h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           {error}
         </p>
@@ -163,11 +163,11 @@ export function FileDrop({
                 key={`${file.name}-${file.size}`}
                 className={cn(
                   "flex items-center justify-between gap-4 border px-4 py-3",
-                  dark ? "border-current/20" : "border-line bg-cream",
+                  dark ? "border-current/20" : "border-line bg-paper",
                 )}
               >
                 <span className="flex min-w-0 items-center gap-3">
-                  <FileText className="h-4 w-4 shrink-0 text-cobalt" aria-hidden="true" />
+                  <FileText className="h-4 w-4 shrink-0 text-ink" aria-hidden="true" />
                   <span className="min-w-0">
                     <span className="block truncate text-sm font-medium">{sanitiseFilename(file.name)}</span>
                     <span className={cn("text-xs", dark ? "text-current/70" : "text-ink/60")}>

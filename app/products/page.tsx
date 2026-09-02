@@ -37,19 +37,19 @@ export default function ProductsPage() {
         eyebrow="Product range"
         headingLines={[
           { text: "Twelve families." },
-          { text: "One specification", className: "text-cobalt" },
+          { text: "One specification", className: "text-ink" },
           { text: "standard." },
         ]}
         intro="Every article below is manufactured to a buyer's specification rather than sold from a catalogue. Pick the closest category and send what you have. A tech pack, a sample or a description."
         trail={[{ name: "Products", path: "/products" }]}
-        zone="cream"
+        zone="paper"
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondaryCta={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
       />
 
       {/* Twelve families as a list that opens in place, not twelve cards.
           See components/products/ProductIndex.tsx. */}
-      <Section zone="cream" spacing="none" aria-labelledby="range-heading">
+      <Section zone="paper" spacing="none" aria-labelledby="range-heading">
         <div className="shell-wide pb-24">
           <h2 id="range-heading" className="sr-only">
             Product categories
@@ -61,7 +61,7 @@ export default function ProductsPage() {
       {/* What we need to quote. The most practically useful block on the page */}
       {/* Spec §11 — search and facets across every article, below the category grid.
           Categories answer "what does AHM make"; this answers "do they make mine". */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="catalogue-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="catalogue-heading">
         <div className="shell-wide">
           <Eyebrow>Explore the range</Eyebrow>
           <h2
@@ -80,7 +80,7 @@ export default function ProductsPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="quote-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="quote-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>Before you send an RFQ</Eyebrow>

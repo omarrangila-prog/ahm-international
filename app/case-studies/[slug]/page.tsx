@@ -71,13 +71,13 @@ export default async function CaseStudyPage({ params }: Params) {
           { name: "Case Studies", path: "/case-studies" },
           { name: study.anonymisedTitle, path: `/case-studies/${study.slug}` },
         ]}
-        zone="cream"
+        zone="paper"
         facts={record}
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondaryCta={{ label: "Aprons", href: "/products/aprons" }}
       />
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="program-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="program-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-7">
             <Eyebrow>The program</Eyebrow>
@@ -91,7 +91,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <ol className="mt-10 border-t border-line">
               {narrative.map((item, i) => (
                 <li key={item.title} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-6">
-                  <span className="numeral text-lg text-cobalt">{numeral(i + 1)}</span>
+                  <span className="numeral text-lg text-ink">{numeral(i + 1)}</span>
                   <div>
                     <h3 className="font-display text-h3 text-ink">{item.title}</h3>
                     <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink/70">{item.body}</p>
@@ -114,7 +114,7 @@ export default async function CaseStudyPage({ params }: Params) {
               </div>
             </Reveal>
 
-            <div className="mt-4 border border-line bg-cream p-6">
+            <div className="mt-4 border border-line bg-paper p-6">
               <p className="label text-ink/60">Confidentiality</p>
               <p className="mt-3 text-sm leading-relaxed text-ink/70">
                 The customer is not identified on this page, and their name does not appear in the
@@ -132,7 +132,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   imagery without editing this component. */}
               {([study.assets.product, study.assets.fabric, study.assets.detail] as const).map((asset) => (
                 <RevealItem key={asset}>
-                  <div className="aspect-square w-full overflow-hidden bg-ivory">
+                  <div className="aspect-square w-full overflow-hidden bg-paper">
                     <SmartImage asset={asset} sizes={SIZES.thumb} className="h-full w-full" imageClassName="object-cover" />
                   </div>
                 </RevealItem>
@@ -147,7 +147,7 @@ export default async function CaseStudyPage({ params }: Params) {
         body="Send your apron or uniform specification and we will come back on construction, fabric options and commercial FOB costing."
         primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondary={{ label: "Apron manufacturing", href: "/products/aprons" }}
-        zone="orange"
+        zone="lime"
       />
 
       <RelatedLinks

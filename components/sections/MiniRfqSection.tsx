@@ -13,7 +13,7 @@ import { commercialAnswers } from "@/data/company";
 
 export function MiniRfqSection() {
   return (
-    <Section zone="ivory" spacing="lg" id="rfq" aria-labelledby="rfq-heading">
+    <Section zone="paper" spacing="lg" id="rfq" aria-labelledby="rfq-heading">
       <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-5">
           <MaskedHeading

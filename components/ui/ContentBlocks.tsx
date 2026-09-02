@@ -53,7 +53,7 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
               <ol className="mt-8 border-t border-line">
                 {block.steps.map((step, j) => (
                   <li key={step.title} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-5">
-                    <span className="numeral text-lg text-cobalt">{numeral(j + 1)}</span>
+                    <span className="numeral text-lg text-ink">{numeral(j + 1)}</span>
                     <div>
                       <h3 className="font-display text-base font-bold tracking-[-0.02em] text-ink">
                         {step.title}
@@ -108,7 +108,7 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
           )}
 
           {block.type === "callout" && (
-            <div className="border-l-2 border-orange bg-ivory p-6 lg:p-8">
+            <div className="border-l-2 border-ink bg-paper p-6 lg:p-8">
               <h2 className="font-display text-h3 text-ink">{block.heading}</h2>
               <p className="mt-3 max-w-3xl text-[0.9375rem] leading-relaxed text-ink/75">{block.body}</p>
             </div>

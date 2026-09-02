@@ -176,7 +176,7 @@ export function RfqForm() {
   /* ------------------------------ Success ------------------------------ */
   if (status === "success") {
     return (
-      <div className="enter border border-ink/15 bg-cream p-8 lg:p-12" role="status">
+      <div className="enter border border-ink/15 bg-paper p-8 lg:p-12" role="status">
         <span className="flex h-14 w-14 items-center justify-center bg-lime text-ink">
           <Check className="h-7 w-7" aria-hidden="true" />
         </span>
@@ -191,7 +191,7 @@ export function RfqForm() {
           </p>
         )}
         {!delivered && (
-          <p className="mt-5 max-w-xl border-l-2 border-orange pl-4 text-sm text-ink/65">
+          <p className="mt-5 max-w-xl border-l-2 border-ink pl-4 text-sm text-ink/65">
             Your request has been recorded. Email delivery is not yet configured on this
             installation, so please also reach us through the contact page to be certain it lands.
           </p>
@@ -199,13 +199,13 @@ export function RfqForm() {
         <div className="mt-9 flex flex-wrap gap-3">
           <Link
             href="/products"
-            className="inline-flex h-12 items-center gap-2 border border-ink/25 px-6 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-cream"
+            className="inline-flex h-12 items-center gap-2 border border-ink/25 px-6 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
           >
             Browse products
           </Link>
           <Link
             href="/"
-            className="inline-flex h-12 items-center gap-2 px-2 font-display text-xs font-bold uppercase tracking-[0.08em] text-cobalt"
+            className="inline-flex h-12 items-center gap-2 px-2 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink"
           >
             Back to home
           </Link>
@@ -235,14 +235,14 @@ export function RfqForm() {
               key={s.id}
               className={cn(
                 "h-1 flex-1 transition-colors duration-300",
-                i < step ? "bg-cobalt" : i === step ? "bg-ink" : "bg-ink/12",
+                i < step ? "bg-ink" : i === step ? "bg-ink" : "bg-ink/12",
               )}
             />
           ))}
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} onFocus={begin} noValidate className="relative border border-ink/15 bg-cream p-6 sm:p-8 lg:p-10">
+      <form onSubmit={handleSubmit(onSubmit)} onFocus={begin} noValidate className="relative border border-ink/15 bg-paper p-6 sm:p-8 lg:p-10">
         <Honeypot register={register("faxNumber")} />
         <input type="hidden" {...register("source")} />
 
@@ -460,7 +460,7 @@ export function RfqForm() {
                 <p className="mt-6 text-xs text-ink/70">
                   We use your details only to respond to this enquiry. Specifications and files you
                   share are treated as confidential. See our{" "}
-                  <Link href="/privacy" className="text-cobalt underline underline-offset-4">
+                  <Link href="/privacy" className="text-ink underline underline-offset-4">
                     privacy policy
                   </Link>
                   .
@@ -470,7 +470,7 @@ export function RfqForm() {
         </div>
 
         {serverError && (
-          <p role="alert" className="mt-6 border-l-2 border-orange-deep pl-3 text-sm text-orange-deep">
+          <p role="alert" className="mt-6 border-l-2 border-ink pl-3 text-sm text-ink">
             {serverError}
           </p>
         )}
@@ -491,7 +491,7 @@ export function RfqForm() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="group inline-flex h-14 items-center justify-center gap-2.5 bg-cobalt px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-ink disabled:opacity-60"
+              className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-lime hover:text-ink disabled:opacity-60"
             >
               {status === "submitting" ? (
                 <>
@@ -509,7 +509,7 @@ export function RfqForm() {
             <button
               type="button"
               onClick={next}
-              className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-cream transition-colors duration-300 hover:bg-cobalt"
+              className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-paper transition-colors duration-300 hover:bg-lime hover:text-ink"
             >
               Continue
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />

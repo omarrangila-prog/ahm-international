@@ -61,7 +61,7 @@ export const materials: Material[] = [
     surface: "Textured, matte, visible knit grid",
     capabilityStatus: "current_capability",
     asset: "fabrics.cottonPique",
-    zone: "cobalt",
+    zone: "ink",
   },
   {
     slug: "single-jersey",
@@ -78,7 +78,7 @@ export const materials: Material[] = [
     surface: "Smooth face, looped reverse",
     capabilityStatus: "current_capability",
     asset: "fabrics.singleJersey",
-    zone: "sky",
+    zone: "paper",
   },
   {
     slug: "polycotton-twill",
@@ -95,7 +95,7 @@ export const materials: Material[] = [
     surface: "Diagonal rib, matte",
     capabilityStatus: "current_capability",
     asset: "fabrics.polycottonTwill",
-    zone: "orange",
+    zone: "lime",
   },
   {
     slug: "woven-shirting",
@@ -112,7 +112,7 @@ export const materials: Material[] = [
     surface: "Crisp, flat, subtle sheen",
     capabilityStatus: "current_capability",
     asset: "fabrics.woven",
-    zone: "sand",
+    zone: "paper",
   },
   {
     slug: "brushed-fleece",
@@ -129,7 +129,7 @@ export const materials: Material[] = [
     surface: "Smooth face, napped reverse",
     capabilityStatus: "current_capability",
     asset: "fabrics.fleece",
-    zone: "plum",
+    zone: "ink",
   },
   {
     slug: "performance-polyester",
@@ -180,7 +180,7 @@ export const materials: Material[] = [
     surface: "Dense, dry, structured",
     capabilityStatus: "current_capability",
     asset: "fabrics.canvas",
-    zone: "forest",
+    zone: "ink",
   },
 ];
 

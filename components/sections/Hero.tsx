@@ -20,7 +20,7 @@ import { RfqClickLink } from "@/components/ui/TrackedLink";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-cream" data-zone="light">
+    <section className="relative overflow-hidden bg-paper" data-zone="paper">
       <div className="pointer-events-none absolute inset-0 tech-grid text-ink" aria-hidden="true" />
 
       <div className="shell-wide relative grid grid-cols-12 items-center gap-y-10 pt-14 pb-16 lg:min-h-[calc(100svh-6.5rem)] lg:gap-x-8 lg:pt-8 lg:pb-20">
@@ -29,7 +29,7 @@ export function Hero() {
           <p className="enter label mb-6 flex items-center gap-3 text-ink/70 lg:mb-8">
             AHM International
             <span className="h-px w-10 bg-ink/25" aria-hidden="true" />
-            <span className="text-cobalt">Est. Karachi</span>
+            <span className="text-ink">Est. Karachi</span>
           </p>
 
           {/* Painted immediately. It is the largest element above the fold, so
@@ -42,7 +42,7 @@ export function Hero() {
             className="font-display text-[clamp(2.5rem,8.4vw,5.5rem)] font-extrabold leading-[0.9] tracking-[-0.04em] text-ink xl:text-[clamp(3rem,6.2vw,6.75rem)]"
             lines={[
               { text: "FROM TECH PACK" },
-              { text: "TO FOB", className: "text-cobalt" },
+              { text: "TO FOB", className: "text-ink" },
               { text: "SHIPMENT." },
             ]}
           />
@@ -90,7 +90,7 @@ export function Hero() {
         {/* ---------------- Image ---------------- */}
         <div className="col-span-12 lg:col-span-5 xl:col-span-5">
           <div className="enter relative" style={{ "--enter-delay": "0.08s" } as React.CSSProperties}>
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-ivory sm:aspect-[4/3] lg:aspect-[5/6] xl:aspect-[4/5]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper sm:aspect-[4/3] lg:aspect-[5/6] xl:aspect-[4/5]">
               <HeroVisual />
             </div>
 
@@ -107,14 +107,14 @@ export function Hero() {
               className="enter absolute -top-3 right-4 lg:right-6"
               style={{ "--enter-delay": "0.7s" } as React.CSSProperties}
             >
-              <div className="flex items-center gap-2.5 bg-cobalt px-4 py-2.5 text-white shadow-[0_12px_30px_-12px_rgba(39,84,255,0.7)]">
+              <div className="flex items-center gap-2.5 bg-ink px-4 py-2.5 text-white shadow-[0_12px_30px_-12px_rgba(39,84,255,0.7)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-lime" aria-hidden="true" />
                 <span className="label">FOB &bull; Pakistan</span>
               </div>
             </div>
 
             {/* Verified proof, where the eye lands after the image */}
-            <div className="mt-4 flex items-start gap-3 border-l-2 border-cobalt pl-4">
+            <div className="mt-4 flex items-start gap-3 border-l-2 border-ink pl-4">
               <p className="max-w-sm text-sm text-ink/70">
                 Documented FOB export experience from Port Qasim, Karachi to the United States.
               </p>

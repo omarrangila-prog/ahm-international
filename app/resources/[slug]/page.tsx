@@ -37,7 +37,7 @@ export default async function GuidePage({ params }: Params) {
 
   const headingLines = guide.headline.split("\n").map((text, i) => ({
     text,
-    className: i === 1 ? "text-cobalt" : undefined,
+    className: i === 1 ? "text-ink" : undefined,
   }));
 
   return (
@@ -62,16 +62,16 @@ export default async function GuidePage({ params }: Params) {
           { name: "Resources", path: "/resources" },
           { name: guide.title, path: `/resources/${guide.slug}` },
         ]}
-        zone="cream"
+        zone="paper"
         asset={guide.heroAsset}
         priority
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
       />
 
       {/* Short answer */}
-      <Section zone="ivory" spacing="md">
+      <Section zone="paper" spacing="md">
         <div className="shell-wide">
-          <div className="max-w-4xl border-l-2 border-cobalt pl-6 lg:pl-8">
+          <div className="max-w-4xl border-l-2 border-ink pl-6 lg:pl-8">
             <p className="label text-ink/60">In short</p>
             <p className="mt-3 text-lead text-ink/80">{guide.summary}</p>
           </div>
@@ -83,13 +83,13 @@ export default async function GuidePage({ params }: Params) {
         </div>
       </Section>
 
-      <Section zone="cream" spacing="lg">
+      <Section zone="paper" spacing="lg">
         <div className="shell-wide">
           <ContentBlocks blocks={guide.blocks} />
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="guide-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="guide-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Related questions</Eyebrow>

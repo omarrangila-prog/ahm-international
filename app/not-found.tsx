@@ -25,7 +25,7 @@ export const metadata: Metadata = {
  */
 export default function NotFound() {
   return (
-    <Section zone="cream" spacing="lg">
+    <Section zone="paper" spacing="lg">
       <div className="shell-wide grid grid-cols-12 items-center gap-y-12 lg:gap-x-12">
         <div className="col-span-12 lg:col-span-7">
           {/* Not announced. The heading below carries the message, but it is
@@ -37,7 +37,7 @@ export default function NotFound() {
           </p>
           <h1 className="mt-4 font-display text-display text-ink">
             This page isn&apos;t
-            <span className="block text-cobalt">in the specification.</span>
+            <span className="block text-ink">in the specification.</span>
           </h1>
           <p className="mt-7 max-w-lg text-lead text-ink/70">
             The URL you followed doesn&apos;t exist. Here is where most people are heading.
@@ -62,7 +62,7 @@ export default function NotFound() {
               { label: "Contact", href: "/contact" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-sm text-ink/65 underline-offset-4 transition-colors hover:text-cobalt hover:underline">
+                <Link href={link.href} className="text-sm text-ink/65 underline-offset-4 transition-colors hover:text-ink hover:underline">
                   {link.label}
                 </Link>
               </li>
@@ -71,7 +71,7 @@ export default function NotFound() {
         </div>
 
         <div className="col-span-12 lg:col-span-5">
-          <div className="aspect-[4/5] w-full bg-ivory text-ink">
+          <div className="aspect-[4/5] w-full bg-paper text-ink">
             <SmartImage
               asset="products.apron.front"
               sizes={SIZES.half}

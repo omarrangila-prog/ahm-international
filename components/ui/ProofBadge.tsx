@@ -32,12 +32,12 @@ const ICONS: Record<ProofKind, React.ComponentType<{ className?: string }>> = {
 };
 
 const TONES: Record<ProofKind, string> = {
-  verified_export: "border-cobalt/30 bg-cobalt/10 text-cobalt",
-  development_sample: "border-orange/40 bg-orange/10 text-orange-deep",
-  physical_sample: "border-forest/30 bg-forest/10 text-forest",
+  verified_export: "border-ink/30 bg-ink/10 text-ink",
+  development_sample: "border-ink/40 bg-ink/10 text-ink",
+  physical_sample: "border-ink/30 bg-ink/10 text-ink",
   process_documented: "border-ink/20 bg-ink/[0.04] text-ink/75",
-  case_study: "border-plum/30 bg-plum/10 text-plum",
-  qualification_required: "border-ink/25 bg-sand/40 text-ink/80",
+  case_study: "border-ink/30 bg-ink/10 text-ink",
+  qualification_required: "border-ink/25 bg-ink/[0.06] text-ink/80",
 };
 
 export function ProofBadge({
@@ -78,10 +78,10 @@ export function CapabilityBadge({
 }) {
   const tone =
     status === "current_capability"
-      ? "border-forest/30 bg-forest/10 text-forest"
+      ? "border-ink/30 bg-ink/10 text-ink"
       : status === "development_available"
-        ? "border-orange/40 bg-orange/10 text-orange-deep"
-        : "border-ink/25 bg-sand/40 text-ink/80";
+        ? "border-ink/40 bg-ink/10 text-ink"
+        : "border-ink/25 bg-ink/[0.06] text-ink/80";
 
   return (
     <span

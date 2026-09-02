@@ -39,14 +39,14 @@ export function ProductUniverse() {
   const current = families[active];
 
   return (
-    <Section zone="cream" spacing="lg" aria-labelledby="products-heading">
+    <Section zone="paper" spacing="lg" aria-labelledby="products-heading">
       <div className="shell-wide">
         <Eyebrow>Product families</Eyebrow>
         <MaskedHeading
           as="h2"
           id="products-heading"
           className="mt-5 max-w-3xl font-display text-display text-ink"
-          lines={[{ text: "BUILT FOR WORK." }, { text: "BUILT TO SCALE.", className: "text-cobalt" }]}
+          lines={[{ text: "BUILT FOR WORK." }, { text: "BUILT TO SCALE.", className: "text-ink" }]}
         />
 
         <div className="mt-14 grid grid-cols-12 gap-y-10 lg:gap-x-16">
@@ -65,7 +65,7 @@ export function ProductUniverse() {
                     <span
                       className={cn(
                         "numeral shrink-0 text-sm transition-colors duration-200",
-                        isActive ? "text-cobalt" : "text-ink/60",
+                        isActive ? "text-ink" : "text-ink/60",
                       )}
                     >
                       {numeral(i + 1)}
@@ -86,7 +86,7 @@ export function ProductUniverse() {
                       className={cn(
                         "h-5 w-5 shrink-0 self-center transition-[opacity,transform] duration-300 ease-[var(--ease-out-expo)]",
                         isActive
-                          ? "translate-x-0 text-cobalt opacity-100"
+                          ? "translate-x-0 text-ink opacity-100"
                           : "-translate-x-2 text-ink/65 opacity-0",
                       )}
                       aria-hidden="true"
@@ -142,7 +142,7 @@ export function ProductUniverse() {
           </p>
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-cobalt"
+            className="group inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-ink"
           >
             Explore all products
             <ArrowRight

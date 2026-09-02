@@ -29,7 +29,7 @@ export function QualityProcess() {
   const { ref, inView } = useInView<HTMLDivElement>({ margin: "0px 0px -25% 0px" });
 
   return (
-    <Section zone="cobalt" spacing="lg" tooth aria-labelledby="quality-heading">
+    <Section zone="ink" spacing="lg" tooth aria-labelledby="quality-heading">
       <div className="shell-wide relative z-10">
         <div className="max-w-4xl">
           <Eyebrow className="text-white/90">
@@ -61,7 +61,7 @@ export function QualityProcess() {
                 {qualityStages.map((item) => (
                   <li key={item.index} className="relative pl-9">
                     <span
-                      className="absolute left-0 top-1.5 flex h-3.5 w-3.5 items-center justify-center border border-white/40 bg-cobalt"
+                      className="absolute left-0 top-1.5 flex h-3.5 w-3.5 items-center justify-center border border-white/40 bg-ink"
                       aria-hidden="true"
                     >
                       <span className="h-1.5 w-1.5 bg-lime" />
@@ -92,7 +92,7 @@ export function QualityProcess() {
                       : undefined
                   }
                 >
-                  <div className="h-full bg-cobalt p-5 transition-colors duration-300 hover:bg-cobalt-deep">
+                  <div className="h-full bg-ink p-5 transition-colors duration-300 hover:bg-lime hover:text-ink">
                     <h3 className="font-display text-base font-bold tracking-[-0.02em] text-white">
                       {item.title}
                     </h3>

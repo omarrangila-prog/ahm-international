@@ -24,12 +24,12 @@ export default function RouteError({
   }, [error]);
 
   return (
-    <Section zone="cream" spacing="lg">
+    <Section zone="paper" spacing="lg">
       <div className="shell-wide max-w-3xl">
-        <p className="label text-orange-deep">Something went wrong</p>
+        <p className="label text-ink">Something went wrong</p>
         <h1 className="mt-5 font-display text-display text-ink">
           This page failed
-          <span className="block text-cobalt">to load.</span>
+          <span className="block text-ink">to load.</span>
         </h1>
         <p className="mt-7 text-lead text-ink/70">
           The problem is on our side, not yours. Try again: and if it persists, send your enquiry
@@ -40,13 +40,13 @@ export default function RouteError({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex h-14 items-center bg-cobalt px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-ink"
+            className="inline-flex h-14 items-center bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-lime hover:text-ink"
           >
             Try again
           </button>
           <Link
             href="/request-a-quote"
-            className="inline-flex h-14 items-center border border-ink/25 px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-ink hover:text-cream"
+            className="inline-flex h-14 items-center border border-ink/25 px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
           >
             Request a Quote
           </Link>

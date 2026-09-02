@@ -21,18 +21,18 @@ export default function RequestQuotePage() {
     <>
       <PageHero
         eyebrow="Request a quote"
-        headingLines={[{ text: "LET'S COST" }, { text: "YOUR NEXT", className: "text-cobalt" }, { text: "PROGRAM." }]}
+        headingLines={[{ text: "LET'S COST" }, { text: "YOUR NEXT", className: "text-ink" }, { text: "PROGRAM." }]}
         intro="Six required fields across seven short steps. Send what you have. A tech pack if you have one, a description if you do not, and we will tell you what is missing before we quote."
         trail={[{ name: "Request a Quote", path: "/request-a-quote" }]}
-        zone="cream"
+        zone="paper"
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide grid grid-cols-12 gap-y-12 pb-24 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-8">
             <Suspense
               fallback={
-                <div className="border border-ink/15 bg-cream p-10">
+                <div className="border border-ink/15 bg-paper p-10">
                   <p className="label text-ink/60">Loading the quote form…</p>
                 </div>
               }
@@ -43,7 +43,7 @@ export default function RequestQuotePage() {
 
           <aside className="col-span-12 lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              <div className="border border-line bg-ivory p-6">
+              <div className="border border-line bg-paper p-6">
                 <h2 className="font-display text-h3 text-ink">What happens next</h2>
                 <ol className="mt-5 flex flex-col gap-4">
                   {[
@@ -52,7 +52,7 @@ export default function RequestQuotePage() {
                     { title: "We come back with a position", body: "Construction, materials, decoration and commercial FOB costing." },
                   ].map((item, i) => (
                     <li key={item.title} className="flex gap-3">
-                      <span className="numeral text-sm text-cobalt">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="numeral text-sm text-ink">{String(i + 1).padStart(2, "0")}</span>
                       <span>
                         <span className="block font-display text-sm font-bold tracking-[-0.015em] text-ink">
                           {item.title}
@@ -68,7 +68,7 @@ export default function RequestQuotePage() {
                 </p>
               </div>
 
-              <div className="mt-4 border border-line bg-cream p-6">
+              <div className="mt-4 border border-line bg-paper p-6">
                 <p className="label text-ink/60">Confidentiality</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink/70">
                   Tech packs, specifications and commercial terms are treated as confidential. This
@@ -80,7 +80,7 @@ export default function RequestQuotePage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="rfq-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="rfq-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Before you send</Eyebrow>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Plus } from "lucide-react";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { firstAvailable, type AssetKey } from "@/data/assets";
@@ -60,6 +61,22 @@ const familyRender: Record<string, AssetKey> = {
 
 export function ProductIndex() {
   const [open, setOpen] = useState<string | null>(null);
+  /**
+   * Framer rather than CSS here, and only here.
+   *
+   * The rest of this site animates in CSS on purpose. A panel opening to its
+   * content's natural height is the case CSS cannot do honestly: `height: auto`
+   * is not interpolable, so the alternatives are measuring in JavaScript
+   * anyway, or `grid-template-rows: 0fr -> 1fr`, which works but cannot also
+   * carry the fade and stagger this panel wants. Framer measures it properly.
+   *
+   * Under `prefers-reduced-motion` every duration collapses to zero and the
+   * panel simply appears, which is the same end state without the travel.
+   */
+  const reduced = useReducedMotion();
+  const timing = reduced
+    ? { duration: 0 }
+    : { duration: 0.42, ease: [0.16, 1, 0.3, 1] as const };
 
   return (
     <ul className="border-t border-line">
@@ -85,7 +102,7 @@ export function ProductIndex() {
                 <span
                   className={cn(
                     "numeral shrink-0 text-sm transition-colors duration-300 motion-reduce:transition-none",
-                    isOpen ? "text-cobalt" : "text-ink/60",
+                    isOpen ? "text-ink" : "text-ink/60",
                   )}
                 >
                   {numeral(category.index)}
@@ -95,7 +112,7 @@ export function ProductIndex() {
                   <span
                     className={cn(
                       "block font-display text-xl font-extrabold uppercase leading-none tracking-[-0.03em] transition-colors duration-300 motion-reduce:transition-none sm:text-2xl",
-                      isOpen ? "text-cobalt" : "text-ink group-hover:text-cobalt",
+                      isOpen ? "text-ink" : "text-ink group-hover:text-ink",
                     )}
                   >
                     {category.name}
@@ -125,8 +142,18 @@ export function ProductIndex() {
               </button>
             </h3>
 
-            {isOpen && (
-              <div id={panelId} className="grid grid-cols-12 gap-x-10 gap-y-8 pb-12 lg:pb-14">
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  id={panelId}
+                  key={panelId}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={timing}
+                  className="overflow-hidden"
+                >
+                  <div className="grid grid-cols-12 gap-x-10 gap-y-8 pb-12 lg:pb-14">
                 <div className="col-span-12 lg:col-span-7">
                   <p className="max-w-prose leading-relaxed text-ink/75">{category.intro}</p>
 
@@ -150,7 +177,7 @@ export function ProductIndex() {
 
                   <Link
                     href={`/products/${category.slug}`}
-                    className="group mt-10 inline-flex items-center gap-2 border border-ink bg-ink px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.08em] text-cream transition-colors duration-300 hover:bg-cobalt hover:border-cobalt motion-reduce:transition-none"
+                    className="group mt-10 inline-flex items-center gap-2 border border-ink bg-ink px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.08em] text-paper transition-colors duration-300 hover:bg-lime hover:text-ink hover:border-lime motion-reduce:transition-none"
                   >
                     Open {category.shortName}
                     <ArrowRight
@@ -161,7 +188,7 @@ export function ProductIndex() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-5">
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-ivory">
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
                     <SmartImage
                       asset={asset}
                       sizes={SIZES.half}
@@ -170,9 +197,11 @@ export function ProductIndex() {
                       alt=""
                     />
                   </div>
-                </div>
-              </div>
-            )}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </li>
         );
       })}

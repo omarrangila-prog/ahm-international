@@ -22,7 +22,7 @@ export function CtaBand({
   secondary?: { label: string; href: string };
   zone?: ZoneName;
 }) {
-  const dark = ["ink", "graphite", "forest", "cobalt", "plum"].includes(zone);
+  const dark = ["ink", "ink", "ink", "ink", "ink"].includes(zone);
 
   return (
     <Section data-print="hide" zone={zone} spacing="md" tooth>

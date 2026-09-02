@@ -91,8 +91,8 @@ export function Header() {
           scrolled || menuOpen
             // 80% let body text read through the bar while scrolling; 94% with blur
             // keeps the glassy feel without the content behind it competing.
-            ? "border-line bg-cream/97 backdrop-blur-md supports-[backdrop-filter]:bg-cream/94"
-            : "border-transparent bg-cream",
+            ? "border-line bg-paper/97 backdrop-blur-md supports-[backdrop-filter]:bg-paper/94"
+            : "border-transparent bg-paper",
         )}
         onMouseLeave={() => setMenuOpen(false)}
       >
@@ -128,7 +128,7 @@ export function Header() {
                     />
                     <span
                       className={cn(
-                        "absolute inset-x-3 bottom-1 h-px origin-left bg-cobalt transition-transform duration-300 ease-[var(--ease-out-expo)]",
+                        "absolute inset-x-3 bottom-1 h-px origin-left bg-ink transition-transform duration-300 ease-[var(--ease-out-expo)]",
                         productsActive ? "scale-x-100" : "scale-x-0",
                       )}
                       aria-hidden="true"
@@ -151,7 +151,7 @@ export function Header() {
                   {link.label}
                   <span
                     className={cn(
-                      "absolute inset-x-3.5 bottom-1 h-px origin-left bg-cobalt transition-transform duration-300 ease-[var(--ease-out-expo)]",
+                      "absolute inset-x-3.5 bottom-1 h-px origin-left bg-ink transition-transform duration-300 ease-[var(--ease-out-expo)]",
                       isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                     )}
                     aria-hidden="true"
@@ -171,7 +171,7 @@ export function Header() {
             <Link
               href="/send-tech-pack"
               onClick={() => track("techpack_upload_start", { location: "header" })}
-              className="hidden h-11 items-center bg-lime px-5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink transition-colors duration-300 hover:bg-ink hover:text-lime sm:inline-flex"
+              className="hidden h-11 items-center bg-lime px-5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink transition-colors duration-300 hover:bg-lime hover:text-ink hover:text-lime sm:inline-flex"
             >
               Send Tech Pack
             </Link>

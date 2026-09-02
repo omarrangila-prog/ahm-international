@@ -28,7 +28,7 @@ export function DevelopmentTimeline() {
   const stage = processStages[active];
 
   return (
-    <Section zone="orange" spacing="lg" tooth aria-labelledby="development-heading">
+    <Section zone="lime" spacing="lg" tooth aria-labelledby="development-heading">
       <div className="shell-wide relative z-10">
         <div className="max-w-4xl">
           <Eyebrow>Development</Eyebrow>

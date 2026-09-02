@@ -82,7 +82,7 @@ export function FabricCompare() {
         />
       </div>
 
-      <div className="relative mt-8 aspect-[4/3] w-full select-none overflow-hidden bg-ivory sm:aspect-[2/1]">
+      <div className="relative mt-8 aspect-[4/3] w-full select-none overflow-hidden bg-paper sm:aspect-[2/1]">
         {/* Right-hand fabric fills the frame; the left one is clipped over it. */}
         <SmartImage
           asset={right.asset}
@@ -123,10 +123,10 @@ export function FabricCompare() {
           <span className="h-3.5 w-px bg-lime" />
         </div>
 
-        <span className="pointer-events-none absolute left-4 top-4 bg-ink/80 px-2.5 py-1 label text-cream">
+        <span className="pointer-events-none absolute left-4 top-4 bg-ink/80 px-2.5 py-1 label text-paper">
           {left.name}
         </span>
-        <span className="pointer-events-none absolute right-4 top-4 bg-ink/80 px-2.5 py-1 label text-cream">
+        <span className="pointer-events-none absolute right-4 top-4 bg-ink/80 px-2.5 py-1 label text-paper">
           {right.name}
         </span>
 

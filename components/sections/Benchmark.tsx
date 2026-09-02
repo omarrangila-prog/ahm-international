@@ -79,7 +79,7 @@ function SpecField({ label, value, options, onChange, accent = false }: FieldPro
           onChange={(event) => onChange(event.target.value)}
           className={cn(
             "w-full cursor-pointer appearance-none truncate bg-transparent pr-8 font-display text-[0.9375rem] font-semibold tracking-[-0.015em] outline-none",
-            accent ? "text-cobalt" : "text-ink",
+            accent ? "text-ink" : "text-ink",
           )}
         >
           {options.map((option) => (
@@ -89,7 +89,7 @@ function SpecField({ label, value, options, onChange, accent = false }: FieldPro
           ))}
         </select>
         <svg
-          className="pointer-events-none absolute right-0 h-3.5 w-3.5 text-ink/30 transition-colors group-hover:text-cobalt"
+          className="pointer-events-none absolute right-0 h-3.5 w-3.5 text-ink/30 transition-colors group-hover:text-ink"
           viewBox="0 0 12 12"
           fill="none"
           aria-hidden="true"
@@ -133,7 +133,7 @@ export function Benchmark() {
   }, [category, fabric, decoration, quantity, delivery, destination]);
 
   return (
-    <Section zone="ivory" spacing="lg" tooth aria-labelledby="benchmark-heading">
+    <Section zone="paper" spacing="lg" tooth aria-labelledby="benchmark-heading">
       <div className="shell-wide relative z-10 grid grid-cols-12 gap-y-12 lg:gap-x-12">
         {/* ---------------- Argument ---------------- */}
         <div className="col-span-12 lg:col-span-5">
@@ -143,7 +143,7 @@ export function Benchmark() {
             as="h2"
             id="benchmark-heading"
             className="mt-6 font-display text-display text-ink"
-            lines={[{ text: "Give us" }, { text: "one style" }, { text: "to benchmark.", className: "text-cobalt" }]}
+            lines={[{ text: "Give us" }, { text: "one style" }, { text: "to benchmark.", className: "text-ink" }]}
           />
 
           <div className="mt-8 max-w-md space-y-5 text-ink/70">
@@ -160,7 +160,7 @@ export function Benchmark() {
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5">
             {["Construction", "Fabric", "Trims", "Development", "FOB costing", "Lead time"].map((item) => (
               <li key={item} className="flex items-center gap-2.5 text-sm text-ink/65">
-                <span className="h-1 w-1 shrink-0 bg-cobalt" aria-hidden="true" />
+                <span className="h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                 {item}
               </li>
             ))}
@@ -183,11 +183,11 @@ export function Benchmark() {
 
         {/* ---------------- The tool ---------------- */}
         <div className="col-span-12 lg:col-span-7">
-          <Reveal className="border border-ink/12 bg-cream shadow-[0_30px_70px_-45px_rgba(16,19,21,0.5)]">
+          <Reveal className="border border-ink/12 bg-paper shadow-[0_30px_70px_-45px_rgba(16,19,21,0.5)]">
             {/* Card header. Reads as a spec sheet masthead */}
             <div className="flex items-center justify-between gap-4 border-b border-ink/12 px-6 py-4 sm:px-8">
               <div className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-cobalt" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 bg-ink" aria-hidden="true" />
                 <p className="label text-ink/70">Benchmark Specification</p>
               </div>
               <p className="label text-ink/70">Draft</p>
@@ -209,7 +209,7 @@ export function Benchmark() {
             </div>
 
             {/* Card footer. The honest output */}
-            <div className="border-t border-ink/12 bg-ivory px-6 py-6 sm:px-8">
+            <div className="border-t border-ink/12 bg-paper px-6 py-6 sm:px-8">
               <div className="flex flex-wrap items-end justify-between gap-5">
                 <div>
                   <p className="label mb-2 text-ink/60">Commercial FOB price</p>

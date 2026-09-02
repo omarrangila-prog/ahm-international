@@ -52,7 +52,7 @@ export function FaqList({
                 <span
                   className={cn(
                     "font-display text-base font-bold tracking-[-0.02em] transition-colors sm:text-lg",
-                    dark ? "text-current group-hover:text-lime" : "text-ink group-hover:text-cobalt",
+                    dark ? "text-current group-hover:text-lime" : "text-ink group-hover:text-ink",
                   )}
                 >
                   {item.question}

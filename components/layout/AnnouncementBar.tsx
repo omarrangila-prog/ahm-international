@@ -9,20 +9,20 @@ export function AnnouncementBar() {
       aria-label="Business model and location"
       data-persist=""
       data-print="hide"
-      className="relative z-50 bg-ink text-cream"
+      className="relative z-50 bg-ink text-paper"
     >
       <div className="shell-wide flex h-9 items-center justify-between gap-4">
-        <p className="label truncate text-cream/70">
+        <p className="label truncate text-paper/70">
           FOB Apparel Manufacturing
           {/* The city truncates mid-word on narrow phones; drop it rather than clip it. */}
           <span className="hidden xs:inline">
-            <span className="mx-2 text-cream/70" aria-hidden="true">
+            <span className="mx-2 text-paper/70" aria-hidden="true">
               •
             </span>
             {company.city}, {company.country}
           </span>
           <span className="xs:hidden">
-            <span className="mx-2 text-cream/70" aria-hidden="true">
+            <span className="mx-2 text-paper/70" aria-hidden="true">
               •
             </span>
             {company.country}

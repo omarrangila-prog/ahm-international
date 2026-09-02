@@ -81,7 +81,7 @@ export function WorkflowMap() {
                       className="grid grid-cols-1 gap-x-6 gap-y-3 border-t border-ink/10 py-5 md:grid-cols-12"
                     >
                       <div className="md:col-span-3">
-                        <span className="numeral text-sm text-cobalt">{numeral(s.index)}</span>
+                        <span className="numeral text-sm text-ink">{numeral(s.index)}</span>
                         <p className="mt-1 font-display text-sm font-bold uppercase leading-tight tracking-tight text-ink">
                           {s.name}
                         </p>

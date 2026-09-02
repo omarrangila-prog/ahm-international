@@ -89,10 +89,10 @@ export default function ProductDevelopmentPage() {
     <>
       <PageHero
         eyebrow="Product development"
-        headingLines={[{ text: "Development is" }, { text: "where cost is", className: "text-cobalt" }, { text: "decided." }]}
+        headingLines={[{ text: "Development is" }, { text: "where cost is", className: "text-ink" }, { text: "decided." }]}
         intro="Almost every avoidable cost in an apparel order is created or prevented before anything is cut. This is how AHM turns what you send into a specification the factory floor and your QA read the same way."
         trail={[{ name: "Product Development", path: "/development" }]}
-        zone="cream"
+        zone="paper"
         asset="development.techPack"
         priority
         primaryCta={{ label: "Start a Development", href: "/request-a-quote" }}
@@ -102,13 +102,13 @@ export default function ProductDevelopmentPage() {
       <DevelopmentTimeline />
       <DevelopmentLab />
 
-      <Section zone="ivory" spacing="lg">
+      <Section zone="paper" spacing="lg">
         <div className="shell-wide">
           <ContentBlocks blocks={blocks} />
         </div>
       </Section>
 
-      <Section zone="cream" spacing="lg" aria-labelledby="dev-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="dev-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>
@@ -130,7 +130,7 @@ export default function ProductDevelopmentPage() {
         body="Send a tech pack, a reference garment, a sketch or a written requirement. We will tell you what is missing before we quote."
         primary={{ label: "Start a Development", href: "/request-a-quote" }}
         secondary={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
-        zone="orange"
+        zone="lime"
       />
 
       <RelatedLinks

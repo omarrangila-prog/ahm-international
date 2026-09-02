@@ -10,22 +10,21 @@ import { cn } from "@/lib/utils";
  * background it sits on.
  */
 
-type Variant = "solid" | "outline" | "lime" | "orange" | "invert" | "ghost";
+type Variant = "solid" | "outline" | "lime" | "invert" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
   "group/btn relative inline-flex items-center justify-center gap-2.5 font-display font-bold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-300 ease-[var(--ease-out-expo)] disabled:pointer-events-none disabled:opacity-50 active:translate-y-px";
 
 const variants: Record<Variant, string> = {
-  // Cobalt on light zones
-  solid: "bg-cobalt text-white hover:bg-ink",
-  // Hairline on light zones
-  outline: "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-cream",
-  // Final CTA / accents on dark zones
-  lime: "bg-lime text-ink hover:bg-white",
-  orange: "bg-orange text-ink hover:bg-ink hover:text-cream",
-  // On dark zones
-  invert: "bg-cream text-ink hover:bg-lime",
+  /* On paper: ink fill, lime on hover — the only two colours there are. */
+  solid: "bg-ink text-paper hover:bg-lime hover:text-ink",
+  /* On paper: hairline that fills in. */
+  outline: "border border-ink/25 text-ink hover:border-lime hover:bg-lime hover:text-ink hover:text-paper",
+  /* The accent CTA. Ink on lime is 12.4:1, so it carries at any size. */
+  lime: "bg-lime text-ink hover:bg-lime hover:text-ink hover:text-lime",
+  /* On ink: the inverse of `solid`. */
+  invert: "bg-paper text-ink hover:bg-lime",
   ghost: "text-current underline-offset-4 hover:underline",
 };
 

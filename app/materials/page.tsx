@@ -51,17 +51,17 @@ export default function MaterialsPage() {
       <PageViewEvent event="material_viewed" />
       <PageHero
         eyebrow="Materials"
-        headingLines={[{ text: "The fabric" }, { text: "decision outlives", className: "text-cobalt" }, { text: "the order." }]}
+        headingLines={[{ text: "The fabric" }, { text: "decision outlives", className: "text-ink" }, { text: "the order." }]}
         intro="Construction families used in uniform and workwear programs, with typical weights, hand feel, finish routes and applications. Given for orientation while you scope a program, not as a stock list."
         trail={[{ name: "Materials", path: "/materials" }]}
-        zone="cream"
+        zone="paper"
         asset="development.swatches"
         priority
         primaryCta={{ label: "Discuss Materials", href: "/request-a-quote" }}
         secondaryCta={{ label: "See product range", href: "/products" }}
       />
 
-      <Section zone="cream" spacing="none" aria-labelledby="materials-heading">
+      <Section zone="paper" spacing="none" aria-labelledby="materials-heading">
         <div className="shell-wide pb-20">
           <h2 id="materials-heading" className="sr-only">
             Fabric constructions
@@ -72,7 +72,7 @@ export default function MaterialsPage() {
               <RevealItem key={material.slug}>
                 <article className="grid grid-cols-12 items-start gap-y-6 border-t border-line py-10 lg:gap-x-10">
                   <div className="col-span-12 sm:col-span-4 lg:col-span-3">
-                    <div className="aspect-square w-full overflow-hidden bg-ivory">
+                    <div className="aspect-square w-full overflow-hidden bg-paper">
                       <SmartImage
                         asset={material.asset}
                         sizes={SIZES.quarter}
@@ -85,7 +85,7 @@ export default function MaterialsPage() {
 
                   <div className="col-span-12 sm:col-span-8 lg:col-span-9">
                     <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                      <span className="numeral text-sm text-cobalt">{numeral(i + 1)}</span>
+                      <span className="numeral text-sm text-ink">{numeral(i + 1)}</span>
                       <h3 className="font-display text-h3 text-ink">{material.name}</h3>
                       <span className="label text-ink/60">{material.family}</span>
                     </div>
@@ -97,7 +97,7 @@ export default function MaterialsPage() {
                       </div>
                       <div>
                         <dt className="label text-ink/60">Typical weight</dt>
-                        <dd className="mt-1.5 font-display text-base font-bold tracking-[-0.02em] text-cobalt">
+                        <dd className="mt-1.5 font-display text-base font-bold tracking-[-0.02em] text-ink">
                           {material.typicalWeight}
                         </dd>
                       </div>
@@ -129,14 +129,14 @@ export default function MaterialsPage() {
           question: what is this garment actually made of, and what must I decide. */}
       {/* Two constructions side by side, because that is the shape of the real
           decision. See components/sections/FabricCompare.tsx. */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="compare-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="compare-heading">
         <div className="shell-wide">
           <Eyebrow>Compare</Eyebrow>
           <MaskedHeading
             as="h2"
             id="compare-heading"
             className="mt-5 max-w-3xl font-display text-h1 text-ink"
-            lines={[{ text: "Two constructions," }, { text: "one decision.", className: "text-cobalt" }]}
+            lines={[{ text: "Two constructions," }, { text: "one decision.", className: "text-ink" }]}
           />
           <p className="mt-6 max-w-xl text-ink/70">
             Drag the seam to put one weave against another. The photographs are
@@ -168,7 +168,7 @@ export default function MaterialsPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="mat-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="mat-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Fabric questions</Eyebrow>
@@ -180,7 +180,7 @@ export default function MaterialsPage() {
             />
             <p className="mt-6 text-sm text-ink/65">
               Not sure which construction fits?{" "}
-              <Link href="/request-a-quote" className="text-cobalt underline underline-offset-4">
+              <Link href="/request-a-quote" className="text-ink underline underline-offset-4">
                 Tell us the requirement
               </Link>{" "}
               and we will recommend options against it.

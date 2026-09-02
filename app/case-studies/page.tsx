@@ -21,21 +21,21 @@ export default function CaseStudiesPage() {
     <>
       <PageHero
         eyebrow="Case studies"
-        headingLines={[{ text: "Documented" }, { text: "programs, not", className: "text-cobalt" }, { text: "testimonials." }]}
+        headingLines={[{ text: "Documented" }, { text: "programs, not", className: "text-ink" }, { text: "testimonials." }]}
         intro="We publish a program only where the facts are documented and the customer's identity is protected. That produces a shorter list than most supplier sites, and one where every line survives a question."
         trail={[{ name: "Case Studies", path: "/case-studies" }]}
-        zone="cream"
+        zone="paper"
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide pb-24">
           <div className="flex flex-col gap-6">
             {caseStudies.map((study) => (
               <Reveal key={study.slug}>
                 <Link
                   href={`/case-studies/${study.slug}`}
-                  className="group grid grid-cols-1 border border-line bg-ivory transition-colors hover:bg-white sm:grid-cols-3"
+                  className="group grid grid-cols-1 border border-line bg-paper transition-colors hover:bg-white sm:grid-cols-3"
                 >
                   <div className="aspect-square w-full overflow-hidden bg-white sm:aspect-auto">
                     <SmartImage
@@ -48,7 +48,7 @@ export default function CaseStudiesPage() {
                   </div>
                   <div className="p-7 sm:col-span-2 lg:p-10">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="bg-orange px-2.5 py-1 label text-ink">Documented</span>
+                      <span className="bg-ink px-2.5 py-1 label text-lime">Documented</span>
                       <span className="label text-ink/60">{study.market}</span>
                     </div>
                     <h2 className="mt-4 font-display text-h2 text-ink">{study.anonymisedTitle}</h2>
@@ -65,7 +65,7 @@ export default function CaseStudiesPage() {
                         </div>
                       ))}
                     </dl>
-                    <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-cobalt">
+                    <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink">
                       Read the full program
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>

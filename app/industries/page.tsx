@@ -23,18 +23,18 @@ export default function IndustriesPage() {
         eyebrow="Industries"
         headingLines={[
           { text: "Same garment." },
-          { text: "Different", className: "text-cobalt" },
+          { text: "Different", className: "text-ink" },
           { text: "requirement." },
         ]}
         intro="A polo for a grocery checkout and a polo for a corporate reception are not the same product. These pages set out what each environment actually does to a garment, and how the program should be specified because of it."
         trail={[{ name: "Industries", path: "/industries" }]}
-        zone="cream"
+        zone="paper"
         primaryCta={{ label: "Discuss a Program", href: "/request-a-quote" }}
         secondaryCta={{ label: "See product range", href: "/products" }}
       />
 
       {/* Rows rather than tiles; see components/sections/IndustryRows.tsx. */}
-      <Section zone="cream" spacing="none" aria-labelledby="ind-heading">
+      <Section zone="paper" spacing="none" aria-labelledby="ind-heading">
         <div className="shell-wide pb-24">
           <h2 id="ind-heading" className="sr-only">
             Industries served
@@ -43,7 +43,7 @@ export default function IndustriesPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="perf-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="perf-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Performance</Eyebrow>
@@ -62,7 +62,7 @@ export default function IndustriesPage() {
             <RevealGroup className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2" stagger={0.05}>
               {performanceOptions.map((option) => (
                 <RevealItem key={option.name}>
-                  <div className="border-l-2 border-orange pl-4">
+                  <div className="border-l-2 border-ink pl-4">
                     <p className="font-display text-[0.9375rem] font-bold tracking-[-0.015em] text-ink">
                       {option.name}
                     </p>
@@ -81,7 +81,7 @@ export default function IndustriesPage() {
         body="Tell us the roles, the environment and the articles. We will come back on fabric, construction and commercial FOB costing across the whole program."
         primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondary={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
-        zone="forest"
+        zone="ink"
       />
 
       <RelatedLinks

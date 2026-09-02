@@ -10,43 +10,38 @@ import { cn } from "@/lib/utils";
  *
  * The point of routing every section through here is that the palette stays
  * controlled: a section cannot invent a one-off background, and a designer
- * changing what "forest" means changes it everywhere at once.
+ * changing what "ink" means changes it everywhere at once.
  */
 
-export type ZoneName =
-  | "cream"
-  | "ivory"
-  | "paper"
-  | "ink"
-  | "graphite"
-  | "forest"
-  | "cobalt"
-  | "orange"
-  | "lime"
-  | "sand"
-  | "sky"
-  | "plum";
+export type ZoneName = "paper" | "ink" | "lime";
 
+/**
+ * Three grounds, two colours.
+ *
+ * There were thirteen zones — cream, ivory, paper, ink, graphite, forest,
+ * cobalt, orange, lime, sand, sky, plum — and a page could pass through five of
+ * them. That is a palette doing the work of a layout: every section shouted for
+ * attention with hue instead of earning it with hierarchy, and no two pages
+ * agreed on what any colour meant.
+ *
+ * Now: paper is the ground, ink is its inverse, lime is the one accent. Variety
+ * comes from the fabric texture on each ground and from typographic scale, not
+ * from adding colours — which is the right economy for a manufacturer whose
+ * product is cloth.
+ *
+ * Lime is only ever a *ground*, never text on paper: #C8FF3D on the off-white
+ * measures about 1.4:1. On ink it is 12.4:1, and ink on lime is the same, so
+ * both remaining pairings are far past AA.
+ */
 const zoneStyles: Record<ZoneName, { className: string; scheme: "light" | "dark" }> = {
-  cream: { className: "bg-cream text-ink", scheme: "light" },
-  ivory: { className: "bg-ivory text-ink", scheme: "light" },
-  paper: { className: "bg-white text-ink", scheme: "light" },
-  ink: { className: "bg-ink text-cream", scheme: "dark" },
-  graphite: { className: "bg-graphite text-cream", scheme: "dark" },
-  forest: { className: "bg-forest text-cream", scheme: "dark" },
-  cobalt: { className: "bg-cobalt text-white", scheme: "dark" },
-  orange: { className: "bg-orange text-ink", scheme: "light" },
+  paper: { className: "bg-paper text-ink", scheme: "light" },
+  ink: { className: "bg-ink text-paper", scheme: "dark" },
   lime: { className: "bg-lime text-ink", scheme: "light" },
-  sand: { className: "bg-sand text-ink", scheme: "light" },
-  sky: { className: "bg-sky text-ink", scheme: "light" },
-  plum: { className: "bg-plum text-cream", scheme: "dark" },
 };
 
 /** Maps a zone onto the CSS `data-zone` buckets used for focus and selection. */
 function zoneAttr(zone: ZoneName): string {
-  if (zone === "forest") return "forest";
-  if (zone === "cobalt") return "cobalt";
-  return zoneStyles[zone].scheme === "dark" ? "dark" : "light";
+  return zone === "lime" ? "lime" : zoneStyles[zone].scheme;
 }
 
 type Props = {
@@ -55,7 +50,15 @@ type Props = {
   className?: string;
   /** Vertical rhythm. `none` lets a section manage its own. */
   spacing?: "none" | "sm" | "md" | "lg";
-  /** Adds the paper-tooth texture. Only worth it on large flat colour fields. */
+  /**
+   * The woven ground. On by default.
+   *
+   * It used to be opt-in, and thirteen sections took it while the rest sat on
+   * flat colour. That was right when the palette carried the variety; with two
+   * colours it is the surface that distinguishes one ground from the next, so
+   * it belongs everywhere. Pass `tooth={false}` for a section that must stay
+   * perfectly flat behind an image.
+   */
   tooth?: boolean;
   id?: string;
   as?: "section" | "div" | "article";
@@ -74,10 +77,10 @@ const spacingStyles = {
 
 export function Section({
   children,
-  zone = "cream",
+  zone = "paper",
   className,
   spacing = "md",
-  tooth = false,
+  tooth = true,
   id,
   as: Tag = "section",
   ...passthrough

@@ -80,8 +80,8 @@ export function QuoteReadiness() {
                     "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center border transition-colors duration-200 motion-reduce:transition-none",
                     // The real control is `sr-only`, so keyboard focus would
                     // otherwise land on an element with nothing to show for it.
-                    "peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-cobalt",
-                    checked ? "border-cobalt bg-cobalt text-white" : "border-ink/30 bg-white",
+                    "peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ink",
+                    checked ? "border-ink bg-ink text-white" : "border-ink/30 bg-white",
                   )}
                 >
                   {checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
@@ -119,7 +119,7 @@ export function QuoteReadiness() {
         {/* A bar, not a score. It never turns red and there is no failing value. */}
         <div className="mt-4 h-1 w-full bg-ink/10">
           <div
-            className="h-full bg-cobalt transition-[width] duration-500 ease-[var(--ease-out-expo)] motion-reduce:transition-none"
+            className="h-full bg-ink transition-[width] duration-500 ease-[var(--ease-out-expo)] motion-reduce:transition-none"
             style={{ width: `${(ready / rfqInputs.length) * 100}%` }}
           />
         </div>
@@ -127,7 +127,7 @@ export function QuoteReadiness() {
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <Link
             href="/request-a-quote"
-            className="group inline-flex items-center gap-2 border border-ink bg-ink px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.08em] text-cream transition-colors duration-300 hover:border-cobalt hover:bg-cobalt motion-reduce:transition-none"
+            className="group inline-flex items-center gap-2 border border-ink bg-ink px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.08em] text-paper transition-colors duration-300 hover:border-lime hover:bg-lime hover:text-ink motion-reduce:transition-none"
           >
             Request FOB quote
             <ArrowRight
@@ -154,7 +154,7 @@ export function QuoteReadiness() {
               Your browser would not let the page write to the clipboard. The list is here to
               copy by hand.
             </p>
-            <pre className="mt-3 overflow-x-auto whitespace-pre-wrap border border-line bg-ivory p-4 text-xs leading-relaxed text-ink/80">
+            <pre className="mt-3 overflow-x-auto whitespace-pre-wrap border border-line bg-paper p-4 text-xs leading-relaxed text-ink/80">
               {outstandingText}
             </pre>
           </div>

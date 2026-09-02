@@ -22,12 +22,12 @@ export default function ManufacturingPage() {
         eyebrow="Manufacturing"
         headingLines={[
           { text: "Nine stages." },
-          { text: "One accountable", className: "text-cobalt" },
+          { text: "One accountable", className: "text-ink" },
           { text: "partner." },
         ]}
         intro="From the first review of your specification to handover on board at Port Qasim. Each stage below has a defined output and a point where you approve something, and each page names what usually goes wrong there."
         trail={[{ name: "Manufacturing", path: "/manufacturing" }]}
-        zone="cream"
+        zone="paper"
         asset="factory.sewing"
         priority
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
@@ -42,10 +42,10 @@ export default function ManufacturingPage() {
           <MaskedHeading
             as="h2"
             id="stages-heading"
-            className="mt-5 max-w-3xl font-display text-h1 text-cream"
+            className="mt-5 max-w-3xl font-display text-h1 text-paper"
             lines={[{ text: "From your spec" }, { text: "to on board.", className: "text-lime" }]}
           />
-          <p className="mt-6 max-w-xl text-cream/75">
+          <p className="mt-6 max-w-xl text-paper/75">
             Read it in order. Each stage names what you receive and the failure that
             stage is prone to, because the point where a program stalls is almost
             always the point nobody was watching.
@@ -77,19 +77,19 @@ export default function ManufacturingPage() {
         </div>
       </Section>
 
-      <Section zone="forest" spacing="lg" tooth aria-labelledby="approach-heading">
+      <Section zone="ink" spacing="lg" tooth aria-labelledby="approach-heading">
         <div className="shell-wide relative z-10 grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
             <Eyebrow>Operating model</Eyebrow>
             <MaskedHeading
               as="h2"
               id="approach-heading"
-              className="mt-5 font-display text-h1 text-cream"
+              className="mt-5 font-display text-h1 text-paper"
               lines={[{ text: "What we do" }, { text: "and do not" }, { text: "claim." }]}
             />
           </div>
           <div className="col-span-12 lg:col-span-7">
-            <dl className="flex flex-col divide-y divide-cream/15 border-t border-cream/15">
+            <dl className="flex flex-col divide-y divide-paper/15 border-t border-paper/15">
               {[
                 {
                   q: "Commercial model",
@@ -113,8 +113,8 @@ export default function ManufacturingPage() {
                 },
               ].map((row) => (
                 <div key={row.q} className="py-5">
-                  <dt className="font-display text-base font-bold tracking-[-0.02em] text-cream">{row.q}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-cream/65">{row.a}</dd>
+                  <dt className="font-display text-base font-bold tracking-[-0.02em] text-paper">{row.q}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-paper/65">{row.a}</dd>
                 </div>
               ))}
             </dl>

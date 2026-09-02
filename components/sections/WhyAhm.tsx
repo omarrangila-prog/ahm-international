@@ -15,7 +15,7 @@ import { numeral } from "@/lib/utils";
 
 export function WhyAhm() {
   return (
-    <Section zone="cream" spacing="lg" aria-labelledby="why-heading">
+    <Section zone="paper" spacing="lg" aria-labelledby="why-heading">
       <div className="shell-wide">
         <div className="max-w-4xl">
           <Eyebrow>Why AHM</Eyebrow>
@@ -23,7 +23,7 @@ export function WhyAhm() {
               as="h2"
               id="why-heading"
               className="mt-6 font-display text-display text-ink"
-              lines={[{ text: "Six reasons" }, { text: "worth one" }, { text: "test order.", className: "text-cobalt" }]}
+              lines={[{ text: "Six reasons" }, { text: "worth one" }, { text: "test order.", className: "text-ink" }]}
             />
           <p className="mt-7 max-w-2xl text-lead text-ink/70">
               None of these are claims about being the biggest or the cheapest. They are the things
@@ -37,13 +37,13 @@ export function WhyAhm() {
         >
           {whyAhm.map((item) => (
             <RevealItem key={item.index}>
-              <article className="group h-full bg-cream p-7 transition-colors duration-300 hover:bg-ivory lg:p-8">
+              <article className="group h-full bg-paper p-7 transition-colors duration-300 hover:bg-paper lg:p-8">
                 <div className="flex items-baseline gap-4">
-                  <span className="numeral text-[2rem] text-ink/45 transition-colors duration-300 group-hover:text-cobalt">
+                  <span className="numeral text-[2rem] text-ink/45 transition-colors duration-300 group-hover:text-ink">
                     {numeral(item.index)}
                   </span>
                   <span
-                    className="h-px flex-1 bg-ink/12 transition-colors duration-300 group-hover:bg-cobalt/40"
+                    className="h-px flex-1 bg-ink/12 transition-colors duration-300 group-hover:bg-ink/40"
                     aria-hidden="true"
                   />
                 </div>

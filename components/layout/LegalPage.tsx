@@ -36,13 +36,13 @@ export function LegalPage({
         headingLines={headingLines}
         intro={intro}
         trail={[{ name: eyebrow, path }]}
-        zone="cream"
+        zone="paper"
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide pb-24">
           <div className="max-w-3xl">
-            <div className="border-l-2 border-orange bg-ivory p-5 lg:p-6">
+            <div className="border-l-2 border-ink bg-paper p-5 lg:p-6">
               <p className="label mb-2 text-ink/70">Draft. Pending legal review</p>
               <p className="text-sm leading-relaxed text-ink/75">{LEGAL_REVIEW_NOTICE}</p>
             </div>
@@ -53,7 +53,7 @@ export function LegalPage({
               {sections.map((section, i) => (
                 <Reveal key={section.heading} as="section">
                   <div className="flex items-baseline gap-4">
-                    <span className="numeral text-sm text-cobalt">{numeral(i + 1)}</span>
+                    <span className="numeral text-sm text-ink">{numeral(i + 1)}</span>
                     <h2 className="font-display text-h3 text-ink">{section.heading}</h2>
                   </div>
 
@@ -66,7 +66,7 @@ export function LegalPage({
                       <ul className="mt-2 flex flex-col gap-3 border-t border-line pt-4">
                         {section.list.map((item) => (
                           <li key={item} className="flex items-start gap-3">
-                            <span className="mt-[0.6rem] h-1 w-1 shrink-0 bg-cobalt" aria-hidden="true" />
+                            <span className="mt-[0.6rem] h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                             <span className="text-[0.9375rem]">{item}</span>
                           </li>
                         ))}

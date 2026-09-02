@@ -55,13 +55,13 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        headingLines={[{ text: "START A" }, { text: "SOURCING", className: "text-cobalt" }, { text: "CONVERSATION." }]}
+        headingLines={[{ text: "START A" }, { text: "SOURCING", className: "text-ink" }, { text: "CONVERSATION." }]}
         intro="Pick the route that matches what you need. Every one reaches the same commercial team. The difference is how much context arrives with you."
         trail={[{ name: "Contact", path: "/contact" }]}
-        zone="cream"
+        zone="paper"
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide pb-20">
           <RevealGroup className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2" stagger={0.06}>
             {routes.map((route) => {
@@ -70,20 +70,20 @@ export default function ContactPage() {
                 <RevealItem key={route.title}>
                   <Link
                     href={route.cta.href}
-                    className="group flex h-full flex-col justify-between gap-8 bg-cream p-7 transition-colors duration-300 hover:bg-white lg:p-9"
+                    className="group flex h-full flex-col justify-between gap-8 bg-paper p-7 transition-colors duration-300 hover:bg-white lg:p-9"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-4">
-                        <Icon className="h-6 w-6 text-cobalt" aria-hidden="true" />
+                        <Icon className="h-6 w-6 text-ink" aria-hidden="true" />
                         <ArrowUpRight
-                          className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cobalt"
+                          className="h-5 w-5 text-ink/30 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
                           aria-hidden="true"
                         />
                       </div>
                       <h2 className="mt-5 font-display text-h3 text-ink">{route.title}</h2>
                       <p className="mt-3 max-w-sm text-[0.9375rem] leading-relaxed text-ink/65">{route.body}</p>
                     </div>
-                    <span className="label text-cobalt">{route.cta.label}</span>
+                    <span className="label text-ink">{route.cta.label}</span>
                   </Link>
                 </RevealItem>
               );
@@ -99,10 +99,10 @@ export default function ContactPage() {
             <MaskedHeading
               as="h2"
               id="details-heading"
-              className="mt-5 font-display text-h1 text-cream"
+              className="mt-5 font-display text-h1 text-paper"
               lines={[{ text: "Where we" }, { text: "are." }]}
             />
-            <p className="mt-6 max-w-md text-cream/65">
+            <p className="mt-6 max-w-md text-paper/65">
               We publish contact details only once they are verified. Where a line below says
               &ldquo;{NOT_PUBLISHED}&rdquo;, the quote form is the reliable route and reaches the
               same team.
@@ -110,50 +110,50 @@ export default function ContactPage() {
           </div>
 
           <div className="col-span-12 lg:col-span-7">
-            <dl className="border-t border-cream/15">
-              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                <dt className="label text-cream/60">Location</dt>
-                <dd className="text-cream/85">
+            <dl className="border-t border-paper/15">
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/60">Location</dt>
+                <dd className="text-paper/85">
                   {street ? `${street}, ` : ""}
                   {company.city}, {company.country}
                 </dd>
               </div>
-              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                <dt className="label text-cream/60">Email</dt>
-                <dd className="text-cream/85">
-                  {email ? <EmailLink email={email} /> : <span className="text-cream/70">{NOT_PUBLISHED}</span>}
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/60">Email</dt>
+                <dd className="text-paper/85">
+                  {email ? <EmailLink email={email} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
                 </dd>
               </div>
-              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                <dt className="label text-cream/60">Phone</dt>
-                <dd className="text-cream/85">
-                  {phone ? <PhoneLink phone={phone} /> : <span className="text-cream/70">{NOT_PUBLISHED}</span>}
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/60">Phone</dt>
+                <dd className="text-paper/85">
+                  {phone ? <PhoneLink phone={phone} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
                 </dd>
               </div>
               {whatsapp && (
-                <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                  <dt className="label text-cream/60">WhatsApp</dt>
-                  <dd className="text-cream/85">
+                <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                  <dt className="label text-paper/60">WhatsApp</dt>
+                  <dd className="text-paper/85">
                     <WhatsAppLink number={whatsapp} label={phone ?? whatsapp} />
                   </dd>
                 </div>
               )}
-              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                <dt className="label text-cream/60">Hours</dt>
-                <dd className="text-cream/85">
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/60">Hours</dt>
+                <dd className="text-paper/85">
                   {hours ?? "Pakistan Standard Time. Confirmed on contact"}
                   {whatsapp && (
-                    <span className="mt-1 block text-sm text-cream/60">{company.whatsappNote}</span>
+                    <span className="mt-1 block text-sm text-paper/60">{company.whatsappNote}</span>
                   )}
                 </dd>
               </div>
-              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-cream/15 py-5">
-                <dt className="label text-cream/60">Export port</dt>
-                <dd className="text-cream/85">{company.exportExperience.port}</dd>
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/60">Export port</dt>
+                <dd className="text-paper/85">{company.exportExperience.port}</dd>
               </div>
             </dl>
 
-            <p className="mt-6 text-xs leading-relaxed text-cream/60">
+            <p className="mt-6 text-xs leading-relaxed text-paper/60">
               A map is published once the exact verified business address is supplied and approved
               for publication. We do not display an approximate pin.
             </p>

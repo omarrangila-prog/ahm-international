@@ -24,13 +24,13 @@ const layDown = [
 
 function LayDown() {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-ivory">
+    <div className="relative h-full w-full overflow-hidden bg-paper">
       {/* Drafting field */}
-      <div className="pointer-events-none absolute inset-0 tech-grid text-cobalt" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 tech-grid text-ink" aria-hidden="true" />
 
       {/* Annotation rules. The horizon a technical drawing is measured against */}
       <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-cobalt/25"
+        className="pointer-events-none absolute inset-0 h-full w-full text-ink/25"
         preserveAspectRatio="none"
         viewBox="0 0 100 100"
         aria-hidden="true"
@@ -68,7 +68,7 @@ function LayDown() {
       <ul className="absolute bottom-3 left-3 z-40 flex flex-col gap-0.5 sm:bottom-4 sm:left-4 sm:gap-1">
         {layDown.map((item) => (
           <li key={item.code} className="label text-ink/60">
-            <span className="text-cobalt">{item.code}</span>
+            <span className="text-ink">{item.code}</span>
             <span className="mx-1.5 opacity-40">/</span>
             {item.label}
           </li>

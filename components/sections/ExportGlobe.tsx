@@ -77,23 +77,22 @@ const staticLanes = lanes(false);
 
 const globeConfig = {
   pointSize: 3,
-  // Sits a step below --color-forest, the zone this is in, so the sphere reads
-  // as depth in the section rather than as a ball dropped onto it. The emissive
-  // is the zone colour at strength, which is what stops the unlit hemisphere
-  // going black — a Phong sphere with one key light is half shadow, and shadow
-  // on this ground is a hole.
-  globeColor: "#0f2b23",
-  emissive: "#1d4c3f",
+  // Ink, the zone this sits in, so the sphere reads as depth in the section
+  // rather than as a ball dropped onto it. The emissive lifts it just clear of
+  // the ground: a Phong sphere with one key light is half shadow, and shadow on
+  // this ground is a hole.
+  globeColor: "#101010",
+  emissive: "#242424",
   emissiveIntensity: 0.75,
   shininess: 0.6,
   showAtmosphere: true,
-  atmosphereColor: "#2754ff",
+  atmosphereColor: "#c8ff3d",
   atmosphereAltitude: 0.14,
-  polygonColor: "rgba(251,248,242,0.85)",
-  ambientLight: "#9db4ff",
-  directionalLeftLight: "#fbf8f2",
-  directionalTopLight: "#fbf8f2",
-  pointLight: "#fbf8f2",
+  polygonColor: "rgba(247,245,240,0.8)",
+  ambientLight: "#f7f5f0",
+  directionalLeftLight: "#f7f5f0",
+  directionalTopLight: "#f7f5f0",
+  pointLight: "#f7f5f0",
   arcTime: 2600,
   arcLength: 0.6,
   rings: 1,
@@ -158,7 +157,7 @@ export function ExportGlobe() {
       {/* Holds the frame while the stack downloads, and stands in for it if WebGL is unavailable. */}
       <div
         className="absolute inset-[8%] rounded-full"
-        style={{ background: "radial-gradient(circle at 38% 32%, rgba(39,84,255,0.16), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle at 38% 32%, rgba(200,255,61,0.12), transparent 62%)" }}
       />
       {mounted ? (
         <div className="absolute inset-0">

@@ -42,18 +42,18 @@ export default function SendTechPackPage() {
     <>
       <PageHero
         eyebrow="Send a tech pack"
-        headingLines={[{ text: "Send the spec." }, { text: "We'll cost", className: "text-cobalt" }, { text: "against it." }]}
+        headingLines={[{ text: "Send the spec." }, { text: "We'll cost", className: "text-ink" }, { text: "against it." }]}
         intro="Upload a tech pack, sketch, bill of materials or size specification. We review the construction, materials and commercial requirements before proposing an FOB solution."
         trail={[{ name: "Send a Tech Pack", path: "/send-tech-pack" }]}
-        zone="cream"
+        zone="paper"
       />
 
-      <Section zone="cream" spacing="none">
+      <Section zone="paper" spacing="none">
         <div className="shell-wide grid grid-cols-12 gap-y-12 pb-24 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-8">
             <Suspense
               fallback={
-                <div className="border border-ink/15 bg-cream p-10">
+                <div className="border border-ink/15 bg-paper p-10">
                   <p className="label text-ink/60">Loading the upload form…</p>
                 </div>
               }
@@ -63,7 +63,7 @@ export default function SendTechPackPage() {
           </div>
 
           <aside className="col-span-12 lg:col-span-4">
-            <div className="border border-line bg-ivory p-6 lg:sticky lg:top-28">
+            <div className="border border-line bg-paper p-6 lg:sticky lg:top-28">
               <p className="label text-ink/60">Accepted formats</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {["PDF", "XLSX", "DOCX", "JPG", "PNG", "ZIP"].map((format) => (
@@ -81,7 +81,7 @@ export default function SendTechPackPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg">
+      <Section zone="paper" spacing="lg">
         <div className="shell-wide">
           <Eyebrow>Tech pack guidance</Eyebrow>
           <div className="mt-8">

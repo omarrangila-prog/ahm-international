@@ -31,7 +31,7 @@ export function Breadcrumbs({ trail, tone = "light" }: { trail: Crumb[]; tone?: 
                 {isLast ? (
                   <span
                     aria-current="page"
-                    className={cn("label", tone === "dark" ? "text-cream/70" : "text-ink/70")}
+                    className={cn("label", tone === "dark" ? "text-paper/70" : "text-ink/70")}
                   >
                     {crumb.name}
                   </span>
@@ -41,7 +41,7 @@ export function Breadcrumbs({ trail, tone = "light" }: { trail: Crumb[]; tone?: 
                       href={crumb.path}
                       className={cn(
                         "label underline-offset-4 transition-colors hover:underline",
-                        tone === "dark" ? "text-cream/70 hover:text-cream" : "text-ink/60 hover:text-ink",
+                        tone === "dark" ? "text-paper/70 hover:text-paper" : "text-ink/60 hover:text-ink",
                       )}
                     >
                       {crumb.name}
@@ -49,7 +49,7 @@ export function Breadcrumbs({ trail, tone = "light" }: { trail: Crumb[]; tone?: 
                     <ChevronRight
                       className={cn(
                         "h-3 w-3 shrink-0",
-                        tone === "dark" ? "text-cream/30" : "text-ink/25",
+                        tone === "dark" ? "text-paper/30" : "text-ink/25",
                       )}
                       aria-hidden="true"
                     />

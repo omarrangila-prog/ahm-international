@@ -55,10 +55,10 @@ export default function QualityPage() {
       <PageViewEvent event="quality_process_viewed" />
       <PageHero
         eyebrow="Quality assurance"
-        headingLines={[{ text: "Inspection that" }, { text: "can still change", className: "text-cobalt" }, { text: "something." }]}
+        headingLines={[{ text: "Inspection that" }, { text: "can still change", className: "text-ink" }, { text: "something." }]}
         intro="Quality control that only happens at the end can reject a shipment but cannot save one. Inspection runs across every point where a problem is still correctable."
         trail={[{ name: "Quality", path: "/quality" }]}
-        zone="cream"
+        zone="paper"
         asset="factory.qualityControl"
         priority
         primaryCta={{ label: "Discuss Your Standard", href: "/request-a-quote" }}
@@ -67,7 +67,7 @@ export default function QualityPage() {
 
       <QualityProcess />
 
-      <Section zone="cream" spacing="lg" aria-labelledby="standard-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="standard-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
             <Eyebrow>Standards</Eyebrow>
@@ -92,7 +92,7 @@ export default function QualityPage() {
                 // No process photography yet. Rather than four empty frames, the
                 // column carries the statement that belongs beside the timeline.
                 return (
-                  <div className="border-l-2 border-cobalt pl-6">
+                  <div className="border-l-2 border-ink pl-6">
                     <p className="text-lead text-ink/80">
                       Every stage produces a record: an inspection sheet, a measurement report, a
                       packing verification. Those records are what a buyer can audit, not a
@@ -108,7 +108,7 @@ export default function QualityPage() {
                 <RevealGroup className="grid grid-cols-2 gap-3" stagger={0.06}>
                   {shots.map((asset) => (
                     <RevealItem key={asset}>
-                      <div className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-ivory">
+                      <div className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-paper">
                         <SmartImage asset={asset} sizes={SIZES.third} className="h-full w-full" imageClassName="object-cover" />
                       </div>
                     </RevealItem>
@@ -142,7 +142,7 @@ export default function QualityPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="lg" aria-labelledby="q-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="q-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>

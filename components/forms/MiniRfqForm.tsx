@@ -133,7 +133,7 @@ export function MiniRfqForm() {
   if (status === "success") {
     return (
       <div
-        className="enter flex flex-col items-start gap-5 border border-ink/15 bg-cream p-8 lg:p-10"
+        className="enter flex flex-col items-start gap-5 border border-ink/15 bg-paper p-8 lg:p-10"
         role="status"
       >
         <span className="flex h-12 w-12 items-center justify-center bg-lime text-ink">
@@ -151,7 +151,7 @@ export function MiniRfqForm() {
             )}
           </p>
           {!delivered && (
-            <p className="mt-4 max-w-md border-l-2 border-orange pl-3 text-sm text-ink/70">
+            <p className="mt-4 max-w-md border-l-2 border-ink pl-3 text-sm text-ink/70">
               Your request has been recorded. Email delivery is not yet configured on this
               installation: please also reach us through the contact page to be certain it lands.
             </p>
@@ -159,7 +159,7 @@ export function MiniRfqForm() {
         </div>
         <Link
           href="/request-a-quote"
-          className="group inline-flex items-center gap-2 text-sm font-medium text-cobalt underline-offset-4 hover:underline"
+          className="group inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
         >
           Add a tech pack and full specification
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
@@ -173,7 +173,7 @@ export function MiniRfqForm() {
       onSubmit={onSubmit}
       onFocus={begin}
       noValidate
-      className="relative border border-ink/15 bg-cream p-6 sm:p-8 lg:p-10"
+      className="relative border border-ink/15 bg-paper p-6 sm:p-8 lg:p-10"
     >
       {/* Honeypot: invisible to people, filled only by bots. */}
       <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
@@ -242,7 +242,7 @@ export function MiniRfqForm() {
       </div>
 
       {serverError && (
-        <p role="alert" className="mt-5 border-l-2 border-orange-deep pl-3 text-sm text-orange-deep">
+        <p role="alert" className="mt-5 border-l-2 border-ink pl-3 text-sm text-ink">
           {serverError}
         </p>
       )}
@@ -251,7 +251,7 @@ export function MiniRfqForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="group inline-flex h-14 items-center justify-center gap-2.5 bg-cobalt px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-ink disabled:opacity-60"
+          className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-lime hover:text-ink disabled:opacity-60"
         >
           {status === "submitting" ? (
             <>
@@ -278,7 +278,7 @@ export function MiniRfqForm() {
       <p className="mt-5 text-xs text-ink/70">
         We use your details only to respond to this enquiry. Specifications you share are treated as
         confidential: see our{" "}
-        <Link href="/privacy" className="text-cobalt underline underline-offset-4">
+        <Link href="/privacy" className="text-ink underline underline-offset-4">
           privacy policy
         </Link>
         .

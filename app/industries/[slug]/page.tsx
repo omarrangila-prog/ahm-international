@@ -68,7 +68,7 @@ export default async function IndustryPage({ params }: Params) {
 
   const headingLines = detail.headline.split("\n").map((text, i) => ({
     text,
-    className: i === 1 ? "text-cobalt" : undefined,
+    className: i === 1 ? "text-ink" : undefined,
   }));
 
   return (
@@ -84,7 +84,7 @@ export default async function IndustryPage({ params }: Params) {
           { name: "Industries", path: "/industries" },
           { name: industry.name, path: `/industries/${slug}` },
         ]}
-        zone="cream"
+        zone="paper"
         asset={firstAvailable(industry.asset, industry.representative)}
         priority
         primaryCta={{ label: "Discuss a Program", href: "/request-a-quote" }}
@@ -92,7 +92,7 @@ export default async function IndustryPage({ params }: Params) {
       />
 
       {/* Overview + roles */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="overview-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="overview-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-7">
             <Eyebrow>The requirement</Eyebrow>
@@ -110,12 +110,12 @@ export default async function IndustryPage({ params }: Params) {
           </div>
 
           <div className="col-span-12 lg:col-span-5">
-            <div className="border border-line bg-cream p-7">
+            <div className="border border-line bg-paper p-7">
               <h3 className="label text-ink/60">Who wears the program</h3>
               <ul className="mt-5 flex flex-col gap-3">
                 {detail.roles.map((role) => (
                   <li key={role} className="flex items-start gap-3 text-[0.9375rem] text-ink/80">
-                    <span className="mt-[0.5rem] h-1 w-1 shrink-0 bg-cobalt" aria-hidden="true" />
+                    <span className="mt-[0.5rem] h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                     {role}
                   </li>
                 ))}
@@ -135,7 +135,7 @@ export default async function IndustryPage({ params }: Params) {
       </Section>
 
       {/* Program considerations */}
-      <Section zone="forest" spacing="lg" tooth aria-labelledby="considerations-heading">
+      <Section zone="ink" spacing="lg" tooth aria-labelledby="considerations-heading">
         <div className="shell-wide relative z-10">
           <div className="grid grid-cols-12 gap-y-8 lg:gap-x-12">
             <div className="col-span-12 lg:col-span-4">
@@ -143,7 +143,7 @@ export default async function IndustryPage({ params }: Params) {
               <MaskedHeading
                 as="h2"
                 id="considerations-heading"
-                className="mt-5 font-display text-h1 text-cream"
+                className="mt-5 font-display text-h1 text-paper"
                 lines={[{ text: "Seven decisions" }, { text: "that shape the" }, { text: "program." }]}
               />
             </div>
@@ -152,19 +152,19 @@ export default async function IndustryPage({ params }: Params) {
               {/* dt/dd must sit one div deep inside the dl, not two. A second
                   wrapper breaks the term/definition association for assistive
                   technology, so the reveal attributes go on the same element. */}
-              <dl className="border-t border-cream/15">
+              <dl className="border-t border-paper/15">
                 {programConsiderations.map((item, i) => (
                   <div
                     key={item.label}
                     data-reveal=""
                     data-reveal-dir="up"
-                    className="grid grid-cols-[3rem_1fr] gap-4 border-b border-cream/15 py-5 sm:grid-cols-[3rem_9rem_1fr]"
+                    className="grid grid-cols-[3rem_1fr] gap-4 border-b border-paper/15 py-5 sm:grid-cols-[3rem_9rem_1fr]"
                   >
                     <span className="numeral text-sm text-lime" aria-hidden="true">
                       {numeral(i + 1)}
                     </span>
-                    <dt className="label pt-0.5 text-cream/70">{item.label}</dt>
-                    <dd className="col-span-2 text-sm leading-relaxed text-cream/75 sm:col-span-1">
+                    <dt className="label pt-0.5 text-paper/70">{item.label}</dt>
+                    <dd className="col-span-2 text-sm leading-relaxed text-paper/75 sm:col-span-1">
                       {item.body}
                     </dd>
                   </div>
@@ -176,7 +176,7 @@ export default async function IndustryPage({ params }: Params) {
       </Section>
 
       {/* Related categories */}
-      <Section zone="cream" spacing="lg" aria-labelledby="cats-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="cats-heading">
         <div className="shell-wide">
           <Eyebrow>Product families</Eyebrow>
           <MaskedHeading
@@ -191,7 +191,7 @@ export default async function IndustryPage({ params }: Params) {
               <RevealItem key={category.slug}>
                 <Link
                   href={`/products/${category.slug}`}
-                  className="group flex h-full flex-col border border-line bg-ivory transition-colors hover:bg-white"
+                  className="group flex h-full flex-col border border-line bg-paper transition-colors hover:bg-white"
                 >
                   <div className="aspect-[4/5] w-full overflow-hidden bg-white">
                     <SmartImage
@@ -218,7 +218,7 @@ export default async function IndustryPage({ params }: Params) {
       </Section>
 
       {/* FAQ */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="ind-faq-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="ind-faq-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>

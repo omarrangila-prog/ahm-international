@@ -17,7 +17,7 @@ import type { CapabilityStatus } from "./verification";
  */
 
 /** Colour zone assigned to each category. Keeps the palette controlled. */
-export type Zone = "forest" | "cobalt" | "plum" | "orange" | "sky" | "sand" | "ink" | "lime";
+export type Zone = "ink" | "ink" | "ink" | "lime" | "paper" | "paper" | "ink" | "lime";
 
 export type SpecRow = {
   label: string;
@@ -93,7 +93,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Uniform programs,\nbuilt to be worn every day.",
     intro:
       "Garments that have to survive a shift, a wash cycle and a reorder twelve months later looking like the first delivery.",
-    zone: "forest",
+    zone: "ink",
     capabilityStatus: "current_capability",
     subcategories: ["Work Shirts", "Uniform Tops", "Service Apparel", "Chef Wear", "Safety & Hi-Vis"],
     articles: [
@@ -133,7 +133,7 @@ export const productCategories: ProductCategory[] = [
     headline: "The garment your\nprogram lives on.",
     intro:
       "The highest-volume item in most uniform programs, and the one where collar recovery and colour consistency across reorders decide whether a buyer stays.",
-    zone: "cobalt",
+    zone: "ink",
     capabilityStatus: "current_capability",
     subcategories: ["Classic Polos", "Performance Polos", "Long-Sleeve Polos", "Crew-Neck Tees", "Performance Tees"],
     articles: [
@@ -170,7 +170,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Layers that carry\nthe logo all winter.",
     intro:
       "Sweatshirts, hoodies and full-zip fleece: the layer that gets worn outside the building, which makes it the most visible garment in the program.",
-    zone: "plum",
+    zone: "ink",
     capabilityStatus: "current_capability",
     subcategories: ["Crewneck Sweatshirts", "Pullover Hoodies", "Full-Zip Hoodies", "Fleece Jackets", "Fleece Vests"],
     articles: [
@@ -207,7 +207,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Aprons,\nengineered for work.",
     intro:
       "The article AHM has documented export experience producing: a stain-managed poly-cotton bib apron for a United States uniform program.",
-    zone: "orange",
+    zone: "lime",
     capabilityStatus: "current_capability",
     subcategories: ["Bib Apron", "Waist Apron", "Chef Apron", "Service Apron", "Utility Apron"],
     articles: [
@@ -244,7 +244,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Woven shirting\nthat holds its press.",
     intro:
       "Button-front uniform and utility shirting, where collar construction and fusing quality show up on day one and after fifty washes.",
-    zone: "sky",
+    zone: "paper",
     capabilityStatus: "current_capability",
     subcategories: ["Uniform Shirts", "Utility Work Shirts", "Service Shirts", "Short-Sleeve Shirts"],
     articles: [
@@ -280,7 +280,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Bottoms that take\nthe abuse.",
     intro:
       "Work trousers and shorts, where pocket bags, bar tacks and crotch gusset construction determine the real cost per wear.",
-    zone: "sand",
+    zone: "paper",
     capabilityStatus: "current_capability",
     subcategories: ["Work Trousers", "Uniform Pants", "Work Shorts", "Cargo Styles", "Chef Trousers"],
     articles: [
@@ -353,7 +353,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Front of house,\nback of house.",
     intro:
       "Service uniforms are judged twice: by the guest who sees them and by the operator who launders them two hundred times.",
-    zone: "plum",
+    zone: "ink",
     capabilityStatus: "current_capability",
     subcategories: ["Chef Wear", "Server Apparel", "Bar & Barista", "Housekeeping", "Front Desk"],
     articles: [
@@ -431,7 +431,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Performance knits\nand relaxed fits.",
     intro:
       "Athleisure lives or dies on hand feel and recovery. Both are fabric decisions, and both are confirmed on a physical sample rather than a spec sheet.",
-    zone: "sky",
+    zone: "paper",
     capabilityStatus: "development_available",
     subcategories: ["Joggers", "Lounge Bottoms", "Performance Tops", "Sleeveless"],
     articles: [
@@ -470,7 +470,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Cut for the wearer,\nnot scaled down.",
     intro:
       "A women's block is a different pattern, not a smaller men's one. Where a program needs both, the two are developed as separate blocks from the start.",
-    zone: "orange",
+    zone: "lime",
     capabilityStatus: "development_available",
     subcategories: ["Women's Uniform Tops", "Women's Knits", "Women's Woven Shirts", "Women's Outerwear"],
     articles: [
@@ -509,7 +509,7 @@ export const productCategories: ProductCategory[] = [
     headline: "Children's apparel,\nand the rules that come with it.",
     intro:
       "Children's garments carry safety requirements that adult apparel does not. Cords, small parts and flammability are qualification questions, answered before development starts.",
-    zone: "sand",
+    zone: "paper",
     capabilityStatus: "development_available",
     subcategories: ["Infant Bodysuits", "Kids' Knits", "Kids' Uniform"],
     articles: [

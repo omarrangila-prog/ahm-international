@@ -54,28 +54,28 @@ export default async function ShowroomPage({ params }: Params) {
       <Section zone="ink" spacing="lg">
         <div className="shell-wide">
           <Eyebrow>Private sourcing showroom</Eyebrow>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-[-0.035em] text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-[-0.035em] text-paper sm:text-5xl lg:text-6xl">
             AHM <span className="text-lime">×</span> {showroom.buyerLabel}
           </h1>
 
           {showroom.demo && (
-            <p className="mt-6 max-w-xl border-l-2 border-lime pl-4 text-sm leading-relaxed text-cream/75">
+            <p className="mt-6 max-w-xl border-l-2 border-lime pl-4 text-sm leading-relaxed text-paper/75">
               <span className="label block text-lime">Demonstration</span>
               <span className="mt-1 block">{showroom.intro}</span>
             </p>
           )}
           {!showroom.demo && showroom.intro && (
-            <p className="mt-6 max-w-xl text-lead text-cream/75">{showroom.intro}</p>
+            <p className="mt-6 max-w-xl text-lead text-paper/75">{showroom.intro}</p>
           )}
 
-          <p className="mt-8 max-w-xl text-sm text-cream/55">
+          <p className="mt-8 max-w-xl text-sm text-paper/55">
             This page is private and is not indexed by search engines. It shows the
             categories relevant to your program rather than the full range.
           </p>
         </div>
       </Section>
 
-      <Section zone="cream" spacing="lg" aria-labelledby="showroom-range">
+      <Section zone="paper" spacing="lg" aria-labelledby="showroom-range">
         <div className="shell-wide">
           <h2 id="showroom-range" className="sr-only">
             Selected range

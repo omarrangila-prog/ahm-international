@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       eyebrow="Privacy"
-      headingLines={[{ text: "What we collect," }, { text: "and what we don't.", className: "text-cobalt" }]}
+      headingLines={[{ text: "What we collect," }, { text: "and what we don't.", className: "text-ink" }]}
       intro="How AHM International handles enquiry data, tech packs and uploaded files. What is collected, why, how long it is kept, and how to have it deleted."
       path="/privacy"
       sections={privacySections}

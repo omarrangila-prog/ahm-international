@@ -13,7 +13,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       eyebrow="Terms"
-      headingLines={[{ text: "Terms of" }, { text: "using this site.", className: "text-cobalt" }]}
+      headingLines={[{ text: "Terms of" }, { text: "using this site.", className: "text-ink" }]}
       intro="What the product information on this site means, what a quotation request is, and what is governed by a signed contract instead."
       path="/terms"
       sections={termsSections}

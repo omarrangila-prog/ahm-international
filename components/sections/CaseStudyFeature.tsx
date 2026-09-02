@@ -30,7 +30,7 @@ export function CaseStudyFeature() {
   ];
 
   return (
-    <Section zone="ivory" spacing="lg" aria-labelledby="proof-heading">
+    <Section zone="paper" spacing="lg" aria-labelledby="proof-heading">
       <div className="shell-wide">
         <div className="grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
@@ -64,7 +64,7 @@ export function CaseStudyFeature() {
             <Reveal>
               <Link
                 href={`/case-studies/${study.slug}`}
-                className="group block border border-ink/12 bg-cream shadow-[0_30px_70px_-50px_rgba(16,19,21,0.6)]"
+                className="group block border border-ink/12 bg-paper shadow-[0_30px_70px_-50px_rgba(16,19,21,0.6)]"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2">
                   <div className="relative aspect-square w-full overflow-hidden bg-white">
@@ -75,7 +75,7 @@ export function CaseStudyFeature() {
                       imageClassName="object-contain p-8 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
                       alt="Bib apron of the type produced for the documented uniform program"
                     />
-                    <span className="absolute left-4 top-4 bg-orange px-2.5 py-1 label text-ink">
+                    <span className="absolute left-4 top-4 bg-ink px-2.5 py-1 label text-lime">
                       Documented
                     </span>
                   </div>

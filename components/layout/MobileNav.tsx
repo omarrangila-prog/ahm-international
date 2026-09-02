@@ -47,7 +47,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
       aria-label="Site navigation"
       aria-hidden={!open}
       className={cn(
-        "fixed inset-0 z-[70] flex flex-col bg-ink text-cream lg:hidden",
+        "fixed inset-0 z-[70] flex flex-col bg-ink text-paper lg:hidden",
         "transition-[opacity,transform,visibility] duration-300 ease-[var(--ease-out-expo)]",
         open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0",
       )}
@@ -60,7 +60,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
             <button
               type="button"
               onClick={onClose}
-              className="-mr-2 flex h-12 w-12 items-center justify-center text-cream/70 transition-colors hover:text-cream"
+              className="-mr-2 flex h-12 w-12 items-center justify-center text-paper/70 transition-colors hover:text-paper"
               aria-label="Close navigation"
             >
               <X className="h-6 w-6" aria-hidden="true" />
@@ -77,7 +77,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                     className="flex min-h-[3.5rem] items-center justify-between gap-4 font-display text-2xl font-extrabold tracking-[-0.03em]"
                   >
                     {link.label}
-                    <ArrowRight className="h-5 w-5 text-cream/60" aria-hidden="true" />
+                    <ArrowRight className="h-5 w-5 text-paper/60" aria-hidden="true" />
                   </Link>
                 </li>
               ))}
@@ -93,7 +93,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                         <Link
                           href={link.href}
                           onClick={onClose}
-                          className="flex min-h-12 items-center text-[0.95rem] text-cream/75 transition-colors hover:text-cream"
+                          className="flex min-h-12 items-center text-[0.95rem] text-paper/75 transition-colors hover:text-paper"
                         >
                           {link.label}
                         </Link>
@@ -118,7 +118,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                     <Link
                       href={link.href}
                       onClick={onClose}
-                      className="flex min-h-12 items-center text-[0.95rem] text-cream/75 transition-colors hover:text-cream"
+                      className="flex min-h-12 items-center text-[0.95rem] text-paper/75 transition-colors hover:text-paper"
                     >
                       {link.label}
                     </Link>
@@ -128,7 +128,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className="mt-4 inline-block text-sm text-cream/60 underline underline-offset-4"
+                  className="mt-4 inline-block text-sm text-paper/60 underline underline-offset-4"
                 >
                   {email}
                 </a>

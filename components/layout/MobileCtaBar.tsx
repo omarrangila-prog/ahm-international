@@ -29,7 +29,7 @@ export function MobileCtaBar() {
         <Link
           href="/request-a-quote#files"
           onClick={() => track("techpack_upload_start", { location: "mobile_bar" })}
-          className="flex h-14 w-16 items-center justify-center bg-cream text-ink"
+          className="flex h-14 w-16 items-center justify-center bg-paper text-ink"
           aria-label="Send a tech pack"
         >
           <Upload className="h-5 w-5" aria-hidden="true" />

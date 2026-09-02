@@ -51,7 +51,7 @@ export default function GlossaryPage() {
         eyebrow="Glossary"
         headingLines={[
           { text: "The words a" },
-          { text: "specification", className: "text-cobalt" },
+          { text: "specification", className: "text-ink" },
           { text: "is written in." },
         ]}
         intro="Definitions of the terms used across apparel sourcing, and — where it matters more — the distinctions that are most often collapsed. A specification that means two things is the most expensive kind."
@@ -59,13 +59,13 @@ export default function GlossaryPage() {
           { name: "Resources", path: "/resources" },
           { name: "Glossary", path: "/resources/glossary" },
         ]}
-        zone="cream"
+        zone="paper"
       />
 
       {glossaryGroups.map((group, i) => (
         <Section
           key={group}
-          zone={i % 2 === 0 ? "cream" : "paper"}
+          zone={i % 2 === 0 ? "paper" : "paper"}
           spacing="lg"
           aria-labelledby={`glossary-${group}`}
         >
@@ -95,8 +95,8 @@ export default function GlossaryPage() {
                       <dd className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/70">
                         {t.definition}
                         {t.confusedWith && (
-                          <span className="mt-3 block border-l-2 border-orange pl-3 text-ink/65">
-                            <span className="label text-orange-deep">Often confused with</span>{" "}
+                          <span className="mt-3 block border-l-2 border-ink pl-3 text-ink/65">
+                            <span className="label text-ink">Often confused with</span>{" "}
                             <span className="block mt-1">{t.confusedWith}</span>
                           </span>
                         )}
@@ -116,7 +116,7 @@ export default function GlossaryPage() {
 
       <RelatedLinks
         title="Related"
-        zone="ivory"
+        zone="paper"
         links={[
           { label: "Guides", href: "/resources", description: "Longer technical explainers for buyers and merchandisers." },
           { label: "Materials", href: "/materials", description: "Fabric families, weights and where each is normally specified." },

@@ -50,10 +50,10 @@ export default function ExportPage() {
       <PageViewEvent event="export_process_viewed" />
       <PageHero
         eyebrow="FOB export"
-        headingLines={[{ text: "Documented FOB" }, { text: "from Port Qasim.", className: "text-cobalt" }]}
+        headingLines={[{ text: "Documented FOB" }, { text: "from Port Qasim.", className: "text-ink" }]}
         intro="AHM International has documented FOB apparel export experience from Port Qasim, Karachi to the United States. Everything up to loading on board is ours; freight and insurance from that point are yours."
         trail={[{ name: "Export", path: "/export" }]}
-        zone="cream"
+        zone="paper"
         asset="export.containerLoading"
         priority
         primaryCta={{ label: "Discuss an FOB Program", href: "/request-a-quote" }}
@@ -63,26 +63,26 @@ export default function ExportPage() {
       <ExportSection />
 
       {/* Markets */}
-      <Section zone="forest" spacing="lg" tooth aria-labelledby="markets-heading">
+      <Section zone="ink" spacing="lg" tooth aria-labelledby="markets-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-14 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5 lg:self-center">
             <Eyebrow>Markets</Eyebrow>
             <MaskedHeading
               as="h2"
               id="markets-heading"
-              className="mt-5 font-display text-h1 text-cream"
+              className="mt-5 font-display text-h1 text-paper"
               lines={[{ text: "Documented," }, { text: "and targeted.", className: "text-lime" }]}
             />
-            <p className="mt-6 text-cream/75">
+            <p className="mt-6 text-paper/75">
               We separate the two deliberately. One is a shipment we can evidence; the rest are
               markets we sell into. A map covered in invented destinations is the fastest way for a
               supplier to lose a buyer&apos;s trust.
             </p>
-            <p className="mt-5 text-sm text-cream/70">
+            <p className="mt-5 text-sm text-paper/70">
               So the globe draws one lane, not five: {ORIGIN.port}, Karachi to the United States.
               The markets below it are listed, not plotted.
             </p>
-            <p className="mt-5 text-sm text-cream/70">{MARKET_STATEMENT}</p>
+            <p className="mt-5 text-sm text-paper/70">{MARKET_STATEMENT}</p>
           </div>
 
           <div className="col-span-12 lg:col-span-7">
@@ -90,23 +90,23 @@ export default function ExportPage() {
           </div>
 
           <div className="col-span-12">
-            <ul className="border-t border-cream/20">
+            <ul className="border-t border-paper/20">
               {markets.map((market) => (
-                <li key={market.code} className="flex flex-wrap items-center justify-between gap-4 border-b border-cream/20 py-5">
+                <li key={market.code} className="flex flex-wrap items-center justify-between gap-4 border-b border-paper/20 py-5">
                   <div className="flex items-center gap-4">
-                    <span className="numeral w-9 text-sm text-cream/70">{market.code}</span>
+                    <span className="numeral w-9 text-sm text-paper/70">{market.code}</span>
                     <div>
-                      <p className="font-display text-base font-bold tracking-[-0.02em] text-cream">
+                      <p className="font-display text-base font-bold tracking-[-0.02em] text-paper">
                         {market.name}
                       </p>
-                      <p className="text-xs text-cream/70">Representative hub. {market.hub}</p>
+                      <p className="text-xs text-paper/70">Representative hub. {market.hub}</p>
                     </div>
                   </div>
                   <span
                     className={
                       market.documentedExport
                         ? "border border-lime bg-lime px-3 py-1.5 label text-ink"
-                        : "border border-cream/40 px-3 py-1.5 label text-cream/75"
+                        : "border border-paper/40 px-3 py-1.5 label text-paper/75"
                     }
                   >
                     {market.documentedExport ? "Documented export" : "Target market"}
@@ -119,7 +119,7 @@ export default function ExportPage() {
       </Section>
 
       {/* Packing and marking imagery */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="packing-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="packing-heading">
         <div className="shell-wide">
           <Eyebrow>Packing and dispatch</Eyebrow>
           <MaskedHeading
@@ -133,7 +133,7 @@ export default function ExportPage() {
               .filter(hasAsset)
               .map((asset) => (
                 <RevealItem key={asset}>
-                  <div className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-cream">
+                  <div className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-paper">
                     <SmartImage asset={asset} sizes={SIZES.quarter} className="h-full w-full" imageClassName="object-cover" />
                   </div>
                 </RevealItem>
@@ -142,7 +142,7 @@ export default function ExportPage() {
         </div>
       </Section>
 
-      <Section zone="cream" spacing="lg" aria-labelledby="exp-faq">
+      <Section zone="paper" spacing="lg" aria-labelledby="exp-faq">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>

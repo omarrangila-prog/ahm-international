@@ -31,10 +31,10 @@ export function MaterialIntelligence() {
           <MaskedHeading
               as="h2"
               id="materials-heading"
-              className="mt-6 font-display text-display text-cream"
+              className="mt-6 font-display text-display text-paper"
               lines={[{ text: "THE PROGRAM IS" }, { text: "THE FABRIC.", className: "text-lime" }]}
             />
-          <p className="mt-7 max-w-2xl text-lead text-cream/65">
+          <p className="mt-7 max-w-2xl text-lead text-paper/65">
               Construction can be corrected. A wrong fabric decision is paid for in every reorder
               for the life of the program.
             </p>
@@ -43,9 +43,9 @@ export function MaterialIntelligence() {
         <div className="mt-16 grid grid-cols-12 gap-y-8 lg:gap-x-10">
           {/* Selector */}
           <div className="col-span-12 lg:col-span-5">
-            <ul className="border-t border-cream/15">
+            <ul className="border-t border-paper/15">
               {materials.map((item, i) => (
-                <li key={item.slug} className="border-b border-cream/15">
+                <li key={item.slug} className="border-b border-paper/15">
                   <button
                     type="button"
                     onClick={() => setActive(i)}
@@ -56,7 +56,7 @@ export function MaterialIntelligence() {
                     <span
                       className={cn(
                         "numeral text-sm transition-colors duration-300",
-                        active === i ? "text-lime" : "text-cream/30",
+                        active === i ? "text-lime" : "text-paper/30",
                       )}
                     >
                       {numeral(i + 1)}
@@ -64,7 +64,7 @@ export function MaterialIntelligence() {
                     <span
                       className={cn(
                         "flex-1 font-display text-lg font-bold tracking-[-0.025em] transition-colors duration-300 sm:text-xl",
-                        active === i ? "text-cream" : "text-cream/70 group-hover:text-cream/80",
+                        active === i ? "text-paper" : "text-paper/70 group-hover:text-paper/80",
                       )}
                     >
                       {item.name}
@@ -72,7 +72,7 @@ export function MaterialIntelligence() {
                     <span
                       className={cn(
                         "label transition-colors duration-300",
-                        active === i ? "text-lime" : "text-cream/25",
+                        active === i ? "text-lime" : "text-paper/25",
                       )}
                     >
                       {item.family}
@@ -82,14 +82,14 @@ export function MaterialIntelligence() {
               ))}
             </ul>
 
-            <p className="mt-6 text-xs leading-relaxed text-cream/60">{MATERIAL_DISCLAIMER}</p>
+            <p className="mt-6 text-xs leading-relaxed text-paper/60">{MATERIAL_DISCLAIMER}</p>
           </div>
 
           {/* Detail */}
           <div className="col-span-12 lg:col-span-7">
             {/* `key` remounts the panel on selection, so the CSS entrance replays. */}
             <div key={material.slug} className="enter grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div className="aspect-square w-full overflow-hidden bg-graphite">
+              <div className="aspect-square w-full overflow-hidden bg-ink">
                 <SmartImage
                   asset={material.asset}
                   sizes={SIZES.third}
@@ -101,31 +101,31 @@ export function MaterialIntelligence() {
 
               <dl className="flex flex-col justify-center gap-4">
                 <div>
-                  <dt className="label text-cream/60">Common compositions</dt>
-                  <dd className="mt-1.5 text-sm text-cream/85">{material.compositions.join(" · ")}</dd>
+                  <dt className="label text-paper/60">Common compositions</dt>
+                  <dd className="mt-1.5 text-sm text-paper/85">{material.compositions.join(" · ")}</dd>
                 </div>
                 <div>
-                  <dt className="label text-cream/60">Typical program weight</dt>
+                  <dt className="label text-paper/60">Typical program weight</dt>
                   <dd className="mt-1.5 font-display text-xl font-bold tracking-[-0.02em] text-lime">
                     {material.typicalWeight}
                   </dd>
                 </div>
                 <div>
-                  <dt className="label text-cream/60">Hand feel</dt>
-                  <dd className="mt-1.5 text-sm text-cream/85">{material.handFeel}</dd>
+                  <dt className="label text-paper/60">Hand feel</dt>
+                  <dd className="mt-1.5 text-sm text-paper/85">{material.handFeel}</dd>
                 </div>
                 <div>
-                  <dt className="label text-cream/60">Finish options</dt>
-                  <dd className="mt-1.5 text-sm text-cream/85">{material.finishOptions.join(" · ")}</dd>
+                  <dt className="label text-paper/60">Finish options</dt>
+                  <dd className="mt-1.5 text-sm text-paper/85">{material.finishOptions.join(" · ")}</dd>
                 </div>
                 <div>
-                  <dt className="label text-cream/60">Used for</dt>
-                  <dd className="mt-1.5 text-sm text-cream/85">{material.useCases.join(" · ")}</dd>
+                  <dt className="label text-paper/60">Used for</dt>
+                  <dd className="mt-1.5 text-sm text-paper/85">{material.useCases.join(" · ")}</dd>
                 </div>
               </dl>
             </div>
 
-            <div className="mt-8 border-t border-cream/15 pt-6">
+            <div className="mt-8 border-t border-paper/15 pt-6">
               <ArrowLink href="/materials" className="text-lime">
                 Explore all materials
               </ArrowLink>

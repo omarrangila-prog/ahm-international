@@ -13,7 +13,7 @@ export default function CookiesPage() {
   return (
     <LegalPage
       eyebrow="Cookies"
-      headingLines={[{ text: "Cookies, and" }, { text: "why there's no banner.", className: "text-cobalt" }]}
+      headingLines={[{ text: "Cookies, and" }, { text: "why there's no banner.", className: "text-ink" }]}
       intro="This website sets no advertising or tracking cookies and runs no third-party analytics. What is actually stored, and what happens if that changes."
       path="/cookies"
       sections={cookieSections}

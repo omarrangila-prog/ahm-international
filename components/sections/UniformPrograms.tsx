@@ -21,16 +21,16 @@ export function UniformPrograms() {
   const featured = industries.slice(0, 4);
 
   return (
-    <Section zone="forest" spacing="lg" tooth aria-labelledby="programs-heading">
+    <Section zone="ink" spacing="lg" tooth aria-labelledby="programs-heading">
       <div className="shell-wide relative z-10">
         <div className="max-w-4xl">
           <MaskedHeading
               as="h2"
               id="programs-heading"
-              className="mt-6 font-display text-display text-cream"
+              className="mt-6 font-display text-display text-paper"
               lines={[{ text: "NOT JUST GARMENTS." }, { text: "UNIFORM PROGRAMS.", className: "text-lime" }]}
             />
-          <p className="mt-7 max-w-2xl text-lead text-cream/70">
+          <p className="mt-7 max-w-2xl text-lead text-paper/70">
               A program is a set of articles that has to match each other, match last year&apos;s
               delivery, and keep matching after industrial laundering. That is a different problem
               from making one good garment, and it is the one we are set up for.
@@ -52,7 +52,7 @@ export function UniformPrograms() {
             {industries.map((industry) => (
               <li
                 key={`chip-${industry.slug}`}
-                className="border border-cream/20 px-3.5 py-2 text-xs text-cream/75 transition-colors hover:border-lime hover:text-lime"
+                className="border border-paper/20 px-3.5 py-2 text-xs text-paper/75 transition-colors hover:border-lime hover:text-lime"
               >
                 {industry.name}
               </li>
@@ -61,11 +61,11 @@ export function UniformPrograms() {
         </Reveal>
 
         {/* Performance options */}
-        <div className="mt-20 grid grid-cols-12 gap-y-8 border-t border-cream/15 pt-12 lg:gap-x-12">
+        <div className="mt-20 grid grid-cols-12 gap-y-8 border-t border-paper/15 pt-12 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
-            <h3 className="font-display text-h2 text-cream">
+            <h3 className="font-display text-h2 text-paper">
               Performance is specified,
-              <span className="block text-cream/60">not promised.</span>
+              <span className="block text-paper/60">not promised.</span>
             </h3>
           </div>
 
@@ -74,16 +74,16 @@ export function UniformPrograms() {
               {performanceOptions.map((option) => (
                 <RevealItem key={option.name}>
                   <div className="border-l border-lime/40 pl-4">
-                    <p className="font-display text-[0.9375rem] font-bold tracking-[-0.015em] text-cream">
+                    <p className="font-display text-[0.9375rem] font-bold tracking-[-0.015em] text-paper">
                       {option.name}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-cream/70">{option.note}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-paper/70">{option.note}</p>
                   </div>
                 </RevealItem>
               ))}
             </RevealGroup>
 
-            <p className="mt-9 max-w-2xl border-t border-cream/15 pt-5 text-xs text-cream/60">
+            <p className="mt-9 max-w-2xl border-t border-paper/15 pt-5 text-xs text-paper/60">
               {PERFORMANCE_DISCLAIMER}
             </p>
 

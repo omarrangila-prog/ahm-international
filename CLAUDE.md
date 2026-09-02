@@ -96,6 +96,41 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   `h3-js`, which three-globe needs to tile countries into hexagons. Dropping the
   hex-dot look means dropping three-globe entirely.
 
+## Two colours, three grounds, one texture
+
+`ink` and `lime` on `paper`. There were thirteen named colours and thirteen
+zones; a reader could pass through five hues in one scroll and learn nothing
+from any of them. Variety now comes from the woven ground and from typographic
+scale.
+
+- Zones are `paper`, `ink`, `lime` only. `<Section>` accepts nothing else.
+- **Lime is a ground, or an accent on ink. It is never text on paper** — about
+  1.4:1 there. On ink it is 12.4:1.
+- Error states are ink, not a third colour. They keep structural distinction
+  (border, weight, `role="alert"`), which satisfies WCAG 1.4.1 better than hue.
+- `white` survives for the plates behind dark garment renders, where warm paper
+  would tint the product. Functional, not brand.
+
+`npm run contrast` audits every pairing on every route against the rendered
+page. It parses `oklab()`, which is what Tailwind v4 emits for `text-ink/70`;
+a naive `rgb()` regex reads the lightness as red and invents around seventy
+failures that are not there.
+
+The ground is a real cotton-canvas macro, high-passed to remove its lighting
+gradient and mirrored 2×2 so it tiles seamlessly. 9.7 kB, on by default —
+pass `tooth={false}` for a section that must stay flat.
+
+## Motion: CSS first, Framer where CSS cannot
+
+The vocabulary is still CSS. `motion/react` is used in exactly one place, the
+product accordion, because a panel opening to its content's natural height is
+the case CSS cannot do honestly — `height: auto` is not interpolable.
+
+Lenis eases the scroll in `components/motion/SmoothScroll.tsx`. It never starts
+under `prefers-reduced-motion` — hijacking scroll is precisely what that setting
+exists to switch off — and it disables `scroll-behavior: smooth` while running,
+because the two animate the same property and fight over every anchor link.
+
 ## FAQ schema comes from the component, not the page
 
 `<Faq>` is a server wrapper that renders the questions *and* emits the

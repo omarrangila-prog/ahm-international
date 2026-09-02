@@ -31,14 +31,14 @@ type Props = {
   facts?: { label: string; value: string }[];
 };
 
-const darkZones: ZoneName[] = ["ink", "graphite", "forest", "cobalt", "plum"];
+const darkZones: ZoneName[] = ["ink", "ink", "ink", "ink", "ink"];
 
 export function PageHero({
   eyebrow,
   headingLines,
   intro,
   trail,
-  zone = "cream",
+  zone = "paper",
   asset,
   priority = false,
   primaryCta,
@@ -120,7 +120,7 @@ export function PageHero({
                 className={cn(
                   "w-full overflow-hidden",
                   isRender ? "aspect-[4/5] bg-white sm:aspect-[4/3]" : "aspect-[4/3]",
-                  !isRender && (dark ? "bg-white/5" : "bg-ivory"),
+                  !isRender && (dark ? "bg-white/5" : "bg-paper"),
                 )}
               >
                 <SmartImage
@@ -143,7 +143,7 @@ export function PageHero({
             )}
           >
             {facts.map((fact) => (
-              <div key={fact.label} className={cn("p-5", dark ? "bg-current/0" : "bg-cream")}>
+              <div key={fact.label} className={cn("p-5", dark ? "bg-current/0" : "bg-paper")}>
                 <dt className={cn("label", dark ? "text-current/70" : "text-ink/60")}>{fact.label}</dt>
                 <dd className="mt-2 font-display text-base font-bold tracking-[-0.02em]">{fact.value}</dd>
               </div>

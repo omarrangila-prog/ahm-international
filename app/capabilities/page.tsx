@@ -25,17 +25,17 @@ export default function CapabilitiesPage() {
     <>
       <PageHero
         eyebrow="Capabilities"
-        headingLines={[{ text: "ONE PARTNER." }, { text: "EVERY CRITICAL", className: "text-cobalt" }, { text: "STEP." }]}
+        headingLines={[{ text: "ONE PARTNER." }, { text: "EVERY CRITICAL", className: "text-ink" }, { text: "STEP." }]}
         intro="Thirteen capabilities, each described by what it produces for you rather than by how well we think we do it. Every one ends in a document, a sample or a shipment you can check."
         trail={[{ name: "Capabilities", path: "/capabilities" }]}
-        zone="cream"
+        zone="paper"
         asset="factory.cutting"
         priority
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondaryCta={{ label: "See the process", href: "/manufacturing" }}
       />
 
-      <Section zone="cream" spacing="none" aria-labelledby="cap-heading">
+      <Section zone="paper" spacing="none" aria-labelledby="cap-heading">
         <div className="shell-wide pb-16">
           <h2 id="cap-heading" className="sr-only">
             Capabilities
@@ -51,7 +51,7 @@ export default function CapabilitiesPage() {
                     <article className="grid grid-cols-12 items-center gap-y-8 py-12 lg:gap-x-12 lg:py-16">
                       {withImage && (
                         <div className={cn("col-span-12 lg:col-span-5", flip && "lg:order-2")}>
-                          <div className="zoom-frame aspect-[4/3] w-full overflow-hidden bg-ivory">
+                          <div className="zoom-frame aspect-[4/3] w-full overflow-hidden bg-paper">
                             <SmartImage
                               asset={capability.asset}
                               sizes={SIZES.half}
@@ -73,7 +73,7 @@ export default function CapabilitiesPage() {
                         <div className="flex items-baseline gap-4">
                           <span
                             className={cn(
-                              "numeral text-cobalt",
+                              "numeral text-ink",
                               withImage ? "text-xl" : "text-[2.75rem] leading-none",
                             )}
                           >
@@ -95,14 +95,14 @@ export default function CapabilitiesPage() {
                           {capability.description}
                         </p>
 
-                        <p className="mt-5 max-w-2xl border-l-2 border-orange pl-4 text-[0.9375rem] text-ink/65">
+                        <p className="mt-5 max-w-2xl border-l-2 border-ink pl-4 text-[0.9375rem] text-ink/65">
                           <span className="label mr-2 text-ink/60">What it means for you</span>
                           {capability.benefit}
                         </p>
 
                         <Link
                           href={capability.cta.href}
-                          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-cobalt underline-offset-4 hover:underline"
+                          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
                         >
                           {capability.cta.label}
                           <ArrowRight
@@ -120,7 +120,7 @@ export default function CapabilitiesPage() {
         </div>
       </Section>
 
-      <Section zone="ivory" spacing="md" aria-labelledby="scope-heading">
+      <Section zone="paper" spacing="md" aria-labelledby="scope-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
             <Eyebrow>Scope</Eyebrow>

@@ -77,16 +77,16 @@ export default function BenchmarkAStylePage() {
         eyebrow="Benchmark a style"
         headingLines={[
           { text: "Give us one style" },
-          { text: "to benchmark.", className: "text-cobalt" },
+          { text: "to benchmark.", className: "text-ink" },
         ]}
         intro="Send one current or upcoming style. Share the tech pack, reference, quantity, material requirement and target delivery, and AHM will evaluate the development and commercial FOB opportunity."
         trail={[{ name: "Benchmark a Style", path: "/benchmark-a-style" }]}
-        zone="cream"
+        zone="paper"
       />
 
       <Benchmark />
 
-      <Section zone="cream">
+      <Section zone="paper">
         <div className="shell-wide max-w-3xl">
           <ContentBlocks blocks={blocks} />
         </div>
@@ -94,7 +94,7 @@ export default function BenchmarkAStylePage() {
 
       <RelatedLinks
         title="Related"
-        zone="ivory"
+        zone="paper"
         links={[
           {
             label: "Send a tech pack",

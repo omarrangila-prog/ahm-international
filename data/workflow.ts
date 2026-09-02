@@ -39,15 +39,15 @@ export const workflowGroups: {
   summary: string;
   zone: string;
 }[] = [
-  { id: "develop", label: "Develop", zone: "cobalt",
+  { id: "develop", label: "Develop", zone: "ink",
     summary: "Turning a requirement into a costed, buildable specification." },
-  { id: "approve", label: "Approve", zone: "orange",
+  { id: "approve", label: "Approve", zone: "lime",
     summary: "Getting to a sealed sample both sides have signed." },
-  { id: "prepare", label: "Prepare", zone: "plum",
+  { id: "prepare", label: "Prepare", zone: "ink",
     summary: "Committing materials and locking the pre-production standard." },
-  { id: "produce", label: "Produce", zone: "forest",
+  { id: "produce", label: "Produce", zone: "ink",
     summary: "Cutting, decorating and sewing the approved specification." },
-  { id: "verify", label: "Verify", zone: "sky",
+  { id: "verify", label: "Verify", zone: "paper",
     summary: "Checking the bulk against the sealed sample, not against hope." },
   { id: "ship", label: "Ship", zone: "ink",
     summary: "Packing, documenting and handing over at the port." },

@@ -77,7 +77,7 @@ export function ManufacturingScroll() {
           {/* Sized to the viewport rather than to a ratio: a 4:5 frame in a
               630px column is 787px tall, which pushes its own caption off the
               bottom of a laptop screen and can never be read. */}
-          <div className="relative h-[62vh] w-full overflow-hidden bg-graphite">
+          <div className="relative h-[62vh] w-full overflow-hidden bg-ink">
             {stages.map((stage, i) => (
               <div
                 key={stage.slug}
@@ -102,7 +102,7 @@ export function ManufacturingScroll() {
             ))}
           </div>
 
-          <p className="mt-5 flex items-baseline gap-4 text-sm text-cream/70">
+          <p className="mt-5 flex items-baseline gap-4 text-sm text-paper/70">
             <span className="numeral text-lime">{numeral(stages[active].index)}</span>
             <span>{stages[active].title}</span>
           </p>
@@ -116,25 +116,25 @@ export function ManufacturingScroll() {
             ref={(node) => {
               blocks.current[i] = node;
             }}
-            className="border-t border-cream/20 py-12 first:border-t-0 first:pt-0 lg:min-h-[62vh] lg:py-16"
+            className="border-t border-paper/20 py-12 first:border-t-0 first:pt-0 lg:min-h-[62vh] lg:py-16"
           >
             <div className="flex items-baseline gap-5">
               <span
                 className={cn(
                   "numeral text-2xl leading-none transition-colors duration-500 motion-reduce:transition-none",
-                  i === active ? "text-lime" : "text-cream/50",
+                  i === active ? "text-lime" : "text-paper/50",
                 )}
               >
                 {numeral(stage.index)}
               </span>
-              <h3 className="font-display text-2xl font-extrabold uppercase leading-none tracking-[-0.03em] text-cream sm:text-3xl">
+              <h3 className="font-display text-2xl font-extrabold uppercase leading-none tracking-[-0.03em] text-paper sm:text-3xl">
                 {stage.title}
               </h3>
             </div>
 
             {/* The phone's frame, mutually exclusive with the sticky one above. */}
             {stage.hasPhoto && (
-              <div className="mt-6 aspect-[16/10] w-full overflow-hidden bg-graphite lg:hidden">
+              <div className="mt-6 aspect-[16/10] w-full overflow-hidden bg-ink lg:hidden">
                 <SmartImage
                   asset={stage.asset}
                   sizes={SIZES.full}
@@ -145,19 +145,19 @@ export function ManufacturingScroll() {
               </div>
             )}
 
-            <p className="mt-6 max-w-prose leading-relaxed text-cream/75">{stage.intro}</p>
+            <p className="mt-6 max-w-prose leading-relaxed text-paper/75">{stage.intro}</p>
 
             <dl className="mt-8 space-y-4">
               <div>
-                <dt className="label text-cream/70">You receive</dt>
-                <dd className="mt-1.5 text-sm leading-relaxed text-cream/75">
+                <dt className="label text-paper/70">You receive</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-paper/75">
                   {stage.outputs[0]}
                 </dd>
               </div>
               {stage.whatGoesWrong[0] && (
                 <div>
-                  <dt className="label text-cream/70">What usually goes wrong</dt>
-                  <dd className="mt-1.5 text-sm leading-relaxed text-cream/75">
+                  <dt className="label text-paper/70">What usually goes wrong</dt>
+                  <dd className="mt-1.5 text-sm leading-relaxed text-paper/75">
                     {stage.whatGoesWrong[0].problem}
                   </dd>
                 </div>
@@ -194,9 +194,9 @@ export function ManufacturingScroll() {
  */
 function StageStatement({ stage }: { stage: (typeof stages)[number] }) {
   return (
-    <div className="flex h-full w-full flex-col justify-between bg-graphite p-8">
-      <span className="label text-cream/70">At this stage you receive</span>
-      <p className="font-display text-2xl font-bold leading-tight tracking-[-0.02em] text-cream">
+    <div className="flex h-full w-full flex-col justify-between bg-ink p-8">
+      <span className="label text-paper/70">At this stage you receive</span>
+      <p className="font-display text-2xl font-bold leading-tight tracking-[-0.02em] text-paper">
         {stage.outputs[0]}
       </p>
     </div>

@@ -52,14 +52,14 @@ export function IndustryRows() {
                 <span className="numeral col-span-2 text-sm text-ink/60 sm:col-span-1">
                   {numeral(i + 1)}
                 </span>
-                <h3 className="col-span-10 font-display text-2xl font-extrabold uppercase leading-none tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-cobalt motion-reduce:transition-none sm:col-span-4 sm:text-3xl">
+                <h3 className="col-span-10 font-display text-2xl font-extrabold uppercase leading-none tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-ink motion-reduce:transition-none sm:col-span-4 sm:text-3xl">
                   {industry.name}
                 </h3>
                 <p className="col-span-12 text-sm leading-relaxed text-ink/70 sm:col-span-6">
                   {industry.demand}
                 </p>
                 <ArrowRight
-                  className="col-span-12 hidden h-4 w-4 shrink-0 justify-self-end text-ink/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-cobalt motion-reduce:transition-none sm:col-span-1 sm:block"
+                  className="col-span-12 hidden h-4 w-4 shrink-0 justify-self-end text-ink/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-ink motion-reduce:transition-none sm:col-span-1 sm:block"
                   aria-hidden="true"
                 />
               </div>
@@ -76,7 +76,7 @@ export function IndustryRows() {
                       </p>
                     </div>
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <div className="aspect-[4/3] w-full overflow-hidden bg-ivory">
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
                         <SmartImage
                           asset={asset}
                           sizes={SIZES.quarter}

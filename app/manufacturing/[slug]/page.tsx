@@ -52,7 +52,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
 
   const headingLines = stage.headline.split("\n").map((text, i) => ({
     text,
-    className: i === 1 ? "text-cobalt" : undefined,
+    className: i === 1 ? "text-ink" : undefined,
   }));
 
   return (
@@ -74,7 +74,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
           { name: "Manufacturing", path: "/manufacturing" },
           { name: stage.shortTitle, path: `/manufacturing/${stage.slug}` },
         ]}
-        zone="cream"
+        zone="paper"
         asset={stage.asset}
         priority
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
@@ -82,7 +82,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
       />
 
       {/* Process */}
-      <Section zone="ivory" spacing="lg" aria-labelledby="process-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="process-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>Process</Eyebrow>
@@ -98,7 +98,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
             <ol className="border-t border-line">
               {stage.process.map((step, i) => (
                 <li key={i} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-5">
-                  <span className="numeral text-lg text-cobalt">{numeral(i + 1)}</span>
+                  <span className="numeral text-lg text-ink">{numeral(i + 1)}</span>
                   <p className="text-[0.9375rem] leading-relaxed text-ink/75">{step}</p>
                 </li>
               ))}
@@ -110,7 +110,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {stage.buyerInputs.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-ink/70">
-                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-cobalt" aria-hidden="true" />
+                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
@@ -121,7 +121,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {stage.outputs.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-ink/70">
-                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-orange" aria-hidden="true" />
+                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 bg-ink" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
@@ -132,7 +132,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
             {stage.supportingAssets.some(hasAsset) && (
               <div className="mt-12 grid grid-cols-3 gap-3">
                 {stage.supportingAssets.filter(hasAsset).map((asset) => (
-                  <div key={asset} className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-cream">
+                  <div key={asset} className="zoom-frame group aspect-[4/3] w-full overflow-hidden bg-paper">
                     <SmartImage asset={asset} sizes={SIZES.third} className="h-full w-full" imageClassName="object-cover" />
                   </div>
                 ))}
@@ -151,24 +151,24 @@ export default async function ManufacturingStagePage({ params }: Params) {
               <MaskedHeading
                 as="h2"
                 id="risk-heading"
-                className="mt-5 font-display text-h1 text-cream"
+                className="mt-5 font-display text-h1 text-paper"
                 lines={[{ text: "What usually" }, { text: "goes wrong here." }]}
               />
-              <p className="mt-6 max-w-md text-cream/65">
+              <p className="mt-6 max-w-md text-paper/65">
                 Every stage has a characteristic failure. Naming it is more useful than claiming it
                 never happens.
               </p>
             </div>
 
-            <RevealGroup className="col-span-12 flex flex-col gap-px bg-cream/15 lg:col-span-7" stagger={0.07}>
+            <RevealGroup className="col-span-12 flex flex-col gap-px bg-paper/15 lg:col-span-7" stagger={0.07}>
               {stage.whatGoesWrong.map((item) => (
                 <RevealItem key={item.problem}>
                   <div className="bg-ink p-6 lg:p-7">
-                    <p className="flex items-start gap-3 font-display text-base font-bold tracking-[-0.02em] text-cream">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-orange" aria-hidden="true" />
+                    <p className="flex items-start gap-3 font-display text-base font-bold tracking-[-0.02em] text-paper">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-ink" aria-hidden="true" />
                       {item.problem}
                     </p>
-                    <p className="mt-3 border-l-2 border-lime pl-4 text-sm leading-relaxed text-cream/70">
+                    <p className="mt-3 border-l-2 border-lime pl-4 text-sm leading-relaxed text-paper/70">
                       {item.prevention}
                     </p>
                   </div>
@@ -180,7 +180,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
       </Section>
 
       {/* FAQ */}
-      <Section zone="cream" spacing="lg" aria-labelledby="stage-faq-heading">
+      <Section zone="paper" spacing="lg" aria-labelledby="stage-faq-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
             <Eyebrow>Buyer questions</Eyebrow>
@@ -198,12 +198,12 @@ export default async function ManufacturingStagePage({ params }: Params) {
       </Section>
 
       {/* Stage navigation */}
-      <Section zone="ivory" spacing="sm">
+      <Section zone="paper" spacing="sm">
         <div className="shell-wide grid grid-cols-1 gap-4 sm:grid-cols-2">
           {previous ? (
             <a
               href={`/manufacturing/${previous.slug}`}
-              className="group flex flex-col gap-2 border border-line bg-cream p-6 transition-colors hover:bg-white"
+              className="group flex flex-col gap-2 border border-line bg-paper p-6 transition-colors hover:bg-white"
             >
               <span className="label text-ink/60">Previous stage</span>
               <span className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
@@ -216,7 +216,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
           {next && (
             <a
               href={`/manufacturing/${next.slug}`}
-              className="group flex flex-col gap-2 border border-line bg-cream p-6 text-right transition-colors hover:bg-white sm:col-start-2"
+              className="group flex flex-col gap-2 border border-line bg-paper p-6 text-right transition-colors hover:bg-white sm:col-start-2"
             >
               <span className="label text-ink/60">Next stage</span>
               <span className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
@@ -232,7 +232,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
         body="Send a specification and we will come back on construction, materials and commercial FOB costing against it."
         primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondary={{ label: "All capabilities", href: "/capabilities" }}
-        zone="cobalt"
+        zone="ink"
       />
 
       <RelatedLinks
