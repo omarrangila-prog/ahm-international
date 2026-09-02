@@ -98,6 +98,19 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
 
 ## Two colours, three grounds, one texture
 
+`ink` and `lime` on `paper`, with `paper-deep` as a second *tone* of the same
+neutral — not a third colour. Collapsing thirteen zones to three cost the page
+its rhythm: 31 of 66 routes ran four or more sections on one flat ground.
+Alternating the light ground fixed it without reintroducing a hue.
+
+That alternation lives **unlayered** at the end of globals.css, on purpose.
+Inside `@layer base` it lost to the `bg-paper` utility no matter its
+specificity — cascade layers are ordered before specificity is considered, and
+`utilities` comes after `base`. It appeared to work on the one section without
+a utility background and nowhere else.
+
+## Palette rules
+
 `ink` and `lime` on `paper`. There were thirteen named colours and thirteen
 zones; a reader could pass through five hues in one scroll and learn nothing
 from any of them. Variety now comes from the woven ground and from typographic

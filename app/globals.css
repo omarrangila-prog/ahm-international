@@ -22,6 +22,11 @@
      ============================================================ */
   --color-ink: #101010;
   --color-paper: #f7f5f0;
+  /* A second *tone* of the same neutral, not a third colour. Collapsing
+     thirteen zones to three cost the page its rhythm: 31 of 66 routes ran four
+     or more sections on one flat ground. Alternating the light ground restores
+     the banding without reintroducing a hue. */
+  --color-paper-deep: #efebe3;
   --color-lime: #c8ff3d;
 
   /* Pure white stays available for the plates behind dark garment renders,
@@ -756,4 +761,24 @@
   .print-only {
     display: block !important;
   }
+}
+
+/**
+ * Alternating light grounds.
+ *
+ * Deliberately unlayered. Inside `@layer base` this lost to Tailwind's
+ * `bg-paper` utility no matter its specificity — cascade layers are ordered
+ * before specificity is considered, and `utilities` comes after `base`. The
+ * rule appeared to work on the one section that had no utility background and
+ * nowhere else.
+ *
+ * Done in CSS on `nth-of-type` rather than by assigning a zone per section: the
+ * rhythm is a property of a section's position in the page, which the component
+ * cannot know, and hand-assigning it across sixty-six routes would drift the
+ * first time a section moved.
+ *
+ * Ink and lime sections keep their own ground and are skipped.
+ */
+main section[data-zone="light"]:nth-of-type(even) {
+  background-color: var(--color-paper-deep);
 }
