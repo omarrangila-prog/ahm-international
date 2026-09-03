@@ -6,15 +6,12 @@ import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { TrimsLibrary } from "@/components/products/TrimsLibrary";
 import { FabricCompare } from "@/components/sections/FabricCompare";
 import { HandFeel } from "@/components/sections/HandFeel";
+import { MaterialIndex } from "@/components/sections/MaterialIndex";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { Faq } from "@/components/ui/Faq";
-import { materials, MATERIAL_DISCLAIMER, RECYCLED_FOOTNOTE } from "@/data/materials";
 import { pageMetadata } from "@/lib/seo";
-import { numeral } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Fabrics & Materials",
@@ -62,67 +59,14 @@ export default function MaterialsPage() {
         secondaryCta={{ label: "See product range", href: "/products" }}
       />
 
+      {/* Eight constructions as an index that opens in place. See
+          components/sections/MaterialIndex.tsx for why it is not a list. */}
       <Section zone="paper" spacing="none" aria-labelledby="materials-heading">
         <div className="shell-wide pb-20">
           <h2 id="materials-heading" className="sr-only">
             Fabric constructions
           </h2>
-
-          <RevealGroup className="flex flex-col" stagger={0.05}>
-            {materials.map((material, i) => (
-              <RevealItem key={material.slug}>
-                <article className="grid grid-cols-12 items-start gap-y-6 border-t border-line py-10 lg:gap-x-10">
-                  <div className="col-span-12 sm:col-span-4 lg:col-span-3">
-                    <div className="aspect-square w-full overflow-hidden bg-paper">
-                      <SmartImage
-                        asset={material.asset}
-                        sizes={SIZES.quarter}
-                        className="h-full w-full"
-                        imageClassName="object-cover"
-                        alt={`${material.name} fabric structure`}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-span-12 sm:col-span-8 lg:col-span-9">
-                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                      <span className="numeral text-sm text-ink">{numeral(i + 1)}</span>
-                      <h3 className="font-display text-h3 text-ink">{material.name}</h3>
-                      <span className="label text-ink/60">{material.family}</span>
-                    </div>
-
-                    <dl className="mt-5 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
-                      <div>
-                        <dt className="label text-ink/60">Common compositions</dt>
-                        <dd className="mt-1.5 text-sm text-ink/75">{material.compositions.join(" · ")}</dd>
-                      </div>
-                      <div>
-                        <dt className="label text-ink/60">Typical weight</dt>
-                        <dd className="mt-1.5 font-display text-base font-bold tracking-[-0.02em] text-ink">
-                          {material.typicalWeight}
-                        </dd>
-                      </div>
-                      <div>
-                        <dt className="label text-ink/60">Finish options</dt>
-                        <dd className="mt-1.5 text-sm text-ink/75">{material.finishOptions.join(" · ")}</dd>
-                      </div>
-                      <div>
-                        <dt className="label text-ink/60">Used for</dt>
-                        <dd className="mt-1.5 text-sm text-ink/75">{material.useCases.join(" · ")}</dd>
-                      </div>
-                    </dl>
-
-                    <p className="mt-5 max-w-2xl text-sm italic text-ink/60">{material.handFeel}</p>
-                  </div>
-                </article>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-
-          <div className="mt-10 max-w-3xl space-y-3 border-t border-line pt-6">
-            <p className="text-xs leading-relaxed text-ink/70">{MATERIAL_DISCLAIMER}</p>
-            <p className="text-xs leading-relaxed text-ink/70">{RECYCLED_FOOTNOTE}</p>
-          </div>
+          <MaterialIndex />
         </div>
       </Section>
 
