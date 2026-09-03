@@ -22,7 +22,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="tooth relative bg-ink text-paper" data-zone="ink">
+    <footer className="tooth relative bg-ink text-paper" data-zone="dark">
       <div className="shell-wide relative z-10 pt-20 pb-10 lg:pt-28">
         <div className="grid grid-cols-12 gap-y-12 lg:gap-x-8">
           {/* Identity */}

@@ -19,7 +19,7 @@ export function TrustStrip() {
     <section
       className="border-y border-line bg-paper"
       aria-label="Manufacturing capabilities"
-      data-zone="paper"
+      data-zone="light"
     >
       {/* Mobile: ticker */}
       <div className="py-4 md:hidden">

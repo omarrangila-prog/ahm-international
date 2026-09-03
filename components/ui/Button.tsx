@@ -25,7 +25,12 @@ const variants: Record<Variant, string> = {
   lime: "bg-lime text-ink hover:bg-lime hover:text-ink hover:text-lime",
   /* On ink: the inverse of `solid`. */
   invert: "bg-paper text-ink hover:bg-lime",
-  ghost: "text-current underline-offset-4 hover:underline",
+  /* Underlined at rest, not only on hover. As a bare uppercase label beside two
+     filled buttons it read as an unstyled fragment rather than a third choice;
+     hover is not an affordance on touch, and it is not one for a reader who
+     has not moved the pointer yet. */
+  ghost:
+    "text-current underline decoration-1 underline-offset-[6px] decoration-current/40 hover:decoration-current",
 };
 
 const sizes: Record<Size, string> = {

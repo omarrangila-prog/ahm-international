@@ -20,7 +20,7 @@ import { RfqClickLink } from "@/components/ui/TrackedLink";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-paper" data-zone="paper">
+    <section className="relative overflow-hidden bg-paper" data-zone="light">
       <div className="pointer-events-none absolute inset-0 tech-grid text-ink" aria-hidden="true" />
 
       <div className="shell-wide relative grid grid-cols-12 items-center gap-y-10 pt-14 pb-16 lg:min-h-[calc(100svh-6.5rem)] lg:gap-x-8 lg:pt-8 lg:pb-20">
@@ -34,7 +34,7 @@ export function Hero() {
 
           {/* Painted immediately. It is the largest element above the fold, so
               masking it would postpone LCP by the length of the animation. */}
-          <p className="label mb-5 text-ink/65">Your next Pakistan manufacturing partner</p>
+          <p className="label mb-5 text-balance text-ink/65">Your next Pakistan manufacturing partner</p>
 
           <MaskedHeading
             instant

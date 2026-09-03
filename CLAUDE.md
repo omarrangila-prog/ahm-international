@@ -133,6 +133,18 @@ The ground is a real cotton-canvas macro, high-passed to remove its lighting
 gradient and mirrored 2×2 so it tiles seamlessly. 9.7 kB, on by default —
 pass `tooth={false}` for a section that must stay flat.
 
+## `data-zone` is a bucket, not a palette name
+
+Only `light`, `dark` and `lime` exist. `<Section>` derives them through
+`zoneAttr()`; the CSS keys off those values — the weave screens on `dark` and
+multiplies elsewhere, focus rings and selection flip on `dark`, and the
+alternating ground targets `light`.
+
+Three components set the attribute by hand, and the palette rename rewrote their
+strings to `paper` and `ink`. Those still match `[data-zone]`, so nothing broke
+loudly — the footer just multiplied a weave into near-black and showed no
+texture at all. `tests/zones.test.ts` now fails the build on any other value.
+
 ## Motion: CSS first, Framer where CSS cannot
 
 The vocabulary is still CSS. `motion/react` is used in exactly one place, the
