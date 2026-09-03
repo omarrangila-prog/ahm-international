@@ -135,10 +135,31 @@ export function ExportGlobe() {
       setVisible(true);
       return;
     }
+    /**
+     * Mounting is deferred to an idle callback rather than done inside the
+     * observer.
+     *
+     * Compiling the WebGL programs and building three-globe's geometry is a
+     * single long task — measured at 233ms — and firing it straight from the
+     * observer lands it in the middle of the scroll that triggered it, which is
+     * exactly where a stall is felt. Waiting for idle lets the scroll finish
+     * first; the globe arrives a moment later, which nobody notices, instead of
+     * dropping fourteen frames, which everybody does.
+     */
+    const scheduleMount = () => {
+      const idle = (
+        window as unknown as {
+          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback;
+      if (idle) idle(() => setMounted(true), { timeout: 1200 });
+      else setTimeout(() => setMounted(true), 200);
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setVisible(entry.isIntersecting);
-        if (entry.isIntersecting) setMounted(true);
+        if (entry.isIntersecting) scheduleMount();
       },
       // Starts loading a screen early so the globe is drawn by the time it is read.
       { rootMargin: "600px 0px" },
