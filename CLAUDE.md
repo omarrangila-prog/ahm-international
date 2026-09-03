@@ -133,6 +133,22 @@ The ground is a real cotton-canvas macro, high-passed to remove its lighting
 gradient and mirrored 2×2 so it tiles seamlessly. 9.7 kB, on by default —
 pass `tooth={false}` for a section that must stay flat.
 
+## Responsive and target-size audits
+
+`npm run responsive` sweeps 12 viewports (320 to 2560, plus landscape phone)
+across one route per template. `npm run targets` checks WCAG 2.2 SC 2.5.8.
+
+Both encode what the criteria actually say, because the naive versions are
+useless:
+
+- Element overflow is only a finding when it is **reachable** — an element wider
+  than the viewport inside an `overflow: hidden` ancestor is a marquee doing its
+  job. An earlier pass reported 51 such "failures" from one carousel.
+- Target size applies 2.5.8's own exceptions — spacing (no other target's 24px
+  circle intersects), inline (a link inside a run of text), and elements that
+  are `sr-only` proxies. Without them the check reports 700+ failures, none of
+  them real, and buries the ones that are.
+
 ## `data-zone` is a bucket, not a palette name
 
 Only `light`, `dark` and `lime` exist. `<Section>` derives them through

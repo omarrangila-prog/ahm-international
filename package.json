@@ -23,6 +23,8 @@
     "images:missing": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-images.mjs",
     "images:gaps": "node scripts/empty-frames.mjs",
     "contrast": "node scripts/contrast-audit.mjs",
+    "responsive": "node scripts/responsive-audit.mjs",
+    "targets": "node scripts/target-size-audit.mjs",
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs"
   },
   "dependencies": {

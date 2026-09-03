@@ -43,8 +43,15 @@ export function MegaMenu({
       )}
     >
       <div>
-          <div className="shell-wide grid grid-cols-12 gap-8 py-10">
-            <div className="col-span-12 grid grid-cols-2 gap-x-8 gap-y-9 lg:col-span-8 lg:grid-cols-4">
+          {/* Stacks below lg. Twelve columns with a 2rem gap need 11 x 32px of gap
+              alone, so on a 320px phone this grid was 372px wide — and because
+              the panel is absolutely positioned and only hidden with
+              `invisible`, that 52px expanded the whole document sideways on
+              every page. The panel is a desktop affordance; MobileNav carries
+              these links on small screens, and keeping it laid out rather than
+              unmounted is what preserves them for a mobile-first crawler. */}
+          <div className="shell-wide grid grid-cols-1 gap-8 py-10 lg:grid-cols-12">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:gap-x-8 lg:col-span-8 lg:grid-cols-4">
               {megaMenu.map((group, i) => (
                 <div key={group.title} onMouseEnter={() => onGroupChange(i)}>
                   <p
@@ -77,7 +84,7 @@ export function MegaMenu({
             </div>
 
             {/* Preview panel. Shows the product, not just its name. */}
-            <div className="col-span-12 hidden lg:col-span-4 lg:block">
+            <div className="hidden lg:col-span-4 lg:block">
               <Link
                 href={`/products/${preview.slug}`}
                 onClick={onNavigate}
