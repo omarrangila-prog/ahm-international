@@ -35,7 +35,23 @@ export function pillarMetadata(slug: string, basePath: string) {
   });
 }
 
-export function SourcingPillar({ slug, basePath }: { slug: string; basePath: string }) {
+export function SourcingPillar({
+  slug,
+  basePath,
+  context,
+}: {
+  slug: string;
+  basePath: string;
+  /**
+   * An optional block rendered before the FAQ.
+   *
+   * A slot rather than a flag, and rendered by one pillar rather than all five:
+   * origin context belongs on the page a buyer reaches when they are choosing a
+   * country, and repeating it across five near-identical pillars would be five
+   * near-duplicate blocks for no additional reader.
+   */
+  context?: React.ReactNode;
+}) {
   const pillar = getSourcingPillar(slug);
   if (!pillar) notFound();
 
@@ -84,6 +100,8 @@ return (
           <ContentBlocks blocks={pillar.blocks} />
         </div>
       </Section>
+
+      {context}
 
       {/* FAQ */}
       <Section zone="paper" spacing="lg" aria-labelledby="pillar-faq-heading">

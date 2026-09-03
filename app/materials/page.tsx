@@ -5,6 +5,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { TrimsLibrary } from "@/components/products/TrimsLibrary";
 import { FabricCompare } from "@/components/sections/FabricCompare";
+import { HandFeel } from "@/components/sections/HandFeel";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
@@ -127,6 +128,24 @@ export default function MaterialsPage() {
 
       {/* Spec §15 — trims sit with fabrics because to a buyer they are the same
           question: what is this garment actually made of, and what must I decide. */}
+      {/* The correction to the GSM anchor the list above creates.
+          See components/sections/HandFeel.tsx. */}
+      <Section zone="ink" spacing="lg" aria-labelledby="handfeel-heading">
+        <div className="shell-wide">
+          <Eyebrow>Specification</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="handfeel-heading"
+            className="mt-5 max-w-4xl font-display text-h1 text-paper"
+            lines={[{ text: "Same weight." }, { text: "Different cloth.", className: "text-lime" }]}
+          />
+          {/* `relative` so the zone's woven overlay has something to position against. */}
+          <div className="relative mt-14 bg-paper p-8 text-ink sm:p-12" data-zone="light">
+            <HandFeel />
+          </div>
+        </div>
+      </Section>
+
       {/* Two constructions side by side, because that is the shape of the real
           decision. See components/sections/FabricCompare.tsx. */}
       <Section zone="paper" spacing="lg" aria-labelledby="compare-heading">
