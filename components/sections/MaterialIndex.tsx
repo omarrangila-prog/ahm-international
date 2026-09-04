@@ -120,6 +120,15 @@ export function MaterialIndex() {
                     <span className="mt-1.5 block text-sm text-ink/70">
                       {material.family} · {material.construction}
                     </span>
+                    {/* Weight repeated into the flow below `sm`, where the
+                        right-hand column is hidden. It is the fact a buyer
+                        scans a fabric list for; leaving it desktop-only made
+                        the index unscannable on the device most of them are
+                        holding. */}
+                    <span className="mt-1.5 block text-sm text-ink sm:hidden">
+                      {material.typicalWeight}
+                      <span className="text-ink/70"> · {material.weightClass} weight</span>
+                    </span>
                   </span>
 
                   {/* Weight and capability stay on the closed row: they are what a
@@ -184,14 +193,6 @@ export function MaterialIndex() {
                           <Row label="Stretch" value={material.stretch} />
                           <Row label="Finish options" value={material.finishOptions.join(" · ")} />
                           <Row label="Used for" value={material.useCases.join(" · ")} />
-                          {/* Repeated inside the panel because the closed row hides
-                              it below sm, where a phone reader will never have seen it. */}
-                          <div className="sm:hidden">
-                            <dt className="label text-ink/65">Typical weight</dt>
-                            <dd className="mt-1.5 text-sm text-ink/75">
-                              {material.typicalWeight} · {material.weightClass}
-                            </dd>
-                          </div>
                         </dl>
 
                         <p className="mt-6 text-sm leading-relaxed text-ink/70 lg:hidden">

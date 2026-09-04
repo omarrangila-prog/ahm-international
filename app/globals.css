@@ -639,6 +639,14 @@
    here is presentation: the track disappears and the thumb becomes the grip.
    ============================================================ */
 
+/* The range covers the whole image, so without this a touch that starts on the
+   frame is claimed by the slider and the reader cannot scroll past the section.
+   `pan-y` gives vertical panning back to the page and keeps horizontal drag for
+   the seam, which is the only axis this control uses. */
+.compare-range {
+  touch-action: pan-y;
+}
+
 .compare-range::-webkit-slider-runnable-track {
   height: 100%;
   background: transparent;

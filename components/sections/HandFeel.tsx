@@ -42,51 +42,43 @@ export function HandFeel() {
           both hit 220 gsm and ship fabrics that wear differently.
         </p>
 
-        <ul className="mt-10 border-t border-line">
+        {/* Five short rows, and the description below them rather than inside
+            the open one.
+            Expanding in place pushed the cross-reference table roughly a
+            screen and a half down on a phone, so picking a factor changed
+            something the reader could not see — the classic case of a control
+            separated from its result. Kept flat, the list is five lines on any
+            width and the answer is always the next thing on screen. */}
+        <ul className="mt-10 flex flex-wrap gap-2 lg:mt-8">
           {handFeelFactors.map((f, i) => {
-            const open = f.id === active;
+            const on = f.id === active;
             return (
-              <li key={f.id} className="border-b border-line">
+              <li key={f.id}>
                 <button
                   type="button"
-                  aria-expanded={open}
-                  aria-controls={`factor-${f.id}`}
+                  aria-pressed={on}
                   onClick={() => setActive(f.id)}
-                  className="group flex w-full items-baseline gap-4 py-4 text-left"
+                  className={cn(
+                    "flex items-baseline gap-2 border px-3 py-2 text-sm font-medium transition-colors duration-200 motion-reduce:transition-none",
+                    on ? "border-ink bg-ink text-paper" : "border-ink/25 text-ink/75 hover:border-ink",
+                  )}
                 >
-                  <span
-                    className={cn(
-                      "numeral text-sm transition-colors duration-300 motion-reduce:transition-none",
-                      // /50 measures 3.5:1 on the deeper alternating ground.
-                      open ? "text-ink" : "text-ink/65",
-                    )}
-                  >
+                  <span className={cn("numeral text-xs", on ? "text-paper/70" : "text-ink/60")}>
                     {numeral(i + 1)}
                   </span>
-                  <span className="flex-1">
-                    <span
-                      className={cn(
-                        "block font-display text-lg font-bold uppercase tracking-[-0.02em] transition-colors duration-300 motion-reduce:transition-none",
-                        open ? "text-ink" : "text-ink/60 group-hover:text-ink",
-                      )}
-                    >
-                      {f.name}
-                    </span>
-                    {open && (
-                      <span id={`factor-${f.id}`} className="mt-2 block">
-                        <span className="block text-sm leading-relaxed text-ink/75">{f.effect}</span>
-                        <span className="mt-3 block text-sm leading-relaxed text-ink/70">
-                          <span className="label text-ink/60">Put in the tech pack</span>{" "}
-                          {f.specify}
-                        </span>
-                      </span>
-                    )}
-                  </span>
+                  {f.name}
                 </button>
               </li>
             );
           })}
         </ul>
+
+        <div className="mt-8 border-t border-line pt-6">
+          <p className="max-w-prose text-sm leading-relaxed text-ink/75">{factor.effect}</p>
+          <p className="mt-4 max-w-prose text-sm leading-relaxed text-ink/70">
+            <span className="label text-ink/65">Put in the tech pack</span> {factor.specify}
+          </p>
+        </div>
       </div>
 
       <div className="col-span-12 lg:col-span-7">
