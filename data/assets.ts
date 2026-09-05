@@ -306,6 +306,7 @@ export const assetRegistry = {
   /* Alt text describes the garment and its decoration, never a brand name.   */
   "photo.pleatedTrouserKhaki": {
     src: "/assets/products/photography/pleated-trouser-khaki.webp",
+    fallbackSrc: "/assets/products/renders/work-trouser.webp",
     alt: "Khaki pleated uniform trouser. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -313,6 +314,7 @@ export const assetRegistry = {
   },
   "photo.hoodieWhite": {
     src: "/assets/products/photography/hoodie-white.webp",
+    fallbackSrc: "/assets/products/renders/pullover-hoodie.webp",
     alt: "White pullover hooded sweatshirt. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -320,6 +322,7 @@ export const assetRegistry = {
   },
   "photo.chinoBeige": {
     src: "/assets/products/photography/chino-beige.webp",
+    fallbackSrc: "/assets/products/renders/work-trouser.webp",
     alt: "Beige cotton chino trouser. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -327,6 +330,7 @@ export const assetRegistry = {
   },
   "photo.sleevelessHoodieBlack": {
     src: "/assets/products/photography/sleeveless-hoodie-black.webp",
+    fallbackSrc: "/assets/products/photography/hoodie-black.webp",
     alt: "Black sleeveless hooded top. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -334,6 +338,7 @@ export const assetRegistry = {
   },
   "photo.poloBlackEmbroidered": {
     src: "/assets/products/photography/polo-black-embroidered.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Black uniform polo with embroidered chest logo. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -341,6 +346,7 @@ export const assetRegistry = {
   },
   "photo.poloBlackCrest": {
     src: "/assets/products/photography/polo-black-crest.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Black long-sleeve polo with embroidered crest. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -348,6 +354,7 @@ export const assetRegistry = {
   },
   "photo.poloBlackService": {
     src: "/assets/products/photography/polo-black-service.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Black service polo with embroidered chest mark. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -355,6 +362,7 @@ export const assetRegistry = {
   },
   "photo.poloRoyalEmbroidered": {
     src: "/assets/products/photography/polo-royal-embroidered.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Royal blue uniform polo with embroidered logo. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -376,6 +384,7 @@ export const assetRegistry = {
   },
   "photo.poloNavyCorporate": {
     src: "/assets/products/photography/polo-navy-corporate.webp",
+    fallbackSrc: "/assets/products/photography/polo-dress-navy.webp",
     alt: "Navy corporate polo with embroidered chest logo. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -404,6 +413,7 @@ export const assetRegistry = {
   },
   "photo.poloCream": {
     src: "/assets/products/photography/polo-cream.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Cream pique polo with hangtag. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -425,6 +435,7 @@ export const assetRegistry = {
   },
   "photo.teeGreyBranded": {
     src: "/assets/products/photography/tee-grey-branded.webp",
+    fallbackSrc: "/assets/products/renders/crew-neck-tee.webp",
     alt: "Grey cotton T-shirt with woven neck label. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -432,6 +443,7 @@ export const assetRegistry = {
   },
   "photo.zipHoodieGreyGraphic": {
     src: "/assets/products/photography/zip-hoodie-grey-graphic.webp",
+    fallbackSrc: "/assets/products/photography/zip-hoodie-grey.webp",
     alt: "Grey full-zip hooded sweatshirt with placement print. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -439,6 +451,7 @@ export const assetRegistry = {
   },
   "photo.teeHeatherGraphic": {
     src: "/assets/products/photography/tee-heather-graphic.webp",
+    fallbackSrc: "/assets/products/renders/crew-neck-tee.webp",
     alt: "Heather grey T-shirt with screen-printed graphic. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -446,6 +459,7 @@ export const assetRegistry = {
   },
   "photo.teeGreyGraphic": {
     src: "/assets/products/photography/tee-grey-graphic.webp",
+    fallbackSrc: "/assets/products/renders/crew-neck-tee.webp",
     alt: "Grey T-shirt with screen-printed chest graphic. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -453,6 +467,7 @@ export const assetRegistry = {
   },
   "photo.hoodieHeatherGraphic": {
     src: "/assets/products/photography/hoodie-heather-graphic.webp",
+    fallbackSrc: "/assets/products/renders/pullover-hoodie.webp",
     alt: "Heather grey zip hoodie with placement print. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -460,6 +475,7 @@ export const assetRegistry = {
   },
   "photo.denimWorkShirt": {
     src: "/assets/products/photography/denim-work-shirt.webp",
+    fallbackSrc: "/assets/products/photography/denim-utility-jacket.webp",
     alt: "Indigo denim work shirt with chest pocket. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -467,6 +483,7 @@ export const assetRegistry = {
   },
   "photo.joggerGreyGraphic": {
     src: "/assets/products/photography/jogger-grey-graphic.webp",
+    fallbackSrc: "/assets/products/photography/lounge-pant-grid.webp",
     alt: "Grey fleece jogger with printed hip graphic. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -481,6 +498,7 @@ export const assetRegistry = {
   },
   "photo.poloMaroon": {
     src: "/assets/products/photography/polo-maroon.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Maroon pique polo with embroidered chest crest. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -509,6 +527,7 @@ export const assetRegistry = {
   },
   "photo.poloWhiteTagged": {
     src: "/assets/products/photography/polo-white-tagged.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "White pique polo with brand hangtag. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -558,6 +577,7 @@ export const assetRegistry = {
   },
   "photo.poloNavyGrocery": {
     src: "/assets/products/photography/polo-navy-grocery.webp",
+    fallbackSrc: "/assets/products/photography/polo-dress-navy.webp",
     alt: "Navy grocery uniform polo with embroidered logo. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -586,6 +606,7 @@ export const assetRegistry = {
   },
   "photo.poloNavyEmbroidered": {
     src: "/assets/products/photography/polo-navy-embroidered.webp",
+    fallbackSrc: "/assets/products/photography/polo-dress-navy.webp",
     alt: "Navy uniform polo with embroidered logos. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -593,6 +614,7 @@ export const assetRegistry = {
   },
   "photo.poloNavyTipped": {
     src: "/assets/products/photography/polo-navy-tipped.webp",
+    fallbackSrc: "/assets/products/photography/polo-dress-navy.webp",
     alt: "Navy polo with contrast tipped collar. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -614,6 +636,7 @@ export const assetRegistry = {
   },
   "photo.vestOrangePrinted": {
     src: "/assets/products/photography/vest-orange-printed.webp",
+    fallbackSrc: "/assets/products/photography/work-vest-orange.webp",
     alt: "Orange sleeveless vest with screen-printed text. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -628,6 +651,7 @@ export const assetRegistry = {
   },
   "photo.hoodiePinkGraphic": {
     src: "/assets/products/photography/hoodie-pink-graphic.webp",
+    fallbackSrc: "/assets/products/renders/pullover-hoodie.webp",
     alt: "Pastel pink hooded sweatshirt with embroidered graphic. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -635,6 +659,7 @@ export const assetRegistry = {
   },
   "photo.teePink": {
     src: "/assets/products/photography/tee-pink.webp",
+    fallbackSrc: "/assets/products/renders/crew-neck-tee.webp",
     alt: "Pink cotton T-shirt. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -642,6 +667,7 @@ export const assetRegistry = {
   },
   "photo.poloRedColourblock": {
     src: "/assets/products/photography/polo-red-colourblock.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Red and black colour-block polo with printed chest panel. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -649,6 +675,7 @@ export const assetRegistry = {
   },
   "photo.poloRedGrocery": {
     src: "/assets/products/photography/polo-red-grocery.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Red grocery uniform polo with embroidered logo. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -656,6 +683,7 @@ export const assetRegistry = {
   },
   "photo.poloRed": {
     src: "/assets/products/photography/polo-red.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "Red pique polo with embroidered chest mark. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -684,6 +712,7 @@ export const assetRegistry = {
   },
   "photo.teeSkyBlue": {
     src: "/assets/products/photography/tee-sky-blue.webp",
+    fallbackSrc: "/assets/products/renders/crew-neck-tee.webp",
     alt: "Sky blue cotton T-shirt. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -698,6 +727,7 @@ export const assetRegistry = {
   },
   "photo.sleevelessHoodieWhite": {
     src: "/assets/products/photography/sleeveless-hoodie-white.webp",
+    fallbackSrc: "/assets/products/photography/hoodie-black.webp",
     alt: "White sleeveless hooded top. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -719,6 +749,7 @@ export const assetRegistry = {
   },
   "photo.poloWhite": {
     src: "/assets/products/photography/polo-white.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "White pique polo with hangtag. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -726,6 +757,7 @@ export const assetRegistry = {
   },
   "photo.poloWhiteTipped": {
     src: "/assets/products/photography/polo-white-tipped.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "White polo with green tipped collar and cuffs. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",
@@ -733,6 +765,7 @@ export const assetRegistry = {
   },
   "photo.poloWhiteEmbroidered": {
     src: "/assets/products/photography/polo-white-embroidered.webp",
+    fallbackSrc: "/assets/products/renders/classic-polo.webp",
     alt: "White long-sleeve polo with embroidered chest crest. Photographed production sample",
     aspect: PHOTO_RATIO,
     kind: "garment",

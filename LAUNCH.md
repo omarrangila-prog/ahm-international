@@ -36,33 +36,44 @@ sourcing manager less, not more.
 
 ---
 
-## 1b. Publication permission for branded samples — BLOCKING
+## 1b. Branded samples — RESOLVED, and how it was resolved
 
-63 photographed production samples are live across the product pages. **25 of
-them show a customer's brand**: embroidered logos, licensed graphics or brand
-hangtags — including **Ukrop's** and **Pampers** on the infant bodysuits, plus
-CarMax, Nautica, Hannaford, D'Agostino, Virginia Tech, TapouT and Armani
-Exchange.
+**Status: the branded set is no longer published.**
 
-`AHM_International_Complete_Visual_Asset_Pack/00_READ_ME_FIRST/PUBLICATION_CONTROL.txt`
-places these on its RED list:
+63 photographed production samples were live across the product pages. 35 of
+them were built from originals sitting in `asset-pack/client-branded-hold/` —
+the folder that exists precisely because those garments carry a customer's
+mark. The originals were held out of the master set; the web derivatives were
+built and deployed anyway, so the marks were live on the site.
 
-> End-client logos
-> Threads Uniform Agency or Ukrop's name/logo without written permission
+Confirmed by inspection, not by filename: an Armani Exchange hangtag, a
+Virginia Tech hoodie, TapouT graphics, a Hardcore logo jogger, Nautica, CarMax,
+Hannaford, D'Agostino, Food City, County Market, Army Navy, Arizona, and infant
+bodysuits carrying **Pampers** and **Ukrop's**.
 
-They were published on the owner's explicit instruction. Before the domain is
-public, either:
+What was done:
 
-1. **Obtain written publication permission** from each brand owner, or
-2. **Retouch the marks out** — the garments are excellent construction
-   references without them. Replace the file in
-   `assets-master/product-photography/` and run `npm run photos`.
+1. All 35 derivatives were deleted from `public/assets/products/photography/`.
+   The masters remain in `assets-master/`, and the derivatives are in git
+   history, so this is reversible with `npm run photos` if permission is later
+   obtained.
+2. Each withdrawn key was given an unbranded `fallbackSrc` in `data/assets.ts`
+   — a neutral studio render of the same garment type wherever one exists,
+   rather than another client's photograph.
+3. The two infant bodysuits were deliberately left **without** a stand-in.
+   There is no unbranded infant article in the set, and showing an adult
+   garment for a onesie would misrepresent the article. The components that
+   render them now drop the frame instead.
 
-Publishing a customer's branded garment announces that relationship. That is the
-buyer's decision to grant, and international buyers run supplier due diligence.
+The 28 unbranded articles are unaffected and still published.
 
-The 28 unbranded articles in the same set carry no such exposure and can ship
-as-is if the branded ones are pulled.
+**Verified after:** none of the 35 files return 200, and
+`npm run images:gaps` reports 0 empty frames across all 66 routes.
+
+**If you want any of these garments back**, obtain written publication
+permission from the brand owner first, or retouch the mark out and rebuild.
+Publishing a customer's branded garment announces that relationship, and that
+is the buyer's decision to grant.
 
 ---
 
@@ -116,9 +127,9 @@ one instance, the effective limit multiplies by the instance count. Swap
 **Request indexing for these first.** Everything else can be discovered:
 
 1. `/`
-2. `/sourcing/apparel-manufacturer-pakistan`
-3. `/sourcing/apparel-exporter-pakistan`
-4. `/sourcing/fob-apparel-manufacturing`
+2. `/apparel-manufacturer-pakistan`
+3. `/apparel-exporter-pakistan`
+4. `/fob-apparel-manufacturing`
 5. `/products/aprons`
 6. `/products/uniform-workwear`
 7. `/products/polos-tshirts`
@@ -126,7 +137,7 @@ one instance, the effective limit multiplies by the instance count. Swap
 9. `/products/woven-shirts`
 10. `/products/bottoms`
 11. `/products/outerwear`
-12. `/product-development`
+12. `/development`
 13. `/quality`
 14. `/manufacturing`
 15. `/case-studies/us-uniform-apron-program`

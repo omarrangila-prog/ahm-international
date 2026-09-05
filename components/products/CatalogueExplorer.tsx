@@ -4,6 +4,7 @@ import { useMemo, useState, useId } from "react";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { CapabilityBadge } from "@/components/ui/ProofBadge";
 import {
   catalogue,
@@ -190,15 +191,20 @@ export function CatalogueExplorer() {
                 href={`/products/${e.categorySlug}`}
                 className="group flex h-full flex-col border border-ink/15 bg-paper transition-colors duration-300 hover:border-ink/40"
               >
-                <div className="relative aspect-square overflow-hidden bg-white">
-                  <SmartImage
-                    asset={e.asset}
-                    sizes={SIZES.quarter}
-                    className="h-full w-full"
-                    imageClassName="object-contain p-4 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
-                    alt=""
-                  />
-                </div>
+                {/* No plate when nothing resolves: the article name and its
+                    category are true without a photograph, and an empty square
+                    beside real garments reads as a broken image. */}
+                {hasAsset(e.asset) && (
+                  <div className="relative aspect-square overflow-hidden bg-white">
+                    <SmartImage
+                      asset={e.asset}
+                      sizes={SIZES.quarter}
+                      className="h-full w-full"
+                      imageClassName="object-contain p-4 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+                      alt=""
+                    />
+                  </div>
+                )}
                 <div className="flex flex-1 flex-col p-4">
                   <span className="label text-ink/65">{e.categoryName}</span>
                   <h3 className="mt-1.5 font-display text-sm font-bold uppercase leading-tight tracking-tight text-ink">

@@ -145,14 +145,21 @@ export default async function ProductCategoryPage({ params }: Params) {
             {category.articles.map((article) => (
               <RevealItem key={article.name}>
                 <article className="group flex h-full flex-col border border-line bg-paper">
-                  <div className="aspect-[4/5] w-full overflow-hidden bg-white">
-                    <SmartImage
-                      asset={article.asset}
-                      sizes={SIZES.third}
-                      className="h-full w-full"
-                      imageClassName="object-contain p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
-                    />
-                  </div>
+                  {/* The frame is dropped rather than filled when no photograph
+                      resolves. The article name and note are true without one,
+                      and an empty plate beside real product shots reads as a
+                      broken image — which is the rule the whole asset system
+                      exists to keep. */}
+                  {hasAsset(article.asset) && (
+                    <div className="aspect-[4/5] w-full overflow-hidden bg-white">
+                      <SmartImage
+                        asset={article.asset}
+                        sizes={SIZES.third}
+                        className="h-full w-full"
+                        imageClassName="object-contain p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+                      />
+                    </div>
+                  )}
                   <div className="flex flex-1 flex-col justify-between p-5">
                     <div>
                       <h3 className="font-display text-base font-bold tracking-[-0.02em] text-ink">
@@ -257,7 +264,7 @@ export default async function ProductCategoryPage({ params }: Params) {
             </div>
 
             <RevealGroup className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3" stagger={0.06}>
-              {category.photography.slice(0, 12).map((asset) => (
+              {category.photography.filter(hasAsset).slice(0, 12).map((asset) => (
                 <RevealItem key={asset}>
                   <figure className="group">
                     <div className="zoom-frame aspect-[4/5] w-full overflow-hidden bg-white">

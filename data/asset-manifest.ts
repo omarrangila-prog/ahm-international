@@ -212,20 +212,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1200,
     "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7wGCAAAA=="
   },
-  "/assets/products/photography/chino-beige.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAABwAwCdASoQABQAPymEulIuKSYisAgBwCUJZwDDNC0gDWEr4YAA/u0xB/46/Qupe88fzIMHNoaMr+JcOfIFqRxgxUiTr7BAAAA="
-  },
   "/assets/products/photography/denim-utility-jacket.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJYwDCgCBS7y2BqWC1YTYA/uqW/OHB82+/XROkedE5GbtNKeOXlHJARlKYKBP30EnOPLa5vI3C8RCrwpdEikF5BBkhigxoAAA="
-  },
-  "/assets/products/photography/denim-work-shirt.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABQBACdASoQABQAPyl8tVIuJ6UisAgBwCUJZgCdMoMxgDiwN60C4bWVl3mgAP7qlN3eOFSUvaUNgcYimUbczXl+IEvhRz9iA3+GZfaLCrpGQf7avvyi/HitCc7ZS8okkzpvVvMo/eaGmPu+SEsnxwSew7gksOcdHkAAAA=="
   },
   "/assets/products/photography/henley-green.webp": {
     "width": 1280,
@@ -252,11 +242,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAV7H62PUPIkg0XcAA/uqIWae6lRYEDJF7eEDswwp1cTV05kTZjCm/tXow+DVLS+Gsfv0gf9JC+qcA9bRVKjVmZf+TsO2EKZo4AAA="
   },
-  "/assets/products/photography/hoodie-heather-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwDGfBufffcR3nEZTNwA/uqVJv6okmRpYkiwigkFJRmHgYIF9TZszmlAmlLrNusP0K16vDo2IA1txOgUAA=="
-  },
   "/assets/products/photography/hoodie-navy-alt.webp": {
     "width": 1280,
     "height": 1600,
@@ -267,65 +252,15 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZQAARmYI2v6ko5uPQAD+6n+8lk0AD0lq5PNK4AcSwiqbDP2L1H0ZsDvkrpubkOi0A9QE2x9II+lqJRFzgnav/E285r3EHyUk/iGRppmLSliAAAA="
   },
-  "/assets/products/photography/hoodie-pink-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAACQAwCdASoQABQAPyl+t1KuKCWisAgBwCUJYwAAW+tcWg4dCGAAAP7qjlCd/ymQcRx3JzCSLzU7IIAA"
-  },
-  "/assets/products/photography/hoodie-white.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAW/FEJFmgAP7qizA4rZ4QTMFb0MkryteYIUEAAA=="
-  },
-  "/assets/products/photography/jogger-grey-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAUX9Y7mbxSleoWAD+6pGXV8NAVv1b02FjwioBJNW1N8iIhZQCxDKJP8ukMAAAAA=="
-  },
   "/assets/products/photography/lounge-pant-grid.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAwCdASoQABQALumUymUkri4uDgDoSzgABSTci6/N30TAAP7zgnAXXUNn1pwEwCsweE3WhwFoMGKa4AAAAA=="
   },
-  "/assets/products/photography/onesie-white-print.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADwAgCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAerHYAAD+7u3fngAeQTCO2VAAAAA="
-  },
-  "/assets/products/photography/onesie-white-text.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAAAwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAidzPk7KgAP7u7d+NWAAAAA=="
-  },
   "/assets/products/photography/pant-camo.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZQCo9B4bYEC2UpsKWAD+598ZG7uaN3v8/W1TQurxtI8DmvsZJAneygHwvkJDy9wf8tOr/08/piOxpYYXnP1Gv1PiWIA7CSuutHswAAA="
-  },
-  "/assets/products/photography/pleated-trouser-khaki.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAwCdASoQABQAPymAulMuKCYisAgBwCUJZwC2yB3Y7vLByxLagAD+6pcpkWLVRY8LT4UNtakkfsop4DgUno2TYGp+wMv7sTJGXRm0I6O3dgAA"
-  },
-  "/assets/products/photography/polo-black-crest.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAV7HzfgFkrNJVwAD+6pXWZShVTIbsPyNRbtZlR83ubcLfNOCHNrRCmUQO17/+aWv0utz7tcxY/rAqvAbfPrpXd2CrnAAAAA=="
-  },
-  "/assets/products/photography/polo-black-embroidered.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAATGNMoebRYNM+AAD+5+4YzW+RUxO+sfAZ/vZKbwJtewAlokjK7n4TNWPXTyx01Eyh9rLGWa/5XpSyRnAeSgoAAA=="
-  },
-  "/assets/products/photography/polo-black-service.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAYdKP3YLJhJBwfOAA/uHjP4AlHMhJrN9+DhtUmjBD5bU85p0n59CeJEWtz6Cd90Isn+b2Nl1Cs37n6UqJTvAkWAAA"
-  },
-  "/assets/products/photography/polo-cream.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAiestZI0AAP7umKIO9tHIOxmmaGXI4vTYPjcFgOtCAAA="
   },
   "/assets/products/photography/polo-dress-navy.webp": {
     "width": 1280,
@@ -342,75 +277,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJbACdACB/0UXXFELoAP7qlaK3spoCsPjuyveQ6F8UAuS3rzrWrJTFDAGRWfoaScJpYwyoKNdEeC9fGYczMupPuPhAAAAA"
   },
-  "/assets/products/photography/polo-maroon.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdACPytWfLsUkSq4UuAAD+5+4YzWDDKHKdVXoYNyttQmvK5hbggzsQYRtEZPFcbEmlojV/mmOxkonpMlR/iXBsjJGSJsGMIce2yBaxth9txSMyAAAA"
-  },
-  "/assets/products/photography/polo-navy-corporate.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoQABQAPyl8tlIuJ6UisAgBwCUJZwDDNCPwHQ72Gjn7cRkWpQAA/uHjP4Al0pmCb5gCjpj5h/FWJaB2SgQMkrpf8fULhvdVJmrSy5L464ePD5uhBnmcC6ezHHa2iwAA"
-  },
-  "/assets/products/photography/polo-navy-embroidered.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoQABQAPyl+tVKuKCUisAgBwCUJQBOgBH1RkKr7xXCAfWQCwAD+5+4iYFVPlB45teJC6S4hvcvJqs6l73rvarpJUPhOin4AaxN5R9ovKqHo/7/yEeSZhgQkIbuBjg04AAA="
-  },
-  "/assets/products/photography/polo-navy-grocery.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZwDKABnPAyCx4F04rAAA/uqii88mONvATsTCQX42AZ0oYQgt6Ok/x9y1jz4900S0x3X+3Ep2fyyxLBnOxlwsNdhYl0SziAAAAA=="
-  },
-  "/assets/products/photography/polo-navy-tipped.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZQAAUyYB6m2gLzrWAAD+5+4YzJTs4d7LitlYvKRUnMvQCGoM4e1/bydG58Ya7flvcALz4olJFJDDk6Qgs6NlB+rv7Uv9XI9hs4Sd4CAAAA=="
-  },
-  "/assets/products/photography/polo-red-colourblock.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAwBACdASoQABQAPyl8tVIuJ6UisAgBwCUJbACdB2gAOsN7CHIorRTp9TAA/uqIQN/t2hOiGAIuNKtrYWDJTj7S/nq30hYgz5AEfxfNXGoYf5FgSMNufej3VTvKBBP4uDdS33EgooC+y+vqiT2smFDEh7vmVmZBGD9MmbHeG0AAAA=="
-  },
-  "/assets/products/photography/polo-red-grocery.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABwBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdMoLUABR4e15hfGwXr++nAAD+4eM/gHxQ+kxr2fJT1XvCPx0Z8EwxzsJwdzvpNzhDUHKffdEt76XtoYQzS9PfmHx8SredqbT+vbok91KCTSGvqXChN85v1ki9jHudRBQOGcAAAA=="
-  },
-  "/assets/products/photography/polo-red.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAQBACdASoQABQAPyl+tlIuKCUisAgBwCUJbACdACBTafYVqsvBwVxpgAD+6n5tno8Hj6OlrbM/cvcyPcFVqIPllWxX8/lNe8wgukR5eWJfupb74d6XRPLalHZvNXMvbygyrD45jSFzQOAcJkEYP0JVdngoAA=="
-  },
-  "/assets/products/photography/polo-royal-embroidered.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdMoAChVqDxkLB5c0hAAD+6n+XVyHL9jkorIveODcLq355fNFeogABja78zMqwkwHXKWbcH8sUPLDP2uybyGCneduIVdqCUyCWJtlBHXm5Y4GgAA=="
-  },
   "/assets/products/photography/polo-taupe-long-sleeve.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwAwCdASoQABQAPyl+t1KuKCWisAgBwCUJZQAARj8Co/9ox+AA/uqHYj+UvBTwrK7Jh3D4mSMd3moN9Bp638AjdNipALOtYjL61LyublkJmGU0AAA="
-  },
-  "/assets/products/photography/polo-white-embroidered.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAgCdASoQABQAPyl+t1KuKCWisAgBwCUJZwAAik/AAP7ulgnMU8ovoWuJgNO2vMEKCAAA"
-  },
-  "/assets/products/photography/polo-white-tagged.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwDLLCHhv/GnO0sAAP7qfAc+feQ7WWLW5ozUAAA="
-  },
-  "/assets/products/photography/polo-white-tipped.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAABwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAUTR4tt8USoAA/uqV1LLiRgaghwe1UYwc1ZJsmVno481m2BDgAAA="
-  },
-  "/assets/products/photography/polo-white.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAAAwAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZwAAW+qhUgUAAP7qZ9QC7W3zFat0XZHbXmgA"
   },
   "/assets/products/photography/polo-yellow.webp": {
     "width": 1280,
@@ -447,45 +317,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwDMHCK5mazCOXFD8HgA/sl2nVlb59uOrxHdgbXXc/e5/bNf3xX2Dmkxyjf68wGu4H6xIMOmRqLb4DeVpd88SaGLpk9QPFAAAA=="
   },
-  "/assets/products/photography/sleeveless-hoodie-black.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoQABQAPyl+tlKuKCUisAgBwCUJZwAAVUc8AUcFvpUloAD+6pUm9jit7MeLBUli4s9fJ4ckjtWYhjtM2oPqMLnqGJ6OnYLSt7Itx7KttF6pfsDkuczpjgAA"
-  },
-  "/assets/products/photography/sleeveless-hoodie-white.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwAAW/ChD3mgAP7qjlCdTwf9n84MyMK3lK3Aa47zmEd4ruCQAA=="
-  },
   "/assets/products/photography/sweater-red-striped.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJbACsAB4kiWhWFIzuzVrIAP7qlaU0S4iOF8UmMFy83Uxi3IIqxYdFNEDhWjap3CT3XbV7OXei5nkxZl7IpXrQdWl8FBpbxifhDnaAAAA="
-  },
-  "/assets/products/photography/tee-grey-branded.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAVMCb67CCSzMs80oAAP7qw2iG2fhPcIzPdA4S+kmzLYqA8GyMVyGnehasrLIm8WzQAAA="
-  },
-  "/assets/products/photography/tee-grey-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACQAwCdASoQABQAPyl+tlIuKCUisAgBwCUJZwAAW6gp5XxcS5dAAP7qjp3xlMA+sPwL+jEeigl7ezbavOjt5bCXwjYWT+dAhVAQAA=="
-  },
-  "/assets/products/photography/tee-heather-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAW/CLmyumUau/CbAA/uqOnfGb9LJSxBmIYFNx938w8vBgEhokxPAABRD468WAAAAA"
-  },
-  "/assets/products/photography/tee-pink.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABwAwCdASoQABQAPymAtVIuKCUisAgBwCUJbAAAXeplMyNlrrwA/ufr3HGUoQGbmUZGYfm9nrsS0tWP9S/JEKRJ0r9rN8PqsB3jFUlg1KFnslq03W7aTVr0QAA="
-  },
-  "/assets/products/photography/tee-sky-blue.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQAwCdASoQABQAPyl+tlKuKCUisAgBwCUJaACdAB2QN4rzt7OwAP7qlXy+r5U8D41hHhBMlpXhNNGK4UQVfI5bHLNhG2kdrvtV5b6Orc99N2I6wNV/4JXywAA="
   },
   "/assets/products/photography/thermal-sage-alt.webp": {
     "width": 1280,
@@ -502,20 +337,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoQABQAPyl+uFKuKCWisAgBwCUJZwAAV4RyIoR6ImkHwWQA/uqIQOFIJSp9TtfGZAz5jV3sGqosHj0lFtJuXuxdi1T12KYEYTRepE/HXOu2wQmz+XEAAAAA"
   },
-  "/assets/products/photography/vest-orange-printed.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACwBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdL14UCDAAMAQ2LRLwb5bsXSCAAP7n7Attgubaf50YVpjkQTzBalVrMqee6HC6PaWWKAcsdS2sN87sV0xXgYAZK6AKKqMIQeCtzGwOjOOWEFUldyfh29XZagAA"
-  },
   "/assets/products/photography/work-vest-orange.webp": {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBACdASoQABQAPyl+tVIuKCUisAgBwCUJbACdMoLUABOuyOUmxt4wAuQA/ufsS9C+V3xFB/zYMu7LGHBDnKdpchmgNoc4T4rxZH7bqXbTJQGXh4wYHJlkJuf6TEcQRayanqxzJ3TumEeqNAnkKoqZkJ4ON6swnAAAAA=="
-  },
-  "/assets/products/photography/zip-hoodie-grey-graphic.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwDLLCLWYIgaw2lT/gCAAP7qh2eYtbn/fGPA3vgbWuM6rAKZCig8oqV5jqtsf7pa3uJyodqdJfO3meDoMNM57dgIAAAA"
   },
   "/assets/products/photography/zip-hoodie-grey.webp": {
     "width": 1280,
@@ -626,5 +451,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "width": 1200,
     "height": 1200,
     "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAP7lCDCAAA=="
+  },
+  "/assets/texture/weave.webp": {
+    "width": 500,
+    "height": 500,
+    "blur": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAABQAQCdASoQABAABIB0JaQABHQAAORAAAA="
   }
 };

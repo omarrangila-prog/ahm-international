@@ -133,6 +133,36 @@ The ground is a real cotton-canvas macro, high-passed to remove its lighting
 gradient and mirrored 2×2 so it tiles seamlessly. 9.7 kB, on by default —
 pass `tooth={false}` for a section that must stay flat.
 
+## Branded customer garments are not published
+
+35 of the 63 photographed samples were built from originals in
+`asset-pack/client-branded-hold/` — the folder that exists because those
+garments carry a customer's mark. The originals were held out of the master
+set; the derivatives were built and deployed anyway, so Armani Exchange,
+Nautica, CarMax, TapouT, Virginia Tech, Hannaford, D'Agostino, Food City and
+Pampers/Ukrop's were live on the product pages.
+
+They are deleted from `public/assets/products/photography/`. Each withdrawn key
+carries an unbranded `fallbackSrc` in `data/assets.ts` — a studio render of the
+same garment type in preference to another client's photograph. The two infant
+bodysuits have no stand-in on purpose: there is no unbranded infant article, and
+an adult garment would misrepresent one, so those components drop the frame.
+
+Do not run `npm run photos` and redeploy the branded set without written
+publication permission. `npm run images:gaps` must stay at 0.
+
+## The audits, and what each is for
+
+```
+npm run audit       SEO basics (titles, descriptions, H1, canonical) — needs a server
+npm run seo:deep    OG/Twitter, heading skips, alt, JSON-LD, breadcrumbs
+npm run contrast    WCAG AA on the rendered page, parses oklab()
+npm run responsive  12 viewports x 20 routes, reachable overflow only
+npm run targets     WCAG 2.2 SC 2.5.8 with its own exceptions applied
+npm run images:gaps empty image frames actually rendered
+npm run links       internal link targets
+```
+
 ## Responsive and target-size audits
 
 `npm run responsive` sweeps 12 viewports (320 to 2560, plus landscape phone)
