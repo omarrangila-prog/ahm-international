@@ -177,5 +177,77 @@ for (const o of other) {
 
 out += `\n---\n\n**A caution on generated imagery.** Anything produced this way is an\nillustration, not evidence. It may stand in for an article type, and it must\nnever be presented as a photograph of a real facility, a real shipment or a\nreal production run. Where this site shows a render it says so, and generated\nenvironment shots carry the same obligation.\n`;
 
+
+/* ------------------------------------------------------------------ *
+ * Plain-text companion: image-prompts.txt
+ *
+ * The markdown is for reading. This is for pasting into an image
+ * generator, so it carries no headings, no bold and no code fences —
+ * those arrive as literal characters in a prompt and the model treats
+ * them as part of the instruction.
+ *
+ * Every item is self-contained. The house rules are repeated in each
+ * one rather than stated once at the top, because these get pasted a
+ * few at a time and a rule in a preamble the model never saw is a rule
+ * that is not applied. The repetition is the point.
+ * ------------------------------------------------------------------ */
+
+const RULES =
+  "Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. " +
+  "Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. " +
+  "Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, " +
+  "no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.";
+
+const SCENE_RULES =
+  "Photorealistic, natural light, documentary style. No identifiable person and no recognisable face. " +
+  "No company name, no signage, no logo, no brand mark, no visible writing anywhere in the image.";
+
+let txt = "";
+txt += "AHM INTERNATIONAL - IMAGE PROMPTS\n";
+txt += `${total} images. Generate one at a time and save each using the FILE name given.\n`;
+txt += "Every prompt already contains the rules. Do not shorten them - the no-logo rule is why\n";
+txt += "35 photographs had to be deleted from this site.\n";
+txt += "\n" + "=".repeat(78) + "\n";
+txt += `PART 1 OF 3 - ARTICLE PHOTOGRAPHS (${articles.length}) - DO THESE FIRST\n`;
+txt += "=".repeat(78) + "\n\n";
+
+let n = 0;
+for (const a of articles) {
+  n += 1;
+  txt += `${n}. FILE: ${master(a.src)}\n`;
+  txt += `PROMPT: Product photograph of a ${a.name.toLowerCase()}`;
+  txt += a.note ? `, ${a.note.toLowerCase().replace(/\.$/, "")}` : "";
+  txt += `. ${RULES}\n\n`;
+}
+
+txt += "=".repeat(78) + "\n";
+txt += `PART 2 OF 3 - PRODUCTION SAMPLES (${strip.length})\n`;
+txt += "=".repeat(78) + "\n\n";
+
+for (const [family, items] of byFamily) {
+  txt += `-- ${family} --\n\n`;
+  for (const item of items) {
+    n += 1;
+    txt += `${n}. FILE: ${master(item.src)}\n`;
+    txt += `PROMPT: Product photograph of a ${plainSubject(item.alt).toLowerCase()}. ${RULES}\n\n`;
+  }
+}
+
+txt += "=".repeat(78) + "\n";
+txt += `PART 3 OF 3 - FACTORY AND ENVIRONMENT SCENES (${other.length})\n`;
+txt += "=".repeat(78) + "\n\n";
+txt += "These are scenes, not garments. They must never be presented as proof of a real\n";
+txt += "facility, a real shipment or a real production run.\n\n";
+
+for (const o of other) {
+  n += 1;
+  const portrait = o.src.includes("/industries/");
+  txt += `${n}. FILE: ${master(o.src)}\n`;
+  txt += `PROMPT: ${o.alt.replace(/\.$/, "")}. ${SCENE_RULES} `;
+  txt += portrait ? "Portrait 3:4, 2160x2880.\n\n" : "Landscape 16:9, 3840x2160.\n\n";
+}
+
+fs.writeFileSync(path.join(root, "image-prompts.txt"), txt);
+
 fs.writeFileSync(path.join(root, "image-brief.md"), out);
-console.log(`image-brief.md written — ${articles.length} articles, ${strip.length} samples, ${other.length} other, ${total} total`);
+console.log(`image-brief.md + image-prompts.txt written — ${articles.length} articles, ${strip.length} samples, ${other.length} other, ${total} total`);
