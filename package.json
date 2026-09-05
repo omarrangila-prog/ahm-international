@@ -26,6 +26,7 @@
     "responsive": "node scripts/responsive-audit.mjs",
     "targets": "node scripts/target-size-audit.mjs",
     "seo:deep": "node scripts/seo-deep-audit.mjs",
+    "brief": "node --experimental-strip-types --import ./tests/register.mjs scripts/image-brief.mjs",
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs"
   },
   "dependencies": {
