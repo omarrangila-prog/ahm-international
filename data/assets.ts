@@ -1111,6 +1111,22 @@ export function hasAsset(key: AssetKey): boolean {
   return resolveAsset(key).available;
 }
 
+/**
+ * True only when the key's *own* file exists — a fallback does not count.
+ *
+ * `hasAsset` asks whether anything will render, which is the right question for
+ * a layout. It is the wrong question for a gallery that claims its contents are
+ * photographs. After the branded samples were withdrawn and their keys were
+ * given render fallbacks, `hasAsset` stayed true for all of them and the
+ * "Photographed from production" strip filled with twenty-one copies of one
+ * studio render — renders presented as production samples, which is the
+ * substitution this site exists to prevent.
+ */
+export function hasCanonicalAsset(key: AssetKey): boolean {
+  const entry = assetManifest[(assetRegistry[key] as AssetInput).src];
+  return Boolean(entry?.width);
+}
+
 /** Picks the first key whose file exists, else the first key. Never returns undefined. */
 export function firstAvailable(...keys: [AssetKey, ...AssetKey[]]): AssetKey {
   return keys.find((k) => resolveAsset(k).available) ?? keys[0];

@@ -20,7 +20,7 @@ import { industries } from "@/data/industries";
 import { processStages } from "@/data/process";
 import { caseStudies } from "@/data/caseStudies";
 import { pageMetadata, productSchema } from "@/lib/seo";
-import { firstAvailable, hasAsset, type AssetKey } from "@/data/assets";
+import { firstAvailable, hasAsset, hasCanonicalAsset, type AssetKey } from "@/data/assets";
 import { numeral } from "@/lib/utils";
 
 /**
@@ -84,6 +84,17 @@ export default async function ProductCategoryPage({ params }: Params) {
   ]
     .filter((a, i, all) => all.indexOf(a) === i)
     .slice(0, 3);
+
+  /**
+   * Only articles whose own photograph exists.
+   *
+   * A fallback renders something, which is right for a product card and wrong
+   * for a gallery headed "Photographed from production" — a render there is a
+   * studio illustration presented as a production sample. After the branded
+   * samples were withdrawn, twenty-one of the thirty-two frames in this strip
+   * had become the same studio polo.
+   */
+  const photographedSamples: AssetKey[] = (category.photography ?? []).filter(hasCanonicalAsset);
 
   const headingLines = category.headline.split("\n").map((line, i) => ({
     text: line,
@@ -244,7 +255,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
 
       {/* ---------------- Photographed samples ---------------- */}
-      {category.photography && category.photography.length > 0 && (
+      {photographedSamples.length > 0 && (
         <Section zone="paper" spacing="lg" aria-labelledby="samples-heading">
           <div className="shell-wide">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -259,12 +270,14 @@ export default async function ProductCategoryPage({ params }: Params) {
               </div>
               <p className="max-w-sm text-sm text-ink/70 lg:pb-2">
                 Articles produced to buyer specification, shown as construction
-                references. {category.photography.length > 12 && `${category.photography.length} samples photographed for this category.`}
+                references.{" "}
+                {photographedSamples.length > 12 &&
+                  `${photographedSamples.length} samples photographed for this category.`}
               </p>
             </div>
 
             <RevealGroup className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3" stagger={0.06}>
-              {category.photography.filter(hasAsset).slice(0, 12).map((asset) => (
+              {photographedSamples.slice(0, 12).map((asset) => (
                 <RevealItem key={asset}>
                   <figure className="group">
                     <div className="zoom-frame aspect-[4/5] w-full overflow-hidden bg-white">
