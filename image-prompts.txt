@@ -32,10 +32,10 @@ PROMPT: Product photograph of a women's tee, set-in or raglan sleeve, neck finis
 PROMPT: Product photograph of a women's hoodie, brushed-back knit, drawcord to specification. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 9. FILE: assets-master/product-photography/onesie-white-print.png
-PROMPT: Product photograph of a infant bodysuit, children's safety requirements are qualified against the destination market's standard before development. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
+PROMPT: Product photograph of an infant bodysuit. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 10. FILE: assets-master/product-photography/onesie-white-text.png
-PROMPT: Product photograph of a printed bodysuit, print chemistry and small-parts requirements qualified before development. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
+PROMPT: Product photograph of a printed bodysuit. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 ==============================================================================
 PART 2 OF 3 - PRODUCTION SAMPLES (44)
@@ -140,7 +140,7 @@ PROMPT: Product photograph of a white sleeveless hooded top. Plain pure white ba
 -- Woven Shirts --
 
 41. FILE: assets-master/product-photography/denim-work-shirt.png
-PROMPT: Product photograph of a indigo denim work shirt with chest pocket. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
+PROMPT: Product photograph of an indigo denim work shirt with chest pocket. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 -- Bottoms --
 
@@ -156,12 +156,12 @@ PROMPT: Product photograph of a grey fleece jogger. Plain pure white background.
 -- Outerwear --
 
 45. FILE: assets-master/product-photography/vest-orange-printed.png
-PROMPT: Product photograph of a orange sleeveless vest. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
+PROMPT: Product photograph of an orange sleeveless vest. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 -- Denim --
 
 46. FILE: assets-master/product-photography/denim-work-shirt.png
-PROMPT: Product photograph of a indigo denim work shirt with chest pocket. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
+PROMPT: Product photograph of an indigo denim work shirt with chest pocket. Plain pure white background. Flat lay, garment square to the frame, filling the frame with a small even margin. Soft even studio light, no harsh shadow, no props, no mannequin, no model, no hanger. Absolutely no logo, no brand mark, no licensed graphic, no printed or embroidered text, no hangtag, no swing ticket, no visible writing of any kind anywhere in the image. Photorealistic product photography. Square 1:1, 3000x3000.
 
 -- Athleisure --
 

@@ -95,13 +95,13 @@ at when deciding whether you make their product.
 
 - **Family:** Kidswear
 - **Save as:** `assets-master/product-photography/onesie-white-print.png`
-- **Prompt:** Product photograph of a infant bodysuit, children's safety requirements are qualified against the destination market's standard before development. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.
+- **Prompt:** Product photograph of an infant bodysuit. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.
 
 ### Printed Bodysuit
 
 - **Family:** Kidswear
 - **Save as:** `assets-master/product-photography/onesie-white-text.png`
-- **Prompt:** Product photograph of a printed bodysuit, print chemistry and small-parts requirements qualified before development. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.
+- **Prompt:** Product photograph of a printed bodysuit. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.
 
 ---
 

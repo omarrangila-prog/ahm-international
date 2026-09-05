@@ -97,6 +97,25 @@ function plainSubject(alt) {
     .trim();
 }
 
+/**
+ * The article note, kept only when it describes the garment.
+ *
+ * `note` carries construction detail for most articles and a commercial or
+ * compliance statement for a few — the infant bodysuits read "children's safety
+ * requirements are qualified against the destination market's standard before
+ * development", which is true, important, and not a thing anyone can draw.
+ * Feeding it to an image model gives it something to interpret visually, and it
+ * will oblige.
+ */
+function visualNote(note) {
+  if (!note) return "";
+  if (/qualif|standard|requirement|market|complian|certif|develop/i.test(note)) return "";
+  return `, ${note.toLowerCase().replace(/\.$/, "")}`;
+}
+
+/** "a" before a consonant, "an" before a vowel. */
+const article = (word) => (/^[aeiou]/i.test(word) ? "an" : "a");
+
 const total = articles.length + strip.length + other.length;
 
 let out = `# Image brief
@@ -150,7 +169,7 @@ for (const a of articles) {
   out += `- **Family:** ${a.family}\n`;
   if (a.alsoUsedBy.length) out += `- **Also used for:** ${a.alsoUsedBy.join(", ")}\n`;
   out += `- **Save as:** \`${master(a.src)}\`\n`;
-  out += `- **Prompt:** Product photograph of a ${a.name.toLowerCase()}${a.note ? `, ${a.note.toLowerCase()}` : ""}. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.\n\n`;
+  out += `- **Prompt:** Product photograph of ${article(a.name)} ${a.name.toLowerCase()}${visualNote(a.note)}. Flat lay on a plain white background, garment square to frame, soft even studio light, no shadow, no props, no model. **No logo, no brand mark, no printed graphic, no hangtag, no visible text of any kind.** Square 1:1, 3000 x 3000.\n\n`;
 }
 
 out += `---\n\n## 2. Production-sample slots — ${strip.length} images\n\nThese fill the "Photographed from production" galleries, which went quiet on\nmost family pages when the customer-branded set was withdrawn. Same rules,\nsame square format.\n\n`;
@@ -215,8 +234,8 @@ let n = 0;
 for (const a of articles) {
   n += 1;
   txt += `${n}. FILE: ${master(a.src)}\n`;
-  txt += `PROMPT: Product photograph of a ${a.name.toLowerCase()}`;
-  txt += a.note ? `, ${a.note.toLowerCase().replace(/\.$/, "")}` : "";
+  txt += `PROMPT: Product photograph of ${article(a.name)} ${a.name.toLowerCase()}`;
+  txt += visualNote(a.note);
   txt += `. ${RULES}\n\n`;
 }
 
@@ -229,7 +248,8 @@ for (const [family, items] of byFamily) {
   for (const item of items) {
     n += 1;
     txt += `${n}. FILE: ${master(item.src)}\n`;
-    txt += `PROMPT: Product photograph of a ${plainSubject(item.alt).toLowerCase()}. ${RULES}\n\n`;
+    const subject = plainSubject(item.alt).toLowerCase();
+    txt += `PROMPT: Product photograph of ${article(subject)} ${subject}. ${RULES}\n\n`;
   }
 }
 
