@@ -27,7 +27,8 @@
     "targets": "node scripts/target-size-audit.mjs",
     "seo:deep": "node scripts/seo-deep-audit.mjs",
     "brief": "node --experimental-strip-types --import ./tests/register.mjs scripts/image-brief.mjs",
-    "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs"
+    "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs",
+    "weight": "node scripts/weight-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

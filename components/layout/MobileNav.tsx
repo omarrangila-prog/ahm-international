@@ -40,6 +40,17 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  /*
+   * Every `<Link>` in the lists below carries `prefetch={false}`, for the same
+   * reason the mega menu does: closed, this panel is `invisible` rather than
+   * `display: none`, and it is `fixed inset-0`, so all of its links sit inside
+   * the viewport as far as Next's prefetch observer is concerned. Measured on a
+   * cold 390px load, the closed menu was pulling every route it lists before
+   * the visitor had touched anything.
+   *
+   * This is the phone case, so it is the one that matters most: it was mobile
+   * data spent on a menu that had not been opened.
+   */
   return (
     <div
       role="dialog"
@@ -74,6 +85,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                   <Link
                     href={link.href}
                     onClick={onClose}
+                    prefetch={false}
                     className="flex min-h-[3.5rem] items-center justify-between gap-4 font-display text-2xl font-extrabold tracking-[-0.03em]"
                   >
                     {link.label}
@@ -93,6 +105,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                         <Link
                           href={link.href}
                           onClick={onClose}
+                          prefetch={false}
                           className="flex min-h-12 items-center text-[0.95rem] text-paper/75 transition-colors hover:text-paper"
                         >
                           {link.label}
@@ -118,6 +131,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                     <Link
                       href={link.href}
                       onClick={onClose}
+                      prefetch={false}
                       className="flex min-h-12 items-center text-[0.95rem] text-paper/75 transition-colors hover:text-paper"
                     >
                       {link.label}

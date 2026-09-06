@@ -161,7 +161,19 @@ npm run responsive  12 viewports x 20 routes, reachable overflow only
 npm run targets     WCAG 2.2 SC 2.5.8 with its own exceptions applied
 npm run images:gaps empty image frames actually rendered
 npm run links       internal link targets
+npm run weight      cold mobile bytes by type + LCP (needs a production server)
 ```
+
+`npm run weight` exists because Turbopack no longer prints First Load JS, so
+there is no build-table number to read off. It measures `encodedDataLength` —
+bytes on the wire, compression included — in a fresh context per route, so the
+figures are cold loads rather than a warm second visit.
+
+Two traps it was written around. `next start` defaults to port 3000, which on
+this machine is already serving another app; the first run measured that
+instead, and reported an identical 468 kB for all ten routes. And LCP is not in
+the default performance buffer, so `getEntriesByType` returns nothing and every
+route reports null — it needs an observer with `buffered: true`.
 
 ## Responsive and target-size audits
 

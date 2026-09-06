@@ -62,12 +62,26 @@ export function MegaMenu({
                   >
                     {group.title}
                   </p>
+                  {/* `prefetch={false}` because this panel is hidden with
+                      `invisible`, not `display: none` — the links keep their
+                      layout boxes, so Next's observer counts every one of them
+                      as on screen and prefetches the lot on first paint.
+                      Measured: 35 `?_rsc=` requests and 220 kB on a cold mobile
+                      load of the homepage, for a menu nobody had opened.
+
+                      They stay in the server HTML rather than mounting on first
+                      open, because the internal-link graph depends on them and
+                      `tests/internal-links.test.ts` holds that invariant. In
+                      this version of Next `false` also disables hover prefetch,
+                      which is the accepted cost: every route here is static, so
+                      a click fetches roughly 12 kB. */}
                   <ul className="flex flex-col gap-2.5">
                     {group.links.map((link) => (
                       <li key={`${group.title}-${link.label}`}>
                         <Link
                           href={link.href}
                           onClick={onNavigate}
+                          prefetch={false}
                           className="group/item inline-flex items-center gap-2 font-display text-[0.95rem] font-semibold tracking-[-0.015em] text-ink/80 transition-colors hover:text-ink"
                         >
                           {link.label}
