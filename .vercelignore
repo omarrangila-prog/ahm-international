@@ -1,0 +1,24 @@
+# What does not need to leave this machine.
+#
+# Without this file the CLI uploads roughly 2 GB and the deployment sits at
+# status UNKNOWN with a 0ms build while it tries. Previous builds of this
+# project took 31-39 seconds; one attempt ran 10 minutes without starting.
+
+# Vercel builds on its own infrastructure, so the local output is dead weight.
+.next
+node_modules
+
+# The 4K master archive (220 MB) that `npm run images:build` cuts derivatives
+# from. The derivatives are committed under public/assets; the originals are
+# never served and are deliberately kept out of public/ for exactly that reason.
+assets-master
+
+# 153 MB of supplied source material (217 files), including
+# client-branded-hold/ — customers' own garment photographs, held back from the
+# site on purpose. Nothing outside public/ is served, so these were never
+# reachable, but there is no reason to hand them to a third party on every
+# deploy either.
+asset-pack
+
+# Generated audit output.
+reports
