@@ -24,7 +24,6 @@
  *   what produced 700+ phantom failures the last time it was measured here.
  */
 import fs from "node:fs";
-import path from "node:path";
 import { createRequire } from "node:module";
 import { chromium } from "/home/synthor/.nvm/versions/node/v22.22.3/lib/node_modules/playwright/index.mjs";
 

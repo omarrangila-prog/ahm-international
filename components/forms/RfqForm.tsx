@@ -13,6 +13,7 @@ import { productCategories } from "@/data/products";
 import { materials } from "@/data/materials";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { company, publicValue } from "@/data/company";
 
 /**
  * MULTI-STEP RFQ
@@ -64,6 +65,10 @@ export function RfqForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [reference, setReference] = useState<string | null>(null);
   const [delivered, setDelivered] = useState(true);
+  // Null unless verified and public — the same gate the footer and contact page
+  // go through, so an unset value renders nothing rather than an empty link.
+  const email = publicValue(company.email);
+  const whatsapp = publicValue(company.whatsapp);
   const [serverError, setServerError] = useState<string | null>(null);
   const [started, setStarted] = useState(false);
 
@@ -190,11 +195,47 @@ export function RfqForm() {
             Quote it in any follow-up and we will find your enquiry.
           </p>
         )}
+        {/* Automatic delivery is not configured, so this is the moment the
+            enquiry is most likely to be lost — the buyer has done the work and
+            has no confirmation that anyone received it. Sending them to the
+            contact page to look up an address adds a step exactly where
+            attention is thinnest, so the channels are given here, with the
+            reference already in the subject line. */}
         {!delivered && (
-          <p className="mt-5 max-w-xl border-l-2 border-ink pl-4 text-sm text-ink/65">
-            Your request has been recorded. Email delivery is not yet configured on this
-            installation, so please also reach us through the contact page to be certain it lands.
-          </p>
+          <div className="mt-5 max-w-xl border-l-2 border-ink pl-4 text-sm text-ink/70">
+            <p>
+              Your request has been recorded. Automatic delivery is not configured on this
+              installation yet, so send it to us directly as well and we will pick it up:
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              {email && (
+                <li>
+                  <span className="text-ink/60">Email</span>{" "}
+                  <a
+                    href={`mailto:${email}?subject=${encodeURIComponent(
+                      reference ? `RFQ ${reference}` : "RFQ",
+                    )}`}
+                    className="[overflow-wrap:anywhere] underline underline-offset-4 hover:text-ink"
+                  >
+                    {email}
+                  </a>
+                </li>
+              )}
+              {whatsapp && (
+                <li>
+                  <span className="text-ink/60">WhatsApp</span>{" "}
+                  <a
+                    href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 hover:text-ink"
+                  >
+                    {whatsapp}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
         )}
         <div className="mt-9 flex flex-wrap gap-3">
           <Link

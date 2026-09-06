@@ -220,9 +220,14 @@ texture at all. `tests/zones.test.ts` now fails the build on any other value.
 
 ## Motion: CSS first, Framer where CSS cannot
 
-The vocabulary is still CSS. `motion/react` is used in exactly one place, the
-product accordion, because a panel opening to its content's natural height is
-the case CSS cannot do honestly — `height: auto` is not interpolable.
+The vocabulary is still CSS. `motion/react` is used in two places — the product
+accordion in `ProductIndex` and the material rows in `MaterialIndex` — because a
+panel opening to its content's natural height is the case CSS cannot do
+honestly: `height: auto` is not interpolable.
+
+Both are route-specific, so framer-motion is not in the shared bundle and
+`/contact` does not pay for it. Verified by comparing the chunk sets: 18 of ~20
+chunks load on every route, and neither of those two is among them.
 
 Lenis eases the scroll in `components/motion/SmoothScroll.tsx`. It never starts
 under `prefers-reduced-motion` — hijacking scroll is precisely what that setting
