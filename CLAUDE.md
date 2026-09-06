@@ -163,7 +163,14 @@ npm run images:gaps empty image frames actually rendered
 npm run links       internal link targets
 npm run weight      cold mobile bytes by type + LCP (needs a production server)
 npm run a11y        axe-core WCAG 2.2 AA, 17 routes x 2 widths
+npm run console     uncaught exceptions, console errors, failed requests
 ```
+
+`npm run console` takes its route list from the sitemap, so a new page is
+covered the day it ships, and it scrolls each one so deferred work actually
+runs. It ignores `net::ERR_ABORTED`: navigating to the next route cancels
+whatever the last one still had in flight, and counting those reported 24
+"problems" that were all the loop cancelling its own prefetches.
 
 `npm run a11y` covers the ~90 rules the two specialist audits do not.
 `color-contrast` and `target-size` are excluded from it on purpose: axe bails

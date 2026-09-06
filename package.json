@@ -29,7 +29,8 @@
     "brief": "node --experimental-strip-types --import ./tests/register.mjs scripts/image-brief.mjs",
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs",
     "weight": "node scripts/weight-audit.mjs",
-    "a11y": "node scripts/a11y-audit.mjs"
+    "a11y": "node scripts/a11y-audit.mjs",
+    "console": "node scripts/console-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
