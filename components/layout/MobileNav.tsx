@@ -142,7 +142,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className="mt-4 inline-block text-sm text-paper/60 underline underline-offset-4"
+                  className="mt-4 inline-block [overflow-wrap:anywhere] text-sm text-paper/60 underline underline-offset-4"
                 >
                   {email}
                 </a>

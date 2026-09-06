@@ -64,7 +64,7 @@ export function Footer() {
               <li>
                 <p className="text-paper/60">Email</p>
                 {email ? (
-                  <a href={`mailto:${email}`} className="inline-block py-1.5 text-paper/80 transition-colors hover:text-lime">
+                  <a href={`mailto:${email}`} className="inline-block [overflow-wrap:anywhere] py-1.5 text-paper/80 transition-colors hover:text-lime">
                     {email}
                   </a>
                 ) : (

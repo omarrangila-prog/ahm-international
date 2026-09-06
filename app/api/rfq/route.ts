@@ -161,8 +161,15 @@ export async function POST(request: Request) {
 
   /* ------------------------------ Honeypot ------------------------------- */
   // Accepted silently: telling a bot it was detected only helps it adapt.
+  //
+  // `delivered: false` because nothing was delivered, and this file does not
+  // report deliveries that did not happen — the no-destination branch below
+  // says so in as many words. A bot does not read the flag; a person whose
+  // autofill reached a field marked aria-hidden, tabIndex -1 and
+  // autocomplete="off" does, and it points them at a channel that works
+  // instead of losing the enquiry behind a clean confirmation.
   if (typeof raw.faxNumber === "string" && raw.faxNumber.length > 0) {
-    return NextResponse.json({ ok: true, reference: makeReference(), delivered: true });
+    return NextResponse.json({ ok: true, reference: makeReference(), delivered: false });
   }
 
   /* ----------------------------- Validation ------------------------------ */

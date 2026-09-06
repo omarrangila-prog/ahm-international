@@ -120,7 +120,7 @@ export default function ContactPage() {
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
                 <dt className="label text-paper/60">Email</dt>
-                <dd className="text-paper/85">
+                <dd className="min-w-0 [overflow-wrap:anywhere] text-paper/85">
                   {email ? <EmailLink email={email} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
                 </dd>
               </div>

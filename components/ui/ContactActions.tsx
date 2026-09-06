@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
 
 /**
@@ -17,7 +18,7 @@ export function EmailLink({ email, className }: { email: string; className?: str
         track("email_click");
         track("contact_clicked", { channel: "email" });
       }}
-      className={className ?? "inline-block py-1 underline underline-offset-4 transition-colors hover:text-lime"}
+      className={cn("[overflow-wrap:anywhere]", className ?? "inline-block py-1 underline underline-offset-4 transition-colors hover:text-lime")}
     >
       {email}
     </a>

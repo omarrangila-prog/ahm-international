@@ -33,8 +33,20 @@ export {
 
 /* ------------------------------- Schema -------------------------------- */
 
+/*
+ * The `error` argument is not decoration. Without it, a field that is absent
+ * from the payload — rather than present and empty — fails Zod's type check
+ * before `.min(1)` is ever reached, and the API hands the buyer
+ * "Invalid input: expected string, received undefined". Every registered input
+ * posts an empty string, so the form itself rarely produces it; anything
+ * posting a partial body does.
+ */
 const requiredText = (field: string, max = 200) =>
-  z.string().trim().min(1, `${field} is required`).max(max, `${field} is too long`);
+  z
+    .string({ error: `${field} is required` })
+    .trim()
+    .min(1, `${field} is required`)
+    .max(max, `${field} is too long`);
 
 const optionalText = (max = 400) =>
   z.string().trim().max(max, "This is too long").optional().or(z.literal(""));
@@ -44,7 +56,7 @@ export const stepOneSchema = z.object({
   name: requiredText("Your name", 120),
   jobTitle: optionalText(120),
   email: z
-    .string()
+    .string({ error: "Business email is required" })
     .trim()
     .min(1, "Business email is required")
     .email("Enter a valid email address")
@@ -120,7 +132,7 @@ export type RfqInput = z.infer<typeof rfqSchema>;
 export const miniRfqSchema = z.object({
   name: requiredText("Your name", 120),
   company: requiredText("Company name"),
-  email: z.string().trim().min(1, "Business email is required").email("Enter a valid email address").max(200),
+  email: z.string({ error: "Business email is required" }).trim().min(1, "Business email is required").email("Enter a valid email address").max(200),
   country: requiredText("Country", 90),
   category: requiredText("Product", 120),
   quantity: requiredText("Estimated quantity", 80),

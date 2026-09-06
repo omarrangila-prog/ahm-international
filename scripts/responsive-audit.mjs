@@ -8,6 +8,11 @@
  */
 import { chromium } from "/home/synthor/.nvm/versions/node/v22.22.3/lib/node_modules/playwright/index.mjs";
 
+/* Overridable: `next start` defaults to 3000, which on this machine is
+   another app, and a stale server on the default port measures the wrong
+   build without ever failing. */
+const BASE = process.env.BASE ?? "http://localhost:3100";
+
 const VIEWPORTS = [
   ["320x568", 320, 568], ["360x740", 360, 740], ["390x844", 390, 844],
   ["430x932", 430, 932], ["768x1024", 768, 1024], ["820x1180", 820, 1180],
@@ -29,7 +34,7 @@ for (const [label, w, h] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: w < 768, hasTouch: w < 900 });
   const page = await ctx.newPage();
   for (const route of ROUTES) {
-    await page.goto(`http://localhost:3100${route}`, { waitUntil: "domcontentloaded", timeout: 90000 }).catch(() => {});
+    await page.goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 90000 }).catch(() => {});
     await page.evaluate(async () => {
       document.documentElement.style.scrollBehavior = "auto";
       for (let y = 0; y < document.body.scrollHeight; y += 800) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 25)); }
