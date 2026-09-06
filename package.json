@@ -28,7 +28,8 @@
     "seo:deep": "node scripts/seo-deep-audit.mjs",
     "brief": "node --experimental-strip-types --import ./tests/register.mjs scripts/image-brief.mjs",
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs",
-    "weight": "node scripts/weight-audit.mjs"
+    "weight": "node scripts/weight-audit.mjs",
+    "a11y": "node scripts/a11y-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

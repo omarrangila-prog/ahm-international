@@ -70,8 +70,16 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
             <>
               <h2 className="font-display text-h2 text-ink">{block.heading}</h2>
               {block.intro && <p className="mt-4 max-w-2xl text-ink/70">{block.intro}</p>}
-              {/* Wide tables scroll inside their own container rather than the page. */}
-              <div className="mt-8 -mx-[--spacing-gutter] overflow-x-auto px-[--spacing-gutter] sm:mx-0 sm:px-0">
+              {/* Wide tables scroll inside their own container rather than the page.
+                  tabIndex makes that container reachable by keyboard: without it
+                  the columns past the right edge cannot be scrolled to at all
+                  without a pointer. The heading names the region. */}
+              <div
+                tabIndex={0}
+                role="region"
+                aria-label={block.heading}
+                className="mt-8 -mx-[--spacing-gutter] overflow-x-auto px-[--spacing-gutter] sm:mx-0 sm:px-0"
+              >
                 <table className="w-full min-w-[36rem] border-collapse text-left">
                   <thead>
                     <tr className="border-b border-ink/25">

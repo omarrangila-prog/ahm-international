@@ -20,7 +20,18 @@ import { trims, trimCategories, TRIM_DISCLAIMER } from "@/data/trims";
 export function TrimsLibrary() {
   return (
     <div>
-      <div className="overflow-x-auto">
+      {/* tabIndex makes the scroll container reachable by keyboard. Without it a
+          keyboard-only user cannot scroll the table sideways at all — the
+          content past the right edge is simply unreachable, which is why axe
+          rates scrollable-region-focusable as serious rather than advisory.
+          role/aria-label give the stop a name instead of announcing "group".
+          The global :focus-visible rule in globals.css supplies the ring. */}
+      <div
+        tabIndex={0}
+        role="region"
+        aria-label="Trim components by category"
+        className="overflow-x-auto"
+      >
         <table className="w-full min-w-[46rem] border-collapse text-left">
           <caption className="sr-only">
             Trim components by category, with the specification decision each requires

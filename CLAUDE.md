@@ -162,7 +162,15 @@ npm run targets     WCAG 2.2 SC 2.5.8 with its own exceptions applied
 npm run images:gaps empty image frames actually rendered
 npm run links       internal link targets
 npm run weight      cold mobile bytes by type + LCP (needs a production server)
+npm run a11y        axe-core WCAG 2.2 AA, 17 routes x 2 widths
 ```
+
+`npm run a11y` covers the ~90 rules the two specialist audits do not.
+`color-contrast` and `target-size` are excluded from it on purpose: axe bails
+to "incomplete" on this design's text-over-image and mix-blend cases, and it
+implements 2.5.8 without the spacing exception — the same defect that produced
+700+ phantom failures here once already. `contrast` and `targets` answer those
+two properly.
 
 `npm run weight` exists because Turbopack no longer prints First Load JS, so
 there is no build-table number to read off. It measures `encodedDataLength` —
