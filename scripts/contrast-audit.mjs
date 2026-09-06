@@ -23,7 +23,8 @@
  */
 import { chromium } from "/home/synthor/.nvm/versions/node/v22.22.3/lib/node_modules/playwright/index.mjs";
 
-const BASE = process.env.CONTRAST_BASE || "http://localhost:3100";
+const unreachable = [];
+const BASE = process.env.BASE ?? process.env.CONTRAST_BASE ?? "http://localhost:3100";
 
 const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
 const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
@@ -36,7 +37,18 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const findings = new Map();
 
 for (const route of routes) {
-  await page.goto(`${BASE}${route}`, { waitUntil: "networkidle", timeout: 90000 }).catch(() => {});
+    /*
+   * Never swallow a failed navigation: every check below then runs against
+   * whatever the page happens to be, so a server that is down or serving a
+   * different app reports zero problems — indistinguishable from a pass.
+   */
+  const nav = await page
+    .goto(`${BASE}${route}`, { waitUntil: "networkidle", timeout: 90000 })
+    .catch((err) => ({ __failed: String(err).split("\n")[0] }));
+  if (!nav || nav.__failed || (typeof nav.status === "function" && nav.status() >= 400)) {
+    unreachable.push(`${route} — ${nav?.__failed ?? `HTTP ${nav.status()}`}`);
+    continue;
+  }
   await page.evaluate(async () => {
     document.documentElement.style.scrollBehavior = "auto";
     for (let y = 0; y < document.body.scrollHeight; y += 600) {
@@ -154,7 +166,12 @@ for (const route of routes) {
 await browser.close();
 
 console.log(`contrast audit — ${routes.length} routes at ${BASE}\n`);
-if (!findings.size) {
+if (unreachable.length) {
+  console.log(`${unreachable.length} page load(s) never rendered — this run proves nothing:`);
+  for (const u of unreachable.slice(0, 8)) console.log(`  ${u}`);
+  if (unreachable.length > 8) console.log(`  ...and ${unreachable.length - 8} more`);
+  process.exitCode = 1;
+} else if (!findings.size) {
   console.log("no text below WCAG AA");
 } else {
   const rows = [...findings.values()].sort((a, b) => a.ratio - b.ratio);

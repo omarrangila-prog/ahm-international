@@ -11,6 +11,7 @@ import { chromium } from "/home/synthor/.nvm/versions/node/v22.22.3/lib/node_mod
 /* Overridable: `next start` defaults to 3000, which on this machine is
    another app, and a stale server on the default port measures the wrong
    build without ever failing. */
+const unreachable = [];
 const BASE = process.env.BASE ?? "http://localhost:3100";
 
 const VIEWPORTS = [
@@ -34,7 +35,21 @@ for (const [label, w, h] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: w < 768, hasTouch: w < 900 });
   const page = await ctx.newPage();
   for (const route of ROUTES) {
-    await page.goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 90000 }).catch(() => {});
+    /*
+     * A swallowed navigation is worse than a crash here. Every check below
+     * runs against whatever the page happens to be, so a server that is down,
+     * restarting, or serving a different app reports zero defects — identical
+     * to a clean sweep. That has already happened twice on this machine: once
+     * against another app on the default port, once against a server killed
+     * mid-run by a rebuild. Count the failures and refuse to call it clean.
+     */
+    const nav = await page
+      .goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 90000 })
+      .catch((err) => ({ __failed: String(err).split("\n")[0] }));
+    if (!nav || nav.__failed || (typeof nav.status === "function" && nav.status() >= 400)) {
+      unreachable.push(`${w}x${h} ${route} — ${nav?.__failed ?? `HTTP ${nav.status()}`}`);
+      continue;
+    }
     await page.evaluate(async () => {
       document.documentElement.style.scrollBehavior = "auto";
       for (let y = 0; y < document.body.scrollHeight; y += 800) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 25)); }
@@ -83,7 +98,12 @@ for (const [label, w, h] of VIEWPORTS) {
 await browser.close();
 
 console.log(`\n${VIEWPORTS.length} viewports x ${ROUTES.length} routes = ${VIEWPORTS.length*ROUTES.length} page loads\n`);
-if (!findings.size) { console.log("no responsive defects"); }
+if (unreachable.length) {
+  console.log(`${unreachable.length} of ${VIEWPORTS.length * ROUTES.length} page loads never rendered — this sweep proves nothing:`);
+  for (const u of unreachable.slice(0, 8)) console.log(`  ${u}`);
+  if (unreachable.length > 8) console.log(`  ...and ${unreachable.length - 8} more`);
+  process.exitCode = 1;
+} else if (!findings.size) { console.log("no responsive defects"); }
 else {
   const rows = [...findings.entries()].sort((a,b) => b[1].size - a[1].size);
   console.log(`${rows.length} distinct findings\n`);

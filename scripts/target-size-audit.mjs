@@ -12,6 +12,9 @@
  */
 import { chromium } from "/home/synthor/.nvm/versions/node/v22.22.3/lib/node_modules/playwright/index.mjs";
 
+const unreachable = [];
+const BASE = process.env.BASE ?? "http://localhost:3100";
+
 const VIEWPORTS = [["320", 320, 700], ["390", 390, 844], ["768", 768, 1024], ["1440", 1440, 900]];
 const ROUTES = ["/", "/products", "/manufacturing", "/materials", "/export", "/industries",
   "/resources", "/request-a-quote", "/contact", "/about", "/case-studies", "/quality"];
@@ -23,7 +26,18 @@ for (const [label, w, h] of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: w < 900 });
   const page = await ctx.newPage();
   for (const route of ROUTES) {
-    await page.goto(`http://localhost:3100${route}`, { waitUntil: "domcontentloaded", timeout: 90000 }).catch(() => {});
+    /*
+     * Never swallow a failed navigation: every check below then runs against
+     * whatever the page happens to be, so a server that is down or serving a
+     * different app reports zero problems — indistinguishable from a pass.
+     */
+    const nav = await page
+      .goto(`${BASE}${route}`, { waitUntil: "domcontentloaded", timeout: 90000 })
+      .catch((err) => ({ __failed: String(err).split("\n")[0] }));
+    if (!nav || nav.__failed || (typeof nav.status === "function" && nav.status() >= 400)) {
+      unreachable.push(`${route} — ${nav?.__failed ?? `HTTP ${nav.status()}`}`);
+      continue;
+    }
     await page.waitForTimeout(150);
     const bad = await page.evaluate(() => {
       const sel = "a[href], button, input:not([type=hidden]), select, textarea, [role=button]";
@@ -65,7 +79,12 @@ for (const [label, w, h] of VIEWPORTS) {
 }
 await browser.close();
 console.log(`\n${VIEWPORTS.length} viewports x ${ROUTES.length} routes\n`);
-if (!findings.size) console.log("no target-size failures once 2.5.8 exceptions are applied");
+if (unreachable.length) {
+  console.log(`${unreachable.length} page load(s) never rendered — this run proves nothing:`);
+  for (const u of unreachable.slice(0, 8)) console.log(`  ${u}`);
+  if (unreachable.length > 8) console.log(`  ...and ${unreachable.length - 8} more`);
+  process.exitCode = 1;
+} else if (!findings.size) console.log("no target-size failures once 2.5.8 exceptions are applied");
 else {
   for (const [k, where] of [...findings.entries()].sort((a,b)=>b[1].size-a[1].size).slice(0, 20)) {
     console.log(`[${where.size}] ${k}\n      e.g. ${[...where].slice(0,3).join(" | ")}`);
