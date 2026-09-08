@@ -247,6 +247,25 @@ answer, parsed from `data/materials.ts`, so nothing can appear there without
 being published there. `tests/gsm.test.ts` holds the conversions and asserts
 every published range still parses.
 
+The answer sits on ink with the figure in lime — the one place the palette
+allows lime as text. It was first built on `paper-deep` inside a `paper`
+section, #efebe3 against #f7f5f0, which made the panel carrying the whole point
+of the tool the flattest thing on the page.
+
+Below it, all eight constructions are plotted on one gsm axis with a marker at
+the result: a number answers "what is it", the scale answers "where does it
+sit". Three things that had to be got right there — the axis lives in the same
+grid columns as the bars (laid out full-width it labels positions the bars do
+not occupy); the marker is a paper line ringed in ink, because it crosses both
+the empty track and solid ink bars and no flat colour reads on both; and it
+bleeds 7px past each bar from `sm` up to close the row gaps, so it reads as one
+line rather than eight ticks. Below `sm` the name sits above its bar, so the
+bleed is off or the line would run through the text.
+
+The axis stretches to include the answer rather than clipping it — a swatch
+mis-cut at 15x15 reads 80 gsm, under everything published, which is exactly
+when the marker most needs to be on screen.
+
 ## Motion: CSS first, Framer where CSS cannot
 
 The vocabulary is still CSS. `motion/react` is used in two places — the product

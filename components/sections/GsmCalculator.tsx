@@ -7,6 +7,7 @@ import {
   fabricWeightGrams,
   gsmToOzPerSqYard,
   ozPerSqYardToGsm,
+  parseWeightRange,
   rangeCovers,
   rollAreaSqMetres,
   swatchGsm,
@@ -41,9 +42,19 @@ import { cn } from "@/lib/utils";
  * width and the nap. A rule of thumb would be a figure someone costs a program
  * against, which is exactly what this site does not publish.
  *
- * The result panel lists AHM's own published constructions whose range covers
- * the answer. Those ranges are read from `data/materials.ts`, so a construction
- * cannot appear here without being published there.
+ * DESIGN
+ * ------
+ * The answer is on ink with the figure in lime, which is the one place the
+ * palette rules allow lime as text. The first version put it on `paper-deep`
+ * inside a `paper` section — #efebe3 against #f7f5f0, eight points apart — so
+ * the panel carrying the entire point of the tool was the flattest thing on
+ * the page.
+ *
+ * Underneath, every construction AHM publishes is plotted on one gsm axis with
+ * a marker at the result. A number alone answers "what is it"; the scale
+ * answers "where does it sit", which is the question a buyer is actually
+ * holding. The bars are read from `data/materials.ts`, so a construction
+ * cannot appear on the scale without being published on the page above it.
  */
 
 type Mode = "convert" | "swatch" | "roll";
@@ -56,6 +67,17 @@ const MODES: { id: Mode; label: string; hint: string }[] = [
 
 /** Empty until typed in, so the panel never opens showing an invented number. */
 const num = (v: string) => (v.trim() === "" ? NaN : Number(v));
+
+/** Published ranges, parsed once. Anything unparseable is left off the scale. */
+const PLOTTED = materials
+  .map((m) => ({ material: m, range: parseWeightRange(m.typicalWeight) }))
+  .filter((row): row is { material: (typeof materials)[number]; range: { min: number; max: number } } =>
+    Boolean(row.range),
+  )
+  .sort((a, b) => a.range.min - b.range.min);
+
+const PUBLISHED_MIN = Math.min(...PLOTTED.map((r) => r.range.min));
+const PUBLISHED_MAX = Math.max(...PLOTTED.map((r) => r.range.max));
 
 export function GsmCalculator() {
   const [mode, setMode] = useState<Mode>("convert");
@@ -98,228 +120,357 @@ export function GsmCalculator() {
   const valid = gsm !== null && Number.isFinite(gsm) && gsm > 0;
   const matching = valid ? materials.filter((m) => rangeCovers(m.typicalWeight, gsm!)) : [];
 
+  /* The axis stretches to include the answer rather than clipping it. A swatch
+     mis-cut at 15x15 reads 80 gsm, well under everything published; pinning the
+     scale to the published range would put the marker off the end of it, which
+     is the moment it most needs to be visible. */
+  const axisMin = Math.min(100, Math.floor(((valid ? gsm! : PUBLISHED_MIN) - 20) / 50) * 50);
+  const axisMax = Math.max(400, Math.ceil(((valid ? gsm! : PUBLISHED_MAX) + 20) / 50) * 50);
+  const pct = (value: number) => ((value - axisMin) / (axisMax - axisMin)) * 100;
+
+  const ticks: number[] = [];
+  for (let t = axisMin; t <= axisMax; t += 100) ticks.push(t);
+
   return (
-    <div className="grid grid-cols-12 gap-y-10 lg:gap-x-16">
-      <div className="col-span-12 lg:col-span-6">
-        <ul className="flex flex-wrap gap-2">
-          {MODES.map((m) => {
-            const on = m.id === mode;
-            return (
-              <li key={m.id}>
-                <button
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => setMode(m.id)}
-                  className={cn(
-                    "border px-3.5 py-2.5 text-sm font-medium transition-colors duration-200 motion-reduce:transition-none",
-                    on ? "border-ink bg-ink text-paper" : "border-ink/25 text-ink/75 hover:border-ink",
-                  )}
-                >
-                  {m.label}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        <p className="mt-3 text-sm text-ink/65">{MODES.find((m) => m.id === mode)!.hint}</p>
+    <div className="space-y-12 lg:space-y-16">
+      <div className="grid grid-cols-12 gap-y-10 lg:gap-x-16">
+        {/* ------------------------------- Controls ------------------------------ */}
+        <div className="col-span-12 lg:col-span-6">
+          <ul className="flex flex-wrap gap-2">
+            {MODES.map((m) => {
+              const on = m.id === mode;
+              return (
+                <li key={m.id}>
+                  <button
+                    type="button"
+                    aria-pressed={on}
+                    onClick={() => setMode(m.id)}
+                    className={cn(
+                      "border px-4 py-2.5 font-display text-sm font-bold tracking-[-0.01em] transition-colors duration-200 motion-reduce:transition-none",
+                      on
+                        ? "border-ink bg-ink text-paper"
+                        : "border-ink/25 text-ink/75 hover:border-ink hover:text-ink",
+                    )}
+                  >
+                    {m.label}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-3.5 text-sm text-ink/65">{MODES.find((m) => m.id === mode)!.hint}</p>
 
-        <div className="mt-8 space-y-5">
-          {mode === "convert" && (
-            <>
-              <Field
-                id={`${id}-oz`}
-                label="Ounces per square yard"
-                value={oz}
-                onChange={(v) => {
-                  setOz(v);
-                  setGsmIn("");
-                }}
-                suffix="oz/yd²"
-                step="0.1"
-              />
-              <p className="text-center text-xs uppercase tracking-[0.18em] text-ink/70">or</p>
-              <Field
-                id={`${id}-gsm`}
-                label="Grams per square metre"
-                value={gsmIn}
-                onChange={(v) => {
-                  setGsmIn(v);
-                  setOz("");
-                }}
-                suffix="gsm"
-                step="1"
-              />
-            </>
-          )}
-
-          {mode === "swatch" && (
-            <>
-              <Field
-                id={`${id}-grams`}
-                label="Swatch weight"
-                value={grams}
-                onChange={setGrams}
-                suffix="grams"
-                step="0.01"
-              />
-              <fieldset>
-                <legend className="label text-ink/65">Swatch area</legend>
-                <div className="mt-2.5 flex flex-wrap gap-2">
-                  {[
-                    { on: true, label: "Round cutter (100 cm²)" },
-                    { on: false, label: "Cut rectangle" },
-                  ].map((opt) => (
-                    <button
-                      key={opt.label}
-                      type="button"
-                      aria-pressed={useCutter === opt.on}
-                      onClick={() => setUseCutter(opt.on)}
-                      className={cn(
-                        "border px-3 py-2 text-sm transition-colors duration-200 motion-reduce:transition-none",
-                        useCutter === opt.on
-                          ? "border-ink bg-ink text-paper"
-                          : "border-ink/25 text-ink/75 hover:border-ink",
-                      )}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
+          <div className="mt-9 space-y-6">
+            {mode === "convert" && (
+              <>
+                <Field
+                  id={`${id}-oz`}
+                  label="Ounces per square yard"
+                  value={oz}
+                  onChange={(v) => {
+                    setOz(v);
+                    setGsmIn("");
+                  }}
+                  suffix="oz/yd²"
+                  step="0.1"
+                />
+                {/* A rule with the word set into it, rather than a floating
+                    "or": the two fields are alternatives, and the divider
+                    should look like one. */}
+                <div className="flex items-center gap-4" aria-hidden="true">
+                  <span className="h-px flex-1 bg-ink/15" />
+                  <span className="text-xs uppercase tracking-[0.18em] text-ink/70">or</span>
+                  <span className="h-px flex-1 bg-ink/15" />
                 </div>
-              </fieldset>
-              {!useCutter && (
+                <Field
+                  id={`${id}-gsm`}
+                  label="Grams per square metre"
+                  value={gsmIn}
+                  onChange={(v) => {
+                    setGsmIn(v);
+                    setOz("");
+                  }}
+                  suffix="gsm"
+                  step="1"
+                />
+              </>
+            )}
+
+            {mode === "swatch" && (
+              <>
+                <Field
+                  id={`${id}-grams`}
+                  label="Swatch weight"
+                  value={grams}
+                  onChange={setGrams}
+                  suffix="grams"
+                  step="0.01"
+                  placeholder="e.g. 1.8"
+                />
+                <fieldset>
+                  <legend className="label text-ink/65">Swatch area</legend>
+                  <div className="mt-2.5 flex flex-wrap gap-2">
+                    {[
+                      { on: true, label: "Round cutter (100 cm²)" },
+                      { on: false, label: "Cut rectangle" },
+                    ].map((opt) => (
+                      <button
+                        key={opt.label}
+                        type="button"
+                        aria-pressed={useCutter === opt.on}
+                        onClick={() => setUseCutter(opt.on)}
+                        className={cn(
+                          "border px-3.5 py-2.5 text-sm transition-colors duration-200 motion-reduce:transition-none",
+                          useCutter === opt.on
+                            ? "border-ink bg-ink text-paper"
+                            : "border-ink/25 text-ink/75 hover:border-ink hover:text-ink",
+                        )}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+                {!useCutter && (
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field id={`${id}-w`} label="Width" value={swatchW} onChange={setSwatchW} suffix="cm" step="0.1" />
+                    <Field id={`${id}-h`} label="Height" value={swatchH} onChange={setSwatchH} suffix="cm" step="0.1" />
+                  </div>
+                )}
+                <p className="max-w-prose text-sm leading-relaxed text-ink/65">
+                  A standard round cutter takes exactly 100 cm², which is the only reason
+                  &ldquo;grams times a hundred&rdquo; works. On a hand-cut swatch it does not.
+                </p>
+              </>
+            )}
+
+            {mode === "roll" && (
+              <>
+                <Field
+                  id={`${id}-rg`}
+                  label="Fabric weight"
+                  value={rollGsm}
+                  onChange={setRollGsm}
+                  suffix="gsm"
+                  step="1"
+                  placeholder="e.g. 200"
+                />
                 <div className="grid grid-cols-2 gap-4">
                   <Field
-                    id={`${id}-w`}
-                    label="Width"
-                    value={swatchW}
-                    onChange={setSwatchW}
-                    suffix="cm"
-                    step="0.1"
+                    id={`${id}-rl`}
+                    label="Length"
+                    value={rollLength}
+                    onChange={setRollLength}
+                    suffix="m"
+                    step="1"
+                    placeholder="e.g. 100"
                   />
                   <Field
-                    id={`${id}-h`}
-                    label="Height"
-                    value={swatchH}
-                    onChange={setSwatchH}
+                    id={`${id}-rw`}
+                    label="Usable width"
+                    value={rollWidth}
+                    onChange={setRollWidth}
                     suffix="cm"
-                    step="0.1"
+                    step="1"
                   />
                 </div>
-              )}
-            </>
-          )}
-
-          {mode === "roll" && (
-            <>
-              <Field
-                id={`${id}-rg`}
-                label="Fabric weight"
-                value={rollGsm}
-                onChange={setRollGsm}
-                suffix="gsm"
-                step="1"
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <Field
-                  id={`${id}-rl`}
-                  label="Length"
-                  value={rollLength}
-                  onChange={setRollLength}
-                  suffix="m"
-                  step="1"
-                />
-                <Field
-                  id={`${id}-rw`}
-                  label="Usable width"
-                  value={rollWidth}
-                  onChange={setRollWidth}
-                  suffix="cm"
-                  step="1"
-                />
-              </div>
-              <p className="text-sm leading-relaxed text-ink/65">
-                Usable width, not full width — the selvedge is not cuttable. Two mill
-                quotations compared on price per kilo need the same basis on both.
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="col-span-12 lg:col-span-6">
-        <div className="border border-ink/15 bg-paper-deep p-8 sm:p-10">
-          <p className="label text-ink/65">Result</p>
-
-          {/* aria-live so the answer is announced as it changes: the figure
-              updates in place with no submit step to move focus to. */}
-          <div aria-live="polite">
-            {valid ? (
-              <>
-                <p className="mt-4 font-display text-[clamp(2.75rem,9vw,4.5rem)] font-extrabold leading-none tracking-[-0.04em] text-ink">
-                  {Math.round(gsm!)}
-                  <span className="ml-2 align-baseline font-sans text-base font-normal tracking-normal text-ink/60">
-                    gsm
-                  </span>
+                <p className="max-w-prose text-sm leading-relaxed text-ink/65">
+                  Usable width, not full width — the selvedge is not cuttable. Two mill
+                  quotations compared on price per kilo need the same basis on both.
                 </p>
-                <p className="mt-3 text-ink/70">
-                  {gsmToOzPerSqYard(gsm!).toFixed(2)} oz/yd²
-                </p>
-                {secondary && <p className="mt-1.5 text-sm text-ink/65">{secondary}</p>}
               </>
-            ) : (
-              <p className="mt-4 max-w-sm text-ink/60">
-                Enter a figure and the equivalent appears here, with any construction
-                published on this page that covers it.
-              </p>
+            )}
+          </div>
+        </div>
+
+        {/* -------------------------------- Result ------------------------------- */}
+        <div className="col-span-12 lg:col-span-6">
+          {/* Ink ground, lime figure. The palette allows lime as text only on
+              ink, and this is the one number the whole section exists for. */}
+          <div className="bg-ink p-8 text-paper sm:p-10" data-zone="dark">
+            <p className="label text-paper/60">Result</p>
+
+            {/* aria-live: the figure updates in place with no submit step, so
+                nothing else would announce it. */}
+            <div aria-live="polite">
+              {valid ? (
+                <>
+                  <p className="mt-5 font-display text-[clamp(3rem,10vw,5rem)] font-extrabold leading-[0.9] tracking-[-0.045em] text-lime">
+                    {Math.round(gsm!)}
+                    <span className="ml-2.5 align-baseline font-sans text-base font-normal tracking-normal text-paper/70">
+                      gsm
+                    </span>
+                  </p>
+                  <p className="mt-6 flex flex-wrap items-baseline gap-x-3 border-t border-paper/20 pt-6">
+                    <span className="font-display text-2xl font-bold tracking-[-0.02em] text-paper">
+                      {gsmToOzPerSqYard(gsm!).toFixed(2)}
+                    </span>
+                    <span className="text-sm text-paper/70">oz/yd²</span>
+                  </p>
+                  {secondary && <p className="mt-3 text-sm text-paper/75">{secondary}</p>}
+                </>
+              ) : (
+                <p className="mt-5 max-w-sm text-paper/70">
+                  Enter a figure and the equivalent appears here, with every construction
+                  published on this page that covers it.
+                </p>
+              )}
+            </div>
+
+            {valid && (
+              <div className="mt-8 border-t border-paper/20 pt-6">
+                <p className="label text-paper/60">
+                  {matching.length > 0
+                    ? `Published at this weight · ${matching.length} of ${materials.length}`
+                    : "No published construction covers this weight"}
+                </p>
+                {matching.length > 0 ? (
+                  <ul className="mt-4 space-y-2.5">
+                    {matching.map((m) => (
+                      <li key={m.slug} className="flex flex-wrap items-baseline gap-x-3">
+                        <span className="font-display text-sm font-bold tracking-[-0.01em] text-paper">
+                          {m.name}
+                        </span>
+                        <span className="text-sm text-paper/70">
+                          {m.family} · {m.typicalWeight}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/75">
+                    That sits outside the constructions listed above. It does not mean it
+                    cannot be developed — send the requirement and we will say whether it is.
+                  </p>
+                )}
+              </div>
             )}
           </div>
 
+          <p className="mt-6 max-w-prose text-sm leading-relaxed text-ink/70">
+            This works out fabric weight, not fabric consumption. How many metres a garment
+            takes comes from the marker — the pattern, the size ratio, the width and the nap
+            all move it — and that is produced at sampling rather than estimated from a
+            weight.{" "}
+            <Link
+              href="/request-a-quote"
+              className="text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink"
+            >
+              Send the specification
+            </Link>{" "}
+            and we will come back on construction and commercial FOB costing.
+          </p>
+        </div>
+      </div>
+
+      {/* -------------------------------- Scale --------------------------------- */}
+      <div>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-ink/15 pt-8">
+          <p className="label text-ink/65">Every construction on this page, by weight</p>
           {valid && (
-            <div className="mt-8 border-t border-ink/15 pt-6">
-              <p className="label text-ink/65">
-                {matching.length > 0
-                  ? "Constructions published at this weight"
-                  : "No construction on this page covers that weight"}
-              </p>
-              {matching.length > 0 ? (
-                <ul className="mt-4 space-y-2.5">
-                  {matching.map((m) => (
-                    <li key={m.slug} className="flex flex-wrap items-baseline gap-x-3">
-                      <span className="font-display text-sm font-bold tracking-[-0.01em] text-ink">
-                        {m.name}
-                      </span>
-                      <span className="text-sm text-ink/65">
-                        {m.family} · {m.typicalWeight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink/70">
-                  That is outside the range of the constructions listed above. It does not
-                  mean it cannot be developed — send the requirement and we will say
-                  whether it is.
-                </p>
-              )}
-              <p className="mt-6 text-sm leading-relaxed text-ink/70">
-                Weight is one of five things that decide how a cloth behaves.{" "}
-                <Link
-                  href="/request-a-quote"
-                  className="text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink"
-                >
-                  Send the specification
-                </Link>{" "}
-                and we will come back on construction and commercial FOB costing.
-              </p>
-            </div>
+            <p className="text-sm text-ink/70">
+              Marker at {Math.round(gsm!)} gsm
+            </p>
           )}
         </div>
 
-        <p className="mt-5 max-w-prose text-sm leading-relaxed text-ink/65">
-          This works out fabric weight, not fabric consumption. How many metres a
-          garment takes comes from the marker — the pattern, the size ratio, the width
-          and the nap all move it — and that is produced at sampling rather than
-          estimated from a weight.
+        {/* The bars carry no information the rows do not already state in text,
+            so the whole chart is hidden from assistive technology and the
+            names and ranges beside it do the work. */}
+        <div className="mt-8 space-y-3.5">
+          {/* The axis lives in the same grid columns as the bars. Laid out
+              full-width above them it labelled positions the bars do not
+              occupy, which is worse than no axis at all. */}
+          <div className="grid grid-cols-12 gap-x-4" aria-hidden="true">
+            <div className="col-span-12 sm:col-span-7 sm:col-start-4">
+              <div className="relative h-4">
+                {ticks.map((t, i) => (
+                  <span
+                    key={t}
+                    className={cn(
+                      "absolute top-0 text-[0.6875rem] tabular-nums text-ink/70",
+                      i === 0 && "translate-x-0",
+                      i === ticks.length - 1 && "-translate-x-full",
+                      i > 0 && i < ticks.length - 1 && "-translate-x-1/2",
+                    )}
+                    style={{ left: `${pct(t)}%` }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {PLOTTED.map(({ material, range }) => {
+            const covers = valid && gsm! >= range.min && gsm! <= range.max;
+            return (
+              <div
+                key={material.slug}
+                className="grid grid-cols-12 items-center gap-x-4 gap-y-1.5"
+              >
+                <p className="col-span-12 sm:col-span-3">
+                  <span
+                    className={cn(
+                      "font-display text-sm font-bold tracking-[-0.01em]",
+                      covers ? "text-ink" : "text-ink/70",
+                    )}
+                  >
+                    {material.name}
+                  </span>
+                  <span className="ml-2 whitespace-nowrap text-xs text-ink/65 sm:hidden">
+                    {material.typicalWeight}
+                  </span>
+                </p>
+
+                <div className="col-span-12 sm:col-span-7">
+                  <div className="relative h-7 bg-ink/[0.06]" aria-hidden="true">
+                    <span
+                      className={cn(
+                        "absolute inset-y-0 transition-colors duration-300 motion-reduce:transition-none",
+                        covers ? "bg-ink" : "bg-ink/20",
+                      )}
+                      style={{
+                        left: `${pct(range.min)}%`,
+                        width: `${pct(range.max) - pct(range.min)}%`,
+                      }}
+                    />
+                    {valid && (
+                      /* Paper core with an ink ring: legible against the empty
+                         track and against a solid ink bar, which a single
+                         flat colour cannot be. Lime is not an option — it is
+                         about 1.4:1 on paper. */
+                      <span
+                        className={cn(
+                          "absolute w-0.5 bg-paper",
+                          /* Rows are 14px apart, so a marker clipped to the bar
+                             breaks into eight separate ticks. Bleeding 7px past
+                             each edge closes the gaps and it reads as one weight
+                             cutting across every construction. Only from `sm`:
+                             below that the name sits above its bar and a
+                             continuous line would run through the text. */
+                          "inset-y-0 sm:-inset-y-[7px]",
+                        )}
+                        style={{
+                          left: `${Math.min(100, Math.max(0, pct(gsm!)))}%`,
+                          boxShadow: "0 0 0 1px var(--color-ink)",
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <p className="col-span-12 hidden text-xs text-ink/65 sm:col-span-2 sm:block">
+                  {material.typicalWeight}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="mt-7 max-w-prose text-sm leading-relaxed text-ink/70">
+          Ranges are the constructions published above, not a stock list. A weight outside
+          all of them is a development question rather than a refusal.
         </p>
       </div>
     </div>
@@ -333,6 +484,7 @@ function Field({
   onChange,
   suffix,
   step,
+  placeholder,
 }: {
   id: string;
   label: string;
@@ -340,13 +492,14 @@ function Field({
   onChange: (value: string) => void;
   suffix: string;
   step: string;
+  placeholder?: string;
 }) {
   return (
     <div>
       <label htmlFor={id} className="label text-ink/65">
         {label}
       </label>
-      <div className="mt-2 flex items-stretch border border-ink/20 focus-within:border-ink">
+      <div className="mt-2.5 flex items-stretch border border-ink/20 bg-paper transition-colors focus-within:border-ink motion-reduce:transition-none">
         <input
           id={id}
           type="number"
@@ -354,13 +507,14 @@ function Field({
           min="0"
           step={step}
           value={value}
+          placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
           /* A focused number input takes the page's scroll and changes its own
              value. On a long page that reads as the answer changing by itself. */
           onWheel={(e) => e.currentTarget.blur()}
-          className="w-full bg-transparent px-3.5 py-3 text-[0.9375rem] text-ink outline-none"
+          className="w-full bg-transparent px-4 py-3.5 font-display text-lg font-bold tracking-[-0.01em] text-ink outline-none placeholder:font-sans placeholder:text-base placeholder:font-normal placeholder:text-ink/35"
         />
-        <span className="flex shrink-0 items-center border-l border-ink/15 px-3.5 text-sm text-ink/60">
+        <span className="flex shrink-0 items-center border-l border-ink/15 bg-ink/[0.04] px-4 text-sm text-ink/70">
           {suffix}
         </span>
       </div>
