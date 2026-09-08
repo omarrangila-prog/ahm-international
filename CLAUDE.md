@@ -218,6 +218,35 @@ strings to `paper` and `ink`. Those still match `[data-zone]`, so nothing broke
 loudly — the footer just multiplied a weave into near-black and showed no
 texture at all. `tests/zones.test.ts` now fails the build on any other value.
 
+## The GSM calculator does three things, not four
+
+`components/sections/GsmCalculator.tsx` on `/materials`, with the arithmetic in
+`lib/gsm.ts` so it can be tested away from the UI. These are the only numbers on
+the site a visitor can check on their own calculator, and they get quoted back
+to a mill.
+
+- **Convert** is the one that costs money: US and UK buyers specify oz/yd²,
+  mills here quote gsm. Exact, not an estimate — the ounce and the yard have
+  been defined since 1959, so `GSM_PER_OZ_PER_SQ_YARD` is 28.349523125 /
+  0.83612736. The constants are written out unmultiplied so the derivation is
+  checkable.
+- **Weigh a swatch** takes an area rather than assuming one. The bench shortcut
+  is "grams times a hundred", correct only because a standard round cutter is
+  exactly 100 cm². On a hand-cut 15x15 square it overstates by 125% and fails
+  silently: the wrong answer still looks like a plausible gsm.
+- **Roll weight** uses usable width, not full width. The selvedge is not
+  cuttable, and two mills compared on price per kilo need the same basis.
+
+**There is deliberately no consumption-per-garment mode.** It is the number
+buyers most want and it cannot be derived from a weight — it comes from the
+marker, and moves with the pattern, size ratio, width and nap. A rule of thumb
+would be a fabricated figure someone costs a program against.
+
+The result panel lists constructions whose `typicalWeight` range covers the
+answer, parsed from `data/materials.ts`, so nothing can appear there without
+being published there. `tests/gsm.test.ts` holds the conversions and asserts
+every published range still parses.
+
 ## Motion: CSS first, Framer where CSS cannot
 
 The vocabulary is still CSS. `motion/react` is used in two places — the product

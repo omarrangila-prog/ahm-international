@@ -5,6 +5,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { TrimsLibrary } from "@/components/products/TrimsLibrary";
 import { FabricCompare } from "@/components/sections/FabricCompare";
+import { GsmCalculator } from "@/components/sections/GsmCalculator";
 import { HandFeel } from "@/components/sections/HandFeel";
 import { MaterialIndex } from "@/components/sections/MaterialIndex";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
@@ -67,6 +68,32 @@ export default function MaterialsPage() {
             Fabric constructions
           </h2>
           <MaterialIndex />
+        </div>
+      </Section>
+
+      {/* Placed between the index and the correction to it, deliberately.
+          A buyer arrives holding a weight in the units their market uses, and
+          the index above is in gsm; the calculator turns one into the other and
+          names the constructions that cover it. Reading "same weight, different
+          cloth" immediately afterwards lands harder on someone who has just
+          been concentrating on a single number. */}
+      <Section zone="paper" spacing="lg" aria-labelledby="gsm-heading">
+        <div className="shell-wide">
+          <Eyebrow>Fabric weight</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="gsm-heading"
+            className="mt-5 max-w-4xl font-display text-h1 text-ink"
+            lines={[{ text: "Ounces, grams," }, { text: "one cloth." }]}
+          />
+          <p className="mt-7 max-w-2xl text-lead text-ink/70">
+            A specification written in ounces per square yard and a mill quoting grams per
+            square metre are describing the same fabric. Convert between them, work out the
+            weight of a swatch you have cut, or size the fabric for an order.
+          </p>
+          <div className="mt-14">
+            <GsmCalculator />
+          </div>
         </div>
       </Section>
 
