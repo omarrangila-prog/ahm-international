@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import {
   GSM_CUTTER_AREA_CM2,
@@ -120,13 +120,68 @@ export function GsmCalculator() {
   const valid = gsm !== null && Number.isFinite(gsm) && gsm > 0;
   const matching = valid ? materials.filter((m) => rangeCovers(m.typicalWeight, gsm!)) : [];
 
+  /* What those constructions are used for. A weight on its own prompts "and
+     what is that for?", and `useCases` already answers it in published data. */
+  const uses = [...new Set(matching.flatMap((m) => m.useCases))];
+
+  /* Carry the answer into the quote form. The weight always; the fabric only
+     when one construction covers it, because naming one of three would be
+     choosing on the buyer's behalf. */
+  const rfqHref = valid
+    ? `/request-a-quote?${new URLSearchParams({
+        weight: `${Math.round(gsm!)} gsm`,
+        ...(matching.length === 1 ? { fabric: matching[0].name } : {}),
+        source: "gsm_calculator",
+      }).toString()}`
+    : "/request-a-quote";
+
   /* The axis stretches to include the answer rather than clipping it. A swatch
      mis-cut at 15x15 reads 80 gsm, well under everything published; pinning the
      scale to the published range would put the marker off the end of it, which
      is the moment it most needs to be visible. */
-  const axisMin = Math.min(100, Math.floor(((valid ? gsm! : PUBLISHED_MIN) - 20) / 50) * 50);
-  const axisMax = Math.max(400, Math.ceil(((valid ? gsm! : PUBLISHED_MAX) + 20) / 50) * 50);
+  const axisMin = Math.min(100, Math.floor((valid ? gsm! : PUBLISHED_MIN) / 50) * 50);
+  const axisMax = Math.max(400, Math.ceil((valid ? gsm! : PUBLISHED_MAX) / 50) * 50);
   const pct = (value: number) => ((value - axisMin) / (axisMax - axisMin)) * 100;
+
+  /* ---------------------------- Dragging the scale ---------------------------
+   * The scale started read-only, which left the most interesting question on
+   * the page unanswerable: what else is made at this weight? Dragging answers
+   * it directly — the bars fill and empty as the marker crosses them.
+   *
+   * A drag writes into the gsm field and switches to Convert, so there is one
+   * source of truth rather than a second hidden weight that disagrees with the
+   * inputs.
+   */
+  const trackRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+
+  const setFromScale = (value: number) => {
+    setMode("convert");
+    setOz("");
+    setGsmIn(String(Math.min(axisMax, Math.max(axisMin, value))));
+  };
+
+  const valueFromClientX = (clientX: number) => {
+    const el = trackRef.current;
+    if (!el) return null;
+    const rect = el.getBoundingClientRect();
+    if (rect.width === 0) return null;
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    return Math.round(axisMin + ratio * (axisMax - axisMin));
+  };
+
+  const onScaleKeyDown = (event: React.KeyboardEvent) => {
+    const current = valid ? Math.round(gsm!) : Math.round((axisMin + axisMax) / 2);
+    const step = event.shiftKey ? 25 : 5;
+    let next: number | null = null;
+    if (event.key === "ArrowLeft" || event.key === "ArrowDown") next = current - step;
+    else if (event.key === "ArrowRight" || event.key === "ArrowUp") next = current + step;
+    else if (event.key === "Home") next = axisMin;
+    else if (event.key === "End") next = axisMax;
+    if (next === null) return;
+    event.preventDefault();
+    setFromScale(next);
+  };
 
   const ticks: number[] = [];
   for (let t = axisMin; t <= axisMax; t += 100) ticks.push(t);
@@ -343,6 +398,34 @@ export function GsmCalculator() {
                     cannot be developed — send the requirement and we will say whether it is.
                   </p>
                 )}
+
+                {uses.length > 0 && (
+                  <div className="mt-7">
+                    <p className="label text-paper/60">Typically used for</p>
+                    <ul className="mt-3 flex flex-wrap gap-1.5">
+                      {uses.map((use) => (
+                        <li
+                          key={use}
+                          className="border border-paper/25 px-2.5 py-1 text-xs text-paper/85"
+                        >
+                          {use}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* The weight travels into the form rather than being retyped.
+                    The RFQ reads `weight` and `fabric` from the query string,
+                    so the buyer arrives with the figure already in the field
+                    they were about to fill in by hand. */}
+                <Link
+                  href={rfqHref}
+                  className="mt-8 inline-flex min-h-12 items-center gap-2 bg-lime px-5 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink transition-opacity duration-200 hover:opacity-90 motion-reduce:transition-none"
+                >
+                  Quote this weight
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
             )}
           </div>
@@ -381,9 +464,9 @@ export function GsmCalculator() {
           {/* The axis lives in the same grid columns as the bars. Laid out
               full-width above them it labelled positions the bars do not
               occupy, which is worse than no axis at all. */}
-          <div className="grid grid-cols-12 gap-x-4" aria-hidden="true">
+          <div className="grid grid-cols-12 gap-x-4">
             <div className="col-span-12 sm:col-span-7 sm:col-start-4">
-              <div className="relative h-4">
+              <div className="relative h-4" aria-hidden="true">
                 {ticks.map((t, i) => (
                   <span
                     key={t}
@@ -399,6 +482,55 @@ export function GsmCalculator() {
                   </span>
                 ))}
               </div>
+
+              {/* The scale is the control, not just a picture of the answer.
+                  A real slider role rather than a div with handlers: it is
+                  reachable by keyboard, announces its value, and arrow keys
+                  step 5 gsm (25 with shift). `pan-y` keeps vertical scrolling
+                  working on a phone while the horizontal axis is captured —
+                  the same trade the compare slider makes. */}
+              <div
+                ref={trackRef}
+                role="slider"
+                tabIndex={0}
+                aria-label="Fabric weight"
+                aria-valuemin={axisMin}
+                aria-valuemax={axisMax}
+                aria-valuenow={valid ? Math.round(gsm!) : undefined}
+                aria-valuetext={valid ? `${Math.round(gsm!)} grams per square metre` : undefined}
+                onKeyDown={onScaleKeyDown}
+                onPointerDown={(event) => {
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  dragging.current = true;
+                  const value = valueFromClientX(event.clientX);
+                  if (value !== null) setFromScale(value);
+                }}
+                onPointerMove={(event) => {
+                  if (!dragging.current) return;
+                  const value = valueFromClientX(event.clientX);
+                  if (value !== null) setFromScale(value);
+                }}
+                onPointerUp={(event) => {
+                  dragging.current = false;
+                  event.currentTarget.releasePointerCapture(event.pointerId);
+                }}
+                onPointerCancel={() => {
+                  dragging.current = false;
+                }}
+                className="group relative mt-1 h-9 cursor-ew-resize select-none"
+                style={{ touchAction: "pan-y" }}
+              >
+                <span className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-ink/20" />
+                {valid && (
+                  <span
+                    className="pointer-events-none absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 border-2 border-ink bg-paper transition-colors duration-200 group-hover:bg-ink motion-reduce:transition-none"
+                    style={{ left: `${Math.min(100, Math.max(0, pct(gsm!)))}%` }}
+                  />
+                )}
+              </div>
+              <p className="mt-1 text-xs text-ink/65">
+                Drag, or use the arrow keys, to see what else is made at a weight.
+              </p>
             </div>
           </div>
 

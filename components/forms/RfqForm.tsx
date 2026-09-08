@@ -106,6 +106,9 @@ export function RfqForm() {
     const map: [string, keyof RfqInput][] = [
       ["category", "category"],
       ["fabric", "fabric"],
+      // Carried by the GSM calculator on /materials, so a buyer who has just
+      // worked out a weight does not retype it into the field below.
+      ["weight", "weight"],
       ["quantity", "quantity"],
       ["destination", "destinationPort"],
       ["delivery", "targetDelivery"],

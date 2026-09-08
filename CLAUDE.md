@@ -266,6 +266,22 @@ The axis stretches to include the answer rather than clipping it — a swatch
 mis-cut at 15x15 reads 80 gsm, under everything published, which is exactly
 when the marker most needs to be on screen.
 
+**The scale is a control, not a picture.** Drag it, or focus it and use the
+arrow keys (5 gsm a step, 25 with shift), and the bars fill and empty as the
+marker crosses them — which is how you answer "what else is made at this
+weight". It is a real `role="slider"` with the ARIA value properties rather
+than a div with pointer handlers, so it is reachable by keyboard and announces
+itself; `touch-action: pan-y` keeps vertical scrolling working on a phone,
+the same trade the compare slider makes. A drag writes into the gsm field and
+switches to Convert, so there is one source of truth rather than a second
+hidden weight disagreeing with the inputs.
+
+The result carries into the RFQ: `weight` is in the query-param map in
+`RfqForm`, so **Quote this weight** lands on the form with the figure already
+in the Weight / GSM field. `fabric` is only added when exactly one construction
+covers the weight — naming one of three would be choosing on the buyer's
+behalf.
+
 ## Motion: CSS first, Framer where CSS cannot
 
 The vocabulary is still CSS. `motion/react` is used in two places — the product
