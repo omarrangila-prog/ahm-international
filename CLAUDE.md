@@ -124,6 +124,12 @@ scale.
 - `white` survives for the plates behind dark garment renders, where warm paper
   would tint the product. Functional, not brand.
 
+**The floor for text on paper is `text-ink/65`.** Measured: `/45` at 12px is
+3.01:1 and `/50` at 14px is 3.43:1, both under the 4.5:1 AA threshold, while
+`/65` and `/70` pass. Two components have now shipped a dimmed label below that
+floor and been caught by the audit rather than by eye — a muted number reads as
+"quiet" on screen long before it reads as illegible.
+
 `npm run contrast` audits every pairing on every route against the rendered
 page. It parses `oklab()`, which is what Tailwind v4 emits for `text-ink/70`;
 a naive `rgb()` regex reads the lightness as red and invents around seventy
@@ -281,6 +287,28 @@ The result carries into the RFQ: `weight` is in the query-param map in
 in the Weight / GSM field. `fabric` is only added when exactly one construction
 covers the weight — naming one of three would be choosing on the buyer's
 behalf.
+
+## The Incoterms chain draws cost and risk as two different things
+
+`components/sections/IncotermsChain.tsx` on `/export`, from `data/incoterms.ts`.
+
+It exists for one misunderstanding. Under CFR and CIF the seller pays freight to
+the destination port, so a "who pays" table puts the handover there — but risk
+passes when the goods are on board at origin. A container lost mid-ocean on CIF
+is the buyer's loss, claimed on a policy the seller bought. So `riskPassesAfter`
+is modelled separately from `carriedBy`, and where they disagree the component
+says so in a sentence rather than leaving it to shading.
+
+DAP is non-contiguous on purpose: the seller carries past the destination
+terminal and on to the door while import clearance stays with the buyer. Its
+`riskPassesAfter` is 10, not 8 — the buyer's step 9 obligation is a formality
+performed while the goods are still at the seller's risk. Modelled as an 8 it
+made DAP render like CIF and handed the buyer a loss it does not own.
+
+The chart is context, not an offer. AHM quotes FOB Karachi and the note under it
+says a rule appearing here is not a service being offered. Nothing carries a
+cost, a duty rate or a quotation. `tests/incoterms.test.ts` holds the
+invariants, including that CFR and CIF never collapse cost and risk together.
 
 ## Motion: CSS first, Framer where CSS cannot
 

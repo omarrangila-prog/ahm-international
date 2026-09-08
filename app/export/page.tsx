@@ -5,6 +5,7 @@ import { ExportGlobe } from "@/components/sections/ExportGlobe";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
+import { IncotermsChain } from "@/components/sections/IncotermsChain";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { Faq } from "@/components/ui/Faq";
@@ -114,6 +115,30 @@ export default function ExportPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* The page says AHM is an FOB exporter; this says what that sentence
+          actually commits each side to, and where the handover falls. See
+          components/sections/IncotermsChain.tsx for why cost and risk are drawn
+          as two separate things. */}
+      <Section zone="paper" spacing="lg" aria-labelledby="incoterms-heading">
+        <div className="shell-wide">
+          <Eyebrow>Terms of delivery</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="incoterms-heading"
+            className="mt-5 max-w-4xl font-display text-h1 text-ink"
+            lines={[{ text: "Where the shipment" }, { text: "stops being ours." }]}
+          />
+          <p className="mt-7 max-w-2xl text-lead text-ink/70">
+            Every quotation carries a rule that decides who books the freight, who clears
+            customs and — separately — who owns the loss if a container goes over the side.
+            Pick a rule and the chain below redraws.
+          </p>
+          <div className="mt-14">
+            <IncotermsChain />
           </div>
         </div>
       </Section>
