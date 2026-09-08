@@ -2,14 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { FileText, Upload, X, AlertCircle } from "lucide-react";
-import {
-  ACCEPT_ATTRIBUTE,
-  MAX_FILE_BYTES,
-  MAX_FILES,
-  MAX_TOTAL_BYTES,
-  isAcceptedUpload,
-  sanitiseFilename,
-} from "@/lib/upload-policy";
+import { ACCEPT_ATTRIBUTE, MAX_FILE_BYTES, MAX_FILES, MAX_TOTAL_BYTES, isAcceptedUpload, sanitiseFilename, ACCEPTED_LABEL } from "@/lib/upload-policy";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -130,8 +123,8 @@ export function FileDrop({
           </span>
         </div>
         <p className={cn("text-xs", dark ? "text-current/70" : "text-ink/60")}>
-          PDF, XLSX, DOCX, JPG, PNG or ZIP · up to {Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB each ·{" "}
-          {MAX_FILES} files max
+          {ACCEPTED_LABEL} · up to {Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB each ·{" "}
+          {MAX_FILES} files · {Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB total
         </p>
 
         <input

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
@@ -30,15 +29,11 @@ export default function RequestQuotePage() {
       <Section zone="paper" spacing="none">
         <div className="shell-wide grid grid-cols-12 gap-y-12 pb-24 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-8">
-            <Suspense
-              fallback={
-                <div className="border border-ink/15 bg-paper p-10">
-                  <p className="label text-ink/60">Loading the quote form…</p>
-                </div>
-              }
-            >
-              <RfqForm />
-            </Suspense>
+            {/* No Suspense boundary: the form no longer reads
+                useSearchParams(), so it prerenders with the rest of the page
+                instead of shipping a "Loading" placeholder as the entire
+                lead-capture path. */}
+            <RfqForm />
           </div>
 
           <aside className="col-span-12 lg:col-span-4">

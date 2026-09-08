@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField, CheckChip, CheckboxField, Honeypot } from "./Fields";
@@ -59,7 +58,6 @@ const stepFields: Record<number, (keyof RfqInput)[]> = {
 };
 
 export function RfqForm() {
-  const searchParams = useSearchParams();
   const [step, setStep] = useState(0);
   const [files, setFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<Status>("idle");
@@ -87,8 +85,24 @@ export function RfqForm() {
     defaultValues: { decoration: [], source: "rfq_page" },
   });
 
-  /** Carry benchmark selections through from the homepage. */
+  /*
+   * Carry benchmark selections through from the homepage.
+   *
+   * Read from `window.location.search` rather than `useSearchParams()`.
+   * That hook opts its subtree out of static prerendering: it requires a
+   * Suspense boundary, and at build time the boundary emits its fallback
+   * instead of the form. The served HTML for /request-a-quote therefore
+   * contained zero <form> and zero <input> elements — the words "Loading the
+   * quote form" and nothing else — so the entire lead-capture path existed
+   * only after hydration.
+   *
+   * Preselecting a category is an enhancement, not the page. Reading it on
+   * mount costs nothing that matters and lets the form render on the server,
+   * where it is visible to a buyer whose JavaScript is slow, blocked, or
+   * broken.
+   */
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
     const map: [string, keyof RfqInput][] = [
       ["category", "category"],
       ["fabric", "fabric"],
@@ -105,7 +119,7 @@ export function RfqForm() {
     if (decoration && decoration !== "None" && decoration !== "To be confirmed") {
       setValue("decoration", [decoration]);
     }
-  }, [searchParams, setValue]);
+  }, [setValue]);
 
   // react-hook-form's watch() returns a function the compiler cannot safely
   // memoize (it is not a pure read — it re-subscribes). This is a library

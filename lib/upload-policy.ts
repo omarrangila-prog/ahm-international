@@ -28,6 +28,33 @@ export const ACCEPTED_UPLOADS: Record<string, string[]> = {
 
 export const ACCEPT_ATTRIBUTE = ".pdf,.xlsx,.xls,.docx,.doc,.jpg,.jpeg,.png,.webp,.zip";
 
+/* ------------------------------------------------------------------ *
+ * How the rules are described to a buyer.
+ *
+ * Derived here rather than written out at each call site. Four places
+ * stated these limits and no two agreed: the tech-pack page listed six
+ * extensions and omitted WEBP, the upload widget listed the same six, and
+ * only the privacy policy carried the 40 MB submission cap. A buyer could
+ * follow the tech-pack page, attach six 15 MB files, and be refused by a
+ * total limit that page never mentioned.
+ * ------------------------------------------------------------------ */
+
+const mb = (bytes: number) => Math.round(bytes / 1024 / 1024);
+
+/** Extensions in upper case, e.g. "PDF, XLSX, DOCX, JPG, PNG, WEBP or ZIP". */
+export const ACCEPTED_LABEL = (() => {
+  // jpeg and doc/xls are aliases of a listed format; naming both twice reads
+  // as clutter rather than as precision.
+  const shown = Object.keys(ACCEPTED_UPLOADS).filter((e) => !["jpeg", "doc", "xls"].includes(e));
+  const upper = shown.map((e) => e.toUpperCase());
+  return `${upper.slice(0, -1).join(", ")} or ${upper.at(-1)}`;
+})();
+
+/** Every numeric limit in one sentence, including the total. */
+export const UPLOAD_LIMITS = `Up to ${MAX_FILES} files, ${mb(MAX_FILE_BYTES)} MB per file and ${mb(
+  MAX_TOTAL_BYTES,
+)} MB per submission.`;
+
 /**
  * Strips directory components and control characters from an uploaded filename.
  *

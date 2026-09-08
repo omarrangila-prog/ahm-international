@@ -44,6 +44,15 @@ export type ProductCategory = {
   name: string;
   /** Short label for cards and menus. */
   shortName: string;
+  /**
+   * Singular noun for sentences like "How your ___ program starts."
+   *
+   * Authored per category rather than derived. `shortName` is plural and
+   * several are compound, so dropping it into a sentence produced "How a
+   * aprons program starts" and "SEND ONE POLOS & T-SHIRTS SPEC." on live
+   * product pages. No amount of a/an logic fixes "a polos & t-shirts".
+   */
+  programNoun: string;
   /** Page hero headline. */
   headline: string;
   /** One-sentence positioning for the category. */
@@ -90,6 +99,7 @@ export const productCategories: ProductCategory[] = [
     index: 1,
     name: "Uniform & Workwear",
     shortName: "Uniform & Workwear",
+    programNoun: "uniform",
     headline: "Uniform programs,\nbuilt to be worn every day.",
     intro:
       "Garments that have to survive a shift, a wash cycle and a reorder twelve months later looking like the first delivery.",
@@ -130,6 +140,7 @@ export const productCategories: ProductCategory[] = [
     index: 2,
     name: "Polos & T-Shirts",
     shortName: "Polos & T-Shirts",
+    programNoun: "polo or T-shirt",
     headline: "The garment your\nprogram lives on.",
     intro:
       "The highest-volume item in most uniform programs, and the one where collar recovery and colour consistency across reorders decide whether a buyer stays.",
@@ -167,6 +178,7 @@ export const productCategories: ProductCategory[] = [
     index: 3,
     name: "Fleece & Sweatshirts",
     shortName: "Fleece & Sweatshirts",
+    programNoun: "fleece",
     headline: "Layers that carry\nthe logo all winter.",
     intro:
       "Sweatshirts, hoodies and full-zip fleece: the layer that gets worn outside the building, which makes it the most visible garment in the program.",
@@ -204,6 +216,7 @@ export const productCategories: ProductCategory[] = [
     index: 4,
     name: "Aprons",
     shortName: "Aprons",
+    programNoun: "apron",
     headline: "Aprons,\nengineered for work.",
     intro:
       "The article AHM has documented export experience producing: a stain-managed poly-cotton bib apron for a United States uniform program.",
@@ -241,6 +254,7 @@ export const productCategories: ProductCategory[] = [
     index: 5,
     name: "Woven Shirts",
     shortName: "Woven Shirts",
+    programNoun: "woven shirt",
     headline: "Woven shirting\nthat holds its press.",
     intro:
       "Button-front uniform and utility shirting, where collar construction and fusing quality show up on day one and after fifty washes.",
@@ -277,6 +291,7 @@ export const productCategories: ProductCategory[] = [
     index: 6,
     name: "Bottoms",
     shortName: "Bottoms",
+    programNoun: "bottoms",
     headline: "Bottoms that take\nthe abuse.",
     intro:
       "Work trousers and shorts, where pocket bags, bar tacks and crotch gusset construction determine the real cost per wear.",
@@ -313,6 +328,7 @@ export const productCategories: ProductCategory[] = [
     index: 7,
     name: "Outerwear",
     shortName: "Outerwear",
+    programNoun: "outerwear",
     headline: "Outerwear for\noutdoor programs.",
     intro:
       "Softshell, lightweight jackets and vests: the layer with the most components, and the one where a clear tech pack saves the most cost.",
@@ -350,6 +366,7 @@ export const productCategories: ProductCategory[] = [
     index: 8,
     name: "Hospitality & Food Service",
     shortName: "Hospitality",
+    programNoun: "hospitality uniform",
     headline: "Front of house,\nback of house.",
     intro:
       "Service uniforms are judged twice: by the guest who sees them and by the operator who launders them two hundred times.",
@@ -390,6 +407,7 @@ export const productCategories: ProductCategory[] = [
     index: 9,
     name: "Denim",
     shortName: "Denim",
+    programNoun: "denim",
     headline: "Denim, developed\nrather than copied.",
     intro:
       "Weight, weave, sanforisation and wash decide how a denim garment ages. All four are specification decisions taken before the first sample.",
@@ -428,6 +446,7 @@ export const productCategories: ProductCategory[] = [
     index: 10,
     name: "Athleisure",
     shortName: "Athleisure",
+    programNoun: "athleisure",
     headline: "Performance knits\nand relaxed fits.",
     intro:
       "Athleisure lives or dies on hand feel and recovery. Both are fabric decisions, and both are confirmed on a physical sample rather than a spec sheet.",
@@ -467,6 +486,7 @@ export const productCategories: ProductCategory[] = [
     index: 11,
     name: "Womenswear",
     shortName: "Womenswear",
+    programNoun: "womenswear",
     headline: "Cut for the wearer,\nnot scaled down.",
     intro:
       "A women's block is a different pattern, not a smaller men's one. Where a program needs both, the two are developed as separate blocks from the start.",
@@ -506,6 +526,7 @@ export const productCategories: ProductCategory[] = [
     index: 12,
     name: "Kidswear",
     shortName: "Kidswear",
+    programNoun: "kidswear",
     headline: "Children's apparel,\nand the rules that come with it.",
     intro:
       "Children's garments carry safety requirements that adult apparel does not. Cords, small parts and flammability are qualification questions, answered before development starts.",

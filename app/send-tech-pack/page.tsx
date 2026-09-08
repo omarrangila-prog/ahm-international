@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { RfqForm } from "@/components/forms/RfqForm";
+import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "@/lib/upload-policy";
 import { ContentBlocks } from "@/components/ui/ContentBlocks";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { pageMetadata } from "@/lib/seo";
@@ -11,7 +11,7 @@ import type { ContentBlock } from "@/data/sourcing";
 export const metadata: Metadata = pageMetadata({
   title: "Send a Tech Pack",
   description:
-    "Upload a tech pack, sketch or reference specification for review and commercial FOB costing. PDF, XLSX, DOCX, JPG, PNG or ZIP.",
+    `Upload a tech pack, sketch or reference specification for review and commercial FOB costing. ${ACCEPTED_LABEL}.`,
   path: "/send-tech-pack",
 });
 
@@ -51,15 +51,10 @@ export default function SendTechPackPage() {
       <Section zone="paper" spacing="none">
         <div className="shell-wide grid grid-cols-12 gap-y-12 pb-24 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-8">
-            <Suspense
-              fallback={
-                <div className="border border-ink/15 bg-paper p-10">
-                  <p className="label text-ink/60">Loading the upload form…</p>
-                </div>
-              }
-            >
-              <RfqForm />
-            </Suspense>
+            {/* Same as /request-a-quote: the boundary existed only because the
+                form read useSearchParams(), and it cost this page its form in
+                the prerendered HTML. */}
+            <RfqForm />
           </div>
 
           <aside className="col-span-12 lg:col-span-4">
@@ -73,8 +68,7 @@ export default function SendTechPackPage() {
                 ))}
               </ul>
               <p className="mt-5 text-sm leading-relaxed text-ink/65">
-                Up to 15 MB per file and 6 files per submission. Everything you send is treated as
-                confidential.
+                {UPLOAD_LIMITS} Everything you send is treated as confidential.
               </p>
             </div>
           </aside>

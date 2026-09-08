@@ -306,7 +306,10 @@ export default async function ProductCategoryPage({ params }: Params) {
                 as="h2"
                 id="devpath-heading"
                 className="mt-5 font-display text-h1 text-paper"
-                lines={[{ text: "How a " + category.shortName.toLowerCase() }, { text: "program starts." }]}
+                lines={[
+                  { text: "How your " + category.programNoun },
+                  { text: "program starts." },
+                ]}
               />
               <p className="mt-6 max-w-md text-paper/65">
                 The first five stages decide most of the cost. After approval, production is
@@ -440,7 +443,10 @@ export default async function ProductCategoryPage({ params }: Params) {
       )}
 
       <CtaBand
-        headingLines={[{ text: "SEND ONE" }, { text: `${category.shortName.toUpperCase()} SPEC.` }]}
+        headingLines={[
+          { text: "SEND YOUR" },
+          { text: `${category.programNoun.toUpperCase()} SPEC.` },
+        ]}
         body="One style is enough to see how we work. Send a tech pack, a reference garment or a written requirement and we will come back on construction, materials and FOB costing."
         primary={{ label: "Request FOB Quote", href: `/request-a-quote?category=${encodeURIComponent(category.name)}` }}
         secondary={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
