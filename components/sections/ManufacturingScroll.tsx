@@ -122,7 +122,7 @@ export function ManufacturingScroll() {
               <span
                 className={cn(
                   "numeral text-2xl leading-none transition-colors duration-500 motion-reduce:transition-none",
-                  i === active ? "text-lime" : "text-paper/50",
+                  i === active ? "text-lime" : "text-paper/65",
                 )}
               >
                 {numeral(stage.index)}

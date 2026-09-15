@@ -30,7 +30,7 @@ export function AnnouncementBar() {
         </p>
         <Link
           href="/request-a-quote"
-          className="group label hidden shrink-0 items-center gap-1.5 text-lime transition-colors hover:text-white sm:inline-flex"
+          className="group label -mr-2 hidden min-h-9 shrink-0 items-center gap-1.5 px-2 text-lime transition-colors hover:text-white sm:inline-flex"
         >
           Request a Quote
           <ArrowRight

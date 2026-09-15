@@ -61,7 +61,7 @@ function FacetRow({
               aria-pressed={active}
               onClick={() => onChange(active ? null : o)}
               className={cn(
-                "border px-3 py-1.5 text-xs font-medium transition-colors duration-200",
+                "min-h-11 border px-3.5 py-2.5 text-xs font-medium transition-colors duration-200",
                 active
                   ? "border-ink bg-ink text-paper"
                   : "border-ink/20 text-ink/70 hover:border-ink/50 hover:text-ink",
@@ -106,7 +106,7 @@ export function CatalogueExplorer() {
             value={filter.q}
             onChange={(e) => setFilter((f) => ({ ...f, q: e.target.value }))}
             placeholder="Polo, apron, twill, hi-vis, embroidery…"
-            className="h-12 w-full border border-ink/20 bg-paper pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink/40 focus-visible:border-ink"
+            className="h-12 w-full border border-ink/20 bg-paper pl-10 pr-4 text-sm text-ink outline-none transition-colors placeholder:text-ink/65 focus-visible:border-ink"
           />
         </div>
 
@@ -171,7 +171,7 @@ export function CatalogueExplorer() {
             <button
               type="button"
               onClick={() => setFilter(EMPTY_FILTER)}
-              className="border border-ink/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
+              className="border border-ink/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink"
             >
               Clear filters
             </button>
@@ -210,7 +210,7 @@ export function CatalogueExplorer() {
                   <h3 className="mt-1.5 font-display text-sm font-bold uppercase leading-tight tracking-tight text-ink">
                     {e.name}
                   </h3>
-                  <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-ink/60">
+                  <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-ink/65">
                     {e.note}
                   </p>
                   {e.capabilityStatus !== "current_capability" && (

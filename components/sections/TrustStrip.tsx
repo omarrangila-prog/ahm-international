@@ -33,9 +33,7 @@ export function TrustStrip() {
             {i > 0 && (
               <span aria-hidden="true" className="hidden h-3 w-px bg-line-strong lg:block" />
             )}
-            <span className="label whitespace-nowrap text-ink/60 transition-colors duration-200 hover:text-ink">
-              {item}
-            </span>
+            <span className="label whitespace-nowrap text-ink/65">{item}</span>
           </li>
         ))}
       </ul>

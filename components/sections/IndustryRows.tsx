@@ -49,7 +49,7 @@ export function IndustryRows() {
               className="group block py-8 transition-colors duration-300 hover:bg-white motion-reduce:transition-none lg:px-4"
             >
               <div className="grid grid-cols-12 items-baseline gap-x-6 gap-y-3">
-                <span className="numeral col-span-2 text-sm text-ink/60 sm:col-span-1">
+                <span className="numeral col-span-2 text-sm text-ink/65 sm:col-span-1">
                   {numeral(i + 1)}
                 </span>
                 <h3 className="col-span-10 font-display text-2xl font-extrabold uppercase leading-none tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-ink motion-reduce:transition-none sm:col-span-4 sm:text-3xl">
@@ -70,11 +70,12 @@ export function IndustryRows() {
                 <div className="overflow-hidden">
                   <div className="grid grid-cols-12 items-end gap-x-6 gap-y-5 pt-6">
                     <div className="col-span-12 sm:col-start-2 sm:col-span-6">
-                      <span className="label text-ink/60">Typical program</span>
+                      <span className="label text-ink/65">Typical program</span>
                       <p className="mt-2 text-sm leading-relaxed text-ink/75">
                         {industry.typicalGarments.join(" · ")}
                       </p>
                     </div>
+                    {hasAsset(asset) && (
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
                         <SmartImage
@@ -86,6 +87,7 @@ export function IndustryRows() {
                         />
                       </div>
                     </div>
+                    )}
                   </div>
                 </div>
               </div>

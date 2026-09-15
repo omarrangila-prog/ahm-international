@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Section } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { ArrowLink } from "@/components/ui/Button";
 import { materials, MATERIAL_DISCLAIMER } from "@/data/materials";
 import { cn, numeral } from "@/lib/utils";
@@ -56,7 +57,7 @@ export function MaterialIntelligence() {
                     <span
                       className={cn(
                         "numeral text-sm transition-colors duration-300",
-                        active === i ? "text-lime" : "text-paper/30",
+                        active === i ? "text-lime" : "text-paper/65",
                       )}
                     >
                       {numeral(i + 1)}
@@ -72,7 +73,7 @@ export function MaterialIntelligence() {
                     <span
                       className={cn(
                         "label transition-colors duration-300",
-                        active === i ? "text-lime" : "text-paper/25",
+                        active === i ? "text-lime" : "text-paper/65",
                       )}
                     >
                       {item.family}
@@ -82,7 +83,7 @@ export function MaterialIntelligence() {
               ))}
             </ul>
 
-            <p className="mt-6 text-xs leading-relaxed text-paper/60">{MATERIAL_DISCLAIMER}</p>
+            <p className="mt-6 text-xs leading-relaxed text-paper/65">{MATERIAL_DISCLAIMER}</p>
           </div>
 
           {/* Detail */}
@@ -90,6 +91,7 @@ export function MaterialIntelligence() {
             {/* `key` remounts the panel on selection, so the CSS entrance replays. */}
             <div key={material.slug} className="enter grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div className="aspect-square w-full overflow-hidden bg-ink">
+                {hasAsset(material.asset) && (
                 <SmartImage
                   asset={material.asset}
                   sizes={SIZES.third}
@@ -97,29 +99,30 @@ export function MaterialIntelligence() {
                   imageClassName="object-cover"
                   alt={`${material.name}. Fabric structure`}
                 />
+                )}
               </div>
 
               <dl className="flex flex-col justify-center gap-4">
                 <div>
-                  <dt className="label text-paper/60">Common compositions</dt>
+                  <dt className="label text-paper/65">Common compositions</dt>
                   <dd className="mt-1.5 text-sm text-paper/85">{material.compositions.join(" · ")}</dd>
                 </div>
                 <div>
-                  <dt className="label text-paper/60">Typical program weight</dt>
+                  <dt className="label text-paper/65">Typical program weight</dt>
                   <dd className="mt-1.5 font-display text-xl font-bold tracking-[-0.02em] text-lime">
                     {material.typicalWeight}
                   </dd>
                 </div>
                 <div>
-                  <dt className="label text-paper/60">Hand feel</dt>
+                  <dt className="label text-paper/65">Hand feel</dt>
                   <dd className="mt-1.5 text-sm text-paper/85">{material.handFeel}</dd>
                 </div>
                 <div>
-                  <dt className="label text-paper/60">Finish options</dt>
+                  <dt className="label text-paper/65">Finish options</dt>
                   <dd className="mt-1.5 text-sm text-paper/85">{material.finishOptions.join(" · ")}</dd>
                 </div>
                 <div>
-                  <dt className="label text-paper/60">Used for</dt>
+                  <dt className="label text-paper/65">Used for</dt>
                   <dd className="mt-1.5 text-sm text-paper/85">{material.useCases.join(" · ")}</dd>
                 </div>
               </dl>

@@ -48,11 +48,11 @@ export function PageHero({
   const dark = darkZones.includes(zone);
   const tone = dark ? "dark" : "light";
 
-  // Product renders are portrait cut-outs on transparency. Cropping one to a
-  // landscape frame with object-cover slices the garment in half, so they are
-  // contained on a light plate instead. Photography still fills the frame.
+  // Product garments are portrait on a plate. Cropping one to a landscape
+  // frame with object-cover slices the article in half, so they are contained
+  // instead. Environment and factory photography still fills the frame.
   const resolved = asset ? resolveAsset(asset) : null;
-  const isRender = resolved?.kind === "garment" && resolved.src.includes("/renders/");
+  const isGarment = resolved?.kind === "garment";
 
   /**
    * Whether to reserve the image column at all.
@@ -76,7 +76,7 @@ export function PageHero({
 
         <div className="mt-10 grid grid-cols-12 items-end gap-y-10 lg:mt-14 lg:gap-x-12">
           <div className={cn("col-span-12", showImage ? "lg:col-span-7" : "lg:col-span-9")}>
-            <p className={cn("label mb-5", dark ? "text-current/70" : "text-ink/60")}>{eyebrow}</p>
+            <p className={cn("label mb-5", dark ? "text-current/70" : "text-ink/65")}>{eyebrow}</p>
 
             <MaskedHeading
               immediate
@@ -119,8 +119,8 @@ export function PageHero({
               <div
                 className={cn(
                   "w-full overflow-hidden",
-                  isRender ? "aspect-[4/5] bg-white sm:aspect-[4/3]" : "aspect-[4/3]",
-                  !isRender && (dark ? "bg-white/5" : "bg-paper"),
+                  isGarment ? "aspect-[4/5] bg-white sm:aspect-[4/3]" : "aspect-[4/3]",
+                  !isGarment && (dark ? "bg-white/5" : "bg-paper"),
                 )}
               >
                 <SmartImage
@@ -128,7 +128,7 @@ export function PageHero({
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   priority={priority}
                   className="h-full w-full"
-                  imageClassName={isRender ? "object-contain p-6 sm:p-8" : "object-cover"}
+                  imageClassName={isGarment ? "object-contain p-6 sm:p-8" : "object-cover"}
                 />
               </div>
             </div>
@@ -144,7 +144,7 @@ export function PageHero({
           >
             {facts.map((fact) => (
               <div key={fact.label} className={cn("p-5", dark ? "bg-current/0" : "bg-paper")}>
-                <dt className={cn("label", dark ? "text-current/70" : "text-ink/60")}>{fact.label}</dt>
+                <dt className={cn("label", dark ? "text-current/70" : "text-ink/65")}>{fact.label}</dt>
                 <dd className="mt-2 font-display text-base font-bold tracking-[-0.02em]">{fact.value}</dd>
               </div>
             ))}

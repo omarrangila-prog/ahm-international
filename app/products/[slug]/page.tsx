@@ -122,8 +122,8 @@ export default async function ProductCategoryPage({ params }: Params) {
           { name: category.name, path: `/products/${category.slug}` },
         ]}
         zone="paper"
-        // Photography first; otherwise the category's own representative render,
-        // so an apron page shows an apron rather than a generic garment diagram.
+        // Photography first; otherwise the first article that actually has a
+        // photograph, so a missing file never opens an empty hero frame.
         asset={firstAvailable(category.heroAsset, category.articles[0].asset)}
         priority
         primaryCta={{ label: "Request FOB Costing", href: `/request-a-quote?category=${encodeURIComponent(category.name)}` }}
@@ -176,7 +176,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                       <h3 className="font-display text-base font-bold tracking-[-0.02em] text-ink">
                         {article.name}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink/60">{article.note}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/65">{article.note}</p>
                     </div>
                     <p className="label mt-5 text-ink/70">Representative article</p>
                   </div>
@@ -224,7 +224,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                 {category.decoration.map((item) => (
                   <li
                     key={item}
-                    className="border border-ink/20 px-4 py-2.5 text-sm text-ink/75 transition-colors hover:border-ink hover:text-ink"
+                    className="border border-ink/20 px-4 py-2.5 text-sm text-ink/75"
                   >
                     {item}
                   </li>
@@ -243,7 +243,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                     asset={asset}
                     sizes={SIZES.third}
                     className="h-full w-full"
-                    imageClassName={asset.startsWith("renders.") ? "object-contain p-4" : "object-cover"}
+                    imageClassName="object-cover"
                   />
                 </div>
               ))}
@@ -330,7 +330,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                     <h3 className="font-display text-base font-bold tracking-[-0.02em] text-paper">
                       {stage.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-paper/60">{stage.body}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-paper/65">{stage.body}</p>
                   </div>
                 </li>
               ))}
@@ -384,6 +384,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                 href={`/case-studies/${relevantCase.slug}`}
                 className="group grid grid-cols-1 border border-line bg-paper sm:grid-cols-3"
               >
+                {hasAsset("products.apron.front") && (
                 <div className="aspect-square w-full overflow-hidden bg-white sm:aspect-auto">
                   <SmartImage
                     asset="products.apron.front"
@@ -393,6 +394,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                     alt="Bib apron produced for the documented United States uniform program"
                   />
                 </div>
+                )}
                 <div className="p-7 sm:col-span-2 lg:p-10">
                   <h2 id="case-heading" className="font-display text-h2 text-ink">
                     {relevantCase.anonymisedTitle}
@@ -406,7 +408,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                       { label: "Delivery", value: relevantCase.exportMode },
                     ].map((row) => (
                       <div key={row.label}>
-                        <dt className="label text-ink/60">{row.label}</dt>
+                        <dt className="label text-ink/65">{row.label}</dt>
                         <dd className="mt-1.5 text-sm text-ink/80">{row.value}</dd>
                       </div>
                     ))}

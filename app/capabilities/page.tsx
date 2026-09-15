@@ -96,7 +96,7 @@ export default function CapabilitiesPage() {
                         </p>
 
                         <p className="mt-5 max-w-2xl border-l-2 border-ink pl-4 text-[0.9375rem] text-ink/65">
-                          <span className="label mr-2 text-ink/60">What it means for you</span>
+                          <span className="label mr-2 text-ink/65">What it means for you</span>
                           {capability.benefit}
                         </p>
 

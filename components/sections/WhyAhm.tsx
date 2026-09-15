@@ -39,7 +39,7 @@ export function WhyAhm() {
             <RevealItem key={item.index}>
               <article className="group h-full bg-paper p-7 transition-colors duration-300 hover:bg-paper lg:p-8">
                 <div className="flex items-baseline gap-4">
-                  <span className="numeral text-[2rem] text-ink/45 transition-colors duration-300 group-hover:text-ink">
+                  <span className="numeral text-[2rem] text-ink/65 transition-colors duration-300 group-hover:text-ink">
                     {numeral(item.index)}
                   </span>
                   <span

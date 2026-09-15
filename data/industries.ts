@@ -17,8 +17,8 @@ export type Industry = {
   asset: AssetKey;
   /**
    * The article that best represents this environment, used while the
-   * photography slot above is unfilled. These renders exist today, so an
-   * industry card shows a real garment rather than a diagram.
+   * photography slot above is unfilled. Only a real photograph — never an
+   * illustration. If this key has no file, the card drops the frame.
    */
   representative: AssetKey;
   /** Garments a program in this environment typically covers. */
@@ -39,7 +39,7 @@ export const industries: Industry[] = [
     name: "Hospitality",
     demand: "Front-of-house presentation held through a full shift, with colour matched across article types.",
     asset: "industries.hospitality",
-    representative: "renders.waistApron",
+    representative: "products.apron.front",
     typicalGarments: ["Waist aprons", "Service shirts", "Uniform polos", "Ties", "Bottoms"],
   },
   {
@@ -47,7 +47,7 @@ export const industries: Industry[] = [
     name: "Food Service",
     demand: "Heat, grease and repeated industrial laundering, without the garment losing shape or shade.",
     asset: "industries.chef",
-    representative: "renders.chefCoat",
+    representative: "products.apron.front",
     typicalGarments: ["Chef coats", "Bib aprons", "Chef beanies", "Work trousers", "Tees"],
   },
   {
@@ -55,7 +55,7 @@ export const industries: Industry[] = [
     name: "Retail",
     demand: "Brand-accurate colour and decoration across a large, frequently refreshed workforce.",
     asset: "industries.retail",
-    representative: "photo.poloWhiteTipped",
+    representative: "photo.poloGreenRibbed",
     typicalGarments: ["Uniform polos", "T-shirts", "Sweatshirts", "Woven shirts", "Aprons"],
   },
   {
@@ -63,7 +63,7 @@ export const industries: Industry[] = [
     name: "Facilities",
     demand: "Durability and identification across mixed indoor and outdoor work.",
     asset: "industries.industrial",
-    representative: "renders.workJacket",
+    representative: "photo.utilityBomberCharcoal",
     typicalGarments: ["Work jackets", "Work shirts", "Work trousers", "Fleece", "Hi-vis"],
   },
   {
@@ -71,7 +71,7 @@ export const industries: Industry[] = [
     name: "Industrial",
     demand: "Abrasion resistance, reinforcement at stress points, and visibility requirements where they apply.",
     asset: "industries.industrial",
-    representative: "renders.safetyVest",
+    representative: "photo.workVestOrange",
     typicalGarments: ["Hi-vis vests", "Work shirts", "Work trousers", "Outerwear", "Caps"],
   },
   {
@@ -79,7 +79,7 @@ export const industries: Industry[] = [
     name: "Corporate",
     demand: "Consistent presentation across sizes and body types, with an inclusive size range.",
     asset: "industries.corporate",
-    representative: "renders.buttonFrontShirt",
+    representative: "photo.poloGreenRibbed",
     typicalGarments: ["Woven shirts", "Uniform polos", "Ties", "Softshell", "Knitwear"],
   },
   {
@@ -87,7 +87,7 @@ export const industries: Industry[] = [
     name: "Events",
     demand: "Volume delivered to a fixed date, with decoration accurate to the brand standard.",
     asset: "industries.retail",
-    representative: "renders.crewNeckTee",
+    representative: "photo.poloLime",
     typicalGarments: ["T-shirts", "Uniform polos", "Hoodies", "Caps", "Vests"],
   },
 ];

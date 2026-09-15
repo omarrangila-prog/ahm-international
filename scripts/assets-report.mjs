@@ -140,9 +140,7 @@ if (wanted.length) {
   }
 }
 
-out += `## In place\n\n${complete.length} canonical files, including ${
-  complete.filter((r) => r.src.includes("/renders/")).length
-} product renders.\n\n`;
+out += `## In place\n\n${complete.length} canonical files.\n\n`;
 for (const r of complete.sort((a, b) => a.src.localeCompare(b.src))) {
   const d = assetManifest[r.src];
   out += `- \`${r.src}\`${d?.width ? ` — ${d.width}×${d.height}` : ""}\n`;

@@ -38,18 +38,6 @@ const SPEC = {
   social: { w: 1200, h: 630, q: 82 },
 };
 
-/** Product renders keep their own 9:11 studio ratio — squaring them would crop the garment. */
-const RENDER_RATIO = { w: 1350, h: 1650, q: 86 };
-
-const RENDERS = {
-  "AHM-PO-001": "classic-polo", "AHM-PO-002": "long-sleeve-polo", "AHM-TS-001": "crew-neck-tee",
-  "AHM-SH-001": "button-front-shirt", "AHM-SH-002": "utility-work-shirt", "AHM-SW-001": "crewneck-sweatshirt",
-  "AHM-HD-001": "pullover-hoodie", "AHM-CH-001": "chef-coat", "AHM-AP-001": "bib-apron",
-  "AHM-AP-002": "waist-apron", "AHM-WJ-001": "work-jacket", "AHM-FL-001": "fleece-jacket",
-  "AHM-HW-001": "uniform-cap", "AHM-SV-001": "safety-vest", "AHM-TR-001": "work-trouser",
-  "AHM-SH-003": "work-short", "AHM-HW-002": "chef-beanie", "AHM-AC-001": "uniform-tie",
-};
-
 const FABRICS = {
   poly_cotton_twill_1600x1000: "polycotton-twill", cotton_pique_1600x1000: "cotton-pique",
   performance_polyester_1600x1000: "polyester-performance", brushed_fleece_1600x1000: "fleece",
@@ -64,17 +52,6 @@ const DETAILS = {
 };
 
 const recipes = [];
-
-for (const [code, slug] of Object.entries(RENDERS)) {
-  recipes.push({
-    src: `renders/${code}_front_transparent.png`,
-    out: `products/renders/${slug}.webp`,
-    role: "productRender",
-    vf: `scale=${RENDER_RATIO.w}:${RENDER_RATIO.h}:force_original_aspect_ratio=decrease:flags=lanczos`,
-    q: RENDER_RATIO.q,
-    alpha: true,
-  });
-}
 
 for (const [file, slug] of Object.entries(FABRICS)) {
   const s = SPEC.fabricMacro;
@@ -247,8 +224,6 @@ for (const r of recipes) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
 
   const args = ["-v", "error", "-y", "-i", src, "-vf", r.vf, "-c:v", "libwebp", "-q:v", String(r.q), "-compression_level", "6"];
-  // Transparency must survive the round trip for the cut-out product renders.
-  if (r.alpha) args.push("-pix_fmt", "yuva420p");
   args.push(out);
 
   try {

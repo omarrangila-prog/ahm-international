@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -41,7 +42,9 @@ export function UniformPrograms() {
         <RevealGroup className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4" stagger={0.08}>
           {featured.map((industry) => (
             <RevealItem key={industry.slug}>
-              <IndustryCard industry={industry} tone="dark" sizes={SIZES.quarter} />
+              <Link href={`/industries/${industry.slug}`} className="block">
+                <IndustryCard industry={industry} tone="dark" sizes={SIZES.quarter} />
+              </Link>
             </RevealItem>
           ))}
         </RevealGroup>
@@ -50,11 +53,13 @@ export function UniformPrograms() {
         <Reveal className="mt-8">
           <ul className="flex flex-wrap gap-2">
             {industries.map((industry) => (
-              <li
-                key={`chip-${industry.slug}`}
-                className="border border-paper/20 px-3.5 py-2 text-xs text-paper/75 transition-colors hover:border-lime hover:text-lime"
-              >
-                {industry.name}
+              <li key={`chip-${industry.slug}`}>
+                <Link
+                  href={`/industries/${industry.slug}`}
+                  className="inline-flex min-h-11 items-center border border-paper/20 px-3.5 py-2.5 text-xs text-paper/75 transition-colors hover:border-lime hover:text-lime"
+                >
+                  {industry.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -65,7 +70,7 @@ export function UniformPrograms() {
           <div className="col-span-12 lg:col-span-4">
             <h3 className="font-display text-h2 text-paper">
               Performance is specified,
-              <span className="block text-paper/60">not promised.</span>
+              <span className="block text-paper/65">not promised.</span>
             </h3>
           </div>
 
@@ -83,7 +88,7 @@ export function UniformPrograms() {
               ))}
             </RevealGroup>
 
-            <p className="mt-9 max-w-2xl border-t border-paper/15 pt-5 text-xs text-paper/60">
+            <p className="mt-9 max-w-2xl border-t border-paper/15 pt-5 text-xs text-paper/65">
               {PERFORMANCE_DISCLAIMER}
             </p>
 

@@ -171,7 +171,7 @@ export function Header() {
             <Link
               href="/send-tech-pack"
               onClick={() => track("techpack_upload_start", { location: "header" })}
-              className="hidden h-11 items-center bg-lime px-5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink transition-colors duration-300 hover:bg-lime hover:text-ink hover:text-lime sm:inline-flex"
+              className="hidden h-11 items-center bg-lime px-5 font-display text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex"
             >
               Send Tech Pack
             </Link>

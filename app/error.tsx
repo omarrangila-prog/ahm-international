@@ -46,14 +46,14 @@ export default function RouteError({
           </button>
           <Link
             href="/request-a-quote"
-            className="inline-flex h-14 items-center border border-ink/25 px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
+              className="inline-flex h-14 items-center border border-ink/25 px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink"
           >
             Request a Quote
           </Link>
         </div>
 
         {error.digest && (
-          <p className="mt-10 border-t border-line pt-5 text-xs text-ink/60">
+          <p className="mt-10 border-t border-line pt-5 text-xs text-ink/65">
             Reference: <span className="font-mono">{error.digest}</span>
           </p>
         )}

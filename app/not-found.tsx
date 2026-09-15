@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 
 /**
  * Without this the 404 inherits the root default title, which duplicated a real
@@ -32,7 +33,7 @@ export default function NotFound() {
               still visible, so it meets the large-text contrast threshold rather
               than sitting at a decorative 15%. Scaled down so it stays
               subordinate to the headline at the higher weight. */}
-          <p className="numeral text-[clamp(3.5rem,11vw,7rem)] text-ink/55" aria-hidden="true">
+          <p className="numeral text-[clamp(3.5rem,11vw,7rem)] text-ink/65" aria-hidden="true">
             404
           </p>
           <h1 className="mt-4 font-display text-display text-ink">
@@ -70,6 +71,7 @@ export default function NotFound() {
           </ul>
         </div>
 
+        {hasAsset("products.apron.front") && (
         <div className="col-span-12 lg:col-span-5">
           <div className="aspect-[4/5] w-full bg-paper text-ink">
             <SmartImage
@@ -81,6 +83,7 @@ export default function NotFound() {
             />
           </div>
         </div>
+        )}
       </div>
     </Section>
   );

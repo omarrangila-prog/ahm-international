@@ -66,7 +66,7 @@ export default function IndustriesPage() {
                     <p className="font-display text-[0.9375rem] font-bold tracking-[-0.015em] text-ink">
                       {option.name}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-ink/60">{option.note}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-ink/65">{option.note}</p>
                   </div>
                 </RevealItem>
               ))}

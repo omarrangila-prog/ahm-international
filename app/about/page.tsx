@@ -12,7 +12,7 @@ import { pageMetadata } from "@/lib/seo";
 import { numeral } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About AHM International",
+  title: "About",
   description:
     "A Pakistan-based apparel manufacturing and export partner focused on product development and international uniform sourcing programs.",
   path: "/about",
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 // Only dt and dd may sit inside a dl's div wrapper, so the
                 // status rides inside the dd rather than as a third sibling.
                 <div key={row.label} className="grid grid-cols-1 gap-2 border-b border-paper/15 py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                  <dt className="label pt-0.5 text-paper/60">{row.label}</dt>
+                  <dt className="label pt-0.5 text-paper/65">{row.label}</dt>
                   <dd className="flex flex-col gap-2 text-sm leading-relaxed text-paper/80 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <span className="sm:flex-1">{row.value}</span>
                     <span

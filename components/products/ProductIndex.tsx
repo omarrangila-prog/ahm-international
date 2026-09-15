@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Plus } from "lucide-react";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
-import { firstAvailable, type AssetKey } from "@/data/assets";
+import { firstAvailable, hasAsset, type AssetKey } from "@/data/assets";
 import { productCategories } from "@/data/products";
 import { CAPABILITY_LABEL, CAPABILITY_MEANING } from "@/data/verification";
 import { cn, numeral } from "@/lib/utils";
@@ -45,18 +45,16 @@ import { cn, numeral } from "@/lib/utils";
  * the category, so adding a family cannot break this list.
  */
 const familyRender: Record<string, AssetKey> = {
-  "uniform-workwear": "renders.workJacket",
-  "polos-tshirts": "photo.poloWhiteTipped",
+  "uniform-workwear": "photo.utilityBomberCharcoal",
+  "polos-tshirts": "photo.poloGreenRibbed",
   "fleece-sweatshirts": "photo.hoodieNavy",
   aprons: "products.apron.front",
-  "woven-shirts": "renders.utilityWorkShirt",
-  bottoms: "renders.workTrouser",
-  outerwear: "photo.zipHoodieNavy",
-  "hospitality-food-service": "renders.chefCoat",
-  denim: "photo.denimWorkShirt",
-  athleisure: "photo.joggerGreyGraphic",
-  womenswear: "photo.poloCream",
-  kidswear: "photo.onesieWhitePrint",
+  "woven-shirts": "photo.denimUtilityJacket",
+  bottoms: "photo.pantCamo",
+  outerwear: "photo.utilityBomberCharcoal",
+  "hospitality-food-service": "products.apron.front",
+  denim: "photo.denimUtilityJacket",
+  athleisure: "photo.loungePantGrid",
 };
 
 export function ProductIndex() {
@@ -102,7 +100,7 @@ export function ProductIndex() {
                 <span
                   className={cn(
                     "numeral shrink-0 text-sm transition-colors duration-300 motion-reduce:transition-none",
-                    isOpen ? "text-ink" : "text-ink/60",
+                    isOpen ? "text-ink" : "text-ink/65",
                   )}
                 >
                   {numeral(category.index)}
@@ -134,7 +132,7 @@ export function ProductIndex() {
 
                 <Plus
                   className={cn(
-                    "h-5 w-5 shrink-0 text-ink/50 transition-transform duration-300 ease-[var(--ease-out-expo)] motion-reduce:transition-none print:hidden",
+                    "h-5 w-5 shrink-0 text-ink/65 transition-transform duration-300 ease-[var(--ease-out-expo)] motion-reduce:transition-none print:hidden",
                     isOpen && "rotate-45",
                   )}
                   aria-hidden="true"
@@ -187,6 +185,7 @@ export function ProductIndex() {
                   </Link>
                 </div>
 
+                {hasAsset(asset) && (
                 <div className="col-span-12 lg:col-span-5">
                   <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
                     <SmartImage
@@ -198,6 +197,7 @@ export function ProductIndex() {
                     />
                   </div>
                     </div>
+                )}
                   </div>
                 </motion.div>
               )}
@@ -212,7 +212,7 @@ export function ProductIndex() {
 function Detail({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="label text-ink/60">{label}</dt>
+      <dt className="label text-ink/65">{label}</dt>
       <dd className="mt-1.5 text-sm leading-relaxed text-ink/75">{value}</dd>
     </div>
   );

@@ -72,13 +72,13 @@ export default async function GuidePage({ params }: Params) {
       <Section zone="paper" spacing="md">
         <div className="shell-wide">
           <div className="max-w-4xl border-l-2 border-ink pl-6 lg:pl-8">
-            <p className="label text-ink/60">In short</p>
+            <p className="label text-ink/65">In short</p>
             <p className="mt-3 text-lead text-ink/80">{guide.summary}</p>
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-5">
-            <p className="label text-ink/60">{guide.readingTime}</p>
-            <p className="text-sm text-ink/60">Reviewed by {REVIEWED_BY}</p>
-            <p className="text-sm text-ink/60">Last reviewed {LAST_REVIEWED}</p>
+            <p className="label text-ink/65">{guide.readingTime}</p>
+            <p className="text-sm text-ink/65">Reviewed by {REVIEWED_BY}</p>
+            <p className="text-sm text-ink/65">Last reviewed {LAST_REVIEWED}</p>
           </div>
         </div>
       </Section>

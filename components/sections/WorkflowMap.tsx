@@ -50,21 +50,21 @@ export function WorkflowMap() {
                 onClick={() => setOpen(isOpen ? null : g.id)}
                 className="group flex w-full items-center gap-4 py-6 text-left transition-colors hover:bg-ink/[0.03] sm:gap-6 sm:px-2"
               >
-                <span className="numeral shrink-0 text-2xl leading-none text-ink/60 sm:text-3xl">
+                <span className="numeral shrink-0 text-2xl leading-none text-ink/65 sm:text-3xl">
                   {numeral(first)}–{numeral(last)}
                 </span>
                 <span className="flex-1">
                   <span className="block font-display text-xl font-extrabold uppercase leading-none tracking-[-0.02em] text-ink sm:text-2xl">
                     {g.label}
                   </span>
-                  <span className="mt-1.5 block text-sm text-ink/60">{g.summary}</span>
+                  <span className="mt-1.5 block text-sm text-ink/65">{g.summary}</span>
                 </span>
                 <span className="label hidden shrink-0 text-ink/65 sm:block">
                   {stages.length} stages
                 </span>
                 <ChevronDown
                   className={cn(
-                    "h-5 w-5 shrink-0 text-ink/50 transition-transform duration-300",
+                    "h-5 w-5 shrink-0 text-ink/65 transition-transform duration-300",
                     isOpen && "rotate-180",
                   )}
                   aria-hidden="true"

@@ -63,7 +63,7 @@ export function HandFeel() {
                     on ? "border-ink bg-ink text-paper" : "border-ink/25 text-ink/75 hover:border-ink",
                   )}
                 >
-                  <span className={cn("numeral text-xs", on ? "text-paper/70" : "text-ink/60")}>
+                  <span className={cn("numeral text-xs", on ? "text-paper/70" : "text-ink/65")}>
                     {numeral(i + 1)}
                   </span>
                   {f.name}
@@ -82,7 +82,7 @@ export function HandFeel() {
       </div>
 
       <div className="col-span-12 lg:col-span-7">
-        <p className="label text-ink/60">
+        <p className="label text-ink/65">
           {factor.name} across every construction on this page
         </p>
 
@@ -96,14 +96,14 @@ export function HandFeel() {
               >
                 <dt className="col-span-12 font-display text-sm font-bold tracking-[-0.01em] text-ink sm:col-span-5">
                   {material.name}
-                  <span className="ml-2 whitespace-nowrap font-sans text-xs font-normal text-ink/60">
+                  <span className="ml-2 whitespace-nowrap font-sans text-xs font-normal text-ink/65">
                     {material.typicalWeight}
                   </span>
                 </dt>
                 <dd
                   className={cn(
                     "col-span-12 text-sm leading-relaxed sm:col-span-7",
-                    value ? "text-ink/75" : "text-ink/50",
+                    value ? "text-ink/75" : "text-ink/65",
                   )}
                 >
                   {value ?? "Not published for this construction"}

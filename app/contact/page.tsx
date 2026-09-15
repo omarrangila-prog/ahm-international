@@ -11,7 +11,7 @@ import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact AHM International",
+  title: "Contact",
   description:
     "Start a sourcing conversation. Send an RFQ, a tech pack, a development brief or a commercial enquiry to our team in Karachi.",
   path: "/contact",
@@ -112,48 +112,48 @@ export default function ContactPage() {
           <div className="col-span-12 lg:col-span-7">
             <dl className="border-t border-paper/15">
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                <dt className="label text-paper/60">Location</dt>
+                <dt className="label text-paper/65">Location</dt>
                 <dd className="text-paper/85">
                   {street ? `${street}, ` : ""}
                   {company.city}, {company.country}
                 </dd>
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                <dt className="label text-paper/60">Email</dt>
+                <dt className="label text-paper/65">Email</dt>
                 <dd className="min-w-0 [overflow-wrap:anywhere] text-paper/85">
                   {email ? <EmailLink email={email} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
                 </dd>
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                <dt className="label text-paper/60">Phone</dt>
+                <dt className="label text-paper/65">Phone</dt>
                 <dd className="text-paper/85">
                   {phone ? <PhoneLink phone={phone} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
                 </dd>
               </div>
               {whatsapp && (
                 <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                  <dt className="label text-paper/60">WhatsApp</dt>
+                  <dt className="label text-paper/65">WhatsApp</dt>
                   <dd className="text-paper/85">
                     <WhatsAppLink number={whatsapp} label={phone ?? whatsapp} />
                   </dd>
                 </div>
               )}
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                <dt className="label text-paper/60">Hours</dt>
+                <dt className="label text-paper/65">Hours</dt>
                 <dd className="text-paper/85">
                   {hours ?? "Pakistan Standard Time. Confirmed on contact"}
                   {whatsapp && (
-                    <span className="mt-1 block text-sm text-paper/60">{company.whatsappNote}</span>
+                    <span className="mt-1 block text-sm text-paper/65">{company.whatsappNote}</span>
                   )}
                 </dd>
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                <dt className="label text-paper/60">Export port</dt>
+                <dt className="label text-paper/65">Export port</dt>
                 <dd className="text-paper/85">{company.exportExperience.port}</dd>
               </div>
             </dl>
 
-            <p className="mt-6 text-xs leading-relaxed text-paper/60">
+            <p className="mt-6 text-xs leading-relaxed text-paper/65">
               A map is published once the exact verified business address is supplied and approved
               for publication. We do not display an approximate pin.
             </p>

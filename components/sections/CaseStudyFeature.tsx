@@ -3,6 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { Button } from "@/components/ui/Button";
 import { caseStudies, CASE_STUDY_NOTE } from "@/data/caseStudies";
 
@@ -67,6 +68,7 @@ export function CaseStudyFeature() {
                 className="group block border border-ink/12 bg-paper shadow-[0_30px_70px_-50px_rgba(16,19,21,0.6)]"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2">
+                  {hasAsset("products.apron.front") && (
                   <div className="relative aspect-square w-full overflow-hidden bg-white">
                     <SmartImage
                       asset="products.apron.front"
@@ -79,9 +81,10 @@ export function CaseStudyFeature() {
                       Documented
                     </span>
                   </div>
+                  )}
 
                   <div className="flex flex-col justify-center p-6 sm:p-7">
-                    <p className="label text-ink/60">Case study</p>
+                    <p className="label text-ink/65">Case study</p>
                     <h3 className="mt-2 font-display text-2xl font-extrabold uppercase leading-[1.05] tracking-[-0.03em] text-ink">
                       {study.anonymisedTitle}
                     </h3>
@@ -89,7 +92,7 @@ export function CaseStudyFeature() {
                     <dl className="mt-6 flex flex-col">
                       {rows.map((row) => (
                         <div key={row.label} className="grid grid-cols-[6.5rem_1fr] gap-3 border-t border-ink/10 py-2.5">
-                          <dt className="label text-ink/60">{row.label}</dt>
+                          <dt className="label text-ink/65">{row.label}</dt>
                           <dd className="text-[0.8125rem] leading-snug text-ink/80">{row.value}</dd>
                         </div>
                       ))}

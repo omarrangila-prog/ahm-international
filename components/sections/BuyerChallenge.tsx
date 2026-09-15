@@ -2,6 +2,7 @@ import { Section } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Button } from "@/components/ui/Button";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 
 /**
  * The closing ask.
@@ -31,27 +32,25 @@ export function BuyerChallenge() {
             <Button href="/request-a-quote" variant="invert" size="lg" withArrow>
               Send Your RFQ
             </Button>
-            <Button
-              href="/request-a-quote#files"
-              size="lg"
-              className="border border-ink/30 bg-transparent text-ink hover:bg-lime hover:text-ink hover:text-lime"
-            >
+            <Button href="/send-tech-pack" variant="outline" size="lg">
               Send a Tech Pack
             </Button>
           </div>
         </div>
 
+        {hasAsset("photo.poloGreenRibbed") && (
         <div className="col-span-12 lg:col-span-5">
           <div className="relative mx-auto aspect-square w-full max-w-sm lg:max-w-none">
             <SmartImage
-              asset="photo.poloWhiteTipped"
+              asset="photo.poloGreenRibbed"
               sizes={SIZES.third}
               className="h-full w-full"
               imageClassName="object-contain drop-shadow-[0_25px_45px_rgba(16,19,21,0.22)]"
-              alt="Classic uniform polo. Representative article"
+              alt="Ribbed dark green uniform polo"
             />
           </div>
         </div>
+        )}
       </div>
     </Section>
   );

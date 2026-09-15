@@ -70,7 +70,7 @@ export function TrimsLibrary() {
                     </td>
                     <td className="py-3.5 pr-4 text-sm text-ink/70">{t.material}</td>
                     <td className="py-3.5 pr-4 text-sm text-ink/70">{t.decision}</td>
-                    <td className="py-3.5 text-sm text-ink/60">{t.applications.join(", ")}</td>
+                    <td className="py-3.5 text-sm text-ink/65">{t.applications.join(", ")}</td>
                   </tr>
                 ))}
               </tbody>

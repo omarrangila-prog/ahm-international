@@ -17,9 +17,9 @@ export const metadata: Metadata = {
       "Karachi-based apparel manufacturing and FOB export for international uniform, workwear and sourcing programs.",
     path: "/",
   }),
-  // The homepage is the canonical root; keep the title as written rather than
-  // running it through the "%s | AHM International" template twice.
-  title: "AHM International | Apparel Manufacturer, Pakistan",
+  // Absolute — the root template is already "%s | AHM International". A string
+  // title here would suffix the brand twice in the browser tab.
+  title: { absolute: "AHM International | Apparel Manufacturer, Pakistan" },
 };
 
 export default function HomePage() {

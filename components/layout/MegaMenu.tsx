@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { megaMenu } from "@/data/nav";
 import { productCategories } from "@/data/products";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
-import { firstAvailable } from "@/data/assets";
+import { firstAvailable, hasAsset } from "@/data/assets";
 import { cn } from "@/lib/utils";
 
 /**
@@ -30,6 +30,7 @@ export function MegaMenu({
   // Preview the category matching the hovered group.
   const previewSlugs = ["uniform-workwear", "polos-tshirts", "woven-shirts", "outerwear"];
   const preview = productCategories.find((c) => c.slug === previewSlugs[activeGroup]) ?? productCategories[0];
+  const previewAsset = firstAvailable(preview.heroAsset, preview.articles[0].asset);
 
   // Kept mounted and hidden rather than unmounted, so the transition needs no
   // presence tracking and the links stay in the document for crawlers.
@@ -57,7 +58,7 @@ export function MegaMenu({
                   <p
                     className={cn(
                       "label mb-4 transition-colors duration-200",
-                      activeGroup === i ? "text-ink" : "text-ink/60",
+                      activeGroup === i ? "text-ink" : "text-ink/65",
                     )}
                   >
                     {group.title}
@@ -105,21 +106,17 @@ export function MegaMenu({
                 className="group/preview block"
                 aria-label={`Explore ${preview.name}`}
               >
+                {hasAsset(previewAsset) && (
                 <div className="relative overflow-hidden bg-paper">
                   <SmartImage
-                    // `heroAsset` is chosen to head a page and several point at
-                    // environment photography that has not been shot, so on its
-                    // own this frame rendered an empty tonal panel — in the
-                    // navigation, on every page of the site. Falling through to
-                    // the family's first article means the menu always shows a
-                    // garment.
-                    asset={firstAvailable(preview.heroAsset, preview.articles[0].asset)}
+                    asset={previewAsset}
                     sizes={SIZES.third}
                     className="aspect-[4/3] w-full"
                     imageClassName="object-cover transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/preview:scale-[1.04]"
                     alt=""
                   />
                 </div>
+                )}
                 <div className="mt-4 flex items-baseline justify-between gap-4">
                   <p className="font-display text-lg font-bold tracking-[-0.02em]">{preview.name}</p>
                   <ArrowRight
@@ -127,14 +124,14 @@ export function MegaMenu({
                     aria-hidden="true"
                   />
                 </div>
-                <p className="mt-1.5 text-sm text-muted">{preview.subcategories.slice(0, 4).join(" · ")}</p>
+                <p className="mt-1.5 text-sm text-ink/65">{preview.subcategories.slice(0, 4).join(" · ")}</p>
               </Link>
             </div>
           </div>
 
           <div className="border-t border-line">
             <div className="shell-wide flex flex-wrap items-center justify-between gap-4 py-4">
-              <p className="text-sm text-muted">
+              <p className="text-sm text-ink/65">
                 Not sure which category fits? Send the specification and we will place it.
               </p>
               <Link

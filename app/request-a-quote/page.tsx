@@ -52,7 +52,7 @@ export default function RequestQuotePage() {
                         <span className="block font-display text-sm font-bold tracking-[-0.015em] text-ink">
                           {item.title}
                         </span>
-                        <span className="mt-1 block text-sm text-ink/60">{item.body}</span>
+                        <span className="mt-1 block text-sm text-ink/65">{item.body}</span>
                       </span>
                     </li>
                   ))}
@@ -64,7 +64,7 @@ export default function RequestQuotePage() {
               </div>
 
               <div className="mt-4 border border-line bg-paper p-6">
-                <p className="label text-ink/60">Confidentiality</p>
+                <p className="label text-ink/65">Confidentiality</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink/70">
                   Tech packs, specifications and commercial terms are treated as confidential. This
                   site publishes no customer name, and our one published case study is anonymised.

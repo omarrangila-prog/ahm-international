@@ -58,7 +58,7 @@ export function RelatedLinks({
                   <p className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
                     {link.label}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{link.description}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{link.description}</p>
                 </div>
                 <ArrowUpRight
                   className="h-4 w-4 text-ink/70 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"

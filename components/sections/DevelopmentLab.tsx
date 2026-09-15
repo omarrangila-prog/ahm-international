@@ -3,7 +3,7 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { Button } from "@/components/ui/Button";
-import type { AssetKey } from "@/data/assets";
+import { hasAsset, type AssetKey } from "@/data/assets";
 
 /**
  * Product development lab — editorial split.
@@ -70,7 +70,7 @@ export function DevelopmentLab() {
             </div>
 
             <div className="mt-9 border-t border-line pt-7">
-              <p className="label mb-4 text-ink/60">What you receive</p>
+              <p className="label mb-4 text-ink/65">What you receive</p>
               <ul className="flex flex-col gap-2.5">
                 {outputs.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-ink/75">
@@ -91,6 +91,7 @@ export function DevelopmentLab() {
           {/* Visual column */}
           <div className="col-span-12 lg:col-span-7">
             <Reveal>
+              {hasAsset("development.techPack") && (
               <div className="aspect-[16/10] w-full overflow-hidden bg-paper">
                 <SmartImage
                   asset="development.techPack"
@@ -99,10 +100,11 @@ export function DevelopmentLab() {
                   imageClassName="object-cover"
                 />
               </div>
+              )}
             </Reveal>
 
             <RevealGroup className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.07}>
-              {inputs.map((item) => (
+              {inputs.filter((item) => hasAsset(item.asset)).map((item) => (
                 <RevealItem key={item.title}>
                   <article className="group h-full border border-line bg-white">
                     <div className="aspect-[4/3] w-full overflow-hidden bg-paper">

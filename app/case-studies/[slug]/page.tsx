@@ -7,6 +7,7 @@ import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { caseStudies, getCaseStudy } from "@/data/caseStudies";
@@ -102,6 +103,7 @@ export default async function CaseStudyPage({ params }: Params) {
           </div>
 
           <div className="col-span-12 lg:col-span-5">
+            {hasAsset("products.apron.front") && (
             <Reveal>
               <div className="aspect-[4/5] w-full overflow-hidden bg-white">
                 <SmartImage
@@ -113,9 +115,10 @@ export default async function CaseStudyPage({ params }: Params) {
                 />
               </div>
             </Reveal>
+            )}
 
             <div className="mt-4 border border-line bg-paper p-6">
-              <p className="label text-ink/60">Confidentiality</p>
+              <p className="label text-ink/65">Confidentiality</p>
               <p className="mt-3 text-sm leading-relaxed text-ink/70">
                 The customer is not identified on this page, and their name does not appear in the
                 data behind it. No purchase order value, unit price, quantity or specification
@@ -123,6 +126,7 @@ export default async function CaseStudyPage({ params }: Params) {
               </p>
             </div>
 
+            {([study.assets.product, study.assets.fabric, study.assets.detail] as const).some(hasAsset) && (
             <RevealGroup className="mt-4 grid grid-cols-3 gap-3" stagger={0.06}>
               {/* Read from the case study's own declared assets rather than a
                   hardcoded list. The list previously named `export.cartons` — a
@@ -130,7 +134,9 @@ export default async function CaseStudyPage({ params }: Params) {
                   the program's actual product shot, which now exists. Driving
                   this from the data means a new case study brings its own
                   imagery without editing this component. */}
-              {([study.assets.product, study.assets.fabric, study.assets.detail] as const).map((asset) => (
+              {([study.assets.product, study.assets.fabric, study.assets.detail] as const)
+                .filter(hasAsset)
+                .map((asset) => (
                 <RevealItem key={asset}>
                   <div className="aspect-square w-full overflow-hidden bg-paper">
                     <SmartImage asset={asset} sizes={SIZES.thumb} className="h-full w-full" imageClassName="object-cover" />
@@ -138,6 +144,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 </RevealItem>
               ))}
             </RevealGroup>
+            )}
           </div>
         </div>
       </Section>

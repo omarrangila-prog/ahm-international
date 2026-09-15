@@ -8,7 +8,7 @@ import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
-import { firstAvailable } from "@/data/assets";
+import { firstAvailable, hasAsset } from "@/data/assets";
 import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
@@ -111,7 +111,7 @@ export default async function IndustryPage({ params }: Params) {
 
           <div className="col-span-12 lg:col-span-5">
             <div className="border border-line bg-paper p-7">
-              <h3 className="label text-ink/60">Who wears the program</h3>
+              <h3 className="label text-ink/65">Who wears the program</h3>
               <ul className="mt-5 flex flex-col gap-3">
                 {detail.roles.map((role) => (
                   <li key={role} className="flex items-start gap-3 text-[0.9375rem] text-ink/80">
@@ -121,7 +121,7 @@ export default async function IndustryPage({ params }: Params) {
                 ))}
               </ul>
 
-              <h3 className="label mt-8 text-ink/60">Typical garments</h3>
+              <h3 className="label mt-8 text-ink/65">Typical garments</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {industry.typicalGarments.map((garment) => (
                   <li key={garment} className="border border-ink/20 px-3 py-1.5 text-xs text-ink/70">
@@ -193,6 +193,7 @@ export default async function IndustryPage({ params }: Params) {
                   href={`/products/${category.slug}`}
                   className="group flex h-full flex-col border border-line bg-paper transition-colors hover:bg-white"
                 >
+                  {hasAsset(category.articles[0].asset) && (
                   <div className="aspect-[4/5] w-full overflow-hidden bg-white">
                     <SmartImage
                       asset={category.articles[0].asset}
@@ -202,6 +203,7 @@ export default async function IndustryPage({ params }: Params) {
                       alt=""
                     />
                   </div>
+                  )}
                   <div className="p-5">
                     <h3 className="font-display text-base font-bold tracking-[-0.02em] text-ink">
                       {category.name}

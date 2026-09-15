@@ -46,7 +46,7 @@ export default function SourcingPage() {
                 >
                   <div>
                     <div className="flex items-start justify-between gap-4">
-                      <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-ink">
+                      <span className="numeral text-2xl text-ink/65 transition-colors group-hover:text-ink">
                         {numeral(i + 1)}
                       </span>
                       <ArrowUpRight

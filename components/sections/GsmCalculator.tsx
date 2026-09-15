@@ -343,7 +343,7 @@ export function GsmCalculator() {
           {/* Ink ground, lime figure. The palette allows lime as text only on
               ink, and this is the one number the whole section exists for. */}
           <div className="bg-ink p-8 text-paper sm:p-10" data-zone="dark">
-            <p className="label text-paper/60">Result</p>
+            <p className="label text-paper/65">Result</p>
 
             {/* aria-live: the figure updates in place with no submit step, so
                 nothing else would announce it. */}
@@ -374,7 +374,7 @@ export function GsmCalculator() {
 
             {valid && (
               <div className="mt-8 border-t border-paper/20 pt-6">
-                <p className="label text-paper/60">
+                <p className="label text-paper/65">
                   {matching.length > 0
                     ? `Published at this weight · ${matching.length} of ${materials.length}`
                     : "No published construction covers this weight"}
@@ -401,7 +401,7 @@ export function GsmCalculator() {
 
                 {uses.length > 0 && (
                   <div className="mt-7">
-                    <p className="label text-paper/60">Typically used for</p>
+                    <p className="label text-paper/65">Typically used for</p>
                     <ul className="mt-3 flex flex-wrap gap-1.5">
                       {uses.map((use) => (
                         <li

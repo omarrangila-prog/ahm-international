@@ -106,7 +106,7 @@ export function FileDrop({
               : "border-ink/20 hover:border-ink/40",
         )}
       >
-        <Upload className={cn("h-6 w-6", dark ? "text-current/70" : "text-ink/60")} aria-hidden="true" />
+        <Upload className={cn("h-6 w-6", dark ? "text-current/70" : "text-ink/65")} aria-hidden="true" />
         <div>
           <button
             type="button"
@@ -118,11 +118,11 @@ export function FileDrop({
           >
             Choose files
           </button>
-          <span className={cn("ml-1.5 text-sm", dark ? "text-current/60" : "text-ink/60")}>
+          <span className={cn("ml-1.5 text-sm", dark ? "text-current/60" : "text-ink/65")}>
             or drag them here
           </span>
         </div>
-        <p className={cn("text-xs", dark ? "text-current/70" : "text-ink/60")}>
+        <p className={cn("text-xs", dark ? "text-current/70" : "text-ink/65")}>
           {ACCEPTED_LABEL} · up to {Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB each ·{" "}
           {MAX_FILES} files · {Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB total
         </p>
@@ -163,7 +163,7 @@ export function FileDrop({
                   <FileText className="h-4 w-4 shrink-0 text-ink" aria-hidden="true" />
                   <span className="min-w-0">
                     <span className="block truncate text-sm font-medium">{sanitiseFilename(file.name)}</span>
-                    <span className={cn("text-xs", dark ? "text-current/70" : "text-ink/60")}>
+                    <span className={cn("text-xs", dark ? "text-current/70" : "text-ink/65")}>
                       {formatBytes(file.size)}
                     </span>
                   </span>
@@ -173,7 +173,7 @@ export function FileDrop({
                   onClick={() => onChange(files.filter((_, index) => index !== i))}
                   className={cn(
                     "flex h-8 w-8 shrink-0 items-center justify-center transition-colors",
-                    dark ? "text-current/70 hover:text-current" : "text-ink/60 hover:text-ink",
+                    dark ? "text-current/70 hover:text-current" : "text-ink/65 hover:text-ink",
                   )}
                   aria-label={`Remove ${sanitiseFilename(file.name)}`}
                 >

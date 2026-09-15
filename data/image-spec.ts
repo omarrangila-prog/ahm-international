@@ -67,6 +67,6 @@ export function roleForPath(path: string): ImageRole {
   if (path.includes("/factory/") || path.includes("/export/") || path.includes("/development/")) return "industry";
   if (path.includes("/fabrics/") || path.includes("fabric-macro")) return "fabricMacro";
   if (path.includes("/details/") || path.includes("-detail")) return "technicalDetail";
-  if (path.includes("/renders/") || path.includes("/products/")) return "productSquare";
+  if (path.includes("/products/")) return "productSquare";
   return "productSquare";
 }

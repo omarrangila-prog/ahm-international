@@ -59,9 +59,11 @@ export function IndustryCard({
     );
   }
 
+  const hasRepresentative = hasAsset(industry.representative);
+
   return (
     <figure className="group flex h-full flex-col">
-      {/* Light plate keeps every article legible whatever zone the card is in. */}
+      {hasRepresentative && (
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-paper">
         <SmartImage
           asset={industry.representative}
@@ -71,10 +73,11 @@ export function IndustryCard({
           alt={`${industry.typicalGarments[0]} of the type produced for ${industry.name.toLowerCase()} programs`}
         />
       </div>
+      )}
 
-      <figcaption className={cn("flex flex-1 flex-col pt-4", dark ? "text-paper" : "text-ink")}>
+      <figcaption className={cn("flex flex-1 flex-col", hasRepresentative ? "pt-4" : "", dark ? "text-paper" : "text-ink")}>
         <p className="font-display text-base font-bold tracking-[-0.02em]">{industry.name}</p>
-        <p className={cn("mt-1.5 text-xs leading-snug", dark ? "text-paper/60" : "text-ink/60")}>
+        <p className={cn("mt-1.5 text-xs leading-snug", dark ? "text-paper/65" : "text-ink/65")}>
           {industry.demand}
         </p>
         <p className={cn("mt-3 text-[0.6875rem] leading-snug", dark ? "text-paper/70" : "text-ink/70")}>

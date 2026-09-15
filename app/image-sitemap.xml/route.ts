@@ -41,16 +41,16 @@ function pageImageMap(): Map<string, AssetKey[]> {
     map.set(path, [...new Set([...existing, ...keys])]);
   };
 
-  // Homepage carries the hero and the category renders.
+  // Homepage: only images the page actually renders.
   add("/", [
     "hero.sewing",
-    "renders.workJacket",
-    "photo.poloWhiteTipped",
-    "photo.hoodieNavy",
+    "photo.utilityBomberCharcoal",
+    "photo.poloGreenRibbed",
     "products.apron.front",
-    "renders.utilityWorkShirt",
-    "renders.workTrouser",
-    "photo.zipHoodieNavy",
+    "products.polo.front",
+    "products.fleece.front",
+    "products.bottoms.front",
+    "products.outerwear.front",
   ]);
 
   for (const category of productCategories) {

@@ -165,7 +165,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
                 <RevealItem key={item.problem}>
                   <div className="bg-ink p-6 lg:p-7">
                     <p className="flex items-start gap-3 font-display text-base font-bold tracking-[-0.02em] text-paper">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-ink" aria-hidden="true" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-lime" aria-hidden="true" />
                       {item.problem}
                     </p>
                     <p className="mt-3 border-l-2 border-lime pl-4 text-sm leading-relaxed text-paper/70">
@@ -205,7 +205,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
               href={`/manufacturing/${previous.slug}`}
               className="group flex flex-col gap-2 border border-line bg-paper p-6 transition-colors hover:bg-white"
             >
-              <span className="label text-ink/60">Previous stage</span>
+              <span className="label text-ink/65">Previous stage</span>
               <span className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
                 {numeral(previous.index)}. {previous.shortTitle}
               </span>
@@ -218,7 +218,7 @@ export default async function ManufacturingStagePage({ params }: Params) {
               href={`/manufacturing/${next.slug}`}
               className="group flex flex-col gap-2 border border-line bg-paper p-6 text-right transition-colors hover:bg-white sm:col-start-2"
             >
-              <span className="label text-ink/60">Next stage</span>
+              <span className="label text-ink/65">Next stage</span>
               <span className="font-display text-lg font-bold tracking-[-0.025em] text-ink">
                 {numeral(next.index)}. {next.shortTitle}
               </span>

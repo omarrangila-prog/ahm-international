@@ -41,7 +41,7 @@ export function Breadcrumbs({ trail, tone = "light" }: { trail: Crumb[]; tone?: 
                       href={crumb.path}
                       className={cn(
                         "label underline-offset-4 transition-colors hover:underline",
-                        tone === "dark" ? "text-paper/70 hover:text-paper" : "text-ink/60 hover:text-ink",
+                        tone === "dark" ? "text-paper/70 hover:text-paper" : "text-ink/65 hover:text-ink",
                       )}
                     >
                       {crumb.name}

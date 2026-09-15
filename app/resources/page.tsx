@@ -74,7 +74,7 @@ export default function ResourcesPage() {
                   >
                     <div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="numeral text-2xl text-ink/60 transition-colors group-hover:text-ink">
+                        <span className="numeral text-2xl text-ink/65 transition-colors group-hover:text-ink">
                           {numeral(i + 1)}
                         </span>
                         <ArrowUpRight
@@ -89,7 +89,7 @@ export default function ResourcesPage() {
                         {guide.intro}
                       </p>
                     </div>
-                    <p className="label text-ink/60">{guide.readingTime}</p>
+                    <p className="label text-ink/65">{guide.readingTime}</p>
                   </Link>
                 ))}
               </div>
@@ -100,7 +100,7 @@ export default function ResourcesPage() {
 
       <Section zone="paper" spacing="none">
         <div className="shell-wide border-t border-line pt-5 pb-16">
-          <p className="text-sm text-ink/60">
+          <p className="text-sm text-ink/65">
             Reviewed by {REVIEWED_BY}. Last reviewed {LAST_REVIEWED}.
           </p>
         </div>

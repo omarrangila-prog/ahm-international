@@ -55,7 +55,7 @@ export function Logo({ markOnly = false, className }: LogoProps) {
           {/* 8px was below any legibility floor, and this is the company name, not
               an ornament. 10px keeps it clearly subordinate to AHM while staying
               readable at arm's length on a phone. */}
-          <span className="label mt-0.5 text-[0.625rem] opacity-70 sm:text-[0.6875rem]">International</span>
+          <span className="label mt-0.5 text-[0.625rem] opacity-80 sm:text-[0.6875rem]">International</span>
         </span>
       )}
     </span>

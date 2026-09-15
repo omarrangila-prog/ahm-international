@@ -7,7 +7,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { productCategories } from "@/data/products";
-import { firstAvailable } from "@/data/assets";
+import { firstAvailable, hasAsset } from "@/data/assets";
 import { numeral, cn } from "@/lib/utils";
 
 /**
@@ -65,7 +65,7 @@ export function ProductUniverse() {
                     <span
                       className={cn(
                         "numeral shrink-0 text-sm transition-colors duration-200",
-                        isActive ? "text-ink" : "text-ink/60",
+                        isActive ? "text-ink" : "text-ink/65",
                       )}
                     >
                       {numeral(i + 1)}
@@ -97,11 +97,14 @@ export function ProductUniverse() {
             })}
           </ul>
 
-          {/* One frame, which changes */}
+          {/* One frame, which changes. Empty when the family has no photograph. */}
           <div className="col-span-12 lg:col-span-5" aria-hidden="true">
             <div className="lg:sticky lg:top-28">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-white">
-                {families.map((family, i) => (
+                {families.map((family, i) => {
+                  const preview = firstAvailable(family.heroAsset, family.articles[0].asset);
+                  if (!hasAsset(preview)) return null;
+                  return (
                   <div
                     key={family.slug}
                     className={cn(
@@ -110,18 +113,15 @@ export function ProductUniverse() {
                     )}
                   >
                     <SmartImage
-                      // uniform-workwear points at an industry photograph that was
-                      // never supplied, and it is the default selection — so the
-                      // frame opened empty. Falling back to the family's own first
-                      // article keeps every preview filled, whatever the data does.
-                      asset={firstAvailable(family.heroAsset, family.articles[0].asset)}
+                      asset={preview}
                       sizes={SIZES.half}
                       className="h-full w-full"
                       imageClassName="object-contain p-8"
                       alt=""
                     />
                   </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* The specification reads as a line of type, not a row of chips. */}
@@ -136,13 +136,13 @@ export function ProductUniverse() {
         </div>
 
         <div className="mt-12 flex flex-wrap items-baseline justify-between gap-4 border-t border-ink/15 pt-6">
-          <p className="max-w-lg text-sm text-ink/60">
+          <p className="max-w-lg text-sm text-ink/65">
             {productCategories.length} families in total, each costed as a program rather than a
             one-off order.
           </p>
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:text-ink"
+            className="group inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink underline-offset-4 transition-colors hover:underline"
           >
             Explore all products
             <ArrowRight

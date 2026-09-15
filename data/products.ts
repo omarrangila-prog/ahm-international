@@ -108,7 +108,7 @@ export const productCategories: ProductCategory[] = [
     subcategories: ["Work Shirts", "Uniform Tops", "Service Apparel", "Chef Wear", "Safety & Hi-Vis"],
     articles: [
       { name: "Utility Work Shirt", asset: "renders.utilityWorkShirt", note: "Twin chest pockets, felled seams, buyer-specified closure" },
-      { name: "Utility Work Jacket", asset: "renders.workJacket", note: "Four-pocket construction, reinforced stress points" },
+      { name: "Utility Work Jacket", asset: "photo.utilityBomberCharcoal", note: "Four-pocket construction, reinforced stress points" },
       { name: "Double-Breasted Chef Coat", asset: "renders.chefCoat", note: "Knot or press-stud closure, vented back option" },
       { name: "Reflective Safety Vest", asset: "renders.safetyVest", capabilityStatus: "technical_qualification_required", note: "Hi-vis is a certified product class. Tape configuration is built to the buyer's nominated standard, and the standard must be qualified before AHM quotes it" },
       { name: "Structured Uniform Cap", asset: "renders.uniformCap", note: "Six-panel, buckram front, embroidery-ready" },
@@ -128,9 +128,9 @@ export const productCategories: ProductCategory[] = [
     ],
     decoration: ["Embroidery", "Screen print", "Heat transfer", "Woven badges", "Applied patches", "Reflective tape"],
     applications: ["Grocery", "Facilities", "Industrial", "Food Service", "Corporate", "Events"],
-    heroAsset: "industries.industrial",
+    heroAsset: "photo.utilityBomberCharcoal",
     detailAssets: ["products.wovenShirt.detail", "factory.sewing", "fabrics.polycottonTwill"],
-    photography: ["photo.scarfCamel", "photo.scarfHerringbone", "photo.scarfPlaidMaroon", "photo.scarfNavy", "photo.scarfNavyLooped", "photo.scarfPlaidOlive", "photo.onesieWhitePrint", "photo.onesieWhiteText"],
+    photography: ["photo.utilityBomberCharcoal", "photo.workVestOrange", "photo.denimUtilityJacket", "photo.pantCamo"],
     seoTitle: "Uniform & Workwear Manufacturing",
     seoDescription:
       "Work shirts, service apparel, chef wear and hi-vis produced to buyer specification in Karachi, Pakistan and supplied FOB.",
@@ -148,7 +148,7 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Classic Polos", "Performance Polos", "Long-Sleeve Polos", "Crew-Neck Tees", "Performance Tees"],
     articles: [
-      { name: "Classic Short-Sleeve Polo", asset: "photo.poloWhiteTipped", note: "Rib collar and cuffs, three-button placket" },
+      { name: "Classic Short-Sleeve Polo", asset: "photo.poloGreenRibbed", note: "Rib collar and cuffs, three-button placket" },
       { name: "Long-Sleeve Uniform Polo", asset: "photo.poloTaupeLongSleeve", note: "Rib cuff, side-vent option" },
       { name: "Crew-Neck Uniform T-Shirt", asset: "renders.crewNeckTee", note: "Rib neck with taped shoulder seam" },
     ],
@@ -262,8 +262,8 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Uniform Shirts", "Utility Work Shirts", "Service Shirts", "Short-Sleeve Shirts"],
     articles: [
-      { name: "Button-Front Uniform Shirt", asset: "renders.buttonFrontShirt", note: "Fused collar and cuff, buyer-specified pocket layout" },
-      { name: "Utility Work Shirt", asset: "renders.utilityWorkShirt", note: "Twin chest pockets, felled side seams" },
+      { name: "Button-Front Uniform Shirt", asset: "photo.denimUtilityJacket", note: "Fused collar and cuff, buyer-specified pocket layout" },
+      { name: "Utility Work Shirt", asset: "photo.denimUtilityJacket", note: "Twin chest pockets, felled side seams" },
     ],
     specification: [
       { label: "Fabric options", value: "Poly-cotton poplin, poly-cotton twill, oxford, cotton canvas, performance woven" },
@@ -279,9 +279,9 @@ export const productCategories: ProductCategory[] = [
     ],
     decoration: ["Embroidery", "Woven badges", "Applied patches", "Screen print"],
     applications: ["Corporate", "Hospitality", "Facilities", "Industrial", "Retail"],
-    heroAsset: "products.wovenShirt.front",
+    heroAsset: "photo.denimUtilityJacket",
     detailAssets: ["products.wovenShirt.detail", "fabrics.woven", "factory.finishing"],
-    photography: ["photo.denimWorkShirt"],
+    photography: ["photo.denimUtilityJacket"],
     seoTitle: "Woven Shirt Manufacturing",
     seoDescription:
       "Poplin, twill and oxford uniform shirting produced to your specification in Karachi, Pakistan and supplied FOB.",
@@ -299,7 +299,7 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Work Trousers", "Uniform Pants", "Work Shorts", "Cargo Styles", "Chef Trousers"],
     articles: [
-      { name: "Uniform Work Trouser", asset: "renders.workTrouser", note: "Reinforced pockets, bar-tacked stress points" },
+      { name: "Uniform Work Trouser", asset: "photo.pantCamo", note: "Reinforced pockets, bar-tacked stress points" },
       { name: "Uniform Work Short", asset: "renders.workShort", note: "Buyer-specified inseam and pocket layout" },
     ],
     specification: [
@@ -336,7 +336,7 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Softshell Jackets", "Lightweight Jackets", "Fleece Jackets", "Vests", "Work Jackets"],
     articles: [
-      { name: "Utility Work Jacket", asset: "renders.workJacket", note: "Four-pocket construction, reinforced stress points" },
+      { name: "Utility Work Jacket", asset: "photo.utilityBomberCharcoal", note: "Four-pocket construction, reinforced stress points" },
       { name: "Full-Zip Fleece Jacket", asset: "photo.zipHoodieNavy", note: "Anti-pill face, chin guard, zip pockets" },
       { name: "Reflective Safety Vest", asset: "renders.safetyVest", capabilityStatus: "technical_qualification_required", note: "Hi-vis is a certified product class. Tape configuration is built to the buyer's nominated standard, and the standard must be qualified before AHM quotes it" },
     ],
@@ -378,7 +378,7 @@ export const productCategories: ProductCategory[] = [
       { name: "Bib Apron", asset: "products.apron.front", note: "Adjustable neck, cross-back option, pocket to specification" },
       { name: "Waist Apron", asset: "renders.waistApron", note: "Server pocket configuration, tie length to specification" },
       { name: "Chef Beanie", asset: "renders.chefBeanie", note: "Skull cap or beanie, laundry-stable construction" },
-      { name: "Service Polo", asset: "photo.poloWhiteTipped", note: "Soil-release finish available subject to fabric selection" },
+      { name: "Service Polo", asset: "photo.poloLime", note: "Soil-release finish available subject to fabric selection" },
       { name: "Front Desk Woven Shirt", asset: "renders.buttonFrontShirt", note: "Easy-care finish, tailored or relaxed block" },
     ],
     specification: [
@@ -415,9 +415,9 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "development_available",
     subcategories: ["Denim Shirts", "Denim Jackets", "Denim Bottoms", "Workwear Denim"],
     articles: [
-      { name: "Denim Work Shirt", asset: "photo.denimWorkShirt", note: "Twin chest pockets, felled seams, buyer-specified closure" },
+      { name: "Denim Work Shirt", asset: "photo.denimUtilityJacket", note: "Twin chest pockets, felled seams, buyer-specified closure" },
       { name: "Denim Utility Jacket", asset: "photo.denimUtilityJacket", note: "Four-pocket construction, reinforced stress points" },
-      { name: "Denim Work Trouser", asset: "renders.workTrouser", note: "Triple-needle seams, bar-tacked pockets" },
+      { name: "Denim Work Trouser", asset: "photo.pantCamo", note: "Triple-needle seams, bar-tacked pockets" },
     ],
     specification: [
       { label: "Fabric options", value: "Rigid and stretch denim, left-hand and right-hand twill" },
@@ -434,9 +434,9 @@ export const productCategories: ProductCategory[] = [
     ],
     decoration: ["Embroidery", "Applied patches", "Screen print", "Leather patch"],
     applications: ["Retail", "Corporate", "Industrial", "Events"],
-    heroAsset: "photo.denimWorkShirt",
+    heroAsset: "photo.denimUtilityJacket",
     detailAssets: ["photo.denimUtilityJacket", "fabrics.woven", "factory.cutting"],
-    photography: ["photo.denimWorkShirt", "photo.denimUtilityJacket"],
+    photography: ["photo.denimUtilityJacket"],
     seoTitle: "Denim Manufacturing & Development",
     seoDescription:
       "Denim shirts, jackets and bottoms developed to your weight, weave and wash specification in Karachi and supplied FOB from Port Qasim.",
@@ -474,7 +474,7 @@ export const productCategories: ProductCategory[] = [
     ],
     decoration: ["Screen print", "Embroidery", "Heat transfer", "Sublimation", "Applied patches"],
     applications: ["Retail", "Events", "Corporate"],
-    heroAsset: "photo.joggerGreyGraphic",
+    heroAsset: "photo.loungePantGrid",
     detailAssets: ["photo.hoodieHeatherGraphic", "fabrics.fleece", "factory.sewing"],
     photography: ["photo.joggerGreyGraphic", "photo.loungePantGrid", "photo.sleevelessHoodieBlack", "photo.sleevelessHoodieWhite"],
     seoTitle: "Athleisure & Performance Knits",

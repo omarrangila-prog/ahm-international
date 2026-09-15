@@ -41,7 +41,7 @@ export function Footer() {
           {/* Navigation */}
           {footerNav.map((column) => (
             <div key={column.title} className="col-span-6 sm:col-span-4 lg:col-span-2">
-              <p className="label mb-5 text-paper/60">{column.title}</p>
+              <p className="label mb-5 text-paper/65">{column.title}</p>
               <ul className="flex flex-col gap-1 sm:gap-1.5">
                 {column.links.map((link) => (
                   <li key={link.href}>
@@ -59,10 +59,10 @@ export function Footer() {
 
           {/* Contact */}
           <div className="col-span-12 sm:col-span-4 lg:col-span-2">
-            <p className="label mb-5 text-paper/60">Contact</p>
+            <p className="label mb-5 text-paper/65">Contact</p>
             <ul className="flex flex-col gap-4 text-sm">
               <li>
-                <p className="text-paper/60">Email</p>
+                <p className="text-paper/65">Email</p>
                 {email ? (
                   <a href={`mailto:${email}`} className="inline-block [overflow-wrap:anywhere] py-1.5 text-paper/80 transition-colors hover:text-lime">
                     {email}
@@ -77,13 +77,13 @@ export function Footer() {
                 )}
               </li>
               <li>
-                <p className="text-paper/60">Phone</p>
+                <p className="text-paper/65">Phone</p>
                 {phone ? (
                   <a href={`tel:${phone.replace(/\s/g, "")}`} className="inline-block py-1.5 text-paper/80 transition-colors hover:text-lime">
                     {phone}
                   </a>
                 ) : (
-                  <p className="text-paper/60">{NOT_PUBLISHED}</p>
+                  <p className="text-paper/65">{NOT_PUBLISHED}</p>
                 )}
               </li>
               <li>
@@ -137,7 +137,7 @@ export function Footer() {
           </Link>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-line-invert pt-7 text-xs text-paper/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-line-invert pt-7 text-xs text-paper/65 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {company.name}. Apparel manufacturing and FOB export, {company.city}, {company.country}.
           </p>

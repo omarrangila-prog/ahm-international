@@ -59,7 +59,7 @@ export default function SendTechPackPage() {
 
           <aside className="col-span-12 lg:col-span-4">
             <div className="border border-line bg-paper p-6 lg:sticky lg:top-28">
-              <p className="label text-ink/60">Accepted formats</p>
+              <p className="label text-ink/65">Accepted formats</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {["PDF", "XLSX", "DOCX", "JPG", "PNG", "ZIP"].map((format) => (
                   <li key={format} className="border border-ink/20 px-3 py-1.5 text-xs text-ink/70">

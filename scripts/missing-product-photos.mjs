@@ -1,14 +1,9 @@
 /**
- * Lists the garments still shown as flat vector renders rather than photographs.
+ * Lists catalogue garments that still have no photograph.
  *
- * A render is a placeholder with a nicer finish. It reads as cheap next to a real
- * garment, and this prints exactly what has to be shot or generated to remove the
- * last of them.
- *
- * Only garments with no honest photographic substitute appear here. Where the
- * library already held the same garment unbranded, the swap has been made — the
- * ones listed below either have no equivalent at all, or the only candidate was a
- * different garment or carried a third-party mark.
+ * Vector stand-ins used to fill these slots. Those files are gone: an article
+ * without a photo is listed without an image. This prints what still has to
+ * be shot so the frames can come back.
  *
  * Run: npm run photos:needed
  */
@@ -46,7 +41,7 @@ for (const m of referenced.matchAll(/"(renders\.[a-zA-Z]+)"/g)) {
 
 const rows = Object.entries(counts).sort((a, b) => b[1] - a[1]);
 
-console.log(`garments still shown as renders: ${rows.length}\n`);
+console.log(`garments still waiting on a photograph: ${rows.length}\n`);
 console.log("  uses  file to supply                              what it should show");
 console.log("  ----  -------------------------------------------  -------------------");
 

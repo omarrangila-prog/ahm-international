@@ -17,14 +17,18 @@ const base =
   "group/btn relative inline-flex items-center justify-center gap-2.5 font-display font-bold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-300 ease-[var(--ease-out-expo)] disabled:pointer-events-none disabled:opacity-50 active:translate-y-px";
 
 const variants: Record<Variant, string> = {
-  /* On paper: ink fill, lime on hover — the only two colours there are. */
-  solid: "bg-ink text-paper hover:bg-lime hover:text-ink",
-  /* On paper: hairline that fills in. */
-  outline: "border border-ink/25 text-ink hover:border-lime hover:bg-lime hover:text-ink hover:text-paper",
+  /* On paper: ink fill, lime on hover. On a lime ground that hover would wash
+     the control into the section, so it flips to paper instead. */
+  solid:
+    "bg-ink text-paper hover:bg-lime hover:text-ink [[data-zone=lime]_&]:hover:bg-paper [[data-zone=lime]_&]:hover:text-ink",
+  /* On paper: hairline that fills lime. On lime: fills ink so it stays visible. */
+  outline:
+    "border border-ink/25 text-ink hover:border-lime hover:bg-lime hover:text-ink [[data-zone=lime]_&]:hover:border-ink [[data-zone=lime]_&]:hover:bg-ink [[data-zone=lime]_&]:hover:text-paper",
   /* The accent CTA. Ink on lime is 12.4:1, so it carries at any size. */
-  lime: "bg-lime text-ink hover:bg-lime hover:text-ink hover:text-lime",
-  /* On ink: the inverse of `solid`. */
-  invert: "bg-paper text-ink hover:bg-lime",
+  lime: "bg-lime text-ink hover:bg-paper",
+  /* On ink: paper fill that accents lime. On lime: paper fill that goes ink. */
+  invert:
+    "bg-paper text-ink hover:bg-lime [[data-zone=lime]_&]:hover:bg-ink [[data-zone=lime]_&]:hover:text-paper",
   /* Underlined at rest, not only on hover. As a bare uppercase label beside two
      filled buttons it read as an unstyled fragment rather than a third choice;
      hover is not an affordance on touch, and it is not one for a reader who

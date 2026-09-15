@@ -61,7 +61,7 @@ export function FaqList({
                   className={cn(
                     "mt-1 h-4 w-4 shrink-0 transition-transform duration-300 ease-[var(--ease-out-expo)]",
                     expanded && "rotate-45",
-                    dark ? "text-current/70" : "text-ink/60",
+                    dark ? "text-current/70" : "text-ink/65",
                   )}
                   aria-hidden="true"
                 />

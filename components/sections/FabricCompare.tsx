@@ -146,7 +146,7 @@ export function FabricCompare() {
 
       <dl className="mt-10 border-t border-line">
         <div className="grid grid-cols-12 gap-4 border-b border-line py-3">
-          <dt className="col-span-12 label text-ink/60 sm:col-span-4">Comparing</dt>
+          <dt className="col-span-12 label text-ink/65 sm:col-span-4">Comparing</dt>
           <dd className="col-span-6 font-display text-sm font-bold tracking-[-0.02em] text-ink sm:col-span-4">
             {left.name}
           </dd>
@@ -156,11 +156,11 @@ export function FabricCompare() {
         </div>
         {specs.map((row) => (
           <div key={row.label} className="grid grid-cols-12 gap-4 border-b border-line py-3">
-            <dt className="col-span-12 label text-ink/60 sm:col-span-4">{row.label}</dt>
+            <dt className="col-span-12 label text-ink/65 sm:col-span-4">{row.label}</dt>
             <dd
               className={cn(
                 "col-span-6 text-sm sm:col-span-4",
-                row.a === row.b ? "text-ink/60" : "text-ink/80",
+                row.a === row.b ? "text-ink/65" : "text-ink/80",
               )}
             >
               {row.a}
@@ -168,7 +168,7 @@ export function FabricCompare() {
             <dd
               className={cn(
                 "col-span-6 text-sm sm:col-span-4",
-                row.a === row.b ? "text-ink/60" : "text-ink/80",
+                row.a === row.b ? "text-ink/65" : "text-ink/80",
               )}
             >
               {row.b}
@@ -201,7 +201,7 @@ function FabricPicker({
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="label block text-ink/60">
+      <label htmlFor={id} className="label block text-ink/65">
         {label}
       </label>
       <select

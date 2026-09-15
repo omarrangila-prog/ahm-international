@@ -3,6 +3,7 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { ORIGIN, markets, fobScope, EXPORT_STATEMENT, MARKET_STATEMENT } from "@/data/markets";
 
 /**
@@ -45,7 +46,7 @@ export function ExportSection() {
                   <dt className="font-display text-[0.9375rem] font-bold tracking-[-0.015em] text-paper">
                     {item.title}
                   </dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-paper/60">{item.body}</dd>
+                  <dd className="mt-1 text-sm leading-relaxed text-paper/65">{item.body}</dd>
                 </div>
               ))}
             </dl>
@@ -67,8 +68,10 @@ export function ExportSection() {
               the copy beneath instead, where it reads as a statement rather than
               a legend nobody decodes. */}
           <div className="col-span-12 lg:col-span-7">
+            {(hasAsset("export.containerLoading") || hasAsset("export.warehouse") || hasAsset("factory.packing")) && (
             <Reveal>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-5">
+                {hasAsset("export.containerLoading") && (
                 <div className="relative aspect-[4/3] overflow-hidden border border-paper/12 bg-ink/60 sm:col-span-3 sm:aspect-auto sm:min-h-[19rem]">
                   <SmartImage
                     asset="export.containerLoading"
@@ -78,7 +81,9 @@ export function ExportSection() {
                     alt="Cartons being loaded for export at Port Qasim, Karachi"
                   />
                 </div>
+                )}
                 <div className="grid grid-cols-2 gap-3 sm:col-span-2 sm:grid-cols-1">
+                  {hasAsset("export.warehouse") && (
                   <div className="relative aspect-[4/3] overflow-hidden border border-paper/12 bg-ink/60">
                     <SmartImage
                       asset="export.warehouse"
@@ -88,6 +93,8 @@ export function ExportSection() {
                       alt="Marked cartons stacked and ready for despatch"
                     />
                   </div>
+                  )}
+                  {hasAsset("factory.packing") && (
                   <div className="relative aspect-[4/3] overflow-hidden border border-paper/12 bg-ink/60">
                     <SmartImage
                       asset="factory.packing"
@@ -97,9 +104,11 @@ export function ExportSection() {
                       alt="Garments being folded, polybagged and carton-packed"
                     />
                   </div>
+                  )}
                 </div>
               </div>
             </Reveal>
+            )}
 
             {/* The honesty layer the map legend used to carry. Documented lanes
                 and target markets are named rather than drawn, because a market
@@ -113,14 +122,14 @@ export function ExportSection() {
                 </dd>
               </div>
               <div className="bg-ink/60 px-5 py-4">
-                <dt className="label text-paper/55">Target buyer markets</dt>
+                <dt className="label text-paper/65">Target buyer markets</dt>
                 <dd className="mt-1.5 text-sm text-paper/75">
                   {markets.map((m) => m.name).join(", ")}
                 </dd>
               </div>
             </dl>
 
-            <p className="mt-5 text-xs leading-relaxed text-paper/60">{MARKET_STATEMENT}</p>
+            <p className="mt-5 text-xs leading-relaxed text-paper/65">{MARKET_STATEMENT}</p>
           </div>
         </div>
       </div>

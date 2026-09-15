@@ -6,20 +6,14 @@ import Image from "next/image";
  * Hero visual.
  *
  * Renders the hero photograph once `hero-sewing-01.webp` exists. Until then it
- * composes a technical lay-down from the representative renders that *were*
- * supplied — three articles on a drafting field with annotation rules.
- *
- * This is a deliberate choice over a grey placeholder. The hero is the LCP
- * element and carries the first five seconds of credibility; a diagram of a
- * sewing machine would read as an unfinished site. A garment lay-down reads as
- * an apparel manufacturer, uses only assets that exist, and claims nothing about
- * a facility. When the photograph lands it takes over with no layout change.
+ * composes a lay-down from photographed articles that actually exist. Missing
+ * files are skipped — nothing is drawn in their place.
  */
 
 const layDown = [
-  { key: "renders.workJacket", code: "AHM-WJ-001", label: "Work jacket", className: "left-[4%] top-[16%] w-[42%] z-20" },
-  { key: "photo.poloWhiteTipped", code: "AHM-PO-001", label: "Classic polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
-  { key: "products.apron.front", code: "AHM-AP-001", label: "Bib apron", className: "left-[30%] bottom-[8%] w-[32%] z-30" },
+  { key: "photo.utilityBomberCharcoal", code: "Work jacket", label: "Charcoal utility bomber", className: "left-[4%] top-[16%] w-[42%] z-20" },
+  { key: "photo.poloGreenRibbed", code: "Classic polo", label: "Ribbed uniform polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
+  { key: "products.apron.front", code: "Bib apron", label: "Three-pocket bib apron", className: "left-[30%] bottom-[8%] w-[32%] z-30" },
 ] as const;
 
 function LayDown() {
@@ -67,7 +61,7 @@ function LayDown() {
       {/* Article codes, set as a spec sheet would set them */}
       <ul className="absolute bottom-3 left-3 z-40 flex flex-col gap-0.5 sm:bottom-4 sm:left-4 sm:gap-1">
         {layDown.map((item) => (
-          <li key={item.code} className="label text-ink/60">
+          <li key={item.code} className="label text-ink/65">
             <span className="text-ink">{item.code}</span>
             <span className="mx-1.5 opacity-40">/</span>
             {item.label}

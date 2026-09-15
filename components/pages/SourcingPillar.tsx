@@ -115,9 +115,9 @@ return (
               lines={[{ text: "Common" }, { text: "questions." }]}
             />
             <div className="mt-8 border-t border-line pt-5">
-              <p className="label text-ink/60">Reviewed by</p>
+              <p className="label text-ink/65">Reviewed by</p>
               <p className="mt-2 text-sm text-ink/70">{REVIEWED_BY}</p>
-              <p className="mt-1 text-xs text-ink/60">Last reviewed {LAST_REVIEWED}</p>
+              <p className="mt-1 text-xs text-ink/65">Last reviewed {LAST_REVIEWED}</p>
             </div>
           </div>
           <div className="col-span-12 lg:col-span-8">

@@ -227,7 +227,7 @@ export function RfqForm() {
             <ul className="mt-3 space-y-1.5">
               {email && (
                 <li>
-                  <span className="text-ink/60">Email</span>{" "}
+                  <span className="text-ink/65">Email</span>{" "}
                   <a
                     href={`mailto:${email}?subject=${encodeURIComponent(
                       reference ? `RFQ ${reference}` : "RFQ",
@@ -240,7 +240,7 @@ export function RfqForm() {
               )}
               {whatsapp && (
                 <li>
-                  <span className="text-ink/60">WhatsApp</span>{" "}
+                  <span className="text-ink/65">WhatsApp</span>{" "}
                   <a
                     href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                     target="_blank"
@@ -257,7 +257,7 @@ export function RfqForm() {
         <div className="mt-9 flex flex-wrap gap-3">
           <Link
             href="/products"
-            className="inline-flex h-12 items-center gap-2 border border-ink/25 px-6 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink hover:text-paper"
+            className="inline-flex h-12 items-center gap-2 border border-ink/25 px-6 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink transition-colors hover:bg-lime hover:text-ink"
           >
             Browse products
           </Link>
@@ -281,7 +281,7 @@ export function RfqForm() {
       {/* Progress */}
       <div className="mb-8">
         <div className="flex items-baseline justify-between gap-4">
-          <p className="label text-ink/60">
+          <p className="label text-ink/65">
             Step {step + 1} of {RFQ_STEPS.length}. {current.title}
           </p>
           <p className="label text-ink/70 hidden sm:block">{current.description}</p>
@@ -483,7 +483,7 @@ export function RfqForm() {
                     .filter((row) => row.value)
                     .map((row) => (
                       <div key={row.label} className="grid grid-cols-[8rem_1fr] gap-4 border-b border-line py-3">
-                        <dt className="label text-ink/60">{row.label}</dt>
+                        <dt className="label text-ink/65">{row.label}</dt>
                         <dd className="text-sm text-ink/80">{row.value}</dd>
                       </div>
                     ))}
@@ -539,7 +539,7 @@ export function RfqForm() {
             type="button"
             onClick={back}
             disabled={step === 0}
-            className="inline-flex h-12 items-center gap-2 px-2 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink/60 transition-colors hover:text-ink disabled:pointer-events-none disabled:opacity-0"
+            className="inline-flex h-12 items-center gap-2 px-2 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink/65 transition-colors hover:text-ink disabled:pointer-events-none disabled:opacity-0"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back

@@ -90,7 +90,7 @@ export function QuoteReadiness() {
                   <span
                     className={cn(
                       "block font-display text-sm font-bold uppercase tracking-[0.02em] transition-colors duration-200 motion-reduce:transition-none",
-                      checked ? "text-ink/50" : "text-ink",
+                      checked ? "text-ink/65" : "text-ink",
                     )}
                   >
                     {input.label}

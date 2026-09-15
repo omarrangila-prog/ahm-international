@@ -22,7 +22,8 @@ export function CtaBand({
   secondary?: { label: string; href: string };
   zone?: ZoneName;
 }) {
-  const dark = ["ink", "ink", "ink", "ink", "ink"].includes(zone);
+  const dark = zone === "ink";
+  const onLime = zone === "lime";
 
   return (
     <Section data-print="hide" zone={zone} spacing="md" tooth>
@@ -37,11 +38,20 @@ export function CtaBand({
         <div className="col-span-12 lg:col-span-5">
           <p className={dark ? "text-current/80" : "text-ink/85"}>{body}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href={primary.href} variant={dark ? "lime" : "solid"} size="lg" withArrow>
+            <Button
+              href={primary.href}
+              variant={dark ? "lime" : onLime ? "invert" : "solid"}
+              size="lg"
+              withArrow
+            >
               {primary.label}
             </Button>
             {secondary && (
-              <Button href={secondary.href} variant={dark ? "invert" : "outline"} size="lg">
+              <Button
+                href={secondary.href}
+                variant={dark ? "invert" : "outline"}
+                size="lg"
+              >
                 {secondary.label}
               </Button>
             )}

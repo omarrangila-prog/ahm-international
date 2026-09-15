@@ -69,7 +69,7 @@ type FieldProps = {
 function SpecField({ label, value, options, onChange, accent = false }: FieldProps) {
   return (
     <div className="group relative grid grid-cols-[9rem_1fr] items-center gap-3 border-b border-ink/10 py-3.5 transition-colors last:border-b-0 hover:bg-ink/[0.025] sm:grid-cols-[11rem_1fr]">
-      <label className="label text-ink/60" htmlFor={`bench-${label}`}>
+      <label className="label text-ink/65" htmlFor={`bench-${label}`}>
         {label}
       </label>
       <div className="relative flex items-center">
@@ -196,8 +196,8 @@ export function Benchmark() {
             <div className="px-6 py-2 sm:px-8">
               <SpecField label="Product" value={category} options={categoryNames} onChange={setCategory} accent />
               <div className="grid grid-cols-[9rem_1fr] items-center gap-3 border-b border-ink/10 py-3.5 sm:grid-cols-[11rem_1fr]">
-                <span className="label text-ink/60">Construction</span>
-                <span className="font-display text-[0.9375rem] font-semibold tracking-[-0.015em] text-ink/60">
+                <span className="label text-ink/65">Construction</span>
+                <span className="font-display text-[0.9375rem] font-semibold tracking-[-0.015em] text-ink/65">
                   {construction}
                 </span>
               </div>
@@ -212,7 +212,7 @@ export function Benchmark() {
             <div className="border-t border-ink/12 bg-paper px-6 py-6 sm:px-8">
               <div className="flex flex-wrap items-end justify-between gap-5">
                 <div>
-                  <p className="label mb-2 text-ink/60">Commercial FOB price</p>
+                  <p className="label mb-2 text-ink/65">Commercial FOB price</p>
                   <p className="font-display text-2xl font-extrabold tracking-[-0.03em] text-ink">
                     Quoted against specification
                   </p>
@@ -228,7 +228,7 @@ export function Benchmark() {
             </div>
           </Reveal>
 
-          <div className="mt-5 flex items-start gap-2.5 text-xs text-ink/60">
+          <div className="mt-5 flex items-start gap-2.5 text-xs text-ink/65">
             <Upload className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             <p>
               Your selections carry through to the quote form. Attach a tech pack there and we

@@ -130,7 +130,7 @@ export const termsSections: LegalSection[] = [
     heading: "Product imagery",
     body: [
       "Photographs show articles manufactured to buyer specification. They are construction references, not an offer of a specific garment, and no customer is named anywhere on this site. Garments carrying a third party\u2019s brand mark are not published here.",
-      "Where an image is described as a representative render, it is an illustration of an article type rather than a photograph of a finished production garment.",
+      "Where a product type has no photograph yet, the article is listed without an image. This site does not publish illustrations, diagrams or invented pictures of garments.",
     ],
   },
   {

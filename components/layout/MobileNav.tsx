@@ -89,7 +89,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
                     className="flex min-h-[3.5rem] items-center justify-between gap-4 font-display text-2xl font-extrabold tracking-[-0.03em]"
                   >
                     {link.label}
-                    <ArrowRight className="h-5 w-5 text-paper/60" aria-hidden="true" />
+                    <ArrowRight className="h-5 w-5 text-paper/65" aria-hidden="true" />
                   </Link>
                 </li>
               ))}
@@ -142,7 +142,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className="mt-4 inline-block [overflow-wrap:anywhere] text-sm text-paper/60 underline underline-offset-4"
+                  className="mt-4 inline-block [overflow-wrap:anywhere] text-sm text-paper/65 underline underline-offset-4"
                 >
                   {email}
                 </a>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Plus } from "lucide-react";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { materials, materialFacets, MATERIAL_DISCLAIMER, RECYCLED_FOOTNOTE } from "@/data/materials";
 import { CAPABILITY_LABEL, CAPABILITY_MEANING } from "@/data/verification";
 import { cn, numeral } from "@/lib/utils";
@@ -150,7 +151,7 @@ export function MaterialIndex() {
 
                   <Plus
                     className={cn(
-                      "h-5 w-5 shrink-0 text-ink/60 transition-transform duration-300 ease-[var(--ease-out-expo)] motion-reduce:transition-none print:hidden",
+                      "h-5 w-5 shrink-0 text-ink/65 transition-transform duration-300 ease-[var(--ease-out-expo)] motion-reduce:transition-none print:hidden",
                       isOpen && "rotate-45",
                     )}
                     aria-hidden="true"
@@ -171,6 +172,7 @@ export function MaterialIndex() {
                   >
                     <div className="grid grid-cols-12 gap-x-10 gap-y-8 pb-10">
                       <div className="col-span-12 sm:col-span-4 lg:col-span-3">
+                        {hasAsset(material.asset) && (
                         <div className="aspect-square w-full overflow-hidden bg-paper">
                           <SmartImage
                             asset={material.asset}
@@ -180,6 +182,7 @@ export function MaterialIndex() {
                             alt={`${material.name} fabric structure`}
                           />
                         </div>
+                        )}
                       </div>
 
                       <div className="col-span-12 sm:col-span-8 lg:col-span-9">

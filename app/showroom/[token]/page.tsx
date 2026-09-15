@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { CapabilityBadge } from "@/components/ui/ProofBadge";
 import { ShowroomTracker } from "@/components/showroom/ShowroomTracker";
 import { ShowroomStyleLink } from "@/components/showroom/ShowroomStyleLink";
@@ -30,10 +31,13 @@ import { getCategory } from "@/data/products";
 
 export const dynamic = "force-dynamic";
 
-/** Never indexed, whatever the token. */
+/** Never indexed, whatever the token. Clears the root layout's `/` canonical. */
 export const metadata: Metadata = {
-  title: "Private Showroom | AHM International",
+  title: { absolute: "Private Showroom | AHM International" },
+  description:
+    "A private, invitation-only product range for a named buyer. Not indexed.",
   robots: { index: false, follow: false, nocache: true },
+  alternates: { canonical: null },
 };
 
 type Params = { params: Promise<{ token: string }> };
@@ -68,7 +72,7 @@ export default async function ShowroomPage({ params }: Params) {
             <p className="mt-6 max-w-xl text-lead text-paper/75">{showroom.intro}</p>
           )}
 
-          <p className="mt-8 max-w-xl text-sm text-paper/55">
+          <p className="mt-8 max-w-xl text-sm text-paper/65">
             This page is private and is not indexed by search engines. It shows the
             categories relevant to your program rather than the full range.
           </p>
@@ -84,6 +88,7 @@ export default async function ShowroomPage({ params }: Params) {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {categories.map((c) => (
               <article key={c.slug} className="border border-ink/15 bg-paper">
+                {hasAsset(c.heroAsset) && (
                 <div className="relative aspect-[4/3] overflow-hidden bg-white">
                   <SmartImage
                     asset={c.heroAsset}
@@ -93,6 +98,7 @@ export default async function ShowroomPage({ params }: Params) {
                     alt=""
                   />
                 </div>
+                )}
                 <div className="p-6">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <h3 className="font-display text-xl font-extrabold uppercase leading-none tracking-[-0.02em] text-ink">
@@ -108,7 +114,7 @@ export default async function ShowroomPage({ params }: Params) {
                     {c.subcategories.slice(0, 5).map((s) => (
                       <li
                         key={s}
-                        className="border border-ink/15 px-2.5 py-1 text-xs text-ink/60"
+                        className="border border-ink/15 px-2.5 py-1 text-xs text-ink/65"
                       >
                         {s}
                       </li>

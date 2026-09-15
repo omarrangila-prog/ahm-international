@@ -6,6 +6,7 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { qualityStages, qualityDimensions, QUALITY_STANDARD_STATEMENT } from "@/data/process";
 import { numeral } from "@/lib/utils";
 
@@ -92,7 +93,7 @@ export function QualityProcess() {
                       : undefined
                   }
                 >
-                  <div className="h-full bg-ink p-5 transition-colors duration-300 hover:bg-lime hover:text-ink">
+                  <div className="h-full bg-ink p-5">
                     <h3 className="font-display text-base font-bold tracking-[-0.02em] text-white">
                       {item.title}
                     </h3>
@@ -109,7 +110,9 @@ export function QualityProcess() {
                 inspection before anything is cut, and measurement against spec
                 after it is made. Placed before the standard statement, so the
                 claim arrives after the evidence rather than before it. */}
+            {(hasAsset("factory.fabricInspection") || hasAsset("factory.qualityControl")) && (
             <div className="mt-8 grid grid-cols-2 gap-3">
+              {hasAsset("factory.fabricInspection") && (
               <div className="relative aspect-[4/3] overflow-hidden border border-white/15">
                 <SmartImage
                   asset="factory.fabricInspection"
@@ -119,6 +122,8 @@ export function QualityProcess() {
                   alt="Fabric being inspected on the frame before cutting"
                 />
               </div>
+              )}
+              {hasAsset("factory.qualityControl") && (
               <div className="relative aspect-[4/3] overflow-hidden border border-white/15">
                 <SmartImage
                   asset="factory.qualityControl"
@@ -128,7 +133,9 @@ export function QualityProcess() {
                   alt="A finished garment measured against the approved specification"
                 />
               </div>
+              )}
             </div>
+            )}
 
             <div className="mt-8 border-l-2 border-lime bg-white/8 p-5">
               <p className="label mb-2 text-lime">Inspection standard</p>

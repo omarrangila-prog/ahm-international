@@ -6,6 +6,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { Button } from "@/components/ui/Button";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
+import { hasAsset } from "@/data/assets";
 import { processStages } from "@/data/process";
 import { numeral, cn } from "@/lib/utils";
 
@@ -116,7 +117,7 @@ export function DevelopmentTimeline() {
         {/* ---------- Desktop detail panel ---------- */}
         <div className="mt-12 hidden lg:block">
           <div className="grid grid-cols-12 items-start gap-8 border-t border-ink/20 pt-10">
-            <div className="col-span-7">
+            <div className={cn(hasAsset(stage.asset) ? "col-span-7" : "col-span-12")}>
               <div key={stage.index} className="enter">
                 <p className="numeral text-[4rem] text-ink/85">{numeral(stage.index)}</p>
                 <h3 className="mt-2 font-display text-h2 text-ink">{stage.title}</h3>
@@ -128,6 +129,7 @@ export function DevelopmentTimeline() {
               </div>
             </div>
 
+            {hasAsset(stage.asset) && (
             <div className="col-span-5">
               <div key={`img-${stage.index}`} className="enter aspect-[3/2] w-full overflow-hidden bg-ink/10">
                 <SmartImage
@@ -139,6 +141,7 @@ export function DevelopmentTimeline() {
                 />
               </div>
             </div>
+            )}
           </div>
         </div>
 

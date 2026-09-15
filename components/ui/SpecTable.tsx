@@ -33,14 +33,14 @@ export function SpecTable({
               dark ? "border-current/15" : "border-line",
             )}
           >
-            <dt className={cn("label pt-0.5", dark ? "text-current/70" : "text-ink/60")}>{row.label}</dt>
+            <dt className={cn("label pt-0.5", dark ? "text-current/70" : "text-ink/65")}>{row.label}</dt>
             <dd
               className={cn(
                 "text-[0.9375rem] leading-relaxed",
                 pending
                   ? dark
                     ? "text-current/70 italic"
-                    : "text-ink/60 italic"
+                    : "text-ink/65 italic"
                   : dark
                     ? "text-current/85"
                     : "text-ink/80",

@@ -63,7 +63,7 @@ export function IncotermsChain() {
                 >
                   {t.code}
                   {t.code === AHM_DEFAULT_TERM && (
-                    <span className={cn("ml-2 text-xs font-normal", on ? "text-lime" : "text-ink/60")}>
+                    <span className={cn("ml-2 text-xs font-normal", on ? "text-lime" : "text-ink/65")}>
                       AHM quotes this
                     </span>
                   )}
