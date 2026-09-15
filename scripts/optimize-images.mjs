@@ -45,12 +45,6 @@ const FABRICS = {
   single_jersey_1600x1000: "single-jersey", rib_1600x1000: "rib", mesh_1600x1000: "mesh",
 };
 
-/** Detail sheets: verified panel geometry — x 820..1680, row 2 at y 660, 320 tall, ground #e9e9e7. */
-const DETAILS = {
-  "AHM-AP-001": "apron", "AHM-PO-001": "polo", "AHM-FL-001": "fleece",
-  "AHM-SH-002": "woven-shirt", "AHM-TR-001": "bottoms", "AHM-WJ-001": "outerwear", "AHM-TS-001": "tee",
-};
-
 const recipes = [];
 
 for (const [file, slug] of Object.entries(FABRICS)) {
@@ -66,18 +60,9 @@ for (const [file, slug] of Object.entries(FABRICS)) {
   });
 }
 
-for (const [code, slug] of Object.entries(DETAILS)) {
-  const s = SPEC.technicalDetail;
-  recipes.push({
-    src: `detail-sheets/${code}_detail_sheet.jpg`,
-    out: `products/details/${slug}-construction.webp`,
-    role: "technicalDetail",
-    // Panel is 860x320; padded out to the target ratio on its own ground so the
-    // construction is never cropped.
-    vf: `crop=860:320:820:660,pad=1290:860:215:270:color=0xe9e9e7,scale=${s.w}:${s.h}:flags=lanczos`,
-    q: s.q,
-  });
-}
+/* Detail-sheet crops used to land as flat vector garment diagrams under
+   products/details/*-construction.webp. Those are withdrawn: a diagram is not
+   evidence of construction, and regenerating them would put the stand-ins back. */
 
 recipes.push(
   {

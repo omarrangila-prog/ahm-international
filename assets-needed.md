@@ -11,8 +11,8 @@ cannot disagree with what the site renders.
 |---|---|
 | Slots defined | 143 |
 | Canonical file in place | 63 |
-| Showing a stand-in | 16 |
-| **Leaving a visible gap** | **64** |
+| Showing a stand-in | 9 |
+| **Leaving a visible gap** | **71** |
 
 Slots below marked **GAP** render nothing. Shoot those first.
 
@@ -42,6 +42,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Sample garment on a form during a fit review
 - **Used by:** `data/capabilities.ts`, `data/manufacturing.ts`, `data/verification.ts`, `data/process.ts`
 
+### products.polo.detail — **GAP**
+
+- **Path:** `/assets/products/polos/polo-collar-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Rib collar and button placket detail on a uniform polo
+- **Used by:** `data/manufacturing.ts`, `data/products.ts`
+
 ### photo.poloNavyEmbroidered — **GAP**
 
 - **Path:** `/assets/products/photography/polo-navy-embroidered.webp`
@@ -63,11 +70,46 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Black bib apron, back view showing neck and waist ties
 - **Used by:** `data/products.ts`
 
-### products.wovenShirt.front — **GAP**
+### products.apron.detail — **GAP**
 
-- **Path:** `/assets/products/woven-shirts/work-shirt-front.webp`
+- **Path:** `/assets/products/aprons/apron-detail-pocket.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Indigo denim work shirt with chest pocket, front view
+- **Subject:** Bar-tacked divided patch pocket on a bib apron
+- **Used by:** `data/products.ts`
+
+### products.fleece.detail — **GAP**
+
+- **Path:** `/assets/products/fleece/fleece-zipper-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Moulded zip pull and chin guard on a fleece jacket
+- **Used by:** `data/products.ts`
+
+### products.tee.detail — **GAP**
+
+- **Path:** `/assets/products/tshirts/tee-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Neck rib and shoulder seam construction on a uniform T-shirt
+- **Used by:** `data/products.ts`
+
+### products.wovenShirt.detail — **GAP**
+
+- **Path:** `/assets/products/woven-shirts/work-shirt-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Chest pocket and placket detail on a utility work shirt
+- **Used by:** `data/products.ts`
+
+### products.bottoms.detail — **GAP**
+
+- **Path:** `/assets/products/bottoms/work-pant-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Reinforced pocket and bar-tack detail on a work trouser
+- **Used by:** `data/products.ts`
+
+### products.outerwear.detail — **GAP**
+
+- **Path:** `/assets/products/outerwear/softshell-detail.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Bonded softshell seam and zip garage detail
 - **Used by:** `data/products.ts`
 
 ### renders.waistApron — **GAP**
@@ -117,13 +159,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/utility-work-shirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Utility work shirt. Photographed production sample
-- **Used by:** `data/products.ts`
-
-### renders.workTrouser — **GAP**
-
-- **Path:** `/assets/products/photography/work-trouser.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Uniform work trouser. Photographed production sample
 - **Used by:** `data/products.ts`
 
 ### renders.workShort — **GAP**
@@ -250,13 +285,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/hoodie-heather-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Heather grey zip hoodie with placement print. Photographed production sample
-- **Used by:** `data/products.ts`
-
-### photo.denimWorkShirt — **GAP**
-
-- **Path:** `/assets/products/photography/denim-work-shirt.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Indigo denim work shirt with chest pocket. Photographed production sample
 - **Used by:** `data/products.ts`
 
 ### photo.joggerGreyGraphic — **GAP**
@@ -441,6 +469,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Garment production floor during a running order
 - **Used by:** no component yet
 
+### products.wovenShirt.front — **GAP**
+
+- **Path:** `/assets/products/woven-shirts/work-shirt-front.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Button-front utility work shirt, front view
+- **Used by:** no component yet
+
 ### renders.bibApron — **GAP**
 
 - **Path:** `/assets/products/photography/bib-apron.webp`
@@ -483,21 +518,19 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Utility work jacket. Photographed production sample
 - **Used by:** no component yet
 
-### products.polo.detail
+### renders.workTrouser — **GAP**
 
-- **Path:** `/assets/products/polos/polo-collar-detail.webp`
+- **Path:** `/assets/products/photography/work-trouser.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Rib collar and button placket detail on a uniform polo
-- **Currently showing:** `/assets/products/details/polo-construction.webp`
-- **Used by:** `data/manufacturing.ts`, `data/products.ts`
+- **Subject:** Uniform work trouser. Photographed production sample
+- **Used by:** no component yet
 
-### products.apron.detail
+### photo.denimWorkShirt — **GAP**
 
-- **Path:** `/assets/products/aprons/apron-detail-pocket.webp`
+- **Path:** `/assets/products/photography/denim-work-shirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Bar-tacked divided patch pocket on a bib apron
-- **Currently showing:** `/assets/products/details/apron-construction.webp`
-- **Used by:** `data/products.ts`
+- **Subject:** Indigo denim work shirt with chest pocket. Photographed production sample
+- **Used by:** no component yet
 
 ### products.polo.front
 
@@ -505,7 +538,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Ribbed dark green uniform polo, front view
 - **Currently showing:** `/assets/products/photography/polo-green-ribbed.webp`
-- **Used by:** `data/products.ts`
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
 ### products.fleece.front
 
@@ -513,39 +546,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Navy full-zip hooded fleece, front view
 - **Currently showing:** `/assets/products/photography/zip-hoodie-navy.webp`
-- **Used by:** `data/products.ts`
-
-### products.fleece.back
-
-- **Path:** `/assets/products/fleece/fleece-jacket-back.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy pullover hooded sweatshirt
-- **Currently showing:** `/assets/products/photography/hoodie-navy.webp`
-- **Used by:** `data/products.ts`
-
-### products.fleece.detail
-
-- **Path:** `/assets/products/fleece/fleece-zipper-detail.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Moulded zip pull and chin guard on a fleece jacket
-- **Currently showing:** `/assets/products/details/fleece-construction.webp`
-- **Used by:** `data/products.ts`
-
-### products.tee.detail
-
-- **Path:** `/assets/products/tshirts/tee-detail.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Neck rib and shoulder seam construction on a uniform T-shirt
-- **Currently showing:** `/assets/products/details/tee-construction.webp`
-- **Used by:** `data/products.ts`
-
-### products.wovenShirt.detail
-
-- **Path:** `/assets/products/woven-shirts/work-shirt-detail.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Chest pocket and placket detail on a utility work shirt
-- **Currently showing:** `/assets/products/details/woven-shirt-construction.webp`
-- **Used by:** `data/products.ts`
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
 ### products.bottoms.front
 
@@ -553,15 +554,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Elastic-cuff work trouser, front view
 - **Currently showing:** `/assets/products/photography/pant-camo.webp`
-- **Used by:** `data/products.ts`
-
-### products.bottoms.detail
-
-- **Path:** `/assets/products/bottoms/work-pant-detail.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Reinforced pocket and bar-tack detail on a work trouser
-- **Currently showing:** `/assets/products/details/bottoms-construction.webp`
-- **Used by:** `data/products.ts`
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
 ### products.outerwear.front
 
@@ -569,14 +562,14 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Charcoal utility bomber jacket, front view
 - **Currently showing:** `/assets/products/photography/utility-bomber-charcoal.webp`
-- **Used by:** `data/products.ts`
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
-### products.outerwear.detail
+### products.fleece.back
 
-- **Path:** `/assets/products/outerwear/softshell-detail.webp`
+- **Path:** `/assets/products/fleece/fleece-jacket-back.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Bonded softshell seam and zip garage detail
-- **Currently showing:** `/assets/products/details/outerwear-construction.webp`
+- **Subject:** Navy pullover hooded sweatshirt
+- **Currently showing:** `/assets/products/photography/hoodie-navy.webp`
 - **Used by:** `data/products.ts`
 
 ### photo.zipHoodieGreyGraphic

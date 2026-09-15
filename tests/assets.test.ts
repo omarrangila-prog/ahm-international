@@ -27,10 +27,33 @@ test("the renders directory is not serving files", () => {
   assert.deepEqual(files, [], `vector renders still on disk: ${files.join(", ")}`);
 });
 
+test("vector construction diagrams are not serving files", () => {
+  const dir = "public/assets/products/details";
+  if (!existsSync(dir)) return;
+  const files = readdirSync(dir).filter((f) => f.endsWith(".webp"));
+  assert.deepEqual(files, [], `vector construction diagrams still on disk: ${files.join(", ")}`);
+});
+
+test("no registry path points at construction diagram stand-ins", () => {
+  const offenders: string[] = [];
+  for (const [key, asset] of Object.entries(assetRegistry)) {
+    if (asset.src.includes("/products/details/")) offenders.push(`${key} src`);
+    if (
+      "fallbackSrc" in asset &&
+      typeof asset.fallbackSrc === "string" &&
+      asset.fallbackSrc.includes("/products/details/")
+    ) {
+      offenders.push(`${key} fallbackSrc`);
+    }
+  }
+  assert.deepEqual(offenders, [], `construction diagram paths still referenced: ${offenders.join(", ")}`);
+});
+
 test("pending article keys do not resolve to an image", () => {
   assert.equal(hasAsset("renders.chefCoat"), false);
   assert.equal(hasAsset("renders.workJacket"), false);
   assert.equal(resolveAsset("renders.crewNeckTee").available, false);
+  assert.equal(hasAsset("products.wovenShirt.detail"), false);
 });
 
 test("industry representatives resolve to a real photograph", () => {

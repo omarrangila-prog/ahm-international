@@ -172,41 +172,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1200,
     "blur": "data:image/webp;base64,UklGRiYAAABXRUJQVlA4IBoAAABQAQCdASoQABAABIB0JaQABDOAAPzEgQAAAA=="
   },
-  "/assets/products/details/apron-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADwAQCdASoQAAsABIB0JZwAAvenr5LfIgAA/u1LGFT2yt5x1YYBsVd9yhgiv5HRQAA="
-  },
-  "/assets/products/details/bottoms-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADwAQCdASoQAAsABIB0JZwAAvenwFScYwAA/u1LGFUDIyURljrVuK1L2biuQzNasIAAAA=="
-  },
-  "/assets/products/details/fleece-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAQCdASoQAAsABIB0JZwAAujcE8EYAAD+7VrVqJvERohGiPgB9csZVfR6IbTfOEAAAA=="
-  },
-  "/assets/products/details/outerwear-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoQAAsABIB0JZwAAujdXo4rwAD+7VrVqJvERogRi0v+BqDHL7rvt0AEAAA="
-  },
-  "/assets/products/details/polo-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAQCdASoQAAsABIB0JZwAAujcE8EzgAD+7VrVqJvERohGk4ZnN8z67DFTOgUIrHAAAA=="
-  },
-  "/assets/products/details/tee-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADwAQCdASoQAAsABIB0JZwAAvenr5LfIgAA/u1LGFUDIyUR4YH3boTOoecldjHAAAA="
-  },
-  "/assets/products/details/woven-shirt-construction.webp": {
-    "width": 1400,
-    "height": 933,
-    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoQAAsABIB0JZwAAvenoFf9IAD+7UsYVPbK3nJON+AG+Z1+VFVXcwQAEAA="
-  },
   "/assets/products/fleece/fleece-fabric-macro.webp": {
     "width": 1200,
     "height": 1200,

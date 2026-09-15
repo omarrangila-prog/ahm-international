@@ -125,7 +125,6 @@ export const assetRegistry = {
   },
   "products.apron.detail": {
     src: "/assets/products/aprons/apron-detail-pocket.webp",
-    fallbackSrc: "/assets/products/details/apron-construction.webp",
     alt: "Bar-tacked divided patch pocket on a bib apron",
     aspect: DETAIL,
     kind: "detail",
@@ -158,7 +157,6 @@ export const assetRegistry = {
   },
   "products.polo.detail": {
     src: "/assets/products/polos/polo-collar-detail.webp",
-    fallbackSrc: "/assets/products/details/polo-construction.webp",
     alt: "Rib collar and button placket detail on a uniform polo",
     aspect: DETAIL,
     kind: "detail",
@@ -191,7 +189,6 @@ export const assetRegistry = {
   },
   "products.fleece.detail": {
     src: "/assets/products/fleece/fleece-zipper-detail.webp",
-    fallbackSrc: "/assets/products/details/fleece-construction.webp",
     alt: "Moulded zip pull and chin guard on a fleece jacket",
     aspect: DETAIL,
     kind: "detail",
@@ -216,7 +213,6 @@ export const assetRegistry = {
   },
   "products.tee.detail": {
     src: "/assets/products/tshirts/tee-detail.webp",
-    fallbackSrc: "/assets/products/details/tee-construction.webp",
     alt: "Neck rib and shoulder seam construction on a uniform T-shirt",
     aspect: DETAIL,
     kind: "detail",
@@ -233,15 +229,13 @@ export const assetRegistry = {
 
   "products.wovenShirt.front": {
     src: "/assets/products/woven-shirts/work-shirt-front.webp",
-    fallbackSrc: "/assets/products/photography/denim-work-shirt.webp",
-    alt: "Indigo denim work shirt with chest pocket, front view",
+    alt: "Button-front utility work shirt, front view",
     aspect: SQUARE,
     kind: "garment",
     tone: "dark",
   },
   "products.wovenShirt.detail": {
     src: "/assets/products/woven-shirts/work-shirt-detail.webp",
-    fallbackSrc: "/assets/products/details/woven-shirt-construction.webp",
     alt: "Chest pocket and placket detail on a utility work shirt",
     aspect: DETAIL,
     kind: "detail",
@@ -258,7 +252,6 @@ export const assetRegistry = {
   },
   "products.bottoms.detail": {
     src: "/assets/products/bottoms/work-pant-detail.webp",
-    fallbackSrc: "/assets/products/details/bottoms-construction.webp",
     alt: "Reinforced pocket and bar-tack detail on a work trouser",
     aspect: DETAIL,
     kind: "detail",
@@ -275,7 +268,6 @@ export const assetRegistry = {
   },
   "products.outerwear.detail": {
     src: "/assets/products/outerwear/softshell-detail.webp",
-    fallbackSrc: "/assets/products/details/outerwear-construction.webp",
     alt: "Bonded softshell seam and zip garage detail",
     aspect: DETAIL,
     kind: "detail",
