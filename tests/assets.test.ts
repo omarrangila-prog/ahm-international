@@ -60,3 +60,36 @@ test("industry representatives resolve to a real photograph", () => {
   const missing = industries.filter((i) => !hasAsset(i.representative)).map((i) => i.slug);
   assert.deepEqual(missing, [], `industry cards with no photograph: ${missing.join(", ")}`);
 });
+
+test("known client-branded photography derivatives are not published", () => {
+  const banned = [
+    "denim-work-shirt.webp", // County Market
+    "tee-grey-branded.webp",
+    "zip-hoodie-grey-graphic.webp",
+    "tee-heather-graphic.webp",
+    "tee-grey-graphic.webp",
+    "hoodie-heather-graphic.webp",
+    "jogger-grey-graphic.webp",
+    "polo-navy-corporate.webp",
+    "polo-navy-grocery.webp",
+    "polo-navy-embroidered.webp",
+    "vest-orange-printed.webp",
+    "hoodie-pink-graphic.webp",
+    "tee-pink.webp",
+    "polo-red-colourblock.webp",
+    "polo-red-grocery.webp",
+    "polo-red.webp",
+    "onesie-white-print.webp",
+    "onesie-white-text.webp",
+    "polo-white-tagged.webp",
+    "polo-black-embroidered.webp",
+    "polo-green-ribbed.webp", // chest logo
+    "hoodie-black.webp", // Army-Navy sticker
+    "sweater-red-striped.webp", // Sportsman & Co.
+    "polo-lime.webp", // signature/branded master
+  ];
+  const dir = "public/assets/products/photography";
+  if (!existsSync(dir)) return;
+  const present = banned.filter((f) => existsSync(`${dir}/${f}`));
+  assert.deepEqual(present, [], `client-branded photographs still published: ${present.join(", ")}`);
+});

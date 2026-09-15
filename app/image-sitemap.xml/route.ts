@@ -45,7 +45,7 @@ function pageImageMap(): Map<string, AssetKey[]> {
   add("/", [
     "hero.sewing",
     "photo.utilityBomberCharcoal",
-    "photo.poloGreenRibbed",
+    "photo.poloTaupeLongSleeve",
     "products.apron.front",
     "products.polo.front",
     "products.fleece.front",

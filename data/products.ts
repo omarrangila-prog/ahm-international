@@ -148,7 +148,7 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Classic Polos", "Performance Polos", "Long-Sleeve Polos", "Crew-Neck Tees", "Performance Tees"],
     articles: [
-      { name: "Classic Short-Sleeve Polo", asset: "photo.poloGreenRibbed", note: "Rib collar and cuffs, three-button placket" },
+      { name: "Classic Short-Sleeve Polo", asset: "photo.poloYellow", note: "Rib collar and cuffs, three-button placket" },
       { name: "Long-Sleeve Uniform Polo", asset: "photo.poloTaupeLongSleeve", note: "Rib cuff, side-vent option" },
       { name: "Crew-Neck Uniform T-Shirt", asset: "renders.crewNeckTee", note: "Rib neck with taped shoulder seam" },
     ],
@@ -262,8 +262,8 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "current_capability",
     subcategories: ["Uniform Shirts", "Utility Work Shirts", "Service Shirts", "Short-Sleeve Shirts"],
     articles: [
-      { name: "Button-Front Uniform Shirt", asset: "photo.denimUtilityJacket", note: "Fused collar and cuff, buyer-specified pocket layout" },
-      { name: "Utility Work Shirt", asset: "photo.denimUtilityJacket", note: "Twin chest pockets, felled side seams" },
+      { name: "Button-Front Uniform Shirt", asset: "renders.buttonFrontShirt", note: "Fused collar and cuff, buyer-specified pocket layout" },
+      { name: "Utility Work Shirt", asset: "renders.utilityWorkShirt", note: "Twin chest pockets, felled side seams" },
     ],
     specification: [
       { label: "Fabric options", value: "Poly-cotton poplin, poly-cotton twill, oxford, cotton canvas, performance woven" },
@@ -279,9 +279,9 @@ export const productCategories: ProductCategory[] = [
     ],
     decoration: ["Embroidery", "Woven badges", "Applied patches", "Screen print"],
     applications: ["Corporate", "Hospitality", "Facilities", "Industrial", "Retail"],
-    heroAsset: "photo.denimUtilityJacket",
+    heroAsset: "products.wovenShirt.front",
     detailAssets: ["products.wovenShirt.detail", "fabrics.woven", "factory.finishing"],
-    photography: ["photo.denimUtilityJacket"],
+    photography: [],
     seoTitle: "Woven Shirt Manufacturing",
     seoDescription:
       "Poplin, twill and oxford uniform shirting produced to your specification in Karachi, Pakistan and supplied FOB.",

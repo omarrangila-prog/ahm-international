@@ -10,9 +10,9 @@ cannot disagree with what the site renders.
 | | Count |
 |---|---|
 | Slots defined | 143 |
-| Canonical file in place | 63 |
+| Canonical file in place | 59 |
 | Showing a stand-in | 9 |
-| **Leaving a visible gap** | **71** |
+| **Leaving a visible gap** | **75** |
 
 Slots below marked **GAP** render nothing. Shoot those first.
 
@@ -48,6 +48,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Rib collar and button placket detail on a uniform polo
 - **Used by:** `data/manufacturing.ts`, `data/products.ts`
+
+### products.wovenShirt.front — **GAP**
+
+- **Path:** `/assets/products/woven-shirts/work-shirt-front.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Button-front utility work shirt, front view
+- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
 
 ### photo.poloNavyEmbroidered — **GAP**
 
@@ -259,6 +266,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Cream pique polo with hangtag. Photographed production sample
 - **Used by:** `data/products.ts`
 
+### photo.poloGreenRibbed — **GAP**
+
+- **Path:** `/assets/products/photography/polo-green-ribbed.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Ribbed dark green uniform polo. Photographed production sample
+- **Used by:** `data/products.ts`
+
 ### photo.teeGreyBranded — **GAP**
 
 - **Path:** `/assets/products/photography/tee-grey-branded.webp`
@@ -301,6 +315,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Maroon pique polo with embroidered chest crest. Photographed production sample
 - **Used by:** `data/products.ts`
 
+### photo.hoodieBlack — **GAP**
+
+- **Path:** `/assets/products/photography/hoodie-black.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Black pullover hooded sweatshirt. Photographed production sample
+- **Used by:** `data/products.ts`
+
 ### photo.poloWhiteTagged — **GAP**
 
 - **Path:** `/assets/products/photography/polo-white-tagged.webp`
@@ -320,6 +341,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/polo-navy-tipped.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Navy polo with contrast tipped collar. Photographed production sample
+- **Used by:** `data/products.ts`
+
+### photo.poloLime — **GAP**
+
+- **Path:** `/assets/products/photography/polo-lime.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Neon lime pique uniform polo. Photographed production sample
 - **Used by:** `data/products.ts`
 
 ### photo.hoodiePinkGraphic — **GAP**
@@ -355,6 +383,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/polo-red.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Red pique polo with embroidered chest mark. Photographed production sample
+- **Used by:** `data/products.ts`
+
+### photo.sweaterRedStriped — **GAP**
+
+- **Path:** `/assets/products/photography/sweater-red-striped.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Red striped v-neck sweater. Photographed production sample
 - **Used by:** `data/products.ts`
 
 ### photo.teeSkyBlue — **GAP**
@@ -469,13 +504,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Garment production floor during a running order
 - **Used by:** no component yet
 
-### products.wovenShirt.front — **GAP**
-
-- **Path:** `/assets/products/woven-shirts/work-shirt-front.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Button-front utility work shirt, front view
-- **Used by:** no component yet
-
 ### renders.bibApron — **GAP**
 
 - **Path:** `/assets/products/photography/bib-apron.webp`
@@ -536,8 +564,8 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 - **Path:** `/assets/products/polos/polo-blue-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Ribbed dark green uniform polo, front view
-- **Currently showing:** `/assets/products/photography/polo-green-ribbed.webp`
+- **Subject:** Taupe long-sleeve uniform polo, front view
+- **Currently showing:** `/assets/products/photography/polo-taupe-long-sleeve.webp`
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
 ### products.fleece.front
@@ -606,7 +634,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 ## In place
 
-63 canonical files.
+59 canonical files.
 
 - `/assets/case-studies/uniform-apron-program/detail.webp` — 1600×1600
 - `/assets/case-studies/uniform-apron-program/fabric.webp` — 1600×1600
@@ -646,14 +674,11 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - `/assets/products/photography/henley-navy.webp` — 1280×1600
 - `/assets/products/photography/henley-tee-navy.webp` — 1280×1600
 - `/assets/products/photography/henley-waffle-navy.webp` — 1280×1600
-- `/assets/products/photography/hoodie-black.webp` — 1280×1600
 - `/assets/products/photography/hoodie-navy-alt.webp` — 1280×1600
 - `/assets/products/photography/hoodie-navy.webp` — 1280×1600
 - `/assets/products/photography/lounge-pant-grid.webp` — 1280×1600
 - `/assets/products/photography/pant-camo.webp` — 1280×1600
 - `/assets/products/photography/polo-dress-navy.webp` — 1280×1600
-- `/assets/products/photography/polo-green-ribbed.webp` — 1280×1600
-- `/assets/products/photography/polo-lime.webp` — 1280×1600
 - `/assets/products/photography/polo-taupe-long-sleeve.webp` — 1280×1600
 - `/assets/products/photography/polo-yellow.webp` — 1280×1600
 - `/assets/products/photography/scarf-camel.webp` — 1280×1600
@@ -662,7 +687,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - `/assets/products/photography/scarf-navy.webp` — 1280×1600
 - `/assets/products/photography/scarf-plaid-maroon.webp` — 1280×1600
 - `/assets/products/photography/scarf-plaid-olive.webp` — 1280×1600
-- `/assets/products/photography/sweater-red-striped.webp` — 1280×1600
 - `/assets/products/photography/thermal-sage-alt.webp` — 1280×1600
 - `/assets/products/photography/thermal-sage.webp` — 1280×1600
 - `/assets/products/photography/utility-bomber-charcoal.webp` — 1280×1600

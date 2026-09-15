@@ -46,10 +46,10 @@ import { cn, numeral } from "@/lib/utils";
  */
 const familyRender: Record<string, AssetKey> = {
   "uniform-workwear": "photo.utilityBomberCharcoal",
-  "polos-tshirts": "photo.poloGreenRibbed",
+  "polos-tshirts": "photo.poloTaupeLongSleeve",
   "fleece-sweatshirts": "photo.hoodieNavy",
   aprons: "products.apron.front",
-  "woven-shirts": "photo.denimUtilityJacket",
+  "woven-shirts": "products.wovenShirt.front",
   bottoms: "photo.pantCamo",
   outerwear: "photo.utilityBomberCharcoal",
   "hospitality-food-service": "products.apron.front",

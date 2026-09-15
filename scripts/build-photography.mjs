@@ -112,11 +112,25 @@ function familyOf(slug) {
 }
 
 fs.mkdirSync(OUT, { recursive: true });
+const HOLD = path.join(root, "asset-pack", "client-branded-hold");
+const held = new Set(
+  fs.existsSync(HOLD)
+    ? fs.readdirSync(HOLD).filter((f) => f.endsWith(".png")).map((f) => f.replace(/\.png$/, ""))
+    : [],
+);
+const BRAND_STEM =
+  /county|armeni|nautica|tapout|hannaford|food_city|carmax|virginia|army_navy|arizona|pampers|dagostino|hardcore|vegmen|gardenia|halloween|signature|embroider|graphic|onesie|ukrop|branded/i;
+
 const files = fs.readdirSync(MASTER).filter((f) => f.endsWith(".png")).sort();
 const entries = [];
+const skipped = [];
 
 for (const file of files) {
   const stem = file.replace(/\.png$/, "");
+  if (held.has(stem) || BRAND_STEM.test(stem)) {
+    skipped.push(stem);
+    continue;
+  }
   const [slug, alt] = OVERRIDES[stem] ?? [stem.replace(/_/g, "-"), stem.replace(/_/g, " ")];
   const out = path.join(OUT, `${slug}.webp`);
 
@@ -133,6 +147,10 @@ for (const file of files) {
     quality -= 5;
   }
   entries.push({ key: `photo.${camel(slug)}`, slug, alt, family: familyOf(slug), bytes: fs.statSync(out).size });
+}
+
+if (skipped.length) {
+  console.log(`photography: skipped ${skipped.length} client-branded masters (held / brand keyword)`);
 }
 
 const registry = entries.map((e) => `  "${e.key}": {

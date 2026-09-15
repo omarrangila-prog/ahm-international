@@ -141,8 +141,8 @@ export const assetRegistry = {
 
   "products.polo.front": {
     src: "/assets/products/polos/polo-blue-front.webp",
-    fallbackSrc: "/assets/products/photography/polo-green-ribbed.webp",
-    alt: "Ribbed dark green uniform polo, front view",
+    fallbackSrc: "/assets/products/photography/polo-taupe-long-sleeve.webp",
+    alt: "Taupe long-sleeve uniform polo, front view",
     aspect: SQUARE,
     kind: "garment",
     tone: "dark",

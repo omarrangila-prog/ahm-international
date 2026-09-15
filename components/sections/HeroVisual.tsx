@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const layDown = [
   { key: "photo.utilityBomberCharcoal", code: "Work jacket", label: "Charcoal utility bomber", className: "left-[4%] top-[16%] w-[42%] z-20" },
-  { key: "photo.poloGreenRibbed", code: "Classic polo", label: "Ribbed uniform polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
+  { key: "photo.poloTaupeLongSleeve", code: "Classic polo", label: "Long-sleeve uniform polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
   { key: "products.apron.front", code: "Bib apron", label: "Three-pocket bib apron", className: "left-[30%] bottom-[8%] w-[32%] z-30" },
 ] as const;
 

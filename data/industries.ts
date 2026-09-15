@@ -55,7 +55,7 @@ export const industries: Industry[] = [
     name: "Retail",
     demand: "Brand-accurate colour and decoration across a large, frequently refreshed workforce.",
     asset: "industries.retail",
-    representative: "photo.poloGreenRibbed",
+    representative: "photo.poloTaupeLongSleeve",
     typicalGarments: ["Uniform polos", "T-shirts", "Sweatshirts", "Woven shirts", "Aprons"],
   },
   {
@@ -79,7 +79,7 @@ export const industries: Industry[] = [
     name: "Corporate",
     demand: "Consistent presentation across sizes and body types, with an inclusive size range.",
     asset: "industries.corporate",
-    representative: "photo.poloGreenRibbed",
+    representative: "photo.poloTaupeLongSleeve",
     typicalGarments: ["Woven shirts", "Uniform polos", "Ties", "Softshell", "Knitwear"],
   },
   {
@@ -87,7 +87,7 @@ export const industries: Industry[] = [
     name: "Events",
     demand: "Volume delivered to a fixed date, with decoration accurate to the brand standard.",
     asset: "industries.retail",
-    representative: "photo.poloLime",
+    representative: "photo.poloYellow",
     typicalGarments: ["T-shirts", "Uniform polos", "Hoodies", "Caps", "Vests"],
   },
 ];

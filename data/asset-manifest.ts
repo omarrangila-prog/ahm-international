@@ -202,11 +202,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwAwCdASoQABQAPyl+tlKuKCUisAgBwCUJYwAAUOVq46REDF9jyAD+6pI/KhsHvJ2r296A4kOotH2X8j2VECoDDVQfS8I+z5K1JuI4TPqRi0QT4oqHnumqp4scAAAA"
   },
-  "/assets/products/photography/hoodie-black.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZwAAV7H62PUPIkg0XcAA/uqIWae6lRYEDJF7eEDswwp1cTV05kTZjCm/tXow+DVLS+Gsfv0gf9JC+qcA9bRVKjVmZf+TsO2EKZo4AAA="
-  },
   "/assets/products/photography/hoodie-navy-alt.webp": {
     "width": 1280,
     "height": 1600,
@@ -231,16 +226,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAACwAwCdASoQABQAPyl+tlIuKCUisAgBwCUJZwDG9BI3mcwSJCmiYAD+6pfN8O50wgGUzTKi3UTqeMWYMFdoS0zGo/RDeYtK9VZ3PXtzRcKeROyzfawrLK2llZrXjGZHcB82HODl8K2MwhZgxgAAAA=="
-  },
-  "/assets/products/photography/polo-green-ribbed.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAwCdASoQABQAPyl+tVIuKCUisAgBwCUJZQDE2B7BFm9SvIjU2pXAAP7rJbJWqGdYmpzd2KQE9cTlWBP1Yns35TajWK/JcPcBMpNvazWU+GHAWTTMFgjHEKsAAA=="
-  },
-  "/assets/products/photography/polo-lime.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACQAwCdASoQABQAPyl8tlIuJ6UisAgBwCUJbACdACB/0UXXFELoAP7qlaK3spoCsPjuyveQ6F8UAuS3rzrWrJTFDAGRWfoaScJpYwyoKNdEeC9fGYczMupPuPhAAAAA"
   },
   "/assets/products/photography/polo-taupe-long-sleeve.webp": {
     "width": 1280,
@@ -281,11 +266,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "width": 1280,
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJZwDMHCK5mazCOXFD8HgA/sl2nVlb59uOrxHdgbXXc/e5/bNf3xX2Dmkxyjf68wGu4H6xIMOmRqLb4DeVpd88SaGLpk9QPFAAAA=="
-  },
-  "/assets/products/photography/sweater-red-striped.webp": {
-    "width": 1280,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoQABQAPyl8tVIuJ6UisAgBwCUJbACsAB4kiWhWFIzuzVrIAP7qlaU0S4iOF8UmMFy83Uxi3IIqxYdFNEDhWjap3CT3XbV7OXei5nkxZl7IpXrQdWl8FBpbxifhDnaAAAA="
   },
   "/assets/products/photography/thermal-sage-alt.webp": {
     "width": 1280,
