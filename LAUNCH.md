@@ -100,9 +100,27 @@ The domain is **ahminternationals.com**, bought October 2026 and registered at
 Hostinger. Mail is already live there: `info@ahminternationals.com` resolves via
 `mx1.hostinger.com`.
 
-As of this writing the domain still points at Hostinger (`2.57.91.91`, server
-`hcdn` — the registrar parking page), **not** at Vercel. Until that changes the
-site answers only on `ahm-international.vercel.app`.
+**Done, 10 October 2026.** `www.ahminternationals.com` is the canonical host.
+The apex redirects to it with the path preserved, both names have Vercel TLS
+certificates, and canonicals, both sitemaps, robots, JSON-LD and `llms.txt` all
+carry the new origin. The vercel.app alias still serves, but canonicalises to
+`www`. Mail was untouched: MX, SPF, DMARC and the three DKIM records are as they
+were.
+
+**Still open: the redirect is 307, not 308.** Vercel → Settings → Domains → edit
+`ahminternationals.com` → 308 Permanent. A temporary redirect leaves Google free
+to keep the apex indexed as a separate host.
+
+Two things that cost time, recorded so they do not again:
+
+- Vercel offers a nameserver switch alongside the A record. Ignore it. It moves
+  DNS authority off Hostinger and takes the mail records with it.
+- `NEXT_PUBLIC_SITE_URL` was originally created as Sensitive. Vercel no longer
+  allows that for a `NEXT_PUBLIC_` name and refuses to save edits to it, and a
+  variable's type cannot be changed. Delete it and re-add it as a plain
+  variable; the value is a public URL in any case.
+
+The steps below are kept as the record of how it was done.
 
 Do these in order. Steps 1-2 are at the registrar, 3-4 at Vercel, 5 verifies.
 
@@ -132,10 +150,10 @@ Do these in order. Steps 1-2 are at the registrar, 3-4 at Vercel, 5 verifies.
    ```
    Confirm no staging `noindex` header survives into production.
 
-**The fallback in `data/company.ts` stays `ahm-international.vercel.app` on
-purpose.** A canonical pointing at a domain that does not resolve tells a
-crawler the authoritative copy lives at a dead URL, which is worse than no
-canonical. Change the default only once step 2 is done.
+The fallback in `data/company.ts` is now `https://www.ahminternationals.com`,
+moved only after DNS resolved there. A canonical pointing at a domain that does
+not resolve tells a crawler the authoritative copy lives at a dead URL, which is
+worse than no canonical.
 
 Existing URLs are preserved: every route keeps its path, so the migration is a
 host change, not a restructure. The `redirects()` block in `next.config.ts`

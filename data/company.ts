@@ -187,16 +187,16 @@ export const company = {
    * links, Open Graph and Twitter URLs, the sitemap, robots, and the
    * Organization and WebSite schema.
    *
-   * The default is the live deployment, not the intended domain. Pointing
-   * canonical at ahminternational.com while it does not resolve tells a crawler
-   * the authoritative copy lives at a dead URL, which is worse than having no
-   * canonical at all.
+   * www.ahminternationals.com has served this deployment since October 2026,
+   * with the apex redirecting to it. Production sets NEXT_PUBLIC_SITE_URL to
+   * the same value; the default exists so a build without it (a preview, a
+   * local production build) still canonicalises to the real domain rather than
+   * to the vercel.app alias, which would split ranking signal across two hosts.
    *
-   * When the real domain is live and pointed at this deployment, set
-   * NEXT_PUBLIC_SITE_URL to it — no code change needed — and the whole SEO
-   * surface follows in one step.
+   * Do not point this at a domain that does not resolve. A canonical aimed at a
+   * dead URL is worse than no canonical at all.
    */
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ahm-international.vercel.app",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ahminternationals.com",
 } as const;
 
 export type Certification = {
