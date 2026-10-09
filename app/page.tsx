@@ -3,10 +3,13 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { Benchmark } from "@/components/sections/Benchmark";
 import { ProductUniverse } from "@/components/sections/ProductUniverse";
+import { MaterialIntelligence } from "@/components/sections/MaterialIntelligence";
 import { DevelopmentTimeline } from "@/components/sections/DevelopmentTimeline";
 import { QualityProcess } from "@/components/sections/QualityProcess";
 import { ExportSection } from "@/components/sections/ExportSection";
 import { CaseStudyFeature } from "@/components/sections/CaseStudyFeature";
+import { HonestyBand } from "@/components/sections/HonestyBand";
+import { MiniRfqSection } from "@/components/sections/MiniRfqSection";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { pageMetadata } from "@/lib/seo";
 
@@ -26,13 +29,16 @@ export default function HomePage() {
   return (
     <>
       {/* 01 · Hero */}  <Hero />
-      {/* 02 · Credibility */}  <TrustStrip />
+      {/* 02 · Capability strip */}  <TrustStrip />
+      {/* 02b · What we refuse to invent */}  <HonestyBand />
       {/* 04 · Benchmark a style */}  <Benchmark />
       {/* 05 · Products */}  <ProductUniverse />
+      {/* 05b · Material and construction */}  <MaterialIntelligence />
       {/* 06 · Development */}  <DevelopmentTimeline />
       {/* 07 · Quality */}  <QualityProcess />
       {/* 09 · Export */}  <ExportSection />
       {/* 08 · Verified case study */}  <CaseStudyFeature />
+      {/* 10 · Simplified sourcing inquiry */}  <MiniRfqSection />
       {/* 15 · Final CTA */}
       <CtaBand
         headingLines={[

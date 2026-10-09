@@ -7,6 +7,7 @@ import { TrimsLibrary } from "@/components/products/TrimsLibrary";
 import { FabricCompare } from "@/components/sections/FabricCompare";
 import { GsmCalculator } from "@/components/sections/GsmCalculator";
 import { HandFeel } from "@/components/sections/HandFeel";
+import { ShrinkageCalculator } from "@/components/sections/ShrinkageCalculator";
 import { MaterialIndex } from "@/components/sections/MaterialIndex";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -97,6 +98,26 @@ export default function MaterialsPage() {
         </div>
       </Section>
 
+      <Section zone="paper" spacing="lg" aria-labelledby="shrinkage-heading">
+        <div className="shell-wide">
+          <Eyebrow>Dimensional change</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="shrinkage-heading"
+            className="mt-5 max-w-4xl font-display text-h1 text-ink"
+            lines={[{ text: "Length and width," }, { text: "not one number." }]}
+          />
+          <p className="mt-7 max-w-2xl text-lead text-ink/70">
+            Shrinkage is measured separately in each direction. Enter the dimensions before
+            and after the wash you care about — the percentage for each axis is exact
+            arithmetic, not a factory tolerance.
+          </p>
+          <div className="mt-14">
+            <ShrinkageCalculator />
+          </div>
+        </div>
+      </Section>
+
       {/* Spec §15 — trims sit with fabrics because to a buyer they are the same
           question: what is this garment actually made of, and what must I decide. */}
       {/* The correction to the GSM anchor the list above creates.
@@ -110,6 +131,10 @@ export default function MaterialsPage() {
             className="mt-5 max-w-4xl font-display text-h1 text-paper"
             lines={[{ text: "Same weight." }, { text: "Different cloth.", className: "text-lime" }]}
           />
+          <p className="mt-7 max-w-2xl text-lead text-paper/75">
+            Two fabrics can share a GSM and behave nothing alike. Pick a factor —
+            construction, stretch, finish — and read every published cloth through it.
+          </p>
           {/* `relative` so the zone's woven overlay has something to position against. */}
           <div className="relative mt-14 bg-paper p-8 text-ink sm:p-12" data-zone="light">
             <HandFeel />
@@ -128,10 +153,10 @@ export default function MaterialsPage() {
             className="mt-5 max-w-3xl font-display text-h1 text-ink"
             lines={[{ text: "Two constructions," }, { text: "one decision.", className: "text-ink" }]}
           />
-          <p className="mt-6 max-w-xl text-ink/70">
-            Drag the seam to put one weave against another. The photographs are
-            macros of the construction; the table beneath them is where the
-            difference is actually decided.
+          <p className="mt-6 max-w-2xl text-lead text-ink/70">
+            A buyer rarely chooses a fabric in the abstract — it is pique against jersey,
+            or twill against canvas. Drag the seam; the table under the photographs is
+            the half of the comparison a sourcing manager quotes from.
           </p>
           <div className="mt-12">
             <FabricCompare />
@@ -194,6 +219,9 @@ export default function MaterialsPage() {
         guidesFor="/materials"
         title="Explore next"
         links={[
+          { label: "Fabric shrinkage guide", href: "/resources/fabric-shrinkage-guide", description: "Length vs width, test methods and residual tolerance." },
+          { label: "Polyester dyeing for buyers", href: "/resources/polyester-dyeing-for-buyers", description: "Lab dips, heat and lot-to-lot shade on polyester programs." },
+          { label: "Knit constructions explained", href: "/resources/knit-constructions-explained", description: "Jersey, pique, rib and fleece for uniform buyers." },
           { label: "Fabric sourcing process", href: "/manufacturing/fabric-sourcing", description: "Lab dips, shade control and incoming inspection." },
           { label: "Product range", href: "/products", description: "Twelve apparel families manufactured to specification." },
           { label: "Uniform program industries", href: "/industries", description: "How fabric requirements change by sector." },

@@ -78,6 +78,12 @@ export function SmartImage({
   const resolved = resolveAsset(asset);
   const altText = alt ?? resolved.alt;
   const objectPosition = position ?? resolved.position;
+  // Callers often pass `object-contain` for garment plates. If we also emit
+  // `object-cover`, Tailwind keeps both utilities and stylesheet order wins —
+  // so a product meant to sit whole on a white plate gets cropped instead.
+  const hasObjectFit = /\bobject-(?:contain|cover|fill|none|scale-down)\b/.test(
+    imageClassName ?? "",
+  );
 
   const frame = (
     <div
@@ -96,7 +102,7 @@ export function SmartImage({
           loading={priority ? undefined : "lazy"}
           placeholder={resolved.blurDataURL ? "blur" : "empty"}
           blurDataURL={resolved.blurDataURL}
-          className={cn("object-cover", imageClassName)}
+          className={cn(!hasObjectFit && "object-cover", imageClassName)}
           style={objectPosition ? { objectPosition } : undefined}
         />
       ) : (

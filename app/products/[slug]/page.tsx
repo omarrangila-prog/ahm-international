@@ -20,8 +20,8 @@ import { industries } from "@/data/industries";
 import { processStages } from "@/data/process";
 import { caseStudies } from "@/data/caseStudies";
 import { pageMetadata, productSchema } from "@/lib/seo";
-import { firstAvailable, hasAsset, hasCanonicalAsset, type AssetKey } from "@/data/assets";
-import { numeral } from "@/lib/utils";
+import { firstAvailable, hasAsset, hasCanonicalAsset, resolveAsset, type AssetKey } from "@/data/assets";
+import { cn, numeral } from "@/lib/utils";
 
 /**
  * Product category page.
@@ -162,12 +162,12 @@ export default async function ProductCategoryPage({ params }: Params) {
                       broken image — which is the rule the whole asset system
                       exists to keep. */}
                   {hasAsset(article.asset) && (
-                    <div className="aspect-[4/5] w-full overflow-hidden bg-white">
+                    <div className="aspect-[4/5] w-full overflow-hidden bg-white p-5">
                       <SmartImage
                         asset={article.asset}
                         sizes={SIZES.third}
                         className="h-full w-full"
-                        imageClassName="object-contain p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+                        imageClassName="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
                       />
                     </div>
                   )}
@@ -237,16 +237,26 @@ export default async function ProductCategoryPage({ params }: Params) {
                 empty frame beside a real one reads as a broken image. */}
             {detailRow.some(hasAsset) && (
             <div className="mt-14 grid grid-cols-3 gap-3">
-              {detailRow.filter(hasAsset).map((asset) => (
-                <div key={asset} className="zoom-frame group aspect-[3/2] w-full overflow-hidden bg-paper">
+              {detailRow.filter(hasAsset).map((asset) => {
+                const detail = resolveAsset(asset);
+                const garment = detail.kind === "garment";
+                return (
+                <div
+                  key={asset}
+                  className={cn(
+                    "zoom-frame group aspect-[3/2] w-full overflow-hidden",
+                    garment ? "bg-white p-3" : "bg-paper",
+                  )}
+                >
                   <SmartImage
                     asset={asset}
                     sizes={SIZES.third}
                     className="h-full w-full"
-                    imageClassName="object-cover"
+                    imageClassName={garment ? "object-contain" : "object-cover"}
                   />
                 </div>
-              ))}
+                );
+              })}
             </div>
             )}
           </div>
@@ -280,12 +290,12 @@ export default async function ProductCategoryPage({ params }: Params) {
               {photographedSamples.slice(0, 12).map((asset) => (
                 <RevealItem key={asset}>
                   <figure className="group">
-                    <div className="zoom-frame aspect-[4/5] w-full overflow-hidden bg-white">
+                    <div className="zoom-frame aspect-[4/5] w-full overflow-hidden bg-white p-3 sm:p-4">
                       <SmartImage
                         asset={asset}
                         sizes={SIZES.third}
                         className="h-full w-full"
-                        imageClassName="object-contain p-4"
+                        imageClassName="object-contain"
                       />
                     </div>
                   </figure>

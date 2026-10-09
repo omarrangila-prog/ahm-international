@@ -77,12 +77,12 @@ export function IndustryRows() {
                     </div>
                     {hasAsset(asset) && (
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-white p-3">
                         <SmartImage
                           asset={asset}
                           sizes={SIZES.quarter}
                           className="h-full w-full"
-                          imageClassName={environmentShot ? "object-cover" : "object-contain p-3"}
+                          imageClassName={environmentShot ? "object-cover" : "object-contain"}
                           alt=""
                         />
                       </div>

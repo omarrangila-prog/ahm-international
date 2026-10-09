@@ -6,6 +6,7 @@ import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
+import { WhyAhm } from "@/components/sections/WhyAhm";
 import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
 import { hasAsset } from "@/data/assets";
 import { pageMetadata } from "@/lib/seo";
@@ -28,6 +29,8 @@ const beliefs = [
 export default function AboutPage() {
   const street = publicValue(company.streetAddress);
   const legal = publicValue(company.legalName);
+  const ntn = publicValue(company.ntn);
+  const hours = publicValue(company.businessHours);
 
   const facts = [
     { label: "Location", value: `${company.city}, ${company.country}` },
@@ -81,6 +84,8 @@ export default function AboutPage() {
       </Section>
 
       {/* Verified record */}
+      <WhyAhm />
+
       <Section zone="ink" spacing="lg" tooth aria-labelledby="record-heading">
         <div className="shell-wide relative z-10 grid grid-cols-12 gap-y-10 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-5">
@@ -103,11 +108,13 @@ export default function AboutPage() {
               {[
                 { label: "Manufacturing location", value: `${company.city}, ${company.country}`, status: "verified" },
                 { label: "Commercial model", value: "FOB", status: "verified" },
+                { label: "Business hours", value: hours ?? NOT_PUBLISHED, status: hours ? "verified" : "pending" },
                 { label: "Export experience", value: company.exportExperience.statement, status: "verified" },
                 { label: "Documented product", value: "65% polyester / 35% cotton stain-managed bib apron program", status: "verified" },
                 { label: "Registered legal name", value: legal ?? NOT_PUBLISHED, status: legal ? "verified" : "pending" },
+                { label: "NTN / registration number", value: ntn ?? "Ask for registration documents — not published until verified", status: ntn ? "verified" : "pending" },
                 { label: "Street address", value: street ?? "Confirmed during commercial discussion", status: street ? "verified" : "pending" },
-                { label: "Certifications", value: "Confirmed in writing during commercial discussion", status: "pending" },
+                { label: "Certifications", value: "Confirmed in writing during commercial discussion — no logo without a certificate number", status: "pending" },
                 { label: "Production capacity", value: "Confirmed against your quantity and schedule", status: "pending" },
                 { label: "Employee count", value: "Not published", status: "pending" },
               ].map((row) => (
@@ -168,7 +175,7 @@ export default function AboutPage() {
                 {
                   n: "01",
                   title: "Ask for the registration documents",
-                  body: "Company registration and tax registration, sent directly. If a supplier hesitates on this, that is your answer about everything else on their site.",
+                  body: "Company registration and tax registration (NTN), sent directly. We do not publish an NTN on this page until the number is verified — ask for it in writing. If a supplier hesitates, that is your answer about everything else on their site.",
                 },
                 {
                   n: "02",
@@ -183,7 +190,7 @@ export default function AboutPage() {
                 {
                   n: "04",
                   title: "Nominate your own inspection agency",
-                  body: "SGS, Bureau Veritas, Intertek or your own QA. A supplier confident in their output does not object to someone else opening the cartons before they ship.",
+                  body: "SGS, Bureau Veritas, Intertek or your own QA. A supplier confident in their output does not object to someone else opening the cartons before they ship. AHM confirms third-party inspection arrangements in writing against the sealed sample.",
                 },
                 {
                   n: "05",

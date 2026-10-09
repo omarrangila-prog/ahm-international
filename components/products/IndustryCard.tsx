@@ -64,12 +64,12 @@ export function IndustryCard({
   return (
     <figure className="group flex h-full flex-col">
       {hasRepresentative && (
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-paper">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-white p-5">
         <SmartImage
           asset={industry.representative}
           sizes={sizes}
           className="h-full w-full"
-          imageClassName="object-contain p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+          imageClassName="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
           alt={`${industry.typicalGarments[0]} of the type produced for ${industry.name.toLowerCase()} programs`}
         />
       </div>

@@ -7,6 +7,7 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { EmailLink, PhoneLink, WhatsAppLink } from "@/components/ui/ContactActions";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
 import { pageMetadata } from "@/lib/seo";
 
@@ -121,30 +122,55 @@ export default function ContactPage() {
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
                 <dt className="label text-paper/65">Email</dt>
                 <dd className="min-w-0 [overflow-wrap:anywhere] text-paper/85">
-                  {email ? <EmailLink email={email} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
+                  {email ? (
+                    <EmailLink email={email} />
+                  ) : (
+                    <Link
+                      href="/send-tech-pack"
+                      className="text-paper/85 underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                    >
+                      Send a tech pack — reaches the same team
+                    </Link>
+                  )}
                 </dd>
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
                 <dt className="label text-paper/65">Phone</dt>
                 <dd className="text-paper/85">
-                  {phone ? <PhoneLink phone={phone} /> : <span className="text-paper/70">{NOT_PUBLISHED}</span>}
+                  {phone ? (
+                    <PhoneLink phone={phone} />
+                  ) : (
+                    <Link
+                      href="/request-a-quote"
+                      className="text-paper/85 underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                    >
+                      Request a quote — phone published once verified
+                    </Link>
+                  )}
                 </dd>
               </div>
-              {whatsapp && (
-                <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
-                  <dt className="label text-paper/65">WhatsApp</dt>
-                  <dd className="text-paper/85">
-                    <WhatsAppLink number={whatsapp} label={phone ?? whatsapp} />
-                  </dd>
-                </div>
-              )}
+              <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
+                <dt className="label text-paper/65">WhatsApp</dt>
+                <dd className="text-paper/85">
+                  {whatsapp ? (
+                    <>
+                      <WhatsAppLink number={whatsapp} label={phone ?? whatsapp} />
+                      <span className="mt-1 block text-sm text-paper/65">{company.whatsappNote}</span>
+                    </>
+                  ) : (
+                    <Link
+                      href="/request-a-quote"
+                      className="text-paper/85 underline decoration-paper/40 underline-offset-4 hover:decoration-paper"
+                    >
+                      Use the RFQ form — WhatsApp published once verified
+                    </Link>
+                  )}
+                </dd>
+              </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
                 <dt className="label text-paper/65">Hours</dt>
                 <dd className="text-paper/85">
                   {hours ?? "Pakistan Standard Time. Confirmed on contact"}
-                  {whatsapp && (
-                    <span className="mt-1 block text-sm text-paper/65">{company.whatsappNote}</span>
-                  )}
                 </dd>
               </div>
               <div className="grid grid-cols-[8rem_1fr] gap-4 border-b border-paper/15 py-5">
@@ -167,6 +193,16 @@ export default function ContactPage() {
         primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondary={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
         zone="lime"
+      />
+
+      <RelatedLinks
+        title="Explore next"
+        links={[
+          { label: "Buyer guides", href: "/resources", description: "Tech packs, GSM, shrinkage, costing and fabric." },
+          { label: "Buyer scenarios", href: "/resources/stories", description: "Teaching stories for common sourcing failure modes." },
+          { label: "About AHM", href: "/about", description: "What we evidence — and what we refuse to invent." },
+          { label: "Documented case study", href: "/case-studies", description: "Anonymised programs with verified facts only." },
+        ]}
       />
     </>
   );

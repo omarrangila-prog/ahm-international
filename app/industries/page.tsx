@@ -4,6 +4,7 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { IndustryRows } from "@/components/sections/IndustryRows";
+import { UniformPrograms } from "@/components/sections/UniformPrograms";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { performanceOptions, PERFORMANCE_DISCLAIMER } from "@/data/industries";
@@ -42,6 +43,8 @@ export default function IndustriesPage() {
           <IndustryRows />
         </div>
       </Section>
+
+      <UniformPrograms />
 
       <Section zone="paper" spacing="lg" aria-labelledby="perf-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">

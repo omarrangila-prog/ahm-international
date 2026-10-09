@@ -31,8 +31,6 @@ type Props = {
   facts?: { label: string; value: string }[];
 };
 
-const darkZones: ZoneName[] = ["ink", "ink", "ink", "ink", "ink"];
-
 export function PageHero({
   eyebrow,
   headingLines,
@@ -45,12 +43,12 @@ export function PageHero({
   secondaryCta,
   facts,
 }: Props) {
-  const dark = darkZones.includes(zone);
+  const dark = zone === "ink";
   const tone = dark ? "dark" : "light";
 
-  // Product garments are portrait on a plate. Cropping one to a landscape
-  // frame with object-cover slices the article in half, so they are contained
-  // instead. Environment and factory photography still fills the frame.
+  // Product garments are portrait on a plate. A landscape `sm:aspect-[4/3]`
+  // frame left large empty bands beside a 4:5 photo (or cropped it when cover
+  // won the utility conflict). Keep the plate portrait at every breakpoint.
   const resolved = asset ? resolveAsset(asset) : null;
   const isGarment = resolved?.kind === "garment";
 
@@ -74,8 +72,8 @@ export function PageHero({
       <div className="shell-wide relative z-10 pt-8 pb-16 lg:pb-24">
         <Breadcrumbs trail={trail} tone={tone} />
 
-        <div className="mt-10 grid grid-cols-12 items-end gap-y-10 lg:mt-14 lg:gap-x-12">
-          <div className={cn("col-span-12", showImage ? "lg:col-span-7" : "lg:col-span-9")}>
+        <div className="mt-10 grid grid-cols-12 items-end gap-y-8 lg:mt-14 lg:gap-x-12 lg:gap-y-10">
+          <div className={cn("col-span-12 order-1", showImage ? "lg:col-span-7" : "lg:col-span-9")}>
             <p className={cn("label mb-5", dark ? "text-current/70" : "text-ink/65")}>{eyebrow}</p>
 
             <MaskedHeading
@@ -89,8 +87,10 @@ export function PageHero({
               {intro}
             </p>
 
+            {/* Desktop CTAs stay with the copy. On phones the image comes next
+                so the garment is not pushed under the sticky quote bar. */}
             {(primaryCta || secondaryCta) && (
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-9 hidden flex-wrap gap-3 lg:flex">
                 {primaryCta && (
                   <Button
                     href={primaryCta.href}
@@ -115,12 +115,13 @@ export function PageHero({
           </div>
 
           {showImage && asset && (
-            <div className="col-span-12 lg:col-span-5">
+            <div className="col-span-12 order-2 lg:col-span-5">
               <div
                 className={cn(
                   "w-full overflow-hidden",
-                  isGarment ? "aspect-[4/5] bg-white sm:aspect-[4/3]" : "aspect-[4/3]",
-                  !isGarment && (dark ? "bg-white/5" : "bg-paper"),
+                  isGarment
+                    ? "aspect-[4/5] bg-white p-5 sm:p-7"
+                    : cn("aspect-[4/3]", dark ? "bg-white/5" : "bg-paper"),
                 )}
               >
                 <SmartImage
@@ -128,9 +129,33 @@ export function PageHero({
                   sizes="(max-width: 1024px) 100vw, 42vw"
                   priority={priority}
                   className="h-full w-full"
-                  imageClassName={isGarment ? "object-contain p-6 sm:p-8" : "object-cover"}
+                  imageClassName={isGarment ? "object-contain" : "object-cover"}
                 />
               </div>
+            </div>
+          )}
+
+          {(primaryCta || secondaryCta) && (
+            <div className="col-span-12 order-3 flex flex-wrap gap-3 lg:hidden">
+              {primaryCta && (
+                <Button
+                  href={primaryCta.href}
+                  variant={dark ? "lime" : "solid"}
+                  size="lg"
+                  withArrow
+                >
+                  {primaryCta.label}
+                </Button>
+              )}
+              {secondaryCta && (
+                <Button
+                  href={secondaryCta.href}
+                  variant={dark ? "invert" : "outline"}
+                  size="lg"
+                >
+                  {secondaryCta.label}
+                </Button>
+              )}
             </div>
           )}
         </div>

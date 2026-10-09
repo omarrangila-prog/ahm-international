@@ -5,6 +5,7 @@ import { industries } from "./industries";
 import { industryDetail } from "./industry-detail";
 import { caseStudies } from "./caseStudies";
 import { guides } from "./guides";
+import { buyerStories } from "./buyerStories";
 
 /**
  * ROUTE REGISTRY
@@ -82,6 +83,12 @@ export const routes: RouteEntry[] = [
   ...guides.map((g) => ({
     path: `/resources/${g.slug}`,
     priority: 0.65,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/resources/stories", priority: 0.65, changeFrequency: "monthly" },
+  ...buyerStories.map((s) => ({
+    path: `/resources/stories/${s.slug}`,
+    priority: 0.6,
     changeFrequency: "monthly" as const,
   })),
 

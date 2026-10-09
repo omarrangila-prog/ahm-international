@@ -107,12 +107,12 @@ export function MegaMenu({
                 aria-label={`Explore ${preview.name}`}
               >
                 {hasAsset(previewAsset) && (
-                <div className="relative overflow-hidden bg-paper">
+                <div className="relative overflow-hidden bg-white p-4">
                   <SmartImage
                     asset={previewAsset}
                     sizes={SIZES.third}
-                    className="aspect-[4/3] w-full"
-                    imageClassName="object-cover transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/preview:scale-[1.04]"
+                    className="aspect-[4/5] w-full"
+                    imageClassName="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/preview:scale-[1.04]"
                     alt=""
                   />
                 </div>

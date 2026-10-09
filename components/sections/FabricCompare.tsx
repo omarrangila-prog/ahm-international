@@ -65,6 +65,8 @@ export function FabricCompare() {
     { label: "Hand feel", a: left.handFeel, b: right.handFeel },
   ];
 
+  const differing = specs.filter((row) => row.a !== row.b);
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -176,6 +178,31 @@ export function FabricCompare() {
           </div>
         ))}
       </dl>
+
+      <div className="mt-10 bg-ink p-7 text-paper sm:p-9" data-zone="dark" aria-live="polite">
+        <p className="label text-paper/65">Where they diverge</p>
+        {differing.length > 0 ? (
+          <>
+            <p className="mt-4 font-display text-xl font-bold tracking-[-0.02em] text-lime sm:text-2xl">
+              {differing.length} of {specs.length} fields differ
+            </p>
+            <ul className="mt-5 space-y-2.5">
+              {differing.map((row) => (
+                <li key={row.label} className="text-sm leading-relaxed text-paper/80">
+                  <span className="font-display font-bold text-paper">{row.label}.</span>{" "}
+                  {left.name}: {row.a}. {right.name}: {row.b}.
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="mt-4 max-w-prose text-sm leading-relaxed text-paper/75">
+            On the published fields above, these two constructions read the same. The
+            difference — if there is one — will be in finish, shade or a property we have
+            not published.
+          </p>
+        )}
+      </div>
 
       <p className="mt-6 text-xs leading-relaxed text-ink/70">{MATERIAL_DISCLAIMER}</p>
     </div>

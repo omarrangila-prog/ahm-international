@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { footerNav } from "@/data/nav";
-import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
+import { company, publicValue } from "@/data/company";
 import { Logo } from "@/components/ui/Logo";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 
@@ -83,7 +83,12 @@ export function Footer() {
                     {phone}
                   </a>
                 ) : (
-                  <p className="text-paper/65">{NOT_PUBLISHED}</p>
+                  <Link
+                    href="/request-a-quote"
+                    className="inline-block py-1.5 text-paper/80 underline-offset-4 transition-colors hover:text-lime hover:underline"
+                  >
+                    Request a quote &rarr;
+                  </Link>
                 )}
               </li>
               <li>

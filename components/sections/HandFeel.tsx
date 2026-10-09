@@ -74,17 +74,26 @@ export function HandFeel() {
         </ul>
 
         <div className="mt-8 border-t border-line pt-6">
-          <p className="max-w-prose text-sm leading-relaxed text-ink/75">{factor.effect}</p>
-          <p className="mt-4 max-w-prose text-sm leading-relaxed text-ink/70">
-            <span className="label text-ink/65">Put in the tech pack</span> {factor.specify}
-          </p>
+          <div className="border-l-2 border-ink bg-ink/[0.04] py-4 pl-5 pr-4">
+            <p className="label text-ink/65">{factor.name}</p>
+            <p className="mt-3 max-w-prose text-sm leading-relaxed text-ink/80">{factor.effect}</p>
+            <p className="mt-4 max-w-prose text-sm leading-relaxed text-ink/70">
+              <span className="font-display font-bold text-ink">Put in the tech pack.</span>{" "}
+              {factor.specify}
+            </p>
+          </div>
         </div>
       </div>
 
       <div className="col-span-12 lg:col-span-7">
-        <p className="label text-ink/65">
-          {factor.name} across every construction on this page
-        </p>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <p className="label text-ink/65">
+            {factor.name} across every construction on this page
+          </p>
+          <p className="text-sm text-ink/65" aria-live="polite">
+            Viewing · {factor.name}
+          </p>
+        </div>
 
         <dl className="mt-6 border-t border-line">
           {materials.map((material) => {

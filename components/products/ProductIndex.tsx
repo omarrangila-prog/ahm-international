@@ -187,12 +187,12 @@ export function ProductIndex() {
 
                 {hasAsset(asset) && (
                 <div className="col-span-12 lg:col-span-5">
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-paper">
+                  <div className="aspect-[4/5] w-full overflow-hidden bg-white p-5 lg:p-6">
                     <SmartImage
                       asset={asset}
                       sizes={SIZES.half}
                       className="h-full w-full"
-                      imageClassName="object-contain p-6"
+                      imageClassName="object-contain"
                       alt=""
                     />
                   </div>

@@ -58,9 +58,13 @@ function LayDown() {
         );
       })}
 
-      {/* Article codes, set as a spec sheet would set them */}
+      {/* Article codes, set as a spec sheet would set them — only for articles
+          that actually rendered above, so a missing photo does not leave a
+          floating label with nothing to point at. */}
       <ul className="absolute bottom-3 left-3 z-40 flex flex-col gap-0.5 sm:bottom-4 sm:left-4 sm:gap-1">
-        {layDown.map((item) => (
+        {layDown
+          .filter((item) => resolveAsset(item.key).available)
+          .map((item) => (
           <li key={item.code} className="label text-ink/65">
             <span className="text-ink">{item.code}</span>
             <span className="mx-1.5 opacity-40">/</span>

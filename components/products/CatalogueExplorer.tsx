@@ -195,12 +195,12 @@ export function CatalogueExplorer() {
                     category are true without a photograph, and an empty square
                     beside real garments reads as a broken image. */}
                 {hasAsset(e.asset) && (
-                  <div className="relative aspect-square overflow-hidden bg-white">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-white p-3 sm:p-4">
                     <SmartImage
                       asset={e.asset}
                       sizes={SIZES.quarter}
                       className="h-full w-full"
-                      imageClassName="object-contain p-4 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+                      imageClassName="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
                       alt=""
                     />
                   </div>

@@ -6,12 +6,12 @@ import type { AssetKey } from "./assets";
  * BUYER RESOURCE LIBRARY
  * ======================
  *
- * Five guides, written in full. Not thirty.
+ * Complete guides, written in full. Not a thin content farm.
  *
  * The content plan called for thirty articles; publishing thirty generated
  * articles at launch would fail the quality gate the same plan sets — original
  * insight, technical specificity, something a competitor does not already say.
- * So this file holds five complete guides and an explicit backlog. The backlog
+ * So this file holds complete guides and an explicit backlog. The backlog
  * is published as a plan, not as pages: `plannedGuides` renders as a visible
  * roadmap and generates no routes, no sitemap entries and nothing indexable.
  *
@@ -225,6 +225,7 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "FOB apparel manufacturing", href: "/fob-apparel-manufacturing", description: "What FOB covers, and how it compares with EXW and CIF." },
+      { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Why fabric metres come from the marker, not GSM." },
       { label: "Request an FOB quote", href: "/request-a-quote", description: "Send a specification and get costed against it." },
       { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights and applications." },
     ],
@@ -315,6 +316,7 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights, finishes and applications." },
+      { label: "Polyester dyeing for buyers", href: "/resources/polyester-dyeing-for-buyers", description: "Why polyester-rich shades need lab dips and heat discipline." },
       { label: "Apron manufacturing", href: "/products/aprons", description: "The category where 65/35 is most commonly specified." },
       { label: "Fabric sourcing", href: "/manufacturing/fabric-sourcing", description: "Lab dips, shade control and incoming inspection." },
     ],
@@ -397,6 +399,7 @@ export const guides: Guide[] = [
       },
     ],
     related: [
+      { label: "Knit constructions explained", href: "/resources/knit-constructions-explained", description: "Jersey, pique, rib and fleece at buyer level." },
       { label: "Polo and T-shirt manufacturing", href: "/products/polos-tshirts", description: "Classic and performance polos, uniform tees." },
       { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights and applications." },
       { label: "Retail uniform programs", href: "/industries/retail", description: "Brand-accurate colour and decoration across a store estate." },
@@ -482,8 +485,9 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights, finishes and applications." },
+      { label: "Fabric shrinkage guide", href: "/resources/fabric-shrinkage-guide", description: "Length vs width, test methods and residual tolerance." },
+      { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Why metres per garment are not a weight formula." },
       { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "What a complete apparel specification contains." },
-      { label: "Fabric sourcing", href: "/manufacturing/fabric-sourcing", description: "How fabric is sourced and inspected against a requirement." },
     ],
     seoTitle: "Fabric GSM Guide for Apparel Buyers",
     seoDescription:
@@ -685,9 +689,9 @@ export const guides: Guide[] = [
       },
     ],
     related: [
+      { label: "Heat transfer vs screen print", href: "/resources/heat-transfer-vs-screen-print", description: "When film beats mesh — and when polyester fights back." },
       { label: "Polos and t-shirts", href: "/products/polos-tshirts", description: "The category where decoration route matters most." },
       { label: "Materials", href: "/materials", description: "How construction affects which route is viable." },
-      { label: "Trims", href: "/materials#trims-heading", description: "Labels, tapes and the rest of the decoration decision." },
       { label: "Benchmark a style", href: "/benchmark-a-style", description: "Send a logo and a garment for a route recommendation." },
     ],
     seoTitle: "Embroidery vs Screen Printing",
@@ -782,8 +786,8 @@ export const guides: Guide[] = [
     ],
     related: [
       { label: "How FOB costing works", href: "/resources/how-fob-costing-works", description: "What actually sits inside an FOB figure." },
+      { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Marker, usable width and size ratio before you compare fabric lines." },
       { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "A precise question gets a precise price." },
-      { label: "FOB export", href: "/export", description: "Where cost and risk transfer under FOB." },
       { label: "Request a quote", href: "/request-a-quote", description: "Send a defined specification for costing." },
     ],
     seoTitle: "Comparing Apparel Quotations",
@@ -890,6 +894,591 @@ export const guides: Guide[] = [
     seoDescription:
       "What an apparel export carton must carry, why it has to agree with the packing list exactly, and the marking errors that delay shipments.",
   },
+
+  /* ================================================================== */
+  {
+    slug: "fabric-shrinkage-guide",
+    category: "Fabric guide",
+    title: "Fabric Shrinkage Guide for Apparel Buyers",
+    headline: "Shrinkage,\nspecified.",
+    intro:
+      "What fabric shrinkage is, why length and width are measured separately, and how to put a usable tolerance in a specification before the first sample is cut.",
+    summary:
+      "Fabric shrinkage is the change in length or width after washing, drying, steaming or finishing, expressed as a percentage of the original dimension. It is measured separately in the warp or wale direction and the weft or course direction because the two rarely move equally. A specification that names only “low shrinkage” has not named a number the factory or the inspector can work to.",
+    readingTime: "6 min read",
+    heroAsset: "fabrics.woven",
+    blocks: [
+      {
+        type: "prose",
+        heading: "What shrinkage actually measures",
+        body: [
+          "Shrinkage is dimensional change, not a quality score. A fabric can shrink and still be correct for the program if the pattern and marker were built with that change in mind. The problem is surprise: a garment graded to a sealed sample that was never washed will not match the sealed sample after the first industrial laundering.",
+          "The usual formula is straightforward. Shrinkage percent equals the original dimension minus the final dimension, divided by the original dimension, times one hundred. What matters commercially is when you measure — grey fabric, finished fabric, or after a wash method that matches the buyer’s laundry — because each stage can move the number.",
+          "Buyers sometimes treat a single percentage as enough. It is not. Length and width must both be stated, because a fabric that is stable in one direction and lively in the other will twist seams, skew panels and open gaps at pocket mouths even when the “average” looks acceptable.",
+        ],
+      },
+      {
+        type: "table",
+        heading: "Orientation ranges, not guarantees",
+        intro:
+          "Common industry conversation bands for finished apparel fabrics. Your program’s wash method, fibre and finish decide the real figure. Agree the test method with the manufacturer rather than quoting a number from a brochure.",
+        columns: ["Construction", "Often discussed as", "Why it moves"],
+        rows: [
+          ["Woven workwear / shirting", "Around ±3% per direction after an agreed wash", "Fibre, weave density, and whether the cloth was pre-shrunk"],
+          ["Knit jersey / pique", "Often looser than woven — commonly discussed near ±5%", "Loop structure recovers differently length vs width"],
+          ["Performance / premium programs", "Tighter bands when the buyer specifies them", "Buyer standard and laundry method override market habit"],
+        ],
+      },
+      {
+        type: "list",
+        heading: "What to put in the tech pack",
+        items: [
+          { term: "Direction", detail: "Separate limits for length (warp/wale) and width (weft/course). One number for both hides the risk." },
+          { term: "Test method", detail: "Name the wash temperature, cycles and drying method you care about — domestic, industrial, or a named lab method." },
+          { term: "Stage of measurement", detail: "Finished fabric before cut, or after a defined wash. Grey GSM and post-finish behaviour are not the same conversation." },
+          { term: "Pattern consequence", detail: "If shrinkage is expected, say whether the pattern is already compensated or whether the factory must build allowance into the marker." },
+          { term: "Related weight", detail: "When cloth shrinks in both directions, mass concentrates: post-wash GSM can rise even when the delivery looked “within tolerance.”" },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Pre-shrinking is a conversation, not a slogan",
+        body: [
+          "Processes such as sanforization on cotton wovens exist to reduce residual shrinkage before cutting. Naming “pre-shrunk” without a residual tolerance still leaves the factory guessing what will pass inspection.",
+          "Knits are a different problem. Mechanical and chemical finishing can calm them, but a buyer who washes hot and tumble-dries hard will see more movement than a lab wash that never matches the field. Match the test to the laundry, or the sealed sample will not survive contact with reality.",
+        ],
+      },
+      {
+        type: "callout",
+        heading: "If you do not know the number yet",
+        body:
+          "Describe how the garment is washed in the field and whether fit must hold after the first wash. A manufacturer can propose a residual shrinkage band and a test method for approval. Inventing a tight percentage without a method usually produces either an expensive fabric choice or a dispute at inspection.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is ±3% always acceptable for woven uniforms?",
+        answer:
+          "It is a common conversation band, not a universal rule. Some buyers specify tighter; some wash methods need a wider allowance. The acceptable figure is the one both sides agree against a named test, written into the specification.",
+      },
+      {
+        question: "Why can length and width shrink differently?",
+        answer:
+          "Warp and weft yarns, or wales and courses in a knit, are not under the same tension in the mill or on the garment. Finishing can bias one direction. Measuring only the larger of the two still leaves the other free to distort the garment.",
+      },
+      {
+        question: "Does shrinkage change fabric weight?",
+        answer:
+          "If the cloth contracts in area while the fibre mass stays, grams per square metre rise. That is why costing and consumption conversations should know whether a quoted GSM is grey, finished, or after wash.",
+      },
+    ],
+    related: [
+      { label: "Fabric GSM guide", href: "/resources/fabric-gsm-guide", description: "What weight measures — and what it does not." },
+      { label: "Materials and fabric tools", href: "/materials", description: "GSM and shrinkage calculators on the materials page." },
+      { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "Where shrinkage belongs in a complete specification." },
+      { label: "Quality", href: "/quality", description: "Inspection against an approved standard, not a surprise after wash." },
+    ],
+    seoTitle: "Fabric Shrinkage Guide for Buyers",
+    seoDescription:
+      "How apparel buyers should specify fabric shrinkage: length vs width, test method, residual tolerance, and why a single percentage is not enough.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "polyester-dyeing-for-buyers",
+    category: "Fabric guide",
+    title: "Why Polyester Is Hard to Dye — Buyer Guide",
+    headline: "Polyester colour,\nwithout surprises.",
+    intro:
+      "Why polyester does not take dye like cotton, what that means for lab dips and reorders, and what to write in a uniform specification so shade stays honest across lots.",
+    summary:
+      "Polyester is hydrophobic and highly crystalline, so colour is typically carried with disperse dyes under heat and pressure rather than with the routes used for cotton. For a buyer, the practical point is not the chemistry name — it is that shade approval, heat history and reduction clearing decide whether a polo dyed in March still matches the one dyed in September.",
+    readingTime: "6 min read",
+    heroAsset: "fabrics.polyesterPerformance",
+    blocks: [
+      {
+        type: "prose",
+        heading: "Why cotton intuition fails on polyester",
+        body: [
+          "Cotton is comparatively open to water-based dye routes. Polyester resists water; dye molecules have to migrate into the fibre under conditions that open the polymer structure briefly, then lock colour in as it cools. That is why polyester programs talk about disperse dyes and high-temperature dyeing rather than the language many buyers learned on cotton tees.",
+          "The commercial consequence is patience at development and discipline at bulk. A lab dip is not optional decoration — it is the only objective colour agreement you will have when two dye lots meet on the same sales floor.",
+          "Heat also matters after dyeing. Sublimation, pressing and high-temperature finishing can move shade on polyester if the program was never tested for it. A logo heat transfer that looks fine on a cotton sample can mark or dull a polyester panel if the fabric was not qualified for that route.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "What buyers should specify",
+        items: [
+          { term: "Colour standard", detail: "A physical swatch or numeric reference — never a colour name alone. Polyester shade disputes start when the standard is verbal." },
+          { term: "Lab dip approval", detail: "Approve under an agreed light source. Store lighting and daylight disagree; name which one wins." },
+          { term: "Lot-to-lot tolerance", detail: "Say how much roll-to-roll or lot-to-lot difference you will accept. Silence here becomes an argument at goods-in." },
+          { term: "End use and heat", detail: "Industrial laundry, heat transfers, and high-temperature pressing all belong in the brief if they apply." },
+          { term: "Fibre content honesty", detail: "A poly-cotton blend dyes as two systems. Matching a 100% polyester standard on a blend — or the reverse — is a different problem." },
+        ],
+      },
+      {
+        type: "table",
+        heading: "Fastness conversations that matter for uniforms",
+        intro: "Ask for the tests that match how the garment is worn and washed, not a generic “good fastness” claim.",
+        columns: ["Concern", "Why uniforms care"],
+        rows: [
+          ["Wash fastness", "Colour that bleeds or fades in industrial laundry breaks a program across stores"],
+          ["Rubbing / crocking", "Dark shades on light trims and pocket bags show transfer quickly"],
+          ["Perspiration", "Client-facing and kitchen-adjacent roles stress colour differently than a hanger sample"],
+          ["Light / sublimation", "Window displays, heat presses and some finishes move polyester shade if untested"],
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Reorders are a dye-lot problem",
+        body: [
+          "A perfect first shipment does not guarantee a perfect reorder if the dye lot changes and nobody kept the approved standard. Keep the sealed lab dip or the approved bulk swatch with the purchase order reference.",
+          "Where a program must match across polos, trousers and outer layers, approve them against each other — not only against a paper standard — because knit and woven polyester constructions take dye differently even at the same nominal shade.",
+        ],
+      },
+      {
+        type: "callout",
+        heading: "AHM’s role in the conversation",
+        body:
+          "We cost and develop against the colour standard and test expectations you approve in writing. We do not publish dye-house capacity or process claims as marketing facts. Send the fibre content, the shade reference and the wash or heat conditions that matter, and the quotation follows that specification.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can polyester be dyed as easily as cotton?",
+        answer:
+          "Not with the same chemistry or the same process window. Polyester typically needs disperse dyes and controlled heat; cotton routes do not transfer. Plan lab dips and lead time accordingly rather than assuming a cotton timeline.",
+      },
+      {
+        question: "Why did my polyester polo look different after heat transfer?",
+        answer:
+          "Heat can remobilise disperse dye near the surface. Qualify the decoration route on the bulk fabric, not only on a cotton or blended substitute sample.",
+      },
+      {
+        question: "Should I insist on one dye lot for a whole program?",
+        answer:
+          "For critical shade programs it is worth asking. Large volumes and reorders often span lots; a written tolerance and retained standards matter more than hoping one lot covers everything forever.",
+      },
+    ],
+    related: [
+      { label: "Materials and fabric selection", href: "/materials", description: "Constructions and finishes for program fabrics." },
+      { label: "65/35 poly-cotton for workwear", href: "/resources/poly-cotton-for-workwear", description: "Why blends behave differently from pure polyester." },
+      { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "Colour standards and decoration artwork that survive production." },
+      { label: "Product development", href: "/development", description: "Lab dips and approvals before bulk." },
+    ],
+    seoTitle: "Polyester Dyeing for Apparel Buyers",
+    seoDescription:
+      "Why polyester needs a different dyeing conversation from cotton, and how buyers should specify lab dips, heat and lot-to-lot shade for uniforms.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "fabric-consumption-basics",
+    category: "Commercial guide",
+    title: "Fabric Consumption Basics for Apparel Buyers",
+    headline: "Why consumption\nis not a weight.",
+    intro:
+      "What drives metres per garment, why a GSM number cannot answer it, and which inputs belong in a quotation request if you want a comparable fabric line.",
+    summary:
+      "Fabric consumption is decided by the marker — the nested layout of pattern pieces across usable fabric width — not by fabric weight alone. Size ratio, garment design, nap or one-way prints, shrinkage allowance and seam waste all move the number. A rule of thumb from GSM invents a cost line someone will later treat as a fact.",
+    readingTime: "6 min read",
+    heroAsset: "factory.cutting",
+    blocks: [
+      {
+        type: "prose",
+        heading: "The question buyers most want answered",
+        body: [
+          "“How many metres per piece?” is the right commercial question and the wrong calculator input. Weight tells you mass per area. Consumption asks how much area the pattern needs once pieces are nested on a roll of a given usable width.",
+          "That is why AHM’s public GSM tool converts and weighs fabric, and deliberately does not invent a consumption mode. Publishing a shortcut would look helpful and would mis-cost programs the first time the marker changed.",
+          "A honest quotation builds consumption from the tech pack or a reference garment, then attaches fabric price to that meterage — with waste factors the buyer can see rather than hide.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "What actually moves metres per garment",
+        items: [
+          { term: "Usable width", detail: "Full mill width is not cuttable width. Selvedge and needle lines reduce what the marker can use; comparing mills requires the same basis." },
+          { term: "Size ratio", detail: "A run heavy on XL consumes differently from a run heavy on S. Quote the ratio you will order." },
+          { term: "Pattern and design", detail: "Pockets, yokes, plackets and panels add pieces. A “simple tee” and a “uniform tee with badge patch” are not the same marker." },
+          { term: "Nap and direction", detail: "Brushed fabrics, directional prints and some twills force one-way nesting and raise consumption." },
+          { term: "Shrinkage allowance", detail: "If the pattern is cut larger to survive wash, the marker grows before a single garment is sewn." },
+          { term: "Marker efficiency", detail: "How tightly pieces nest. Efficiency is a result of the pattern and the width, not a moral quality of the factory." },
+        ],
+      },
+      {
+        type: "table",
+        heading: "Inputs that make fabric lines comparable",
+        columns: ["Send this", "Why quotations diverge without it"],
+        rows: [
+          ["Tech pack or reference garment", "Without a pattern, every factory invents a different shape"],
+          ["Size range and ratio", "Average size assumptions hide XL cost"],
+          ["Fabric width / usable width", "Price per metre on different widths is not comparable"],
+          ["Composition, GSM, construction", "Fabric cost and behaviour change with each"],
+          ["Shrinkage or wash expectation", "Allowance may be in the pattern or left for the factory to assume"],
+        ],
+      },
+      {
+        type: "callout",
+        heading: "No public consumption calculator on this site",
+        body:
+          "On purpose. Consumption comes from the marker. Any website that multiplies GSM into a “metres per polo” figure is guessing. Send the style; we return a commercial FOB built against the specification, including a fabric line you can audit.",
+      },
+      {
+        type: "prose",
+        heading: "How this sits next to FOB",
+        body: [
+          "Fabric is usually the largest material line in an FOB build. Saving five centimetres of average consumption on a large program is real money; saving it by narrowing the garment without telling the buyer is not a saving — it is a different product.",
+          "When you compare quotations, ask each supplier what marker assumptions and width they used. Two FOB prices with unspoken consumption differences are not two prices for the same garment.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you estimate consumption from GSM alone?",
+        answer:
+          "No. GSM is mass per area. Consumption is area required by the nested pattern. You need both geometry and width — which means a pattern or a measured reference garment.",
+      },
+      {
+        question: "Why did consumption rise when we added a pocket?",
+        answer:
+          "Extra pieces need space on the marker, and small parts often nest poorly. Decoration and patches can also force placement that blocks efficient nesting.",
+      },
+      {
+        question: "Should I ask for marker efficiency percent?",
+        answer:
+          "You can, and it is a useful discussion number — but only alongside the same width, ratio and pattern. Efficiency without those inputs is not comparable between suppliers.",
+      },
+    ],
+    related: [
+      { label: "How FOB costing works", href: "/resources/how-fob-costing-works", description: "What sits inside a commercial FOB figure." },
+      { label: "Comparing apparel quotations", href: "/resources/compare-apparel-quotations", description: "Normalise assumptions before you compare prices." },
+      { label: "Fabric GSM guide", href: "/resources/fabric-gsm-guide", description: "Use weight correctly — without mistaking it for consumption." },
+      { label: "Request a quote", href: "/request-a-quote", description: "Send a style for costing against a real specification." },
+    ],
+    seoTitle: "Fabric Consumption Basics",
+    seoDescription:
+      "Why fabric metres per garment come from the marker — not GSM alone — and what buyers should send so quotations use comparable consumption.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "knit-constructions-explained",
+    category: "Fabric guide",
+    title: "Knit Constructions Explained for Uniform Buyers",
+    headline: "Jersey, pique,\nrib and fleece.",
+    intro:
+      "The knit structures that show up most often in uniform and workwear programs — what each is good for, and which specification fields matter before you lock a polo or tee.",
+    summary:
+      "Single jersey, pique, rib and fleece are different constructions, not different marketing names for the same cloth. Jersey drapes and prints easily; pique holds polo structure; rib recovers at collars and cuffs; fleece adds insulation with a brushed back. Specifying “knit fabric” without naming the construction leaves the quotation free to choose the cheapest interpretation.",
+    readingTime: "6 min read",
+    heroAsset: "fabrics.cottonPique",
+    blocks: [
+      {
+        type: "prose",
+        heading: "Construction is the first decision",
+        body: [
+          "Fibre and GSM matter, but they sit on top of a structure. Two 200 gsm cotton knits can be jersey or pique and will not behave the same after fifty washes on a retail floor.",
+          "For uniforms, the usual failure mode is choosing jersey because it feels soft in the hand, then watching collars collapse and panels go baggy. Softness is not the same as fitness for a program.",
+        ],
+      },
+      {
+        type: "table",
+        heading: "Constructions buyers meet most often",
+        columns: ["Construction", "Typical use in programs", "Watch-outs"],
+        rows: [
+          ["Single jersey", "Tees, base layers, some dresses", "Edges curl; lighter weights show opacity issues"],
+          ["Pique", "Classic uniform polos", "Holds structure; collar still needs its own rib story"],
+          ["Rib (1x1, 2x2…)", "Collars, cuffs, welts", "Recovery depends on yarn and finish, not only on “rib” as a word"],
+          ["Interlock", "Heavier tees, some polos", "More stable than jersey; different hand and cost"],
+          ["Fleece / brushed back", "Sweatshirts, hoodies", "Weight and brush quality drive both warmth and pilling risk"],
+        ],
+      },
+      {
+        type: "list",
+        heading: "Specification fields that prevent requotes",
+        items: [
+          { term: "Construction by name", detail: "Jersey, pique, rib, fleece — not “polo fabric” alone." },
+          { term: "Composition", detail: "Cotton, poly-cotton, polyester performance — dyeing and wash behaviour follow fibre." },
+          { term: "GSM with tolerance", detail: "Useful inside one construction family; misleading across families." },
+          { term: "Collar and cuff", detail: "Specify rib separately when the body is pique or jersey. Body fabric does not automatically make a good collar." },
+          { term: "Finish", detail: "Enzyme, silicone, moisture management — each changes hand and sometimes shade." },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "When to read the deeper guides",
+        body: [
+          "If the decision is specifically polo face fabric, read pique versus jersey in detail — that is where shape retention after industrial washing shows up most clearly.",
+          "If the decision is weight across categories, use the GSM guide and the calculator on the materials page. If the decision is colour on polyester-rich knits, read the polyester dyeing guide before you approve a lab dip under the wrong light.",
+        ],
+      },
+      {
+        type: "callout",
+        heading: "Matching a program across articles",
+        body:
+          "A polo, a tee and a fleece in “the same navy” are three dye and construction problems. Approve them against each other when they must read as one brand colour on the floor.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is pique always better than jersey for polos?",
+        answer:
+          "For structured uniform polos, pique is the usual choice because of face texture and shape holding. Jersey can be right for a softer tee-polo hybrid if the buyer accepts different collar and wash behaviour. The construction should be a decision, not a default.",
+      },
+      {
+        question: "Can one GSM cover jersey and fleece?",
+        answer:
+          "Numerically you can write the same number; commercially it means nothing. Compare GSM inside one construction. Fleece at 300 gsm and jersey at 180 gsm are answering different garment jobs.",
+      },
+      {
+        question: "Why did my collar fail when the body fabric was fine?",
+        answer:
+          "Collars are usually a different knit — often rib — with their own yarn and finishing. Specify and approve them as their own item during sampling.",
+      },
+    ],
+    related: [
+      { label: "Pique vs jersey for polos", href: "/resources/pique-vs-jersey-polo-fabric", description: "The construction choice that decides most uniform polos." },
+      { label: "Materials and fabric selection", href: "/materials", description: "Families, weights and side-by-side fabric compare." },
+      { label: "Polos and T-shirts", href: "/products/polos-tshirts", description: "How AHM develops knit uniform programs." },
+      { label: "Fabric GSM guide", href: "/resources/fabric-gsm-guide", description: "Use weight inside a construction, not across them." },
+    ],
+    seoTitle: "Knit Constructions for Uniform Buyers",
+    seoDescription:
+      "Jersey, pique, rib and fleece explained for apparel buyers — when each belongs in a uniform program and what to specify before quoting.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "understanding-apparel-moq",
+    category: "Commercial guide",
+    title: "Understanding Apparel MOQ",
+    headline: "Why the minimum\nis rarely sewing.",
+    intro:
+      "What drives minimum order quantity on an apparel program, why fabric is usually the constraint, and how to ask for a useful MOQ answer without inventing a number.",
+    summary:
+      "Apparel MOQ is almost never a sewing-capacity figure. It is usually set by fabric mill minimums, colour count, trim specials and the cost of setting a line. A factory that quotes one round number for every article is either guessing or protecting a fabric commitment you have not yet made. The honest answer is confirmed once the article, fabric and colour count are reviewed.",
+    readingTime: "5 min read",
+    heroAsset: "fabrics.polycottonTwill",
+    blocks: [
+      {
+        type: "prose",
+        heading: "MOQ is a cost of setup, not a moral rule",
+        body: [
+          "Buyers hear “MOQ” as a gatekeeping number. Factories hear it as the point below which the fixed costs of a style — fabric booking, markers, needle set, decoration screens or embroidery digitising — do not amortise.",
+          "That is why the same factory can run a lower minimum on a repeat style in stock fabric than on a new development with three colours and a custom tape. The sewing line is rarely the bottleneck on the first conversation.",
+          "AHM confirms minimum quantity after the article, fabric and colour count are reviewed. Fabric is usually the constraint, not the stitching — which is the same commercial answer published elsewhere on this site, not a separate marketing claim.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "What actually moves the minimum",
+        items: [
+          { term: "Fabric mill minimum", detail: "Dye lots and loom bookings have floors. A special colour on a thin construction often drives MOQ more than stitch count." },
+          { term: "Colour count", detail: "Each colour is its own dye commitment. Three colours can mean three minimums, not one." },
+          { term: "Trims and decoration", detail: "Custom labels, woven tapes, screens and digitising have setup costs that want volume." },
+          { term: "Size ratio", detail: "A wide size run with tiny ends still consumes fabric and markers inefficiently." },
+          { term: "Repeat vs new", detail: "A sealed style on known fabric can often run smaller than a first development." },
+        ],
+      },
+      {
+        type: "callout",
+        heading: "How to ask so the answer is usable",
+        body:
+          "Send the article type, a target fabric (or swatch), colour count and a realistic size ratio. Ask what drives the minimum — fabric, colour or decoration — not only for a single number. A supplier who can name the driver is quoting a decision, not a slogan.",
+      },
+      {
+        type: "prose",
+        heading: "What this site will not invent",
+        body: [
+          "There is no published MOQ figure on AHM’s public pages. Publishing one without tying it to an article and a fabric would be the kind of round number buyers learn to distrust.",
+          "If your program needs a firm floor for budgeting, say so in the RFQ and we will confirm it against the specification rather than against a homepage claim.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you break a mill minimum by combining colours?",
+        answer:
+          "Sometimes, when the mill accepts a combined booking and shade control still holds. Often not — each colour is a separate dye lot. Ask the question against the fabric, not against sewing.",
+      },
+      {
+        question: "Is a lower MOQ always better?",
+        answer:
+          "Not if it forces a more expensive fabric route, a weaker dye lot or a price that only works once. A slightly higher minimum on the right cloth is often cheaper landed.",
+      },
+      {
+        question: "Will you publish a standard MOQ later?",
+        answer:
+          "Only if a verified, article-specific figure can be evidenced. Until then the honest answer stays per project.",
+      },
+    ],
+    related: [
+      { label: "How FOB costing works", href: "/resources/how-fob-costing-works", description: "What sits inside a commercial FOB figure." },
+      { label: "Comparing quotations", href: "/resources/compare-apparel-quotations", description: "Normalise quantity assumptions before you compare." },
+      { label: "Request a quote", href: "/request-a-quote", description: "Send a style for a confirmed commercial position." },
+      { label: "About AHM", href: "/about", description: "What we evidence — and what we refuse to invent." },
+    ],
+    seoTitle: "Understanding Apparel MOQ",
+    seoDescription:
+      "Why apparel minimum order quantity is usually fabric-driven, how colour count moves it, and how to ask for a usable MOQ answer.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "heat-transfer-vs-screen-print",
+    category: "Buyer guide",
+    title: "Heat Transfer vs Screen Print for Uniforms",
+    headline: "Two print routes,\ndifferent failure modes.",
+    intro:
+      "When heat transfer and screen print belong on a uniform program, what each needs in the tech pack, and why polyester changes the conversation.",
+    summary:
+      "Screen print lays ink on the fabric through mesh; heat transfer applies a prepared graphic with heat and pressure. Both can be right for uniforms. Screen print usually wins on large solid areas and industrial wash durability when the ink system matches the fibre. Heat transfer wins on fine detail, photographic art and short runs — but must be qualified on the bulk cloth, especially polyester, because heat can move dye.",
+    readingTime: "6 min read",
+    heroAsset: "photo.poloNavyEmbroidered",
+    blocks: [
+      {
+        type: "table",
+        heading: "Side by side for buyers",
+        columns: ["", "Screen print", "Heat transfer"],
+        rows: [
+          ["Best for", "Large solids, simple brand marks, volume", "Fine detail, multi-colour art, shorter runs"],
+          ["Setup", "Screens per colour", "Film / transfer preparation"],
+          ["Hand", "Can sit on the surface; ink system matters", "Film hand varies — test on bulk fabric"],
+          ["Wash risk", "Ink adhesion and cure", "Edge lift, cracking, dye migration on polyester"],
+          ["Tech pack must name", "Ink type, colours, placement, wash method", "Transfer type, placement, temperature/time if known, wash method"],
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Polyester is the trap",
+        body: [
+          "A heat transfer that looks perfect on a cotton tee sample can mark or dull a polyester polo when the same press hits disperse dye. Qualify decoration on the bulk fibre content, under the wash the program will see.",
+          "If embroidery is also on the table, read the embroidery versus screen guide — the three routes answer different artwork and durability questions.",
+        ],
+      },
+      {
+        type: "list",
+        heading: "What to send before sampling",
+        items: [
+          { term: "Vector or high-res artwork", detail: "With colour breaks named, not only a JPEG of a logo on a shirt." },
+          { term: "Placement", detail: "Measured from seams or centre front — not “left chest-ish”." },
+          { term: "Fibre and fabric", detail: "Cotton, poly-cotton or polyester changes ink and transfer choice." },
+          { term: "Wash method", detail: "Domestic or industrial; temperature if you know it." },
+          { term: "Reference garment", detail: "A physical example of the hand and durability you want beats a verbal preference." },
+        ],
+      },
+      {
+        type: "callout",
+        heading: "Do not leave the route unnamed on a quotation",
+        body:
+          "“Logo included” without naming embroidery, screen or transfer is how two FOB prices stop being comparable. Name the route in the brief and in the quote.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is heat transfer cheaper than screen?",
+        answer:
+          "Often on short runs and high colour counts; often not on large solids at volume. Ask both routes against the same artwork and quantity.",
+      },
+      {
+        question: "Can we mix embroidery and print on one garment?",
+        answer:
+          "Yes, and many uniform programs do. Spec each decoration separately — placement, route and colour standard — so sampling does not invent the combination.",
+      },
+      {
+        question: "Will you choose the route for us?",
+        answer:
+          "We can recommend against artwork, fabric and wash. The commercial quote still names the route we priced.",
+      },
+    ],
+    related: [
+      { label: "Embroidery vs screen printing", href: "/resources/embroidery-vs-screen-printing", description: "When stitch beats ink, and when it does not." },
+      { label: "Polyester dyeing for buyers", href: "/resources/polyester-dyeing-for-buyers", description: "Why heat and polyester need discipline." },
+      { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "Artwork and placement that survive production." },
+      { label: "Polos and T-shirts", href: "/products/polos-tshirts", description: "Where decoration decisions show up first." },
+    ],
+    seoTitle: "Heat Transfer vs Screen Print",
+    seoDescription:
+      "How heat transfer and screen print differ for uniform programs — setup, wash risk, polyester dye migration, and what to put in the tech pack.",
+  },
+
+  /* ================================================================== */
+  {
+    slug: "bib-apron-construction-guide",
+    category: "Buyer guide",
+    title: "Bib Apron Construction Guide",
+    headline: "Pockets, straps,\nreinforcement.",
+    intro:
+      "The construction decisions that decide whether a bib apron survives a customer-facing uniform program — and how they showed up on AHM’s documented U.S. apron lane.",
+    summary:
+      "A bib apron program fails at pocket mouths, strap attachments and fabric choice long before it fails at fashion. Spec pocket count and placement, strap hardware, reinforcement (bar-tacks), stain management and poly-cotton weight together. AHM’s published U.S. uniform apron case study is a stain-managed 65/35 bib program exported FOB from Port Qasim — anonymised, documented, and the reference for how these decisions land in production.",
+    readingTime: "6 min read",
+    heroAsset: "products.apron.front",
+    blocks: [
+      {
+        type: "list",
+        heading: "Construction points that matter",
+        items: [
+          { term: "Bib height and coverage", detail: "How much of the torso is protected in the actual role — retail floor vs kitchen-adjacent." },
+          { term: "Pocket configuration", detail: "Count, size and placement. Pocket mouths take bar-tacks because that is where tears start." },
+          { term: "Strap and hardware", detail: "Neck vs cross-back, adjustable hardware, reinforcement at attachment points." },
+          { term: "Fabric", detail: "65/35 poly-cotton is the common workwear answer for wash and stain programs; weight belongs in the spec with a tolerance." },
+          { term: "Finish", detail: "Stain management and softener choices change both performance and shade." },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Tied to a documented program",
+        body: [
+          "AHM publishes one anonymised case study: a United States uniform bib apron program in 65% polyester / 35% cotton with stain management, bar-tacked reinforcement at pocket mouths and strap attachments, inspected and exported FOB Pakistan from Port Qasim.",
+          "That page is a technical record, not a testimonial. Use it as a shape for your own brief — then send the differences that make your program yours.",
+        ],
+      },
+      {
+        type: "steps",
+        heading: "Brief checklist before sampling",
+        intro: "Enough to get a comparable quotation.",
+        steps: [
+          { title: "Role and wash", body: "Where it is worn and how it is laundered — industrial or domestic." },
+          { title: "Fabric and colour", body: "Composition, GSM band, colour standard, stain requirement." },
+          { title: "Construction sketch", body: "Pockets, straps, hardware — even a marked photo of a reference apron works." },
+          { title: "Quantity and size", body: "Or one-size if that is the program — say so explicitly." },
+        ],
+      },
+      {
+        type: "callout",
+        heading: "Reference garment beats adjectives",
+        body:
+          "“Heavy duty” and “premium” do not sew. A physical apron you like — or hate — plus the changes you want is the fastest path to a sealed sample.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you only make bib aprons?",
+        answer:
+          "No. Bib, waist and other service aprons are in the apron family. This guide focuses on bib construction because that is the documented case study and the densest decision set.",
+      },
+      {
+        question: "Is 65/35 required?",
+        answer:
+          "It is common for wash-heavy uniforms, not a law. If your brand standard is cotton or another blend, say so and we cost against that specification.",
+      },
+      {
+        question: "Where is the case study?",
+        answer:
+          "Under Case Studies — U.S. Uniform Program. The customer is not named; the construction and export mode are.",
+      },
+    ],
+    related: [
+      { label: "U.S. uniform apron program", href: "/case-studies/us-uniform-apron-program", description: "The documented FOB bib apron record." },
+      { label: "Apron manufacturing", href: "/products/aprons", description: "Bib, waist and service aprons to specification." },
+      { label: "65/35 poly-cotton for workwear", href: "/resources/poly-cotton-for-workwear", description: "Why the blend shows up on aprons." },
+      { label: "About AHM", href: "/about", description: "What we evidence on the public record." },
+    ],
+    seoTitle: "Bib Apron Construction Guide",
+    seoDescription:
+      "Bib apron construction for uniform buyers: pockets, straps, reinforcement and fabric — tied to AHM’s documented U.S. apron program.",
+  },
 ];
 
 export function getGuide(slug: string) {
@@ -905,21 +1494,24 @@ export function getGuide(slug: string) {
  */
 export const plannedGuides: { title: string; category: Guide["category"] }[] = [
   { title: "Apparel Sourcing from Pakistan: Complete Buyer Guide", category: "Buyer guide" },
-  { title: "Understanding Apparel MOQ", category: "Commercial guide" },
   { title: "Polyester-Cotton Blends for Uniforms", category: "Fabric guide" },
   { title: "Uniform Polo Fabric Selection Guide", category: "Fabric guide" },
   { title: "Best Fabrics for Work Shirts", category: "Fabric guide" },
   { title: "Apron Fabric Selection Guide", category: "Fabric guide" },
-  { title: "Bib Apron Construction Guide", category: "Buyer guide" },
   { title: "Hoodie and Fleece Weight Guide", category: "Fabric guide" },
   { title: "Workwear Fabric Guide", category: "Fabric guide" },
   { title: "Twill Fabric for Uniforms Explained", category: "Fabric guide" },
-  { title: "Heat Transfer vs Screen Print", category: "Buyer guide" },
   { title: "How Apparel Size Sets Work", category: "Buyer guide" },
   { title: "What Is a Pre-Production Sample?", category: "Buyer guide" },
   { title: "How Garment Inline Inspection Works", category: "Buyer guide" },
   { title: "Apparel Packing Requirements for Export", category: "Commercial guide" },
   { title: "Pakistan Apparel Manufacturing: Buyer Checklist", category: "Buyer guide" },
+  { title: "Denim Wash Types for Buyers", category: "Fabric guide" },
+  { title: "Sewing Construction for Tech Packs", category: "Buyer guide" },
+  { title: "Apparel Merchandising Checklist", category: "Buyer guide" },
+  { title: "Knitwear Development Stages", category: "Buyer guide" },
+  { title: "Sportswear Fabric Selection", category: "Fabric guide" },
+  { title: "Fabric Basics for New Buyers", category: "Fabric guide" },
 ];
 
 /**

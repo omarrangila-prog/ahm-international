@@ -26,7 +26,9 @@ function groupFor(routePath: string): string {
     case "manufacturing": return tail ? "manufacturingStage" : "manufacturing";
     case "industries": return tail ? "industry" : "industries";
     case "sourcing": return tail ? "sourcingPillar" : "sourcing";
-    case "resources": return tail ? "guide" : "resources";
+    case "resources":
+      if (tail === "stories") return s[2] ? "buyerStory" : "buyerStories";
+      return tail ? "guide" : "resources";
     case "case-studies": return tail ? "caseStudy" : "caseStudies";
     default: return head;
   }

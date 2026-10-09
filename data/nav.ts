@@ -13,6 +13,7 @@ export const primaryNav: NavLink[] = [
   { label: "Products", href: "/products" },
   { label: "Development", href: "/development" },
   { label: "Quality", href: "/quality" },
+  { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },
 ];
 
@@ -120,6 +121,16 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Materials", href: "/materials" },
       { label: "FOB Export", href: "/export" },
       { label: "Case Studies", href: "/case-studies" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Buyer Guides", href: "/resources" },
+      { label: "Buyer Scenarios", href: "/resources/stories" },
+      { label: "Glossary", href: "/resources/glossary" },
+      { label: "GSM & Shrinkage Tools", href: "/materials#gsm-heading" },
+      { label: "Incoterms", href: "/export#incoterms-heading" },
     ],
   },
 ];

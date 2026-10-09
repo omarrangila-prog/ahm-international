@@ -100,7 +100,7 @@ export function ProductUniverse() {
           {/* One frame, which changes. Empty when the family has no photograph. */}
           <div className="col-span-12 lg:col-span-5" aria-hidden="true">
             <div className="lg:sticky lg:top-28">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-white">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-white p-5 sm:p-6">
                 {families.map((family, i) => {
                   const preview = firstAvailable(family.heroAsset, family.articles[0].asset);
                   if (!hasAsset(preview)) return null;
@@ -108,7 +108,7 @@ export function ProductUniverse() {
                   <div
                     key={family.slug}
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-500 ease-[var(--ease-out-expo)]",
+                      "absolute inset-5 transition-opacity duration-500 ease-[var(--ease-out-expo)] sm:inset-6",
                       i === active ? "opacity-100" : "opacity-0",
                     )}
                   >
@@ -116,7 +116,7 @@ export function ProductUniverse() {
                       asset={preview}
                       sizes={SIZES.half}
                       className="h-full w-full"
-                      imageClassName="object-contain p-8"
+                      imageClassName="object-contain"
                       alt=""
                     />
                   </div>

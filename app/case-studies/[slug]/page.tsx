@@ -65,8 +65,14 @@ export default async function CaseStudyPage({ params }: Params) {
       <ReadingProgress />
       <PageViewEvent event="case_study_viewed" detail={slug} />
       <PageHero
-        eyebrow="Case study"
-        headingLines={[{ text: study.anonymisedTitle.toUpperCase() }]}
+        eyebrow="Case study · documented"
+        headingLines={[
+          { text: study.anonymisedTitle.split(" ")[0]?.toUpperCase() ?? "PROGRAM" },
+          {
+            text: study.anonymisedTitle.split(" ").slice(1).join(" ").toUpperCase() || "RECORD",
+            className: "text-ink",
+          },
+        ]}
         intro={study.requirement}
         trail={[
           { name: "Case Studies", path: "/case-studies" },
@@ -77,6 +83,20 @@ export default async function CaseStudyPage({ params }: Params) {
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
         secondaryCta={{ label: "Aprons", href: "/products/aprons" }}
       />
+
+      <Section zone="paper" spacing="md">
+        <div className="shell-wide">
+          <div className="max-w-3xl border-l-2 border-ink pl-6 lg:pl-8">
+            <p className="label text-ink/65">Identity protected</p>
+            <p className="mt-3 text-lead text-ink/80">{study.outcome}</p>
+            <p className="mt-5 text-sm leading-relaxed text-ink/65">
+              The customer is not named on this page, and their name does not appear in the
+              data behind it. No purchase order value, unit price or quantity from the
+              program is published.
+            </p>
+          </div>
+        </div>
+      </Section>
 
       <Section zone="paper" spacing="lg" aria-labelledby="program-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
@@ -91,7 +111,7 @@ export default async function CaseStudyPage({ params }: Params) {
 
             <ol className="mt-10 border-t border-line">
               {narrative.map((item, i) => (
-                <li key={item.title} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-6">
+                <li key={item.title} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-7">
                   <span className="numeral text-lg text-ink">{numeral(i + 1)}</span>
                   <div>
                     <h3 className="font-display text-h3 text-ink">{item.title}</h3>
@@ -104,46 +124,44 @@ export default async function CaseStudyPage({ params }: Params) {
 
           <div className="col-span-12 lg:col-span-5">
             {hasAsset("products.apron.front") && (
-            <Reveal>
-              <div className="aspect-[4/5] w-full overflow-hidden bg-white">
-                <SmartImage
-                  asset="products.apron.front"
-                  sizes={SIZES.half}
-                  className="h-full w-full"
-                  imageClassName="object-contain p-10"
-                  alt="Three-pocket bib apron of the type produced for this program"
-                />
-              </div>
-            </Reveal>
+              <Reveal>
+                <div className="aspect-[4/5] w-full overflow-hidden bg-white">
+                  <SmartImage
+                    asset="products.apron.front"
+                    sizes={SIZES.half}
+                    className="h-full w-full"
+                    imageClassName="object-contain p-10"
+                    alt="Three-pocket bib apron of the type produced for this program"
+                  />
+                </div>
+              </Reveal>
             )}
 
-            <div className="mt-4 border border-line bg-paper p-6">
-              <p className="label text-ink/65">Confidentiality</p>
-              <p className="mt-3 text-sm leading-relaxed text-ink/70">
-                The customer is not identified on this page, and their name does not appear in the
-                data behind it. No purchase order value, unit price, quantity or specification
-                detail from the program is published.
+            <div className="mt-4 bg-ink p-6 text-paper" data-zone="dark">
+              <p className="label text-lime">Confidentiality</p>
+              <p className="mt-3 text-sm leading-relaxed text-paper/75">
+                Further references are available under NDA during commercial discussion.
+                We do not pad this page with invented programs.
               </p>
             </div>
 
             {([study.assets.product, study.assets.fabric, study.assets.detail] as const).some(hasAsset) && (
-            <RevealGroup className="mt-4 grid grid-cols-3 gap-3" stagger={0.06}>
-              {/* Read from the case study's own declared assets rather than a
-                  hardcoded list. The list previously named `export.cartons` — a
-                  synthetic crop of a generic packaging photograph — in place of
-                  the program's actual product shot, which now exists. Driving
-                  this from the data means a new case study brings its own
-                  imagery without editing this component. */}
-              {([study.assets.product, study.assets.fabric, study.assets.detail] as const)
-                .filter(hasAsset)
-                .map((asset) => (
-                <RevealItem key={asset}>
-                  <div className="aspect-square w-full overflow-hidden bg-paper">
-                    <SmartImage asset={asset} sizes={SIZES.thumb} className="h-full w-full" imageClassName="object-cover" />
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
+              <RevealGroup className="mt-4 grid grid-cols-3 gap-3" stagger={0.06}>
+                {([study.assets.product, study.assets.fabric, study.assets.detail] as const)
+                  .filter(hasAsset)
+                  .map((asset) => (
+                    <RevealItem key={asset}>
+                      <div className="aspect-square w-full overflow-hidden bg-white">
+                        <SmartImage
+                          asset={asset}
+                          sizes={SIZES.thumb}
+                          className="h-full w-full"
+                          imageClassName="object-contain p-2"
+                        />
+                      </div>
+                    </RevealItem>
+                  ))}
+              </RevealGroup>
             )}
           </div>
         </div>

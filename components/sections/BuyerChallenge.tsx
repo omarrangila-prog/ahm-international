@@ -40,12 +40,12 @@ export function BuyerChallenge() {
 
         {hasAsset("photo.poloTaupeLongSleeve") && (
         <div className="col-span-12 lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-sm lg:max-w-none">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-white p-6 lg:max-w-none">
             <SmartImage
               asset="photo.poloTaupeLongSleeve"
               sizes={SIZES.third}
               className="h-full w-full"
-              imageClassName="object-contain drop-shadow-[0_25px_45px_rgba(16,19,21,0.22)]"
+              imageClassName="object-contain"
               alt="Taupe long-sleeve uniform polo"
             />
           </div>

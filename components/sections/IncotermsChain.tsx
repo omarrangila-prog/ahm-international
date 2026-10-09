@@ -74,23 +74,27 @@ export function IncotermsChain() {
         </ul>
       </fieldset>
 
-      <div aria-live="polite">
-        <p className="mt-8 max-w-2xl font-display text-xl font-bold leading-snug tracking-[-0.02em] text-ink sm:text-2xl">
+      <div
+        className="mt-10 bg-ink p-7 text-paper sm:p-9"
+        data-zone="dark"
+        aria-live="polite"
+      >
+        <p className="label text-paper/65">Selected rule</p>
+        <p className="mt-4 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-lime">
+          {term.code}
+        </p>
+        <p className="mt-3 font-display text-xl font-bold tracking-[-0.02em] text-paper sm:text-2xl">
           {term.name}
         </p>
-        <p className="mt-3 max-w-2xl leading-relaxed text-ink/75">{term.summary}</p>
-        <p className="mt-3 text-sm text-ink/65">
+        <p className="mt-4 max-w-2xl leading-relaxed text-paper/80">{term.summary}</p>
+        <p className="mt-4 text-sm text-paper/65">
           Names {term.namedPlace} in the contract.
         </p>
-
-        {/* The divergence stated outright. On CIF this is the difference
-            between what a buyer thinks they bought and what they own. */}
         {costAndRiskDiverge && (
-          <p className="mt-6 max-w-2xl border-l-2 border-ink bg-ink/[0.04] py-4 pl-5 pr-4 text-sm leading-relaxed text-ink">
-            <span className="font-display font-bold">Cost and risk part company here.</span> AHM
-            pays through step {numeral(lastPaidStep)} — but the risk of loss or damage is yours
-            from step {numeral(term.riskPassesAfter + 1)} onward. Goods lost in transit are your
-            loss, claimed on the policy, even though the freight was on the invoice.
+          <p className="mt-6 max-w-2xl border-l-2 border-lime py-1 pl-5 text-sm leading-relaxed text-paper/85">
+            <span className="font-display font-bold text-lime">Cost and risk part company.</span>{" "}
+            AHM pays through step {numeral(lastPaidStep)} — but risk of loss or damage is
+            yours from step {numeral(term.riskPassesAfter + 1)} onward.
           </p>
         )}
       </div>

@@ -13,18 +13,16 @@ environment variable.
 
 | Item | Where | Currently shows |
 |---|---|---|
-| Registered legal name | `company.legalName` | hidden |
-| Company registration / NTN | `company.legalName` note | hidden |
+| Registered legal name | `company.legalName` | Published (AHM International). NTN still outstanding |
 | Street address | `company.streetAddress` | "Confirmed during commercial discussion" |
-| Business email | `NEXT_PUBLIC_SALES_EMAIL` | "Available on request" |
-| Phone | `NEXT_PUBLIC_PHONE` | "Available on request" |
-| WhatsApp | `NEXT_PUBLIC_WHATSAPP` | action hidden |
-| Business hours | `company.businessHours` | "Pakistan Standard Time — confirmed on contact" |
+| Business email | `NEXT_PUBLIC_SALES_EMAIL` | Unpublished — footer/contact route to forms |
+| Phone | `NEXT_PUBLIC_PHONE` | Unpublished — footer/contact route to RFQ |
+| WhatsApp | `NEXT_PUBLIC_WHATSAPP` | action hidden until set |
+| Business hours | `company.businessHours` | Published (Mon–Sat 9am–6pm PKT) |
 | Social profiles | `NEXT_PUBLIC_LINKEDIN`, `NEXT_PUBLIC_INSTAGRAM` | icons hidden |
 | Certifications | `company.certifications` (empty array) | omitted entirely |
 
-**Use a branded domain address** for the public email — `sales@`, `rfq@` or
-`sourcing@` on the live domain, not a personal mailbox.
+Copy `.env.example` to `.env.local` for local secrets. **Do not invent** email, phone or NTN values to fill the UI.
 
 ### Deliberately not published
 

@@ -15,8 +15,10 @@
  * page so that is never quietly forgotten.
  */
 
+import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "../lib/upload-policy";
+
 export const LEGAL_REVIEW_NOTICE =
-  "This policy is published in draft and describes how this website currently behaves. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Contact us with any question about your data and we will answer it directly." as const;
+  "This policy is published in draft and describes how this website currently behaves — including that enquiry delivery depends on server configuration and that no analytics provider is installed. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Questions about your data: use the request-a-quote form so the message reaches the commercial team." as const;
 
 export const LEGAL_EFFECTIVE = "September 2026" as const;
 
@@ -35,7 +37,7 @@ export const privacySections: LegalSection[] = [
     body: ["Only what you type into a form. There is no account system, no profiling and no tracking of you across other websites."],
     list: [
       "Quotation requests: your name, company, business email, and country. Optionally a job title, phone number, website, and the commercial details of your enquiry. Product, quantity, materials, decoration, target price, destination and delivery window.",
-      "Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are PDF, XLSX, XLS, DOCX, DOC, JPG, PNG, WEBP and ZIP — up to six files, 15 MB per file and 40 MB per submission.",
+      `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${UPLOAD_LIMITS}`,
       "Technical data needed to accept a submission: your IP address is used to rate-limit the form against automated abuse. It is not stored alongside your enquiry and is not used to identify you.",
     ],
   },
