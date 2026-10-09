@@ -15,7 +15,7 @@ environment variable.
 |---|---|---|
 | Registered legal name | `company.legalName` | Published (AHM International). NTN still outstanding |
 | Street address | `company.streetAddress` | "Confirmed during commercial discussion" |
-| Business email | `NEXT_PUBLIC_SALES_EMAIL` | Unpublished — footer/contact route to forms |
+| Business email | `NEXT_PUBLIC_SALES_EMAIL` | `info@ahminternationals.com` — company domain, supplied Oct 2026. Set it in Vercel; production still served a Gmail address until then |
 | Phone | `NEXT_PUBLIC_PHONE` | Unpublished — footer/contact route to RFQ |
 | WhatsApp | `NEXT_PUBLIC_WHATSAPP` | action hidden until set |
 | Business hours | `company.businessHours` | Published (Mon–Sat 9am–6pm PKT) |
@@ -96,11 +96,50 @@ one instance, the effective limit multiplies by the instance count. Swap
 
 ## 3. Domain and canonicalisation
 
-- Set `NEXT_PUBLIC_SITE_URL` to the canonical origin. Everything — canonicals,
-  sitemaps, OpenGraph, structured data, `llms.txt` — derives from it.
-- Pick **one** of www / non-www and 301 the other at the host or CDN.
-- Force HTTPS.
-- Confirm no staging `noindex` header survives into production.
+The domain is **ahminternationals.com**, bought October 2026 and registered at
+Hostinger. Mail is already live there: `info@ahminternationals.com` resolves via
+`mx1.hostinger.com`.
+
+As of this writing the domain still points at Hostinger (`2.57.91.91`, server
+`hcdn` — the registrar parking page), **not** at Vercel. Until that changes the
+site answers only on `ahm-international.vercel.app`.
+
+Do these in order. Steps 1-2 are at the registrar, 3-4 at Vercel, 5 verifies.
+
+1. **Point DNS at Vercel.** In Hostinger's DNS panel:
+   - `A` record on the apex `@` to `76.76.21.21`
+   - `CNAME` on `www` to `cname.vercel-dns.com`
+   Leave the `MX` records alone or company email stops arriving.
+2. Wait for propagation. `dig +short ahminternationals.com` should stop
+   returning `2.57.91.91`.
+3. **Add both names to the Vercel project** (Settings → Domains): the apex and
+   `www`. Vercel issues the TLS certificate itself, so HTTPS needs no further
+   work.
+4. **Pick the canonical host and redirect the other.** Vercel's domain settings
+   do this with a 308; choose one and set the other to redirect to it. Then set
+   `NEXT_PUBLIC_SITE_URL` to the winner, including the scheme and no trailing
+   slash — `https://www.ahminternationals.com`.
+
+   This is the only value that has to change. Canonicals, both sitemaps,
+   OpenGraph, Twitter cards, JSON-LD and `llms.txt` all derive from
+   `company.siteUrl`, which reads that variable.
+
+5. **Verify** after redeploying:
+   ```
+   curl -s https://www.ahminternationals.com/ | grep canonical
+   curl -s https://www.ahminternationals.com/sitemap.xml | head
+   curl -sI https://ahminternationals.com/        # expect 308 to the canonical
+   ```
+   Confirm no staging `noindex` header survives into production.
+
+**The fallback in `data/company.ts` stays `ahm-international.vercel.app` on
+purpose.** A canonical pointing at a domain that does not resolve tells a
+crawler the authoritative copy lives at a dead URL, which is worse than no
+canonical. Change the default only once step 2 is done.
+
+Existing URLs are preserved: every route keeps its path, so the migration is a
+host change, not a restructure. The `redirects()` block in `next.config.ts`
+already covers the earlier path moves and needs no edit.
 
 ---
 
