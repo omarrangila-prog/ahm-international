@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { TextField, SelectField } from "./Fields";
 import { productCategories } from "@/data/products";
 import { track } from "@/lib/analytics";
+import { submitRfq } from "@/lib/rfq-client";
+import { SubmissionOutcome } from "./SubmissionOutcome";
 
 /**
  * Homepage mini RFQ.
@@ -104,67 +106,44 @@ export function MiniRfqForm() {
     setServerError(null);
     track("rfq_submit", { variant: "mini" });
 
-    try {
-      const body = new FormData(event.currentTarget);
-      body.append("variant", "mini");
-      body.append("source", "homepage_mini");
+    const body = new FormData(event.currentTarget);
+    body.append("variant", "mini");
+    body.append("source", "homepage_mini");
 
-      const response = await fetch("/api/rfq", { method: "POST", body });
-      const data = await response.json();
+    const result = await submitRfq(body);
 
-      if (!response.ok || !data.ok) {
-        setServerError(data.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-        track("rfq_submit_error", { variant: "mini" });
-        return;
-      }
-
-      setReference(data.reference ?? null);
-      setDelivered(data.delivered !== false);
-      setStatus("success");
-      setValues(EMPTY);
-    } catch {
-      setServerError("We could not reach the server. Please check your connection and try again.");
+    if (result.kind === "invalid" || result.kind === "error") {
+      if (result.kind === "invalid") setErrors(result.fieldErrors as Errors);
+      setServerError(result.error);
       setStatus("error");
-      track("rfq_submit_error", { variant: "mini" });
+      track("rfq_submit_error", { variant: "mini", reason: result.kind });
+      return;
+    }
+
+    setReference(result.reference);
+    setDelivered(result.kind === "delivered");
+    setStatus("success");
+    // Cleared only once the request has gone somewhere; an undelivered buyer
+    // may still want what they typed.
+    if (result.kind === "delivered") {
+      setValues(EMPTY);
+      track("rfq_completed", { variant: "mini" });
+    } else {
+      track("rfq_submit_error", { variant: "mini", reason: "undelivered" });
     }
   }
 
   if (status === "success") {
     return (
-      <div
-        className="enter flex flex-col items-start gap-5 border border-ink/15 bg-paper p-8 lg:p-10"
-        role="status"
-      >
-        <span className="flex h-12 w-12 items-center justify-center bg-lime text-ink">
-          <Check className="h-6 w-6" aria-hidden="true" />
-        </span>
-        <div>
-          <h3 className="font-display text-2xl font-extrabold tracking-[-0.03em] text-ink">RFQ received.</h3>
-          <p className="mt-3 max-w-md text-ink/70">
-            Thank you. Our commercial team will review your requirements.
-            {reference && (
-              <>
-                {" "}
-                Your reference is <span className="font-mono font-semibold text-ink">{reference}</span>.
-              </>
-            )}
-          </p>
-          {!delivered && (
-            <p className="mt-4 max-w-md border-l-2 border-ink pl-3 text-sm text-ink/70">
-              Your request has been recorded. Email delivery is not yet configured on this
-              installation: please also reach us through the contact page to be certain it lands.
-            </p>
-          )}
-        </div>
+      <SubmissionOutcome kind={delivered ? "delivered" : "undelivered"} reference={reference} rejectedFiles={[]} size="md">
         <Link
           href="/request-a-quote"
-          className="group inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
+          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:underline"
         >
           Add a tech pack and full specification
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
         </Link>
-      </div>
+      </SubmissionOutcome>
     );
   }
 

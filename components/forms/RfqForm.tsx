@@ -4,15 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField, CheckChip, CheckboxField, Honeypot } from "./Fields";
 import { FileDrop } from "./FileDrop";
+import { SubmissionOutcome } from "./SubmissionOutcome";
 import { rfqSchema, RFQ_STEPS, type RfqInput } from "@/lib/rfq-schema";
 import { productCategories } from "@/data/products";
 import { materials } from "@/data/materials";
 import { track } from "@/lib/analytics";
+import { submitRfq, type RejectedFile } from "@/lib/rfq-client";
 import { cn } from "@/lib/utils";
-import { company, publicValue } from "@/data/company";
 
 /**
  * MULTI-STEP RFQ
@@ -63,10 +64,7 @@ export function RfqForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [reference, setReference] = useState<string | null>(null);
   const [delivered, setDelivered] = useState(true);
-  // Null unless verified and public — the same gate the footer and contact page
-  // go through, so an unset value renders nothing rather than an empty link.
-  const email = publicValue(company.email);
-  const whatsapp = publicValue(company.whatsapp);
+  const [rejectedFiles, setRejectedFiles] = useState<RejectedFile[]>([]);
   const [serverError, setServerError] = useState<string | null>(null);
   const [started, setStarted] = useState(false);
 
@@ -160,100 +158,46 @@ export function RfqForm() {
     setServerError(null);
     track("rfq_submit", { variant: "full", files: files.length });
 
-    try {
-      const body = new FormData();
-      body.append("variant", "full");
+    const body = new FormData();
+    body.append("variant", "full");
 
-      for (const [key, value] of Object.entries(values)) {
-        if (value === undefined || value === null || value === "") continue;
-        if (Array.isArray(value)) {
-          for (const entry of value) body.append(key, String(entry));
-        } else {
-          body.append(key, String(value));
-        }
+    for (const [key, value] of Object.entries(values)) {
+      if (value === undefined || value === null || value === "") continue;
+      if (Array.isArray(value)) {
+        for (const entry of value) body.append(key, String(entry));
+      } else {
+        body.append(key, String(value));
       }
-      for (const file of files) body.append("files", file);
+    }
+    for (const file of files) body.append("files", file);
 
-      const response = await fetch("/api/rfq", { method: "POST", body });
-      const data = await response.json();
+    const result = await submitRfq(body);
 
-      if (!response.ok || !data.ok) {
-        setServerError(data.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-        track("rfq_submit_error", { variant: "full" });
-        return;
-      }
-
-      setReference(data.reference ?? null);
-      setDelivered(data.delivered !== false);
-      setStatus("success");
-      track("rfq_completed", { variant: "full", files: files.length });
-    } catch {
-      setServerError("We could not reach the server. Please check your connection and try again.");
+    if (result.kind === "invalid" || result.kind === "error") {
+      const fieldNotes = result.kind === "invalid" ? Object.values(result.fieldErrors) : [];
+      setServerError(fieldNotes.length ? `${result.error} ${fieldNotes.join(". ")}.` : result.error);
       setStatus("error");
-      track("rfq_submit_error", { variant: "full" });
+      track("rfq_submit_error", { variant: "full", reason: result.kind });
+      return;
+    }
+
+    setReference(result.reference);
+    setDelivered(result.kind === "delivered");
+    setRejectedFiles(result.rejectedFiles);
+    setStatus("success");
+    // Only a delivered request is a completion. An undelivered one is still
+    // a buyer who needs to act, and counting it would flatter the funnel.
+    if (result.kind === "delivered") {
+      track("rfq_completed", { variant: "full", files: files.length - result.rejectedFiles.length });
+    } else {
+      track("rfq_submit_error", { variant: "full", reason: "undelivered" });
     }
   }
 
   /* ------------------------------ Success ------------------------------ */
   if (status === "success") {
     return (
-      <div className="enter border border-ink/15 bg-paper p-8 lg:p-12" role="status">
-        <span className="flex h-14 w-14 items-center justify-center bg-lime text-ink">
-          <Check className="h-7 w-7" aria-hidden="true" />
-        </span>
-        <h2 className="mt-7 font-display text-display text-ink">RFQ received.</h2>
-        <p className="mt-5 max-w-xl text-lead text-ink/75">
-          Thank you. Our commercial team will review your requirements.
-        </p>
-        {reference && (
-          <p className="mt-5 text-ink/70">
-            Your reference is <span className="font-mono font-semibold text-ink">{reference}</span>.
-            Quote it in any follow-up and we will find your enquiry.
-          </p>
-        )}
-        {/* Automatic delivery is not configured, so this is the moment the
-            enquiry is most likely to be lost — the buyer has done the work and
-            has no confirmation that anyone received it. Sending them to the
-            contact page to look up an address adds a step exactly where
-            attention is thinnest, so the channels are given here, with the
-            reference already in the subject line. */}
-        {!delivered && (
-          <div className="mt-5 max-w-xl border-l-2 border-ink pl-4 text-sm text-ink/70">
-            <p>
-              Your request has been recorded. Automatic delivery is not configured on this
-              installation yet, so send it to us directly as well and we will pick it up:
-            </p>
-            <ul className="mt-3 space-y-1.5">
-              {email && (
-                <li>
-                  <span className="text-ink/65">Email</span>{" "}
-                  <a
-                    href={`mailto:${email}?subject=${encodeURIComponent(
-                      reference ? `RFQ ${reference}` : "RFQ",
-                    )}`}
-                    className="[overflow-wrap:anywhere] underline underline-offset-4 hover:text-ink"
-                  >
-                    {email}
-                  </a>
-                </li>
-              )}
-              {whatsapp && (
-                <li>
-                  <span className="text-ink/65">WhatsApp</span>{" "}
-                  <a
-                    href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-4 hover:text-ink"
-                  >
-                    {whatsapp}
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
+      <SubmissionOutcome kind={delivered ? "delivered" : "undelivered"} reference={reference} rejectedFiles={rejectedFiles}>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link
             href="/products"
@@ -268,7 +212,7 @@ export function RfqForm() {
             Back to home
           </Link>
         </div>
-      </div>
+      </SubmissionOutcome>
     );
   }
 

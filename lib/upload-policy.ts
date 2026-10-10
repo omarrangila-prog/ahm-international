@@ -8,8 +8,23 @@
  * The server re-applies every rule here before accepting anything.
  */
 
-export const MAX_FILE_BYTES = 15 * 1024 * 1024; // 15 MB per file
-export const MAX_TOTAL_BYTES = 40 * 1024 * 1024; // 40 MB per submission
+/**
+ * The ceiling is the platform's, not ours.
+ *
+ * Vercel refuses any function request body over 4.5 MB before this
+ * application sees it, answering with a plain-text FUNCTION_PAYLOAD_TOO_LARGE.
+ * These limits used to read 15 MB per file and 40 MB per submission, so the
+ * form invited exactly the attachments that could never arrive: a 6 MB tech
+ * pack failed on the live site, and the buyer was told to check their
+ * connection.
+ *
+ * 4 MB in total leaves room for the multipart framing and the text fields.
+ * Anything larger is sent by email with the reference the form returns, which
+ * the form says at the point the file is refused. Raising this needs direct
+ * browser-to-storage upload, not a bigger number here.
+ */
+export const MAX_TOTAL_BYTES = 4 * 1024 * 1024; // 4 MB per submission
+export const MAX_FILE_BYTES = MAX_TOTAL_BYTES; // a single file may use all of it
 export const MAX_FILES = 6;
 
 /** Accepted upload types, keyed by extension. */
@@ -51,9 +66,9 @@ export const ACCEPTED_LABEL = (() => {
 })();
 
 /** Every numeric limit in one sentence, including the total. */
-export const UPLOAD_LIMITS = `Up to ${MAX_FILES} files, ${mb(MAX_FILE_BYTES)} MB per file and ${mb(
+export const UPLOAD_LIMITS = `Up to ${MAX_FILES} files and ${mb(
   MAX_TOTAL_BYTES,
-)} MB per submission.`;
+)} MB in total. Larger files can be emailed with the reference the form gives you.`;
 
 /**
  * Strips directory components and control characters from an uploaded filename.

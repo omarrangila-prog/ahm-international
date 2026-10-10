@@ -16,101 +16,130 @@
  */
 
 import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "../lib/upload-policy";
+import { enquiryDelivery, type EnquiryDelivery } from "../lib/mail-config";
 
-export const LEGAL_REVIEW_NOTICE =
-  "This policy is published in draft and describes how this website currently behaves — including that enquiry delivery depends on server configuration and that no analytics provider is installed. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Questions about your data: use the request-a-quote form so the message reaches the commercial team." as const;
+/**
+ * What this deployment actually does with an enquiry, read from the same
+ * environment the form handler reads. The privacy policy is written for each
+ * state rather than for the intended one: it once said the site would "name the
+ * category of provider before it is switched on", and binding the wording to
+ * the configuration is what makes that promise keep itself.
+ */
+const delivery = enquiryDelivery();
+
+export const LEGAL_REVIEW_NOTICE = `This policy is published in draft and describes how this website currently behaves — including ${
+  delivery.mail ? "that enquiries are delivered by email to our business mailbox" : "that enquiry delivery depends on server configuration"
+} and that no analytics provider is installed. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Questions about your data: use the request-a-quote form so the message reaches the commercial team.`;
 
 export const LEGAL_EFFECTIVE = "September 2026" as const;
 
 export type LegalSection = { heading: string; body: string[]; list?: string[] };
 
-export const privacySections: LegalSection[] = [
-  {
-    heading: "What this policy covers",
-    body: [
-      "This policy covers the AHM International website and the enquiry forms on it. It explains what we collect, why, how long we keep it, and what you can ask us to do with it.",
-      "AHM International is an apparel manufacturing and export business in Karachi, Pakistan. We supply buyers internationally, including in the United Kingdom and the European Union, so this policy is written to the standard those buyers expect.",
-    ],
-  },
-  {
-    heading: "What we collect",
-    body: ["Only what you type into a form. There is no account system, no profiling and no tracking of you across other websites."],
-    list: [
-      "Quotation requests: your name, company, business email, and country. Optionally a job title, phone number, website, and the commercial details of your enquiry. Product, quantity, materials, decoration, target price, destination and delivery window.",
-      `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${UPLOAD_LIMITS}`,
-      "Technical data needed to accept a submission: your IP address is used to rate-limit the form against automated abuse. It is not stored alongside your enquiry and is not used to identify you.",
-    ],
-  },
-  {
-    heading: "Why we use it",
-    body: [
-      "To read your enquiry, ask the questions we need to quote accurately, and reply to you. That is the whole purpose.",
-      "The lawful basis is your request: you contacted us about a possible commercial relationship, and we are responding to it.",
-    ],
-  },
-  {
-    heading: "Your specifications are confidential",
-    body: [
-      "Tech packs, drawings, specifications, target prices and commercial terms you share are treated as confidential business information. We do not publish them, share them with other buyers, or use them to develop products for anyone else.",
-      "This website publishes no customer name anywhere. The single case study shown is anonymised, and the customer's identity is absent from the data behind the page rather than merely hidden in it.",
-    ],
-  },
-  {
-    heading: "Cookies and analytics",
-    body: [
-      "This website sets no advertising cookies and runs no third-party tracking scripts.",
-      "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
-    ],
-  },
-  {
-    heading: "Who else sees your data",
-    body: [
-      "Our commercial and development team, for the purpose of answering you.",
-      "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes. No email or CRM provider is connected to the enquiry form yet; if one is added, this page will name the category of provider before it is switched on.",
-      "We do not sell data, and we do not share enquiries with other manufacturers or agents.",
-    ],
-  },
-  {
-    heading: "Where your data goes",
-    body: [
-      "AHM International is based in Pakistan, so an enquiry sent from the United Kingdom, the European Union or elsewhere is transferred outside your country in order to be read and answered. Sending us an enquiry is a request for that.",
-      "If your organisation requires a specific transfer mechanism or a data-processing agreement before sharing a specification, tell us and we will work to it.",
-    ],
-  },
-  {
-    heading: "How long we keep it",
-    body: [
-      "This describes the site as it behaves today, and it will change when enquiry delivery is connected. Right now the website does not store your submission. A file you attach is checked for type and size and is then discarded when the request ends — its contents are never written to disk and never forwarded. What is recorded is the enquiry text and the names and sizes of the files, so that nothing is silently lost.",
-      "Once delivery is connected, enquiries and attachments will be kept for as long as the commercial conversation is live, and afterwards for as long as we may reasonably need them — for example to honour a repeat order against a specification you approved earlier. This page will be updated before that happens.",
-      "Ask us to delete anything we hold about you and we will, unless we are required to retain a record for tax or legal reasons.",
-    ],
-  },
-  {
-    heading: "Your rights",
-    body: ["Whatever your location, you can ask us to do any of the following and we will respond."],
-    list: [
-      "Tell you what we hold about you.",
-      "Correct anything that is wrong.",
-      "Delete anything we hold about you.",
-      "Send you a copy of what we hold. While the website does not store submissions, that is the enquiry text and your file names rather than the files themselves.",
-      "Stop using your details for anything other than answering you.",
-    ],
-  },
-  {
-    heading: "Security",
-    body: [
-      "The site is served over HTTPS. Uploads are validated on the server for file type, extension and size before being accepted, and filenames are sanitised. Submissions are rate-limited.",
-      "No transmission over the internet is completely secure. If a specification is unusually sensitive, tell us before sending and we will agree a route that suits you.",
-    ],
-  },
-  {
-    heading: "Changes and contact",
-    body: [
-      "If this policy changes materially we will update the date at the top of the page.",
-      "For any question about your data, or to exercise any of the rights above, use the contact page. Your request goes to the same team that handles enquiries.",
-    ],
-  },
-];
+export function privacySectionsFor(delivery: EnquiryDelivery): LegalSection[] {
+  return [
+    {
+      heading: "What this policy covers",
+      body: [
+        "This policy covers the AHM International website and the enquiry forms on it. It explains what we collect, why, how long we keep it, and what you can ask us to do with it.",
+        "AHM International is an apparel manufacturing and export business in Karachi, Pakistan. We supply buyers internationally, including in the United Kingdom and the European Union, so this policy is written to the standard those buyers expect.",
+      ],
+    },
+    {
+      heading: "What we collect",
+      body: ["Only what you type into a form. There is no account system, no profiling and no tracking of you across other websites."],
+      list: [
+        "Quotation requests: your name, company, business email, and country. Optionally a job title, phone number, website, and the commercial details of your enquiry. Product, quantity, materials, decoration, target price, destination and delivery window.",
+        `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${UPLOAD_LIMITS}`,
+        "Technical data needed to accept a submission: your IP address is used to rate-limit the form against automated abuse. It is not stored alongside your enquiry and is not used to identify you.",
+      ],
+    },
+    {
+      heading: "Why we use it",
+      body: [
+        "To read your enquiry, ask the questions we need to quote accurately, and reply to you. That is the whole purpose.",
+        "The lawful basis is your request: you contacted us about a possible commercial relationship, and we are responding to it.",
+      ],
+    },
+    {
+      heading: "Your specifications are confidential",
+      body: [
+        "Tech packs, drawings, specifications, target prices and commercial terms you share are treated as confidential business information. We do not publish them, share them with other buyers, or use them to develop products for anyone else.",
+        "This website publishes no customer name anywhere. The single case study shown is anonymised, and the customer's identity is absent from the data behind the page rather than merely hidden in it.",
+      ],
+    },
+    {
+      heading: "Cookies and analytics",
+      body: [
+        "This website sets no advertising cookies and runs no third-party tracking scripts.",
+        "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
+      ],
+    },
+    {
+      heading: "Who else sees your data",
+      body: [
+        "Our commercial and development team, for the purpose of answering you.",
+        delivery.mail
+          ? "The infrastructure provider that hosts this website, and the business email provider that hosts our mailbox: your enquiry and any files you attach are delivered to that mailbox by email. Both process data on our instruction and do not use it for their own purposes."
+          : "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes. No email or CRM provider is connected to the enquiry form yet; if one is added, this page will name the category of provider before it is switched on.",
+        ...(delivery.webhook
+          ? ["The enquiry text, without your files, is also passed to the tool we use to track enquiries through to quotation. It processes the data on our instruction."]
+          : []),
+        "We do not sell data, and we do not share enquiries with other manufacturers or agents.",
+      ],
+    },
+    {
+      heading: "Where your data goes",
+      body: [
+        "AHM International is based in Pakistan, so an enquiry sent from the United Kingdom, the European Union or elsewhere is transferred outside your country in order to be read and answered. Sending us an enquiry is a request for that.",
+        "If your organisation requires a specific transfer mechanism or a data-processing agreement before sharing a specification, tell us and we will work to it.",
+      ],
+    },
+    {
+      heading: "How long we keep it",
+      body: [
+        ...(delivery.mail
+          ? [
+              "Your enquiry and any files you attach are delivered by email to our business mailbox. The website itself keeps no copy: a file is held in memory only while the request is processed, and is never written to the website's storage or published at a web address.",
+              "In the mailbox, enquiries and attachments are kept for as long as the commercial conversation is live, and afterwards for as long as we may reasonably need them — for example to honour a repeat order against a specification you approved earlier.",
+            ]
+          : [
+              "This describes the site as it behaves today. Right now the website neither delivers nor stores your submission. A file you attach is checked for type and size and is then discarded when the request ends — its contents are never written to disk and never forwarded. Only a reference number is recorded.",
+              "The form tells you this when you submit, and gives you our email address with that reference so you can send the enquiry to us directly. Once delivery is connected, this page will describe where enquiries are kept and for how long before it is switched on.",
+            ]),
+        "Ask us to delete anything we hold about you and we will, unless we are required to retain a record for tax or legal reasons.",
+      ],
+    },
+    {
+      heading: "Your rights",
+      body: ["Whatever your location, you can ask us to do any of the following and we will respond."],
+      list: [
+        "Tell you what we hold about you.",
+        "Correct anything that is wrong.",
+        "Delete anything we hold about you.",
+        delivery.mail
+          ? "Send you a copy of what we hold."
+          : "Send you a copy of what we hold. While the website does not deliver submissions, it holds nothing from the form beyond a reference number.",
+        "Stop using your details for anything other than answering you.",
+      ],
+    },
+    {
+      heading: "Security",
+      body: [
+        "The site is served over HTTPS. Uploads are validated on the server for file type, extension and size before being accepted, and filenames are sanitised. Submissions are rate-limited.",
+        "No transmission over the internet is completely secure. If a specification is unusually sensitive, tell us before sending and we will agree a route that suits you.",
+      ],
+    },
+    {
+      heading: "Changes and contact",
+      body: [
+        "If this policy changes materially we will update the date at the top of the page.",
+        "For any question about your data, or to exercise any of the rights above, use the contact page. Your request goes to the same team that handles enquiries.",
+      ],
+    },
+  ];
+}
+
+export const privacySections = privacySectionsFor(delivery);
 
 export const termsSections: LegalSection[] = [
   {

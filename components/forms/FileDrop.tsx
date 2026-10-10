@@ -58,14 +58,18 @@ export function FileDrop({
           continue;
         }
         if (file.size > MAX_FILE_BYTES) {
-          setError(`"${safeName}" is larger than ${Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB.`);
+          setError(
+            `"${safeName}" is larger than ${Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB, the most the form can carry. Submit without it and email it with the reference you get.`,
+          );
           track("techpack_upload_error", { reason: "file_size" });
           continue;
         }
         if (total + file.size > MAX_TOTAL_BYTES) {
-          setError(`Attachments total more than ${Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB.`);
+          setError(
+            `"${safeName}" would take the attachments over ${Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB. Submit without it and email it with the reference you get.`,
+          );
           track("techpack_upload_error", { reason: "total_size" });
-          break;
+          continue;
         }
         // Skip an identical file added twice.
         if (next.some((f) => f.name === file.name && f.size === file.size)) continue;
@@ -123,8 +127,8 @@ export function FileDrop({
           </span>
         </div>
         <p className={cn("text-xs", dark ? "text-current/70" : "text-ink/65")}>
-          {ACCEPTED_LABEL} · up to {Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB each ·{" "}
-          {MAX_FILES} files · {Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB total
+          {ACCEPTED_LABEL} · up to {MAX_FILES} files · {Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB in total.
+          Larger files can be emailed with your reference.
         </p>
 
         <input
