@@ -80,8 +80,8 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   the wordmark mid-letter ("NTERN") and cost 107 kB each on every page; the
   original build package flagged a vector master as the P0 brand task. The
   rasters are archived in `assets-master/brand/`.
-- `/resources` publishes five complete guides and a visible backlog of twenty
-  more. Titles are not articles.
+- `/resources` publishes twenty-two complete guides and a visible backlog of
+  fifteen more. Titles are not articles.
 - The export globe draws **one** arc. The component it came from ships forty
   fabricated ones. One lane is what `data/markets.ts` flags `documentedExport`,
   and the arcs are derived from that flag, so a market cannot appear on the
@@ -163,12 +163,12 @@ publication permission. `npm run images:gaps` must stay at 0.
 npm run audit       SEO basics (titles, descriptions, H1, canonical) — needs a server
 npm run seo:deep    OG/Twitter, heading skips, alt, JSON-LD, breadcrumbs
 npm run contrast    WCAG AA on the rendered page, parses oklab()
-npm run responsive  12 viewports x 20 routes, reachable overflow only
+npm run responsive  12 viewports x 22 routes, reachable overflow only
 npm run targets     WCAG 2.2 SC 2.5.8 with its own exceptions applied
 npm run images:gaps empty image frames actually rendered
 npm run links       internal link targets
 npm run weight      cold mobile bytes by type + LCP (needs a production server)
-npm run a11y        axe-core WCAG 2.2 AA, 17 routes x 2 widths
+npm run a11y        axe-core WCAG 2.2 AA, 21 routes x 2 widths
 npm run console     uncaught exceptions, console errors, failed requests
 ```
 
@@ -402,6 +402,57 @@ Every statement is checkable against the code.
 
 They are drafts. `LEGAL_REVIEW_NOTICE` renders on each page and is part of the
 shared template, so the draft status cannot be lost by editing one page.
+
+## Generated scenes are not photographs
+
+Fifteen images of "AHM operations" were generated from `asset-pack/prompts/`
+and were live until October 2026: a floor of branded operators under "LINE A-1"
+signage, an AHM quality check sheet with a signature and a date, a warehouse
+and a shipping container painted with the company name, and the documented US
+apron program illustrated with an apron carrying AHM's own logo. A buyer reads a
+factory photograph as evidence of the factory, so each asserted scale, staff or
+records that nothing verifies. They are in `asset-pack/generated-hold/`.
+
+The rule is rule 1 applied to pictures: an image of the facility, the people or
+the paperwork must be a photograph of that thing. Product renders on a white
+plate, fabric macros and the plain carton mockup are not claims about
+operations and stay. Partner-factory photographs are fine when labelled as a
+partner's.
+
+## AHM runs its own manufacturing and uses partner factories
+
+The owner's brief of 10 October 2026 states both, and `company.manufacturingModel`
+records it with its source. Two rules hold wherever it is used: a partner
+factory is never called company-owned, and nothing implies all production
+happens in one building. Which families are made where is unknown, so
+`routes` in `data/manufacturing-network.ts` is empty and /manufacturing-network
+hides that column; the column appears as soon as one family is filled in.
+
+Where a procedure would go and none has been described (how partners are
+chosen, when the facility is disclosed), the pages give the buyer the question
+to ask instead. Do not replace a question with an invented process.
+
+## RFQs go to the mailbox, and only 4 MB fits
+
+`/api/rfq` emails each request to the company mailbox over Hostinger SMTP
+(`lib/rfq-mail.ts`), attachments included; `SMTP_PASS` is the only variable it
+needs. `delivered` is true only when SMTP or the webhook accepted it, and the
+two outcome screens are different screens, not one with a caveat: "RFQ
+received" is reserved for a delivered request.
+
+Vercel refuses request bodies over 4.5 MB before the route runs, with plain
+text. The form once advertised 40 MB, failed on any real tech pack, and told
+the buyer to check their connection. The cap is 4 MB in total; larger files go
+by email with the reference. A refused file no longer fails the enquiry.
+
+## Analytics wait for consent, and the legal text follows the config
+
+GA4 renders nothing unless `NEXT_PUBLIC_GA_ID` is set, and with it requests
+gtag.js only after "Allow". The CSP gains Google's origins only in that build.
+The privacy and cookie text is generated from the same configuration the code
+reads (`privacySectionsFor`, `cookieSectionsFor`), and `tests/legal-claims.test.ts`
+checks both states of each. Do not hand-edit one state of the policy without
+the other.
 
 ## Before launch
 

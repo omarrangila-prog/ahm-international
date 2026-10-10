@@ -16,8 +16,8 @@ environment variable.
 | Registered legal name | `company.legalName` | Published (AHM International). NTN still outstanding |
 | Street address | `company.streetAddress` | "Confirmed during commercial discussion" |
 | Business email | `NEXT_PUBLIC_SALES_EMAIL` | `info@ahminternationals.com` — company domain, supplied Oct 2026. Set it in Vercel; production still served a Gmail address until then |
-| Phone | `NEXT_PUBLIC_PHONE` | Unpublished — footer/contact route to RFQ |
-| WhatsApp | `NEXT_PUBLIC_WHATSAPP` | action hidden until set |
+| Phone | `NEXT_PUBLIC_PHONE` | Published (set in Vercel production) |
+| WhatsApp | `NEXT_PUBLIC_WHATSAPP` | Published (same number, confirmed as WhatsApp by the owner) |
 | Business hours | `company.businessHours` | Published (Mon–Sat 9am–6pm PKT) |
 | Social profiles | `NEXT_PUBLIC_LINKEDIN`, `NEXT_PUBLIC_INSTAGRAM` | icons hidden |
 | Certifications | `company.certifications` (empty array) | omitted entirely |
@@ -75,22 +75,40 @@ is the buyer's decision to grant.
 
 ---
 
-## 2. RFQ delivery — required for the form to reach anyone
+## 2. RFQ delivery — one variable from working
 
-Set `RFQ_WEBHOOK_URL` (and `RFQ_WEBHOOK_TOKEN` if the endpoint needs auth).
+Requests are emailed to `info@ahminternationals.com` through Hostinger's
+authenticated SMTP, with the buyer's attachments on the message and Reply-To
+set to the buyer (`lib/rfq-mail.ts`). **Set one variable in Vercel:**
 
-Until it is set, `POST /api/rfq` validates and logs submissions server-side, and
-the confirmation screen tells the buyer plainly that delivery is not configured.
-It never claims a message was delivered when it was not.
+| Variable | Value | Required |
+|---|---|---|
+| `SMTP_PASS` | the `info@` mailbox password | **yes** |
+| `SMTP_USER` | defaults to `NEXT_PUBLIC_SALES_EMAIL` | no |
+| `SMTP_HOST` / `SMTP_PORT` | default `smtp.hostinger.com` / `465` | no |
+| `RFQ_NOTIFY_TO` | defaults to the sending mailbox | no |
+| `RFQ_SEND_ACKNOWLEDGEMENT` | `true` to email the buyer a receipt | no, off by default |
+| `RFQ_WEBHOOK_URL` / `RFQ_WEBHOOK_TOKEN` | a CRM or automation endpoint, alongside mail | no |
 
-The integration point is `deliverSubmission()` in `app/api/rfq/route.ts` — a
-single function. Replace its body with a mail send, a CRM create or a queue
-publish. Everything around it (validation, rate limiting, upload policy, error
-shapes) is production behaviour and does not change.
+Mark `SMTP_PASS` as Sensitive. It has no `NEXT_PUBLIC_` prefix, so it never
+reaches a browser. Redeploy after setting it; then submit one clearly labelled
+test request and confirm it arrives in the inbox with its attachment.
 
-**Rate limiting caveat:** the limiter is in-memory and per-instance. On more than
-one instance, the effective limit multiplies by the instance count. Swap
-`lib/rate-limit.ts` for Redis or the platform's own limiter before scaling out.
+Until it is set, the form still validates and issues a reference, and the buyer
+sees a screen headed "One more step" that gives the email and WhatsApp with the
+reference in the subject line. It never says "RFQ received" unless a destination
+accepted the request. The privacy policy describes whichever state is deployed.
+
+**Uploads are capped at 4 MB in total**, because Vercel refuses any function
+body over 4.5 MB before the route runs. Larger tech packs are emailed with the
+reference; the form says so when it refuses a file. Raising the cap needs direct
+browser-to-storage upload (private Vercel Blob, for example), not a bigger
+number in `lib/upload-policy.ts`.
+
+**The buyer receipt is off by default** because the rate limiter is in-memory
+and per instance. The receipt carries no buyer-supplied text, so it cannot be
+used to relay messages, but it can still be sent to any address typed into the
+form. Turn it on after moving the limiter to Redis or the platform's own.
 
 ---
 
@@ -202,17 +220,36 @@ already covers the earlier path moves and needs no edit.
 
 ## 5. Analytics
 
-No analytics provider is installed. `lib/analytics.ts` pushes to
-`window.dataLayer` and `gtag` when either exists, and is a silent no-op
-otherwise — so the site ships without a tracker and without dead code.
+GA4 is wired and dormant. Set `NEXT_PUBLIC_GA_ID` (a `G-` measurement ID) and
+redeploy, and:
 
-To enable GA4: add the gtag snippet behind your consent mechanism. Every event
-listed in `AnalyticsEvent` will start flowing with no further change.
+- a consent bar asks once; **gtag.js is not requested until the visitor chooses
+  Allow**, and Decline loads nothing (`components/analytics/Measurement.tsx`);
+- the CSP opens Google's documented origins, only while the ID is set;
+- the cookie and privacy pages switch to text that names GA4 and the choice,
+  with a "Change your choice" control on /cookies that deletes the `_ga`
+  cookies when consent is withdrawn.
 
-Events already instrumented: `hero_rfq_click`, `product_view`,
-`techpack_upload_start`, `techpack_upload_complete`, `techpack_upload_error`,
-`rfq_start`, `rfq_step_complete`, `rfq_submit`, `rfq_submit_error`,
-`email_click`, `phone_click`, `mega_menu_open`, `benchmark_start`.
+Have the cookie wording reviewed with the rest of the legal pages before
+switching it on for UK and EU buyers.
+
+Events fired today: `hero_rfq_click`, `product_view`, `rfq_start`,
+`rfq_submit`, `rfq_completed` (only when the request was actually delivered),
+`rfq_submit_error` (including `reason: "undelivered"`), `techpack_upload_start`,
+`techpack_upload_complete`, `techpack_upload_error`, `benchmark_start`,
+`benchmark_completed`, `whatsapp_click`, `email_click`, `phone_click`,
+`contact_clicked`, `product_filtered`, `industry_viewed`, `case_study_viewed`,
+`material_viewed`, `quality_process_viewed`, `export_process_viewed`. In GA4,
+mark `rfq_completed` as a key event.
+
+Qualified lead, quotation issued, sample requested and order won happen after
+the website, in the commercial team's records. They need a CRM (or AHM OS) to
+record them; the website cannot observe them.
+
+**Search Console:** verify the domain property with a DNS TXT record at
+Hostinger (covers every host and protocol), then submit `/sitemap.xml` and
+`/image-sitemap.xml`. `NEXT_PUBLIC_GSC_VERIFICATION` adds the HTML-tag method
+instead, if preferred.
 
 ---
 
@@ -227,6 +264,15 @@ no code change — the specimen it replaces already occupies the same aspect rat
 
 **Two rules for every image:** no logos or identifiable organisations, and no
 concept visual presented as documentary proof of a facility or a client.
+
+**Fifteen generated scenes were withdrawn in October 2026** — a branded sewing
+floor, an "AHM quality check sheet", a signed warehouse and container, and an
+AHM-logo apron on the case study. They were generated from the prompts above
+and presented as photographs of AHM operations. They are held in
+`asset-pack/generated-hold/` with a README; see it before restoring any. Every
+section restructures without them, so a real photograph at the canonical path
+is the only change needed. Partner-factory photographs must be labelled as
+such where they appear.
 
 ---
 

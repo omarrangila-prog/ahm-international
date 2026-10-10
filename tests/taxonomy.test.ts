@@ -18,3 +18,11 @@ test("chef headwear is catalogued with chef wear", () => {
   const hospitality = productCategories.find((c) => c.slug === "hospitality-food-service");
   assert.ok(hospitality?.articles.some((a) => /beanie/i.test(a.name)));
 });
+
+test("no two industries share a representative photograph", async () => {
+  // Grids show several industries side by side; three identical aprons in a
+  // row read as a broken page rather than three markets.
+  const { industries } = await import("../data/industries.ts");
+  const reps = industries.map((i) => i.representative);
+  assert.equal(new Set(reps).size, reps.length);
+});
