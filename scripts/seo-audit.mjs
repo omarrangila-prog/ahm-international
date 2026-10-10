@@ -19,6 +19,10 @@
  * from the sitemap, the audit sees the same gap a crawler would.
  */
 
+/** Titles arrive HTML-escaped; a search result shows "&", not "&amp;". */
+const decodeEntities = (s) =>
+  s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+
 /** Reads the published sitemap and returns the routes it declares. */
 async function loadRoutes() {
   const response = await fetch(`${BASE}/sitemap.xml`);
@@ -41,6 +45,7 @@ async function loadRoutes() {
 
 const BASE = process.env.AUDIT_BASE ?? "http://localhost:3100";
 import fs from "node:fs";
+
 
 /**
  * Read from the same place the pages read it, not a copy.
@@ -110,7 +115,7 @@ async function auditRoute(route) {
   seen.add(route.path);
 
   /* ---- title ---- */
-  const title = textBetween(html, "<title>", "</title>");
+  const title = decodeEntities(textBetween(html, "<title>", "</title>") ?? "");
   if (!title) {
     fail(route.path, "missing <title>");
   } else {

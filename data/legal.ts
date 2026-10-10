@@ -17,6 +17,7 @@
 
 import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "../lib/upload-policy";
 import { enquiryDelivery, type EnquiryDelivery } from "../lib/mail-config";
+import { measurementEnabled } from "../lib/measurement";
 
 /**
  * What this deployment actually does with an enquiry, read from the same
@@ -29,13 +30,15 @@ const delivery = enquiryDelivery();
 
 export const LEGAL_REVIEW_NOTICE = `This policy is published in draft and describes how this website currently behaves — including ${
   delivery.mail ? "that enquiries are delivered by email to our business mailbox" : "that enquiry delivery depends on server configuration"
-} and that no analytics provider is installed. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Questions about your data: use the request-a-quote form so the message reaches the commercial team.`;
+} and ${
+  measurementEnabled ? "that analytics load only if you allow them" : "that no analytics provider is installed"
+}. It has not yet been reviewed against the data-protection law of every market AHM International supplies. Questions about your data: use the request-a-quote form so the message reaches the commercial team.`;
 
 export const LEGAL_EFFECTIVE = "September 2026" as const;
 
 export type LegalSection = { heading: string; body: string[]; list?: string[] };
 
-export function privacySectionsFor(delivery: EnquiryDelivery): LegalSection[] {
+export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean = measurementEnabled): LegalSection[] {
   return [
     {
       heading: "What this policy covers",
@@ -71,7 +74,9 @@ export function privacySectionsFor(delivery: EnquiryDelivery): LegalSection[] {
       heading: "Cookies and analytics",
       body: [
         "This website sets no advertising cookies and runs no third-party tracking scripts.",
-        "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
+        measurementEnabled
+          ? "Google Analytics 4 measures which pages are used, and only if you choose Allow when asked. Declining loads nothing. You can change your choice at any time on the cookie policy page, and withdrawing it deletes the analytics cookies."
+          : "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
       ],
     },
     {
@@ -83,6 +88,9 @@ export function privacySectionsFor(delivery: EnquiryDelivery): LegalSection[] {
           : "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes. No email or CRM provider is connected to the enquiry form yet; if one is added, this page will name the category of provider before it is switched on.",
         ...(delivery.webhook
           ? ["The enquiry text, without your files, is also passed to the tool we use to track enquiries through to quotation. It processes the data on our instruction."]
+          : []),
+        ...(analytics
+          ? ["Google, as the analytics provider, if you allow measurement. It receives page visits and site events, never the content of an enquiry or the files you attach."]
           : []),
         "We do not sell data, and we do not share enquiries with other manufacturers or agents.",
       ],
@@ -207,34 +215,52 @@ export const termsSections: LegalSection[] = [
   },
 ];
 
-export const cookieSections: LegalSection[] = [
-  {
-    heading: "The short version",
-    body: [
-      "This website sets no advertising cookies, no tracking cookies and no third-party marketing pixels. There is no consent banner because there is currently nothing to consent to.",
-    ],
-  },
-  {
-    heading: "What is actually stored",
-    body: ["Only what is needed for the site to function."],
-    list: [
-      "No analytics cookie: no analytics provider is installed. The site includes an inactive analytics layer that sends nothing unless a provider is configured.",
-      "No advertising or social cookie: there are no embedded social widgets, no advertising tags and no remarketing pixels.",
-      "No preference cookie: the site has no theme switch, no language selector and no login, so there is nothing to remember between visits.",
-      "Standard server logs, kept by our hosting provider, record requests for security and reliability. These are infrastructure logs, not cookies, and are not used to profile visitors.",
-    ],
-  },
-  {
-    heading: "Fonts and assets",
-    body: [
-      "Typefaces are self-hosted and served from this domain. The site makes no request to a third-party font service, so no data is shared with one.",
-      "Images are served from this domain. There is no external image host or CDN pixel.",
-    ],
-  },
-  {
-    heading: "If this changes",
-    body: [
-      "If analytics are added, they will load only after consent, this page will be updated first, and the choice will be honoured.",
-    ],
-  },
-];
+/** The cookie policy, written for whether a measurement ID is configured. */
+export function cookieSectionsFor(analytics: boolean): LegalSection[] {
+  return [
+    {
+      heading: "The short version",
+      body: [
+        analytics
+          ? "This website sets no advertising cookies and no third-party marketing pixels. Analytics cookies are set only if you allow them, and nothing is loaded if you decline."
+          : "This website sets no advertising cookies, no tracking cookies and no third-party marketing pixels. There is no consent banner because there is currently nothing to consent to.",
+      ],
+    },
+    {
+      heading: "What is actually stored",
+      body: [analytics ? "What the site needs to function, and analytics only with your consent." : "Only what is needed for the site to function."],
+      list: [
+        analytics
+          ? "Analytics cookies, only if you choose Allow: Google Analytics 4 sets cookies whose names begin with _ga to count visits and see which pages are used. They are not set before you choose, and never if you decline."
+          : "No analytics cookie: no analytics provider is installed. The site includes an inactive analytics layer that sends nothing unless a provider is configured.",
+        "No advertising or social cookie: there are no embedded social widgets, no advertising tags and no remarketing pixels.",
+        analytics
+          ? "Your analytics choice is remembered in your browser's local storage so you are not asked on every page. It is not a cookie, holds only \"granted\" or \"denied\", and is never sent to us."
+          : "No preference cookie: the site has no theme switch, no language selector and no login, so there is nothing to remember between visits.",
+        "Standard server logs, kept by our hosting provider, record requests for security and reliability. These are infrastructure logs, not cookies, and are not used to profile visitors.",
+      ],
+    },
+    {
+      heading: "Fonts and assets",
+      body: [
+        "Typefaces are self-hosted and served from this domain. The site makes no request to a third-party font service, so no data is shared with one.",
+        "Images are served from this domain. There is no external image host or CDN pixel.",
+      ],
+    },
+    analytics
+      ? {
+          heading: "Changing your choice",
+          body: [
+            "Use the button on this page to change your choice at any time. Withdrawing consent deletes the analytics cookies and stops measurement from that moment.",
+          ],
+        }
+      : {
+          heading: "If this changes",
+          body: [
+            "If analytics are added, they will load only after consent, this page will be updated first, and the choice will be honoured.",
+          ],
+        },
+  ];
+}
+
+export const cookieSections = cookieSectionsFor(measurementEnabled);

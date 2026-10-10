@@ -7,6 +7,7 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { Measurement } from "@/components/analytics/Measurement";
 import { organizationSchema, websiteSchema, siteConfig } from "@/lib/seo";
 import { serialiseJsonLd } from "@/lib/json-ld";
 import { company } from "@/data/company";
@@ -88,6 +89,11 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
+  // Search Console's HTML-tag method, used only if the owner chooses it over
+  // the DNS TXT record (which covers every host and protocol, and is preferred).
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -120,6 +126,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
         <MobileCtaBar />
+        {/* Renders nothing unless NEXT_PUBLIC_GA_ID is set, and loads nothing
+            until the visitor allows it. */}
+        <Measurement />
 
         <script
           type="application/ld+json"

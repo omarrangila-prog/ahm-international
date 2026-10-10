@@ -77,7 +77,7 @@ export function SubmissionOutcome({
               <span className="text-ink/65">Email</span>{" "}
               <a
                 href={`mailto:${email}?subject=${subject}`}
-                className="[overflow-wrap:anywhere] font-medium text-ink underline underline-offset-4"
+                className="inline-block py-1 [overflow-wrap:anywhere] font-medium text-ink underline underline-offset-4"
               >
                 {email}
               </a>
@@ -90,7 +90,7 @@ export function SubmissionOutcome({
                 href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-ink underline underline-offset-4"
+                className="inline-block py-1 font-medium text-ink underline underline-offset-4"
               >
                 {whatsapp}
               </a>
@@ -98,7 +98,7 @@ export function SubmissionOutcome({
           )}
           {!email && !whatsapp && (
             <li>
-              <a href="/contact" className="font-medium text-ink underline underline-offset-4">
+              <a href="/contact" className="inline-block py-1 font-medium text-ink underline underline-offset-4">
                 Contact the commercial team
               </a>
             </li>
@@ -126,7 +126,7 @@ export function SubmissionOutcome({
               Email {rejectedFiles.length === 1 ? "it" : "them"} to{" "}
               <a
                 href={`mailto:${email}?subject=${subject}`}
-                className="[overflow-wrap:anywhere] font-medium text-ink underline underline-offset-4"
+                className="inline-block py-1 [overflow-wrap:anywhere] font-medium text-ink underline underline-offset-4"
               >
                 {email}
               </a>{" "}

@@ -19,6 +19,7 @@ export type AnalyticsEvent =
   | "rfq_submit_error"
   | "email_click"
   | "phone_click"
+  | "whatsapp_click"
   | "book_call_click"
   | "mega_menu_open"
   | "benchmark_start"

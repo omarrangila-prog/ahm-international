@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * Deep SEO crawl — the checks `npm run audit` does not cover.
  *
@@ -11,6 +12,10 @@
  * skips, images without alt, `html lang`, valid and typed JSON-LD, and a
  * BreadcrumbList on every page but the home page.
  */
+
+/** Titles arrive HTML-escaped; a search result shows "&", not "&amp;". */
+const decodeEntities = (s) =>
+  s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 const BASE = process.env.SEO_BASE || "http://localhost:3100";
 
 const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
@@ -25,7 +30,7 @@ const attr = (tag, name) => (tag.match(new RegExp(`${name}="([^"]*)"`, "i")) || 
 for (const route of routes) {
   const html = await (await fetch(`${BASE}${route}`)).text();
 
-  const title = (html.match(/<title>([^<]*)<\/title>/i) || [])[1] || "";
+  const title = decodeEntities((html.match(/<title>([^<]*)<\/title>/i) || [])[1] || "");
   const descTag = html.match(/<meta[^>]+name="description"[^>]*>/i)?.[0];
   const desc = descTag ? attr(descTag, "content") : "";
   if (title.length > 60) add("title-long", route, `${title.length} chars`);

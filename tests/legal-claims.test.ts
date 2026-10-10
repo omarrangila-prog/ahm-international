@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { privacySections, privacySectionsFor, cookieSections } from "../data/legal.ts";
+import { privacySections, privacySectionsFor, cookieSections, cookieSectionsFor } from "../data/legal.ts";
 import { ACCEPTED_UPLOADS, MAX_FILE_BYTES, MAX_TOTAL_BYTES, MAX_FILES } from "../lib/upload-policy.ts";
 
 /**
@@ -73,4 +73,36 @@ test("with nothing connected, the policy says enquiries are neither delivered no
 test("a connected webhook is disclosed, and only then", () => {
   assert.match(textFor(false, true), /tool we use to track enquiries/i);
   assert.doesNotMatch(textFor(false, false), /tool we use to track enquiries/i);
+});
+
+/**
+ * The cookie policy promised, before any analytics existed, that analytics
+ * would load only after consent and that the page would say so first. Both
+ * versions of the page are checked, because only one is ever deployed at a time.
+ */
+const cookieTextFor = (analytics: boolean) =>
+  cookieSectionsFor(analytics)
+    .flatMap((s) => [...s.body, ...(s.list ?? [])])
+    .join(" ");
+
+test("without a measurement ID, the cookie policy says there is nothing to consent to", () => {
+  const text = cookieTextFor(false);
+  assert.match(text, /no analytics provider is installed/i);
+  assert.match(text, /no consent banner/i);
+});
+
+test("with a measurement ID, the cookie policy names GA4, consent first, and how to withdraw", () => {
+  const text = cookieTextFor(true);
+  assert.match(text, /Google Analytics/);
+  assert.match(text, /only if you (choose )?allow/i);
+  assert.match(text, /withdrawing consent deletes the analytics cookies/i);
+  assert.doesNotMatch(text, /no analytics provider is installed/i);
+  assert.doesNotMatch(text, /no consent banner/i);
+});
+
+test("the privacy policy names Google only when analytics are on", () => {
+  const on = privacySectionsFor({ mail: true, webhook: false }, true).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  const off = privacySectionsFor({ mail: true, webhook: false }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  assert.match(on, /Google, as the analytics provider/);
+  assert.doesNotMatch(off, /Google/);
 });

@@ -13,7 +13,9 @@ import Image from "next/image";
 const layDown = [
   { key: "photo.utilityBomberCharcoal", code: "Work jacket", label: "Charcoal utility bomber", className: "left-[4%] top-[16%] w-[42%] z-20" },
   { key: "photo.poloTaupeLongSleeve", code: "Classic polo", label: "Long-sleeve uniform polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
-  { key: "products.apron.front", code: "Bib apron", label: "Three-pocket bib apron", className: "left-[30%] bottom-[8%] w-[32%] z-30" },
+  // Kept above the lower guide line (78%): the article codes are set below it,
+  // and an apron reaching the bottom edge put its own caption on top of it.
+  { key: "products.apron.front", code: "Bib apron", label: "Three-pocket bib apron", className: "left-[34%] bottom-[24%] w-[28%] z-30" },
 ] as const;
 
 function LayDown() {
@@ -73,8 +75,10 @@ function LayDown() {
         ))}
       </ul>
 
-      {/* Hidden on phones, where it would collide with the article codes. */}
-      <p className="absolute bottom-4 right-4 z-40 hidden label text-ink/70 sm:block">Representative articles</p>
+      {/* Top-left, the one corner the lay-down leaves empty; bottom-right ran
+          into the longest article code. Hidden on phones, where the column is
+          too narrow to clear the FOB pill above it. */}
+      <p className="absolute left-4 top-4 z-40 hidden label text-ink/70 sm:block">Representative articles</p>
     </div>
   );
 }

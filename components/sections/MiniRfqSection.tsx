@@ -1,7 +1,9 @@
 import { Section } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { MiniRfqForm } from "@/components/forms/MiniRfqForm";
-import { commercialAnswers } from "@/data/company";
+import { commercialAnswers, company, publicValue } from "@/data/company";
+import { Button } from "@/components/ui/Button";
+import { EmailLink, WhatsAppLink } from "@/components/ui/ContactActions";
 
 /**
  * Homepage RFQ block.
@@ -12,6 +14,9 @@ import { commercialAnswers } from "@/data/company";
  */
 
 export function MiniRfqSection() {
+  const email = publicValue(company.email);
+  const whatsapp = publicValue(company.whatsapp);
+
   return (
     <Section zone="paper" spacing="lg" id="rfq" aria-labelledby="rfq-heading">
       <div className="shell-wide grid grid-cols-12 gap-y-12 lg:gap-x-12">
@@ -20,12 +25,41 @@ export function MiniRfqSection() {
             as="h2"
             id="rfq-heading"
             className="mt-6 font-display text-h1 text-ink"
-            lines={[{ text: "Let's cost your" }, { text: "next program." }]}
+            lines={[{ text: "Let's build your" }, { text: "next apparel program." }]}
           />
           <p className="mt-6 max-w-md text-ink/70">
             Six fields to start. Send the tech pack now if you have one, or send it after we have
             spoken: either works.
           </p>
+
+          {/* The three routes in, in order of how much the buyer has ready. */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button href="/request-a-quote" size="md" withArrow>
+              Request FOB Quote
+            </Button>
+            <Button href="/send-tech-pack" variant="outline" size="md">
+              Send your tech pack
+            </Button>
+          </div>
+          {(email || whatsapp) && (
+            <div className="mt-6 border-l-2 border-ink pl-4 text-sm text-ink/75">
+              <p className="font-medium text-ink">Contact the commercial team</p>
+              <ul className="mt-1.5 space-y-0.5">
+                {email && (
+                  <li>
+                    <span className="text-ink/65">Email </span>
+                    <EmailLink email={email} className="inline-block py-1 font-medium text-ink underline underline-offset-4" />
+                  </li>
+                )}
+                {whatsapp && (
+                  <li>
+                    <span className="text-ink/65">WhatsApp </span>
+                    <WhatsAppLink number={whatsapp} className="inline-block py-1 font-medium text-ink underline underline-offset-4" />
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
 
           <dl className="mt-10 flex flex-col divide-y divide-ink/10 border-t border-ink/10">
             {commercialAnswers.slice(0, 4).map((item) => (

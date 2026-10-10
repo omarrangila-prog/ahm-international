@@ -40,6 +40,9 @@ export const markets: Market[] = [
   { name: "United Kingdom", code: "GB", hub: "Felixstowe", label: { dx: -8, dy: -12, anchor: "end" }, documentedExport: false, localOffice: false, position: { x: 50.38, y: 21.42 } },
   { name: "European Union", code: "EU", hub: "Rotterdam", label: { dx: 10, dy: 20, anchor: "start" }, documentedExport: false, localOffice: false, position: { x: 51.24, y: 21.14 } },
   { name: "Australia", code: "AU", hub: "Sydney", label: { dx: -10, dy: 6, anchor: "end" }, documentedExport: false, localOffice: false, position: { x: 92.0, y: 68.82 } },
+  // Jebel Ali: 25.01N, 55.06E. Three degrees of longitude from Karachi, so the
+  // label sits below and to the left rather than on top of the origin's.
+  { name: "United Arab Emirates", code: "AE", hub: "Jebel Ali", label: { dx: -8, dy: 18, anchor: "end" }, documentedExport: false, localOffice: false, position: { x: 65.29, y: 36.11 } },
 ];
 
 export const MARKET_STATEMENT =

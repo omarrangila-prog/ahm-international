@@ -37,3 +37,20 @@ test("the shipped header carries the policy", () => {
   assert.ok(header.startsWith("default-src 'self'"));
   assert.ok(header.includes("frame-ancestors 'none'"));
 });
+
+test("analytics origins are absent until a measurement ID is configured", () => {
+  const off = buildCsp({ development: false });
+  assert.doesNotMatch(off, /google/);
+});
+
+test("with analytics on, Google is allowed by exact script host, never a wildcard", () => {
+  const on = buildCsp({ development: false, analytics: true });
+  const script = on.split("; ").find((d) => d.startsWith("script-src")) ?? "";
+  assert.match(script, /https:\/\/www\.googletagmanager\.com/);
+  assert.doesNotMatch(script, /\*/, "a wildcard script origin would let any subdomain run code here");
+  const connect = on.split("; ").find((d) => d.startsWith("connect-src")) ?? "";
+  assert.match(connect, /google-analytics\.com/);
+  // Everything else stays locked: no new frame, form or object origins.
+  assert.match(on, /frame-src 'none'/);
+  assert.match(on, /form-action 'self'/);
+});

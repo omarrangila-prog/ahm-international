@@ -248,6 +248,10 @@ export function serviceSchema(input: { name: string; description: string; path: 
     url: `${SITE_URL}${input.path}`,
     serviceType: "Apparel manufacturing",
     provider: { "@id": `${SITE_URL}/#organization` },
-    areaServed: company.targetMarkets.map((m) => ({ "@type": "Country", name: m })),
+    // The EU is not a country; typing it as one is invalid structured data.
+    areaServed: company.targetMarkets.map((m) => ({
+      "@type": m === "European Union" ? "AdministrativeArea" : "Country",
+      name: m,
+    })),
   };
 }

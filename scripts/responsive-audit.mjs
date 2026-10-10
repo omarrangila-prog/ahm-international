@@ -25,7 +25,7 @@ const VIEWPORTS = [
 const ROUTES = ["/", "/products", "/products/aprons", "/manufacturing", "/manufacturing/sampling",
   "/industries", "/industries/grocery", "/materials", "/export", "/capabilities", "/quality",
   "/resources", "/resources/fabric-gsm-guide", "/case-studies", "/case-studies/us-uniform-apron-program",
-  "/request-a-quote", "/send-tech-pack", "/contact", "/about", "/sourcing"];
+  "/request-a-quote", "/send-tech-pack", "/contact", "/about", "/manufacturing-network", "/verification", "/sourcing"];
 
 const browser = await chromium.launch({ args: ["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader"] });
 const findings = new Map();

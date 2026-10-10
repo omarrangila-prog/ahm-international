@@ -1,6 +1,7 @@
 import type { ContentBlock } from "./sourcing";
 import type { FaqItem } from "@/components/ui/Faq";
 import type { AssetKey } from "./assets";
+import { sourcingGuides } from "./guides-sourcing";
 
 /**
  * BUYER RESOURCE LIBRARY
@@ -1479,6 +1480,8 @@ export const guides: Guide[] = [
     seoDescription:
       "Bib apron construction for uniform buyers: pockets, straps, reinforcement and fabric — tied to AHM’s documented U.S. apron program.",
   },
+  // Kept in their own file: see data/guides-sourcing.ts.
+  ...sourcingGuides,
 ];
 
 export function getGuide(slug: string) {
@@ -1493,19 +1496,15 @@ export function getGuide(slug: string) {
  * to fill a content plan is the failure mode the plan itself warns against.
  */
 export const plannedGuides: { title: string; category: Guide["category"] }[] = [
-  { title: "Apparel Sourcing from Pakistan: Complete Buyer Guide", category: "Buyer guide" },
   { title: "Polyester-Cotton Blends for Uniforms", category: "Fabric guide" },
   { title: "Uniform Polo Fabric Selection Guide", category: "Fabric guide" },
   { title: "Best Fabrics for Work Shirts", category: "Fabric guide" },
-  { title: "Apron Fabric Selection Guide", category: "Fabric guide" },
   { title: "Hoodie and Fleece Weight Guide", category: "Fabric guide" },
   { title: "Workwear Fabric Guide", category: "Fabric guide" },
   { title: "Twill Fabric for Uniforms Explained", category: "Fabric guide" },
   { title: "How Apparel Size Sets Work", category: "Buyer guide" },
   { title: "What Is a Pre-Production Sample?", category: "Buyer guide" },
-  { title: "How Garment Inline Inspection Works", category: "Buyer guide" },
   { title: "Apparel Packing Requirements for Export", category: "Commercial guide" },
-  { title: "Pakistan Apparel Manufacturing: Buyer Checklist", category: "Buyer guide" },
   { title: "Denim Wash Types for Buyers", category: "Fabric guide" },
   { title: "Sewing Construction for Tech Packs", category: "Buyer guide" },
   { title: "Apparel Merchandising Checklist", category: "Buyer guide" },
