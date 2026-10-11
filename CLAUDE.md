@@ -36,6 +36,7 @@ npm run assets         # reindex public/assets, regenerate blur placeholders
 npm run assets:report  # regenerate assets-needed.md
 npm run audit          # SEO/accessibility crawl (needs a running server)
 npm run typecheck
+npm run mail:check     # test the mailbox password against Hostinger; sends nothing
 ```
 
 ## Architecture notes
