@@ -115,7 +115,9 @@ the most a Vercel function body can carry. Files that fit in 10 MB are also
 attached to the email; the rest are linked to the enquiry register.
 
 **The enquiry register** at `/pipeline` records every enquiry once the store is
-connected, and staff sign in with an emailed link, so it too needs `SMTP_PASS`.
+connected. Staff sign in with an emailed link, which needs `SMTP_PASS`, or
+with `PIPELINE_PIN` (4 to 12 digits, Sensitive), which signs in as the first
+admin and stops working for the day after ten wrong attempts.
 `PIPELINE_STAFF` lists who may sign in; unset, it is `info@` alone, as admin.
 See `docs/what-you-need-to-supply.md` §2a.
 

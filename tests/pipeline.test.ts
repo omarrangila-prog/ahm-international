@@ -17,6 +17,7 @@ import {
 import { signToken, verifyToken } from "../lib/pipeline/tokens.ts";
 import { can, staffList } from "../lib/pipeline/staff.ts";
 import { pipelineOrigin, pipelineStatus } from "../lib/pipeline/config.ts";
+import { pinAccount, pinDay, pinFrom, pinMatches } from "../lib/pipeline/pin.ts";
 
 /**
  * The enquiry register's rules: the stages are the owner's, history is kept
@@ -212,4 +213,38 @@ test("sign-in needs the store, the mailbox and a staff address, and says which i
   assert.equal(partial.signIn, false);
   assert.ok(partial.missing.some((m) => m.includes("SMTP_PASS")));
   assert.equal(pipelineStatus({ BLOB_READ_WRITE_TOKEN: "x", SMTP_PASS: "p", NEXT_PUBLIC_SALES_EMAIL: "info@ahminternationals.com" }).signIn, true);
+});
+
+test("a PIN alone is a way in, as the first admin, and only when it is 4 to 12 digits", () => {
+  const base = { BLOB_READ_WRITE_TOKEN: "x", NEXT_PUBLIC_SALES_EMAIL: "info@ahminternationals.com" };
+
+  const pinOnly = pipelineStatus({ ...base, PIPELINE_PIN: " 8126 " });
+  assert.deepEqual([pinOnly.signIn, pinOnly.pin, pinOnly.link], [true, true, false]);
+  assert.deepEqual(pinOnly.missing, []);
+
+  const both = pipelineStatus({ ...base, PIPELINE_PIN: "8126", SMTP_PASS: "p" });
+  assert.deepEqual([both.pin, both.link], [true, true]);
+
+  for (const bad of ["123", "12ab", "1234567890123", "12 34"]) {
+    assert.equal(pinFrom({ PIPELINE_PIN: bad }), null, bad);
+    const status = pipelineStatus({ ...base, PIPELINE_PIN: bad });
+    assert.equal(status.pin, false, bad);
+    assert.ok(status.missing.some((m) => m.includes("4 to 12 digits")), bad);
+  }
+
+  // The PIN needs the store as much as the link does: the attempt count lives there.
+  assert.equal(pipelineStatus({ NEXT_PUBLIC_SALES_EMAIL: "info@ahminternationals.com", PIPELINE_PIN: "8126" }).pin, false);
+
+  assert.equal(pinAccount({ NEXT_PUBLIC_SALES_EMAIL: "info@ahminternationals.com" }), "info@ahminternationals.com");
+  assert.equal(pinAccount({ PIPELINE_STAFF: "a@x.com:sales, b@x.com:admin, c@x.com:admin" }), "b@x.com");
+  assert.equal(pinAccount({ PIPELINE_STAFF: "a@x.com:sales" }), null);
+  assert.equal(pipelineStatus({ ...base, PIPELINE_STAFF: "a@x.com:sales", PIPELINE_PIN: "8126" }).pin, false);
+});
+
+test("a PIN matches only itself, and attempts are counted per UTC day", () => {
+  assert.equal(pinMatches("8126", "8126"), true);
+  for (const wrong of ["", "812", "81260", "8127", " 8126"]) assert.equal(pinMatches(wrong, "8126"), false, wrong);
+  assert.equal(pinDay(new Date("2026-10-11T23:59:59Z")), "2026-10-11");
+  // 04:30 in Karachi is still the previous day in UTC, which is what the lock message says.
+  assert.equal(pinDay(new Date("2026-10-12T04:30:00+05:00")), "2026-10-11");
 });

@@ -9,7 +9,8 @@ import { sendSignInMail } from "@/lib/pipeline/mail";
 import { isDay, isStage, LOST_REASONS, type LeadChanges } from "@/lib/pipeline/model";
 import { endSession, requireStaff, startSession } from "@/lib/pipeline/session";
 import { normaliseEmail, staffList } from "@/lib/pipeline/staff";
-import { deleteLead, markUsed, rebuildIndex, REFERENCE, updateLead } from "@/lib/pipeline/store";
+import { pinAccount, pinFrom } from "@/lib/pipeline/pin";
+import { attemptPin, deleteLead, markUsed, rebuildIndex, REFERENCE, updateLead } from "@/lib/pipeline/store";
 import { LOGIN_TTL_MS, nonce, secretSource, signToken, verifyToken, type LoginPayload } from "@/lib/pipeline/tokens";
 
 /**
@@ -32,7 +33,7 @@ import { LOGIN_TTL_MS, nonce, secretSource, signToken, verifyToken, type LoginPa
  */
 export async function requestSignIn(formData: FormData) {
   const status = pipelineStatus();
-  if (!status.signIn) redirect("/pipeline/sign-in");
+  if (!status.link) redirect("/pipeline/sign-in");
 
   const email = normaliseEmail(String(formData.get("email") ?? "")).slice(0, 200);
   const h = await headers();
@@ -69,6 +70,36 @@ export async function completeSignIn(formData: FormData) {
   if (!(await markUsed(payload.n))) redirect("/pipeline/sign-in?used=1");
 
   await startSession(payload.e);
+  redirect("/pipeline");
+}
+
+/**
+ * Signs in with the PIN, as the first admin on the staff list. The per-IP
+ * limit only spares the store a write per guess from one noisy client; the
+ * limit that protects the PIN is the daily count in `attemptPin`, which holds
+ * across every instance and every visitor. A store that cannot be reached
+ * refuses the PIN rather than skipping the count.
+ */
+export async function signInWithPin(formData: FormData) {
+  const status = pipelineStatus();
+  const expected = pinFrom();
+  const account = pinAccount();
+  if (!status.pin || !expected || !account) redirect("/pipeline/sign-in");
+
+  const h = await headers();
+  if (!rateLimit(`pin-ip:${clientKey(h)}`, 5, 15 * 60 * 1000).allowed) redirect("/pipeline/sign-in?pin=busy");
+
+  const given = String(formData.get("pin") ?? "").replace(/\s+/g, "").slice(0, 32);
+  let outcome: "ok" | "wrong" | "locked" | "error";
+  try {
+    outcome = await attemptPin(given, expected);
+  } catch (error) {
+    console.error("[pipeline] PIN check failed", { error: String(error) });
+    outcome = "error";
+  }
+  if (outcome !== "ok") redirect(`/pipeline/sign-in?pin=${outcome}`);
+
+  await startSession(account);
   redirect("/pipeline");
 }
 

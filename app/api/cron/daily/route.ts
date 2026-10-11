@@ -57,14 +57,15 @@ export async function GET(request: Request) {
   const paths = pipelinePaths(ns);
   const t = now.getTime();
 
-  const [unclaimed, expired, usedLinks, oldJobs] = await Promise.all([
+  const [unclaimed, expired, usedLinks, oldJobs, pinDays] = await Promise.all([
     olderThan(`${ns}${INCOMING_DIR}/`, t - UNCLAIMED_UPLOAD_HOURS * HOUR),
     olderThan(`${ns}${CLAIMED_DIR}/`, t - fileRetentionDays() * DAY),
     olderThan(paths.usedDir, t - DAY),
     olderThan(paths.jobsDir, t - 30 * DAY),
+    olderThan(paths.pinDir, t - 2 * DAY),
   ]);
 
-  const toDelete = [...unclaimed, ...expired, ...usedLinks, ...oldJobs];
+  const toDelete = [...unclaimed, ...expired, ...usedLinks, ...oldJobs, ...pinDays];
   for (let i = 0; i < toDelete.length; i += 500) await del(toDelete.slice(i, i + 500));
 
   let digest = { sections: 0, sent: false };
@@ -79,7 +80,7 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     ok: true,
-    deleted: { unclaimedUploads: unclaimed.length, expiredFiles: expired.length, usedLinks: usedLinks.length, oldJobs: oldJobs.length },
+    deleted: { unclaimedUploads: unclaimed.length, expiredFiles: expired.length, usedLinks: usedLinks.length, oldJobs: oldJobs.length, pinDays: pinDays.length },
     digest,
   });
 }

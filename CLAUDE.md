@@ -500,6 +500,24 @@ a forged Host would otherwise mail a staff member a genuine link to someone
 else's server. The session cookie is scoped to `/pipeline`, which also keeps
 the public site's chrome off those pages (`PublicChrome`).
 
+There is also a PIN, `PIPELINE_PIN`, because the owner asked for a direct way
+in. It is 4 to 12 digits, kept in Vercel and never in this public
+repository, and it signs in as the first admin on the staff list. The
+protection is the count: every attempt takes a slot in
+`pipeline/auth/pin/<UTC day>.json` *before* it is checked, with a conditional
+write, so parallel guesses cannot slip past it. After ten wrong attempts the
+PIN stops working for everyone until midnight UTC, and a correct PIN gives its
+slot back. An in-memory per-IP limit sits in front of it, and a store that
+cannot be reached refuses the PIN rather than skipping the count. The limit
+slows down random guessing but does nothing for a PIN that is guessed first, so
+1234 and repeated digits are as weak here as anywhere.
+
+Overlapping writes to one document can also fail as a generic "conflicting
+operation" bad request, not the typed precondition error. `json-store.ts`
+retries both. It surfaced only when twenty PIN attempts hit one counter at
+once; before that, two enquiries landing together could have failed the same
+way on the index.
+
 Every page, action and route under `/pipeline` checks the session itself.
 There is no proxy and no layout check to rely on.
 

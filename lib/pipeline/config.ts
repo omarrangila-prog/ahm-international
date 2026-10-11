@@ -1,5 +1,6 @@
 import { mailConfig } from "../mail-config";
 import { storageEnabled } from "../storage/namespace";
+import { pinAccount, pinFrom } from "./pin";
 import { secretSource } from "./tokens";
 import { staffList } from "./staff";
 
@@ -8,23 +9,33 @@ type Env = Record<string, string | undefined>;
 /**
  * Whether the enquiry register is usable on this deployment, and if not, why.
  *
- * Recording needs the private store. Signing in also needs mail, because the
- * sign-in link is emailed: without SMTP there is no way in, and the register
- * would hold enquiries nobody can read, so the RFQ route only counts a stored
- * enquiry as delivered when sign-in works too.
+ * Recording needs the private store. Signing in needs a way in: the emailed
+ * link (mail and a staff address) or the PIN (`PIPELINE_PIN` and an admin to
+ * sign in as). Without either the register would hold enquiries nobody can
+ * read, so the RFQ route only counts a stored enquiry as delivered when
+ * sign-in works too.
  */
 export function pipelineStatus(env: Env = process.env) {
   const storage = storageEnabled(env);
   const mail = mailConfig(env) !== null;
   const staff = staffList(env).size > 0;
   const secret = secretSource(env) !== null;
+  const ready = storage && secret;
+  const link = ready && mail && staff;
+  const pin = ready && pinFrom(env) !== null && pinAccount(env) !== null;
+  const pinSet = Boolean(env.PIPELINE_PIN?.trim());
   return {
     records: storage,
-    signIn: storage && mail && staff && secret,
+    signIn: link || pin,
+    /** The emailed one-time link is available. */
+    link,
+    /** PIN sign-in is available. */
+    pin,
     missing: [
       ...(storage ? [] : ["the private file store (BLOB_READ_WRITE_TOKEN)"]),
-      ...(mail ? [] : ["the mailbox password (SMTP_PASS), which sign-in links are sent with"]),
+      ...(mail || pin ? [] : ["the mailbox password (SMTP_PASS), which sign-in links are sent with, or a PIN (PIPELINE_PIN)"]),
       ...(staff ? [] : ["at least one staff address (PIPELINE_STAFF)"]),
+      ...(pinSet && !pinFrom(env) ? ["a PIN of 4 to 12 digits: PIPELINE_PIN is set but is not one"] : []),
     ],
   };
 }
