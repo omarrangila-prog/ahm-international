@@ -174,7 +174,13 @@ On the branch:
 | Internal links (`links`) | 88 pages, none broken |
 | SEO (`audit`, `seo:deep`) | Pass, nothing found |
 | Empty image frames (`images:gaps`) | 0 across 86 routes |
-| AUDIT_RESULTS_PLACEHOLDER | |
+| Contrast (WCAG AA, rendered, parses oklab) | No text below AA; includes the new "AI illustration" labels |
+| Target size (WCAG 2.2 SC 2.5.8) | No failures, 4 viewports × 12 routes |
+| axe-core WCAG 2.2 AA | No violations, 21 routes × 2 widths |
+| Responsive | No defects, 12 viewports × 22 routes (264 loads) |
+| Runtime console | No uncaught exceptions, console errors or failed requests, 86 routes |
+| RFQ outcome (production build, storage and mail off) | "One more step" with reference; WhatsApp link pre-filled with that reference; footer link names the page; no page errors |
+| Register reports (production build, PIN, throwaway store) | Conversion block renders above the paired panels; namespace deleted after |
 | Facility gallery (browser, dev server) | 6/6 |
 | Construction callouts | Screenshots at 1280 and 390; markers on the strap slider, pocket and tie |
 | Register writes under contention (real store, throwaway namespace; PR #2, already live) | 20 parallel attempts: limit held exactly, no error |
@@ -199,7 +205,7 @@ worked. "Branch" is this branch merged. "With owner items" assumes §7 is done.
 | Products and technical presentation | 15 | 10 | 12 | 14 | Detail shots and real samples; the "three-pocket" question. |
 | SEO and search readiness | 10 | 9 | 9 | 10 | Bare domain 307; Search Console not connected. |
 | Performance and reliability | 10 | 7 | 8 | 8 | Lab LCP above 2.5 s on the homepage (§4). Branch score rests on the local A/B and the write-conflict fix; re-measure live. |
-| Mobile and accessibility | 10 | 9 | 9 | 10 | AUDIT_SCORE_NOTE |
+| Mobile and accessibility | 10 | 9 | 9 | 10 | Every sweep clean (§5). The last point is the real-photograph alt text and a check on real devices, which no sweep replaces. |
 | **Total** | **100** | **72** | **81** | **94** | |
 
 100 is not available from code. Every point between "Branch" and "With owner
