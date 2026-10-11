@@ -74,6 +74,8 @@ const rows = keys.map((key) => {
     canonicalPresent,
     standingIn,
     gap: !resolved.available,
+    // In place and rendering, but generated: still wanted as a photograph.
+    generated: resolved.available && resolved.generated,
     used: referencedBy(key),
     category: asset.src.split("/")[2] ?? "misc",
   };
@@ -82,10 +84,13 @@ const rows = keys.map((key) => {
 const complete = rows.filter((r) => r.canonicalPresent);
 const standIns = rows.filter((r) => r.standingIn);
 const gaps = rows.filter((r) => r.gap);
-const wanted = [...gaps, ...standIns];
+const generatedRows = rows.filter((r) => r.generated);
+const wanted = [...gaps, ...standIns.filter((r) => !r.generated), ...generatedRows];
 
-/* Rendered shots first: a slot no component asks for is not worth a day out. */
-const rank = (r) => (r.gap ? 0 : 1) * 100 - r.used.length;
+/* Rendered shots first: a slot no component asks for is not worth a day out.
+   A generated image in place ranks after the gaps but is still wanted: it is
+   labelled on the page, and a photograph replaces the label. */
+const rank = (r) => (r.gap ? 0 : r.generated ? 2 : 1) * 100 - r.used.length;
 wanted.sort((a, b) => rank(a) - rank(b));
 
 let out = `# Shot list
@@ -103,6 +108,7 @@ cannot disagree with what the site renders.
 | Canonical file in place | ${complete.length} |
 | Showing a stand-in | ${standIns.length} |
 | **Leaving a visible gap** | **${gaps.length}** |
+| Rendering a generated image, labelled "AI illustration" | ${generatedRows.length} |
 
 ${
   gaps.length === 0
@@ -131,7 +137,7 @@ if (wanted.length) {
   out += `## Wanted, most valuable first\n\n`;
   out += `Ranked by whether the slot is empty, then by how many pages ask for it.\n\n`;
   for (const r of wanted) {
-    out += `### ${r.key}${r.gap ? " — **GAP**" : ""}\n\n`;
+    out += `### ${r.key}${r.gap ? " — **GAP**" : r.generated ? " — generated, wants a photograph" : ""}\n\n`;
     out += `- **Path:** \`${r.src}\`\n`;
     out += `- **Master size:** ${ORIENTATION[r.category] ?? "see manifest"}\n`;
     out += `- **Subject:** ${r.alt || "—"}\n`;
@@ -148,5 +154,5 @@ for (const r of complete.sort((a, b) => a.src.localeCompare(b.src))) {
 
 fs.writeFileSync(path.join(root, "assets-needed.md"), out);
 console.log(
-  `assets-needed.md written — ${complete.length} in place, ${standIns.length} showing a stand-in, ${gaps.length} leaving a gap`,
+  `assets-needed.md written — ${complete.length} in place, ${standIns.length} showing a stand-in, ${gaps.length} leaving a gap, ${generatedRows.length} generated`,
 );

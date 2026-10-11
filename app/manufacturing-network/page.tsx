@@ -7,6 +7,9 @@ import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { pageMetadata } from "@/lib/seo";
+import { FacilityGallery, type GalleryItem } from "@/components/sections/FacilityGallery";
+import { facilityPhotos, type Facility } from "@/data/facility-gallery";
+import { resolveAsset } from "@/data/assets";
 import { company, displayValue } from "@/data/company";
 import {
   capabilityMatrix,
@@ -73,7 +76,18 @@ const faqs = [
   },
 ];
 
+/** Resolved on the server so the client gallery never imports the image registry. */
+function galleryItems(facility: Facility): GalleryItem[] {
+  return facilityPhotos(facility).map((p) => {
+    const r = resolveAsset(p.asset);
+    return { src: r.src, width: r.width, height: r.height, alt: r.alt, blur: r.blurDataURL, caption: p.caption, label: p.label };
+  });
+}
+
 export default function ManufacturingNetworkPage() {
+  const ownPhotos = galleryItems("own");
+  const partnerPhotos = galleryItems("partner");
+
   return (
     <>
       <PageHero
@@ -111,7 +125,7 @@ export default function ManufacturingNetworkPage() {
             <article className="bg-paper p-8 lg:p-10" aria-labelledby="own-heading">
               <p className="label text-ink/65">01</p>
               <h3 id="own-heading" className="mt-4 font-display text-h3 text-ink">
-                AHM&apos;s own operations
+                AHM-Owned Manufacturing
               </h3>
               <p className="mt-4 max-w-prose text-ink/75">
                 AHM International runs its own manufacturing. This is the part of the network AHM operates
@@ -125,17 +139,20 @@ export default function ManufacturingNetworkPage() {
                   </div>
                 ))}
               </dl>
+              {ownPhotos.length > 0 && <FacilityGallery items={ownPhotos} title="Photographs of AHM's own facility" />}
               <p className="mt-6 text-sm leading-relaxed text-ink/70">
-                Photographs of the facility are not published yet. Figures above are given during commercial
-                discussion rather than printed without the evidence behind them, and a visit or your own
-                inspection agency is the reliable way to see the floor.
+                {ownPhotos.length > 0
+                  ? "Photographed at AHM's own facility."
+                  : "Photographs of the facility are not published yet."}{" "}
+                Figures above are given during commercial discussion rather than printed without the evidence
+                behind them, and a visit or your own inspection agency is the reliable way to see the floor.
               </p>
             </article>
 
             <article className="bg-paper p-8 lg:p-10" aria-labelledby="partner-heading">
               <p className="label text-ink/65">02</p>
               <h3 id="partner-heading" className="mt-4 font-display text-h3 text-ink">
-                Specialist partner factories
+                Partner Manufacturing Facilities
               </h3>
               <p className="mt-4 max-w-prose text-ink/75">
                 AHM also works with specialist partner factories for additional product categories, particular
@@ -155,6 +172,14 @@ export default function ManufacturingNetworkPage() {
                   Ask about your own order before you place it.
                 </li>
               </ul>
+              {partnerPhotos.length > 0 && (
+                <>
+                  <FacilityGallery items={partnerPhotos} title="Photographs of partner facilities" />
+                  <p className="mt-4 text-sm leading-relaxed text-ink/70">
+                    Published with the partner&apos;s permission. These are not AHM&apos;s facilities.
+                  </p>
+                </>
+              )}
             </article>
           </div>
         </div>

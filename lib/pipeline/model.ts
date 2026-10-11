@@ -352,15 +352,23 @@ export function isQualified(lead: Pick<LeadSummary, "maxStage">): boolean {
   return lead.maxStage >= stageIndex("qualification");
 }
 
-export type Count = { key: string; total: number; qualified: number };
+/**
+ * One row of a breakdown. Carried as far as the order, so "which source is
+ * worth the effort" is answered in purchase orders, not in enquiries: a source
+ * that sends many enquiries and no orders reads that way here.
+ */
+export type Count = { key: string; total: number; qualified: number; quoted: number; won: number };
 
 function countBy(leads: LeadSummary[], keyOf: (l: LeadSummary) => string): Count[] {
   const map = new Map<string, Count>();
+  const quotedFrom = stageIndex("quoted");
   for (const lead of leads) {
     const key = keyOf(lead) || "Not stated";
-    const row = map.get(key) ?? { key, total: 0, qualified: 0 };
+    const row = map.get(key) ?? { key, total: 0, qualified: 0, quoted: 0, won: 0 };
     row.total += 1;
     if (isQualified(lead)) row.qualified += 1;
+    if (lead.maxStage >= quotedFrom) row.quoted += 1;
+    if (outcomeOf(lead) === "won") row.won += 1;
     map.set(key, row);
   }
   return [...map.values()].sort((a, b) => b.qualified - a.qualified || b.total - a.total || a.key.localeCompare(b.key));
@@ -379,6 +387,7 @@ function median(values: number[]): number | null {
  * counts; nothing is estimated or extrapolated.
  */
 export function buildReport(leads: LeadSummary[], now: Date = new Date()) {
+  const qualified = leads.filter(isQualified).length;
   const funnel = STAGES.map((stage, i) => ({
     stage: stage.id,
     label: stage.label,
@@ -410,10 +419,24 @@ export function buildReport(leads: LeadSummary[], now: Date = new Date()) {
     total: leads.length,
     withFiles: leads.filter((l) => l.files > 0).length,
     fullForm: leads.filter((l) => l.variant === "full").length,
-    qualified: leads.filter(isQualified).length,
+    qualified,
   };
 
+  /**
+   * The conversion steps a sales team is judged on, each as the two counts it
+   * is made of, so a rate of 100% from one enquiry reads as what it is.
+   * Visitor to enquiry is not here: visits are in analytics, not the register.
+   */
+  const conversion = [
+    { step: "Enquiry to qualified", part: qualified, whole: leads.length },
+    { step: "Qualified to quotation", part: quoted.length, whole: qualified },
+    { step: "Quotation to sample", part: leads.filter((l) => l.maxStage >= stageIndex("sampling")).length, whole: quoted.length },
+    { step: "Quotation to order", part: quotation.won, whole: quoted.length },
+    { step: "Order to repeat business", part: leads.filter((l) => l.maxStage >= stageIndex("repeat")).length, whole: quotation.won },
+  ];
+
   return {
+    conversion,
     byCountry: countBy(leads, (l) => l.country),
     byCategory: countBy(leads, (l) => l.category),
     bySource: countBy(leads, (l) => l.source ?? "Direct or not recorded"),

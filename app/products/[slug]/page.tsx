@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ConstructionCallouts } from "@/components/products/ConstructionCallouts";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow, Rule } from "@/components/ui/Section";
@@ -96,6 +97,9 @@ export default async function ProductCategoryPage({ params }: Params) {
    * had become the same studio polo.
    */
   const photographedSamples: AssetKey[] = (category.photography ?? []).filter(hasCanonicalAsset);
+  // The gallery is headed by what its images are. Today they are generated;
+  // once every file is a photograph the original heading returns by itself.
+  const samplesGenerated = photographedSamples.some((a) => resolveAsset(a).generated);
 
   const headingLines = category.headline.split("\n").map((line, i) => ({
     text: line,
@@ -154,7 +158,7 @@ export default async function ProductCategoryPage({ params }: Params) {
             </ul>
           </div>
 
-          <RevealGroup className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
+          <RevealGroup className="mt-12 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
             {category.articles.map((article) => (
               <RevealItem key={article.name}>
                 <article className="group flex h-full flex-col border border-line bg-paper">
@@ -180,7 +184,17 @@ export default async function ProductCategoryPage({ params }: Params) {
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-ink/65">{article.note}</p>
                     </div>
-                    <p className="label mt-5 text-ink/70">Representative article</p>
+                    <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                      <p className="label text-ink/70">Representative article</p>
+                      <Link
+                        href={`/request-a-quote?${new URLSearchParams({ category: category.name, style: article.name, source: `${category.slug}_article` })}`}
+                        className="inline-flex min-h-6 items-center gap-1 py-1 text-sm font-medium text-ink underline-offset-4 hover:underline"
+                      >
+                        Request quote
+                        <span aria-hidden="true">&rarr;</span>
+                        <span className="sr-only"> for the {article.name}</span>
+                      </Link>
+                    </div>
                   </div>
                 </article>
               </RevealItem>
@@ -188,6 +202,35 @@ export default async function ProductCategoryPage({ params }: Params) {
           </RevealGroup>
         </div>
       </Section>
+
+      {/* ---------------- Construction points ---------------- */}
+      {category.callouts && hasAsset(category.callouts.asset) && (
+        <Section zone="paper" spacing="lg" aria-labelledby="construction-heading">
+          <div className="shell-wide">
+            <Eyebrow>Construction</Eyebrow>
+            <MaskedHeading
+              as="h2"
+              id="construction-heading"
+              className="mt-5 font-display text-h1 text-ink"
+              lines={[{ text: "What to look at" }, { text: "on this style." }]}
+            />
+            <div className="mt-12">
+              <ConstructionCallouts
+                image={
+                  <SmartImage
+                    asset={category.callouts.asset}
+                    sizes={SIZES.half}
+                    className="h-full w-full"
+                    imageClassName="object-contain"
+                  />
+                }
+                points={category.callouts.points}
+                note={category.callouts.note}
+              />
+            </div>
+          </div>
+        </Section>
+      )}
 
       {/* ---------------- Specification ---------------- */}
       <Section zone="paper" spacing="lg" aria-labelledby="spec-heading">
@@ -277,15 +320,15 @@ export default async function ProductCategoryPage({ params }: Params) {
               </h2>
               <p className="mt-6 max-w-md text-ink/75">{category.costComparison.intro}</p>
               <div className="mt-8 flex flex-wrap gap-3">
+                <Button href="/benchmark-a-style" size="md" withArrow>
+                  Benchmark my style
+                </Button>
                 <Button
                   href={`/request-a-quote?${new URLSearchParams({ category: category.name, source: `${category.slug}_comparison` })}`}
+                  variant="outline"
                   size="md"
-                  withArrow
                 >
                   Send your {category.programNoun} details
-                </Button>
-                <Button href="/send-tech-pack" variant="outline" size="md">
-                  Upload a tech pack
                 </Button>
               </div>
             </div>
@@ -308,19 +351,24 @@ export default async function ProductCategoryPage({ params }: Params) {
           <div className="shell-wide">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
-                <Eyebrow>Production samples</Eyebrow>
+                <Eyebrow>{samplesGenerated ? "Sample styles" : "Production samples"}</Eyebrow>
                 <MaskedHeading
                   as="h2"
                   id="samples-heading"
                   className="mt-5 font-display text-h1 text-ink"
-                  lines={[{ text: "Photographed" }, { text: "from production." }]}
+                  lines={
+                    samplesGenerated
+                      ? [{ text: "Styles in" }, { text: "this category." }]
+                      : [{ text: "Photographed" }, { text: "from production." }]
+                  }
                 />
               </div>
               <p className="max-w-sm text-sm text-ink/70 lg:pb-2">
-                Articles produced to buyer specification, shown as construction
-                references.{" "}
+                {samplesGenerated
+                  ? "AI illustrations of styles in this category, not photographs. Ask for photographs or a physical sample of any style before you order. "
+                  : "Articles produced to buyer specification, shown as construction references. "}
                 {photographedSamples.length > 12 &&
-                  `${photographedSamples.length} samples photographed for this category.`}
+                  `${photographedSamples.length} ${samplesGenerated ? "styles" : "samples photographed"} for this category.`}
               </p>
             </div>
 

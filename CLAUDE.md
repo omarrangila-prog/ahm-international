@@ -137,7 +137,7 @@ a naive `rgb()` regex reads the lightness as red and invents around seventy
 failures that are not there.
 
 The ground is a real cotton-canvas macro, high-passed to remove its lighting
-gradient and mirrored 2×2 so it tiles seamlessly. 9.7 kB, on by default —
+gradient and mirrored 2×2 so it tiles seamlessly. 22 kB, on by default —
 pass `tooth={false}` for a section that must stay flat.
 
 ## Branded customer garments are not published
@@ -381,6 +381,23 @@ New screen-only sections need `data-print="hide"`, which `<Section>` accepts and
 forwards. Anything hidden behind a `lg:` breakpoint is hidden in print too —
 print width is narrow — so a fact that must survive needs `print:block`.
 
+## The weave is preloaded, and what limits LCP now
+
+The canvas weave is painted on every zoned section's `::after`, so Chrome
+credits the hero section with Largest Contentful Paint once the tile is drawn.
+Declared only in CSS it was requested after the stylesheet: Lighthouse mobile on
+the live site put 1.3 to 1.5 s of "load delay" on it and LCP at 2.8 to 3.3 s.
+The root layout now preloads it (`preload()` from react-dom), which took the
+delay to 0 to 0.2 s and LCP down 0.1 to 0.7 s in a same-build A/B.
+
+What is left is not the network. Unthrottled, LCP equals first paint (about
+0.4 s locally), but Lighthouse's simulation charges every script that ran
+before that paint at four times the CPU, and the homepage is a 267 kB document
+of 1,572 elements whose parse and layout is one 0.5 s task on that profile.
+The next gain is in a smaller document, not in another hint. The zod and
+framer-motion chunks Lighthouse lists as unused on the homepage are Next's
+low-priority prefetches for linked routes, fetched after load and never run.
+
 ## No root `loading.tsx`
 
 Deliberately absent. Every route in this site is statically prerendered (`○` in
@@ -417,8 +434,56 @@ records that nothing verifies. They are in `asset-pack/generated-hold/`.
 The rule is rule 1 applied to pictures: an image of the facility, the people or
 the paperwork must be a photograph of that thing. Product renders on a white
 plate, fabric macros and the plain carton mockup are not claims about
-operations and stay. Partner-factory photographs are fine when labelled as a
-partner's.
+operations and stay, labelled. Partner-factory photographs are fine when
+labelled as a partner's.
+
+The case study's construction close-up and fabric macro followed the scenes
+into `generated-hold/` on 11 October 2026. Both were generated and captioned as
+the documented program's own construction and cloth.
+
+## Every garment image is generated, and says so
+
+Found on 11 October 2026: the 24 images in the product galleries, headed
+"Photographed from production" with alt text "Photographed production
+sample", are generated. Their masters share every filename with
+`asset-pack/AHM_All_Individual_Generated_Product_Images/` (ten byte-identical),
+whose README says it holds generated images and excludes the camera originals.
+So do the 39 branded files held back. With the prompt-backed renders and fabric
+macros that makes 38 generated images published and none photographed. The
+camera originals exist somewhere and are the most valuable thing to ask for.
+
+- `data/generated-images.json` lists generated files **by content hash**, with
+  the evidence for each. `npm run assets` marks any published file whose
+  contents match as `generated` in the manifest, wherever it sits: moving a
+  generated image does not shed the mark, and a photograph dropped in at the
+  same path loses it with no other edit. Withdrawn images are listed too, so
+  one put back is labelled.
+- `SmartImage` prints "AI illustration" in the corner of every generated image
+  it renders, and hides that from screen readers only when the image itself is
+  decorative. `HeroVisual` bypasses SmartImage, so its article list ends
+  "AI illustrations, not photographs" instead.
+- Copy follows the manifest, not the other way round: the product gallery
+  heading, the footer line and the terms' "Product imagery" section all say
+  "photographed" again by themselves once no generated file is published.
+- A generated image never appears where a photograph is evidence: no
+  `kind: "factory"` slot may resolve to one, and the facility gallery drops
+  them outright rather than labelling them.
+
+`tests/provenance.test.ts` holds all of it.
+
+## The facility gallery is attributed by path
+
+`/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and
+another under "Partner Manufacturing Facilities" as soon as a photograph exists
+at `public/assets/facility/own/<slot>.webp` or `facility/partner/<slot>.webp`
+(slots in `data/facility-gallery.ts`). The directory is the attribution, so a
+caption cannot be edited apart from it, and the enlarged view repeats it
+because a full-size picture is the one that gets screenshotted. Until then the
+page says facility photographs are not yet published, and the empty slots are
+the shot list in `assets-needed.md`.
+
+The older `factory.*` slots record no attribution. Do not put a partner's
+photograph in one.
 
 ## AHM runs its own manufacturing and uses partner factories
 
@@ -484,6 +549,12 @@ store, not a database: `pipeline/leads/<REF>.json` is the record and
 (`ifMatch`) and retry on conflict (`lib/storage/json-store.ts`); the "Rebuild
 index" button regenerates the index from the records if the two ever diverge.
 
+Reports give each conversion step (enquiry to qualified, to quotation, to
+sample, to order, to repeat) as a rate with the two counts it is made of, and
+carry every country, product and source through to quotations and orders, so
+a source that sends enquiries but no orders reads that way. Visitor to enquiry
+needs GA4 and is not computed from the register.
+
 **A compressed read returns a weak ETag** (`W/"…"`) and a conditional write
 given that form is always refused. `strongEtag()` strips the prefix. Small
 documents read back strong, so this passed every probe and failed only once a
@@ -536,6 +607,13 @@ honoured, for tests. A third-party "compatible" endpoint would receive every
 buyer's questions. Answers may link only to site paths, the mailbox and the
 WhatsApp number (`safeHref`), whatever the model writes. Nothing a buyer types
 is stored or logged.
+
+## WhatsApp opens with a message written
+
+`WhatsAppLink` prefills the chat (`lib/whatsapp.ts`): the page the buyer was
+on, or after an RFQ, its reference. The buyer can edit or delete it before
+sending; nothing is sent for them. The footer carries the link on every page,
+and every email, phone and WhatsApp click reports its `location`.
 
 ## Where an enquiry came from is kept in page memory
 

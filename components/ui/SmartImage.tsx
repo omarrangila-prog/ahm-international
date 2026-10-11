@@ -13,6 +13,13 @@ import { resolveAsset, type AssetKey } from "@/data/assets";
  * surrounding text colour — no illustration, no diagram, no invented picture.
  * Sections that can restructure around a missing image should ask `hasAsset()`
  * and do that instead; an empty frame is a last resort, not a design.
+ *
+ * A generated image is labelled "AI illustration" in the corner of its frame,
+ * wherever it appears. Which files are generated is recorded by content hash
+ * (data/generated-images.json), so the label cannot be forgotten by a new
+ * component and disappears by itself when a photograph replaces the file. On
+ * a decorative image (alt="") the label is still shown but hidden from screen
+ * readers, which are not shown the image either.
  */
 
 type Props = {
@@ -41,6 +48,12 @@ type Props = {
    * than a diagram — the hero, for instance.
    */
   fallback?: React.ReactNode;
+  /**
+   * Shows the "AI illustration" label on a generated image. Leave it on. Turn
+   * it off only for a thumbnail too small to carry it whose larger version,
+   * labelled, is on the same screen.
+   */
+  provenance?: boolean;
 };
 
 /** Sizes strings for the layouts used across the site. */
@@ -74,6 +87,7 @@ export function SmartImage({
   showCaption = false,
   fixedRatio = false,
   fallback,
+  provenance = true,
 }: Props) {
   const resolved = resolveAsset(asset);
   const altText = alt ?? resolved.alt;
@@ -109,6 +123,15 @@ export function SmartImage({
         // Inherits the zone's foreground, so it reads as a tonal panel on cream
         // and on ink alike rather than a bright block punched into a dark section.
         (fallback ?? <div className="tooth relative h-full w-full bg-current/[0.06]" aria-hidden="true" />)
+      )}
+      {resolved.available && resolved.generated && provenance && (
+        <span
+          className="pointer-events-none absolute bottom-2 left-2 z-[2] bg-paper/90 px-1.5 py-1 font-display text-[10px] font-semibold uppercase leading-none tracking-[0.08em] text-ink"
+          aria-hidden={altText === "" ? true : undefined}
+          title="Generated image, not a photograph of AHM production"
+        >
+          AI illustration
+        </span>
       )}
     </div>
   );

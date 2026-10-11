@@ -50,9 +50,9 @@ export function Hero() {
             {/* Names both kinds of production on purpose. A line that said only
                 "our manufacturing" would let a partner's floor be read as AHM's. */}
             <p className="mt-8 max-w-xl text-lead text-ink/70">
-              Custom apparel development and manufacturing through our own operations and
-              specialist production partners, for international uniform, workwear and
-              private-label programs.
+              Custom aprons, uniforms, workwear and private-label apparel developed to your
+              requirements through our own manufacturing operations and specialist
+              production partners.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">

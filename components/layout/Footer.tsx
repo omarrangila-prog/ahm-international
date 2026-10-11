@@ -3,8 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { footerNav } from "@/data/nav";
 import { company, publicValue } from "@/data/company";
+import { assetManifest } from "@/data/asset-manifest";
 import { Logo } from "@/components/ui/Logo";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
+import { EmailLink, PhoneLink, WhatsAppLink } from "@/components/ui/ContactActions";
 
 /**
  * Footer.
@@ -17,6 +19,10 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 export function Footer() {
   const email = publicValue(company.email);
   const phone = publicValue(company.phone);
+  const whatsapp = publicValue(company.whatsapp);
+  // Says what the product images are while any of them is generated, and
+  // stops saying it by itself once they have all been replaced by photographs.
+  const anyGenerated = Object.values(assetManifest).some((e) => e.generated);
   const linkedin = publicValue(company.social.linkedin);
   const instagram = publicValue(company.social.instagram);
   const year = new Date().getFullYear();
@@ -58,15 +64,20 @@ export function Footer() {
           ))}
 
           {/* Contact */}
-          <div className="col-span-12 sm:col-span-4 lg:col-span-2">
+          {/* The four link columns fill the row beside the brand, so contact
+              always starts a row of its own at lg. Laid out across it, the
+              address no longer breaks mid-word in a two-column cell. */}
+          <div className="col-span-12 sm:col-span-4 lg:col-span-12">
             <p className="label mb-5 text-paper/65">Contact</p>
-            <ul className="flex flex-col gap-4 text-sm">
+            <ul className="flex flex-col gap-4 text-sm lg:flex-row lg:flex-wrap lg:items-end lg:gap-x-14">
               <li>
                 <p className="text-paper/65">Email</p>
                 {email ? (
-                  <a href={`mailto:${email}`} className="inline-block [overflow-wrap:anywhere] py-1.5 text-paper/80 transition-colors hover:text-lime">
-                    {email}
-                  </a>
+                  <EmailLink
+                    email={email}
+                    location="footer"
+                    className="inline-block [overflow-wrap:anywhere] py-1.5 text-paper/80 transition-colors hover:text-lime"
+                  />
                 ) : (
                   <Link
                     href="/send-tech-pack"
@@ -79,9 +90,11 @@ export function Footer() {
               <li>
                 <p className="text-paper/65">Phone</p>
                 {phone ? (
-                  <a href={`tel:${phone.replace(/\s/g, "")}`} className="inline-block py-1.5 text-paper/80 transition-colors hover:text-lime">
-                    {phone}
-                  </a>
+                  <PhoneLink
+                    phone={phone}
+                    location="footer"
+                    className="inline-block py-1.5 text-paper/80 transition-colors hover:text-lime"
+                  />
                 ) : (
                   <Link
                     href="/request-a-quote"
@@ -91,6 +104,17 @@ export function Footer() {
                   </Link>
                 )}
               </li>
+              {whatsapp && (
+                <li>
+                  <p className="text-paper/65">WhatsApp</p>
+                  <WhatsAppLink
+                    number={whatsapp}
+                    location="footer"
+                    label="Message us on WhatsApp"
+                    className="inline-block py-1.5 text-paper/80 transition-colors hover:text-lime"
+                  />
+                </li>
+              )}
               <li>
                 <Link href="/request-a-quote" className="inline-flex items-center gap-1 py-1.5 text-lime hover:underline">
                   Send an RFQ
@@ -159,7 +183,10 @@ export function Footer() {
               </Link>
             ))}
             <span className="max-w-md text-paper/70">
-              Product visuals shown as representative articles. Commercial terms confirmed in writing.
+              {anyGenerated
+                ? "Product visuals are AI illustrations of representative articles, not photographs of production."
+                : "Product visuals shown as representative articles."}{" "}
+              Commercial terms confirmed in writing.
             </span>
           </div>
         </div>

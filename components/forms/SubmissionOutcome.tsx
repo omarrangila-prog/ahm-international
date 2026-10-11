@@ -2,6 +2,8 @@ import { Check, Send } from "lucide-react";
 import { company, publicValue } from "@/data/company";
 import type { RejectedFile } from "@/lib/rfq-client";
 import { cn } from "@/lib/utils";
+import { WhatsAppLink } from "@/components/ui/ContactActions";
+import { referenceMessage } from "@/lib/whatsapp";
 
 /**
  * What a buyer sees after pressing send.
@@ -29,6 +31,7 @@ export function SubmissionOutcome({
 }) {
   const email = publicValue(company.email);
   const whatsapp = publicValue(company.whatsapp);
+  const phone = publicValue(company.phone);
   const subject = encodeURIComponent(reference ? `RFQ ${reference}` : "RFQ");
   const delivered = kind === "delivered";
   const Heading = size === "lg" ? "h2" : "h3";
@@ -86,14 +89,15 @@ export function SubmissionOutcome({
           {whatsapp && (
             <li>
               <span className="text-ink/65">WhatsApp</span>{" "}
-              <a
-                href={`https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppLink
+                number={whatsapp}
+                // The stored WhatsApp value is digits only; the formatted phone
+                // number is the same line and reads as one.
+                label={phone ?? whatsapp}
+                message={reference ? referenceMessage(reference) : undefined}
+                location="rfq_outcome"
                 className="inline-block py-1 font-medium text-ink underline underline-offset-4"
-              >
-                {whatsapp}
-              </a>
+              />
             </li>
           )}
           {!email && !whatsapp && (

@@ -25,8 +25,10 @@ function CountTable({ title, rows, caption }: { title: string; rows: Count[]; ca
           <thead className="text-xs text-ink/70">
             <tr>
               <th scope="col" className="pb-2 font-medium">{title.replace("By ", "")}</th>
-              <th scope="col" className="w-20 pb-2 text-right font-medium">Qualified</th>
-              <th scope="col" className="w-16 pb-2 text-right font-medium">All</th>
+              <th scope="col" className="w-12 pb-2 text-right font-medium">All</th>
+              <th scope="col" className="w-16 pb-2 text-right font-medium">Qualified</th>
+              <th scope="col" className="w-14 pb-2 text-right font-medium">Quoted</th>
+              <th scope="col" className="w-12 pb-2 text-right font-medium">Won</th>
             </tr>
           </thead>
           <tbody>
@@ -38,8 +40,10 @@ function CountTable({ title, rows, caption }: { title: string; rows: Count[]; ca
                     <span className="block h-full bg-ink" style={{ width: `${(r.total / max) * 100}%` }} />
                   </span>
                 </th>
-                <td className="py-2 text-right font-mono text-ink">{r.qualified}</td>
                 <td className="py-2 text-right font-mono text-ink/75">{r.total}</td>
+                <td className="py-2 text-right font-mono text-ink">{r.qualified}</td>
+                <td className="py-2 text-right font-mono text-ink">{r.quoted}</td>
+                <td className="py-2 text-right font-mono font-semibold text-ink">{r.won}</td>
               </tr>
             ))}
           </tbody>
@@ -95,6 +99,19 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
           </dl>
         </section>
 
+        <section aria-labelledby="conversion" className="mt-8 border border-line p-5">
+          <h2 id="conversion" className="font-display text-h3 text-ink">Conversion</h2>
+          <p className="mt-1 text-xs text-ink/70">
+            Each rate with the two counts it is made of. Visitor-to-enquiry needs website visits, which are in Google Analytics
+            once it is switched on.
+          </p>
+          <dl className="mt-4 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 lg:grid-cols-5">
+            {report.conversion.map((c) => (
+              <Figure key={c.step} label={c.step} value={pct(c.part, c.whole)} note={`${c.part} of ${c.whole}`} />
+            ))}
+          </dl>
+        </section>
+
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <section aria-labelledby="funnel" className="border border-line p-5">
             <h2 id="funnel" className="font-display text-h3 text-ink">Stage reached</h2>
@@ -127,7 +144,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
 
           <CountTable title="By country" rows={report.byCountry} caption="Enquiries by buyer country" />
           <CountTable title="By product" rows={report.byCategory} caption="Enquiries by product category" />
-          <CountTable title="By source" rows={report.bySource} caption="Enquiries by campaign, referring site or form" />
+          <CountTable title="By source" rows={report.bySource} caption="Enquiries, quotations and orders by campaign, referring site or form" />
         </div>
 
         {can(staff.role, "delete") && (

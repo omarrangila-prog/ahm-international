@@ -19,6 +19,7 @@ import { ACCEPTED_LABEL, uploadLimitsText } from "../lib/upload-policy";
 import { enquiryDelivery, type EnquiryDelivery } from "../lib/mail-config";
 import { measurementEnabled } from "../lib/measurement";
 import { describeDays, DEFAULT_RETENTION_DAYS } from "../lib/retention";
+import { assetManifest } from "./asset-manifest";
 
 /**
  * What this deployment actually does with an enquiry, read from the same
@@ -191,6 +192,27 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
 
 export const privacySections = privacySectionsFor(delivery);
 
+/**
+ * What the product images are, from the same manifest that labels them. Until
+ * October 2026 this said they were photographs of production and that the
+ * site published no illustrations of garments; every garment image was
+ * generated. It now describes whichever is deployed.
+ */
+export function imagerySection(generated: boolean): LegalSection {
+  return {
+    heading: "Product imagery",
+    body: generated
+      ? [
+          "Product images on this site are AI-generated illustrations of representative articles, labelled \u201cAI illustration\u201d where they appear. They are not photographs of AHM International\u2019s production, not construction references and not an offer of a specific garment. Ask for photographs or a physical sample before relying on any construction detail.",
+          "No customer is named anywhere on this site, and garments carrying a third party\u2019s brand mark are not published here. A photograph of a facility, where one is published, is a photograph of that facility, and a partner\u2019s facility is labelled as a partner\u2019s.",
+        ]
+      : [
+          "Photographs show articles manufactured to buyer specification. They are construction references, not an offer of a specific garment, and no customer is named anywhere on this site. Garments carrying a third party\u2019s brand mark are not published here.",
+          "Where a product type has no photograph yet, the article is listed without an image.",
+        ],
+  };
+}
+
 export const termsSections: LegalSection[] = [
   {
     heading: "About these terms",
@@ -207,13 +229,7 @@ export const termsSections: LegalSection[] = [
       "No price, minimum quantity, sampling cost or lead time is published on this site, because each depends on the article. All four are quoted in writing against a specification.",
     ],
   },
-  {
-    heading: "Product imagery",
-    body: [
-      "Photographs show articles manufactured to buyer specification. They are construction references, not an offer of a specific garment, and no customer is named anywhere on this site. Garments carrying a third party\u2019s brand mark are not published here.",
-      "Where a product type has no photograph yet, the article is listed without an image. This site does not publish illustrations, diagrams or invented pictures of garments.",
-    ],
-  },
+  imagerySection(Object.values(assetManifest).some((e) => e.generated)),
   {
     heading: "Quotation requests",
     body: [

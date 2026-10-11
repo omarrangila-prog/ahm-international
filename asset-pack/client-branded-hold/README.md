@@ -3,8 +3,16 @@
 35 of the 63 supplied product photographs carry a third-party mark: an
 embroidered customer logo, a licensed graphic, or a brand hangtag.
 
-They are excellent photographs of real production work. They are held here
-because publishing them would do two things the site is built not to do.
+They are held here because publishing them would do two things the site is
+built not to do.
+
+> **Correction, 11 October 2026.** This file used to call these "excellent
+> photographs of real production work". All 39 files here share their names
+> with `../AHM_All_Individual_Generated_Product_Images/`, whose README says it
+> holds generated product images and excludes the raw camera originals. They
+> are generated images, probably made from photographs of real samples, and
+> the same is true of the unbranded set that was published. The camera
+> originals are the files worth asking the owner for.
 
 ## 1. It would name customers without permission
 
