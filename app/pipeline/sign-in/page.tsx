@@ -58,6 +58,9 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
                   ? "For AHM staff. Enter the PIN."
                   : "For AHM staff. Enter your work email and we will send a one-time sign-in link to it. There is no password."}
             </p>
+            {status.pinIssue && (
+              <p className="mt-5 border-l-2 border-ink pl-3 text-sm font-medium text-ink">{status.pinIssue}</p>
+            )}
             {message && (
               <p role="status" className="mt-5 border-l-2 border-ink pl-3 text-sm text-ink">
                 {MESSAGES[message]}

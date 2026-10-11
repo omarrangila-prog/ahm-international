@@ -230,6 +230,13 @@ test("a PIN alone is a way in, as the first admin, and only when it is 4 to 12 d
     const status = pipelineStatus({ ...base, PIPELINE_PIN: bad });
     assert.equal(status.pin, false, bad);
     assert.ok(status.missing.some((m) => m.includes("4 to 12 digits")), bad);
+    assert.match(status.pinIssue ?? "", /not 4 to 12 plain digits/, bad);
+  }
+  assert.equal(pinOnly.pinIssue, null);
+  assert.equal(pipelineStatus(base).pinIssue, null, "no PIN set is not a problem");
+  // Quotes typed around the PIN, and digits from a non-Latin keyboard, are not plain digits.
+  for (const typed of ['"4444"', "\u06F4\u06F4\u06F4\u06F4"]) {
+    assert.ok(pipelineStatus({ ...base, SMTP_PASS: "p", PIPELINE_PIN: typed }).pinIssue, typed);
   }
 
   // The PIN needs the store as much as the link does: the attempt count lives there.
@@ -239,6 +246,7 @@ test("a PIN alone is a way in, as the first admin, and only when it is 4 to 12 d
   assert.equal(pinAccount({ PIPELINE_STAFF: "a@x.com:sales, b@x.com:admin, c@x.com:admin" }), "b@x.com");
   assert.equal(pinAccount({ PIPELINE_STAFF: "a@x.com:sales" }), null);
   assert.equal(pipelineStatus({ ...base, PIPELINE_STAFF: "a@x.com:sales", PIPELINE_PIN: "8126" }).pin, false);
+  assert.match(pipelineStatus({ ...base, PIPELINE_STAFF: "a@x.com:sales", PIPELINE_PIN: "8126" }).pinIssue ?? "", /no admin/);
 });
 
 test("a PIN matches only itself, and attempts are counted per UTC day", () => {
