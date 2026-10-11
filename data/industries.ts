@@ -35,11 +35,13 @@ export const industries: Industry[] = [
     typicalGarments: ["Bib aprons", "Uniform polos", "Work shirts", "Fleece layers", "Caps"],
   },
   {
+    // Representative photographs differ per industry: three cards once showed
+    // the same apron side by side on the apron page.
     slug: "hospitality",
     name: "Hospitality",
     demand: "Front-of-house presentation held through a full shift, with colour matched across article types.",
     asset: "industries.hospitality",
-    representative: "products.apron.front",
+    representative: "photo.poloYellow",
     typicalGarments: ["Waist aprons", "Service shirts", "Uniform polos", "Ties", "Bottoms"],
   },
   {
@@ -47,7 +49,7 @@ export const industries: Industry[] = [
     name: "Food Service",
     demand: "Heat, grease and repeated industrial laundering, without the garment losing shape or shade.",
     asset: "industries.chef",
-    representative: "products.apron.front",
+    representative: "photo.henleyTeeNavy",
     typicalGarments: ["Chef coats", "Bib aprons", "Chef beanies", "Work trousers", "Tees"],
   },
   {
@@ -79,7 +81,7 @@ export const industries: Industry[] = [
     name: "Corporate",
     demand: "Consistent presentation across sizes and body types, with an inclusive size range.",
     asset: "industries.corporate",
-    representative: "photo.poloTaupeLongSleeve",
+    representative: "photo.henleyWaffleNavy",
     typicalGarments: ["Woven shirts", "Uniform polos", "Ties", "Softshell", "Knitwear"],
   },
   {
@@ -87,7 +89,7 @@ export const industries: Industry[] = [
     name: "Events",
     demand: "Volume delivered to a fixed date, with decoration accurate to the brand standard.",
     asset: "industries.retail",
-    representative: "photo.poloYellow",
+    representative: "photo.zipHoodieNavy",
     typicalGarments: ["T-shirts", "Uniform polos", "Hoodies", "Caps", "Vests"],
   },
 ];

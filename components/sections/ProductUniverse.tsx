@@ -31,10 +31,39 @@ import { numeral, cn } from "@/lib/utils";
  * - The preview is decorative and marked `aria-hidden`: every fact it shows is
  *   already in the link text, so a screen reader is not told anything twice.
  */
+/**
+ * Homepage order, which is not catalogue order. Aprons lead because they are
+ * the one family with documented export production; uniform, hospitality,
+ * polo and fleece follow as the brief's flagship range. The catalogue keeps its
+ * own numbering on /products.
+ */
+const FLAGSHIP_ORDER = [
+  "aprons",
+  "uniform-workwear",
+  "hospitality-food-service",
+  "polos-tshirts",
+  "fleece-sweatshirts",
+  "woven-shirts",
+  "bottoms",
+];
+
+/** The specification row that best describes how a family is put together. */
+const CONSTRUCTION_ROWS = ["Construction", "Reinforcement", "Seams", "Collar & cuff", "Trim"];
+
+function constructionOf(family: (typeof productCategories)[number]): string | null {
+  for (const label of CONSTRUCTION_ROWS) {
+    const row = family.specification.find((s) => s.label === label);
+    if (row?.value) return row.value;
+  }
+  return null;
+}
+
 export function ProductUniverse() {
   // Seven, deliberately. The full range is larger and lives on /products —
   // showing all of it here would rebuild the wall this section exists to remove.
-  const families = productCategories.slice(0, 7);
+  const families = FLAGSHIP_ORDER.map((slug) => productCategories.find((c) => c.slug === slug)).filter(
+    (c): c is (typeof productCategories)[number] => Boolean(c),
+  );
   const [active, setActive] = useState(0);
   const current = families[active];
 
@@ -46,7 +75,9 @@ export function ProductUniverse() {
           as="h2"
           id="products-heading"
           className="mt-5 max-w-3xl font-display text-display text-ink"
-          lines={[{ text: "BUILT FOR WORK." }, { text: "BUILT TO SCALE.", className: "text-ink" }]}
+          // "Built to scale" implied a production capacity nothing on the site
+          // evidences. The specification is the claim that can be kept.
+          lines={[{ text: "BUILT FOR WORK." }, { text: "MADE TO YOUR SPEC.", className: "text-ink" }]}
         />
 
         <div className="mt-14 grid grid-cols-12 gap-y-10 lg:gap-x-16">
@@ -98,9 +129,9 @@ export function ProductUniverse() {
           </ul>
 
           {/* One frame, which changes. Empty when the family has no photograph. */}
-          <div className="col-span-12 lg:col-span-5" aria-hidden="true">
+          <div className="col-span-12 lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-white p-5 sm:p-6">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-white p-5 sm:p-6" aria-hidden="true">
                 {families.map((family, i) => {
                   const preview = firstAvailable(family.heroAsset, family.articles[0].asset);
                   if (!hasAsset(preview)) return null;
@@ -123,13 +154,48 @@ export function ProductUniverse() {
                   );
                 })}
               </div>
-
-              {/* The specification reads as a line of type, not a row of chips. */}
+              {/* Outside the aria-hidden frame: this is real content and real
+                  links, and it follows the family that is hovered or focused. */}
               <div className="mt-5 border-t border-ink/15 pt-5">
                 <p className="label text-ink/65">{current.shortName}</p>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink/70">
                   {current.subcategories.slice(0, 4).join("  ·  ")}
                 </p>
+                <dl className="mt-5 space-y-3 text-sm">
+                  {current.applications.length > 0 && (
+                    <div>
+                      <dt className="text-ink/65">Used in</dt>
+                      <dd className="mt-0.5 text-ink">{current.applications.join(", ")}</dd>
+                    </div>
+                  )}
+                  {constructionOf(current) && (
+                    <div>
+                      <dt className="text-ink/65">Construction</dt>
+                      <dd className="mt-0.5 text-ink">{constructionOf(current)}</dd>
+                    </div>
+                  )}
+                  {current.decoration.length > 0 && (
+                    <div>
+                      <dt className="text-ink/65">Customisation</dt>
+                      <dd className="mt-0.5 text-ink">{current.decoration.join(", ")}</dd>
+                    </div>
+                  )}
+                </dl>
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <Link
+                    href={`/products/${current.slug}`}
+                    className="group inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink underline-offset-4 hover:underline"
+                  >
+                    View {current.shortName}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href={`/request-a-quote?${new URLSearchParams({ category: current.name, source: "homepage_products" })}`}
+                    className="inline-flex h-11 items-center bg-ink px-5 font-display text-xs font-bold uppercase tracking-[0.08em] text-paper transition-colors hover:bg-lime hover:text-ink"
+                  >
+                    Request a quote
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

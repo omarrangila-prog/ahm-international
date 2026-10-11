@@ -134,10 +134,38 @@ export const company = {
   /* -------- Positioning: verified and safe to publish -------- */
   positioning: {
     primary: "From tech pack to FOB shipment.",
-    secondary: "Your next Pakistan manufacturing partner.",
+    secondary: "A Pakistan-based apparel manufacturing and global sourcing partner.",
     supporting:
       "Product development, commercial costing and apparel manufacturing for international uniform, workwear and sourcing programs.",
     model: "FOB",
+  },
+
+  /* -------- Manufacturing model -------- */
+  /**
+   * Stated by the business owner in the website brief of 10 October 2026: AHM
+   * runs its own manufacturing operations and also works with specialist
+   * partner factories.
+   *
+   * Published because the owner stated it, which is the same standard the
+   * phone number and business hours meet. What the owner has NOT yet stated,
+   * and so nothing on the site says: where the own facility is, its size or
+   * equipment, which categories it produces, which partners produce which, and
+   * how partners are chosen. The per-category split lives in
+   * data/manufacturing-network.ts and renders as "confirmed at quotation" until
+   * it is supplied.
+   *
+   * Two rules from the same brief hold everywhere this is used: a partner
+   * factory is never called company-owned, and nothing implies that all
+   * production happens in one building.
+   */
+  manufacturingModel: {
+    verified: true,
+    source: "Owner brief, 10 October 2026",
+    ownOperations: true,
+    partnerFactories: true,
+    headline: "One manufacturing partner. Multiple production capabilities.",
+    summary:
+      "Combining our own manufacturing operations with a network of specialist partner factories, AHM International supports custom apparel development, manufacturing, quality coordination and FOB export programs from Pakistan.",
   },
 
   /* -------- Operational facts -------- */
@@ -150,7 +178,7 @@ export const company = {
   },
 
   /** Buyer markets AHM sells into. No local-office claim is made for any of them. */
-  targetMarkets: ["United States", "United Kingdom", "European Union", "Canada", "Australia"],
+  targetMarkets: ["United States", "United Kingdom", "European Union", "Canada", "Australia", "United Arab Emirates"],
 
   /**
    * Deliberately empty. Populating any of these arrays publishes the content —

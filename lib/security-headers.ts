@@ -10,6 +10,12 @@
  * this site, not copied from a checklist.
  */
 
+import { GA_CSP, measurementEnabled } from "./measurement";
+import { storageEnabled } from "./storage/namespace";
+
+/** Where @vercel/blob's browser client sends uploads (its API base, not the store's file host). */
+export const BLOB_API_ORIGIN = "https://vercel.com";
+
 /**
  * Content Security Policy.
  *
@@ -38,17 +44,32 @@
  * `tests/security-headers.test.ts` asserts the production policy cannot contain
  * it.
  */
-export function buildCsp({ development }: { development: boolean }) {
+export function buildCsp({
+  development,
+  analytics = false,
+  directUploads = false,
+}: {
+  development: boolean;
+  analytics?: boolean;
+  directUploads?: boolean;
+}) {
+  // GA4's origins are added only when a measurement ID is configured, and only
+  // the ones it documents. Loading still waits for consent; this is what lets
+  // it load at all once given.
+  const ga = (list: readonly string[]) => (analytics ? ` ${list.join(" ")}` : "");
+  // With the private store configured, the browser uploads tech packs to the
+  // Blob API itself. That is the one extra origin, and only for connect.
+  const blob = directUploads ? ` ${BLOB_API_ORIGIN}` : "";
   return [
     "default-src 'self'",
     // Next's hydration bootstrap is inline; see the note above.
-    `script-src 'self' 'unsafe-inline'${development ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'unsafe-inline'${development ? " 'unsafe-eval'" : ""}${ga(GA_CSP.script)}`,
     // Tailwind and React style props emit inline styles.
     "style-src 'self' 'unsafe-inline'",
     // data: for blur placeholders, blob: for the file previews in the RFQ form.
-    "img-src 'self' data: blob:",
+    `img-src 'self' data: blob:${ga(GA_CSP.img)}`,
     "font-src 'self'",
-    "connect-src 'self'",
+    `connect-src 'self'${ga(GA_CSP.connect)}${blob}`,
     "media-src 'self'",
     // The RFQ form must not be able to post anywhere but this origin.
     "form-action 'self'",
@@ -61,7 +82,11 @@ export function buildCsp({ development }: { development: boolean }) {
   ].join("; ");
 }
 
-const csp = buildCsp({ development: process.env.NODE_ENV === "development" });
+const csp = buildCsp({
+  development: process.env.NODE_ENV === "development",
+  analytics: measurementEnabled,
+  directUploads: storageEnabled(),
+});
 
 export const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },

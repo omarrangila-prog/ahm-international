@@ -5,12 +5,14 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { ArrowLink } from "@/components/ui/Button";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { WhyAhm } from "@/components/sections/WhyAhm";
 import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
 import { hasAsset } from "@/data/assets";
 import { pageMetadata } from "@/lib/seo";
 import { numeral } from "@/lib/utils";
+import { verificationSteps } from "@/data/trust";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
@@ -44,7 +46,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         headingLines={[{ text: "A manufacturing" }, { text: "partner, not a", className: "text-ink" }, { text: "catalogue." }]}
-        intro="AHM International is a Pakistan-based apparel manufacturing and export partner focused on commercial product development and international sourcing programs."
+        intro="AHM International is a Pakistan-based apparel manufacturing and export partner. It combines its own manufacturing operations with specialist partner factories, for international uniform, workwear and private-label programs."
         trail={[{ name: "About", path: "/about" }]}
         zone="paper"
         asset="factory.sewing"
@@ -171,38 +173,12 @@ export default function AboutPage() {
 
           <div className="col-span-12 lg:col-span-7">
             <ol className="border-t border-ink/15">
-              {[
-                {
-                  n: "01",
-                  title: "Ask for the registration documents",
-                  body: "Company registration and tax registration (NTN), sent directly. We do not publish an NTN on this page until the number is verified — ask for it in writing. If a supplier hesitates, that is your answer about everything else on their site.",
-                },
-                {
-                  n: "02",
-                  title: "Check the exporter registers",
-                  body: "Pakistan's Trade Development Authority publishes exporter listings with company name, address and tax number. A supplier that appears where they say they operate is a supplier that exists.",
-                },
-                {
-                  n: "03",
-                  title: "Request a physical sample",
-                  body: "The most reliable audit of a factory is a garment it made. Send a specification and judge the construction, the measurements and the finish in your hands rather than on a screen.",
-                },
-                {
-                  n: "04",
-                  title: "Nominate your own inspection agency",
-                  body: "SGS, Bureau Veritas, Intertek or your own QA. A supplier confident in their output does not object to someone else opening the cartons before they ship. AHM confirms third-party inspection arrangements in writing against the sealed sample.",
-                },
-                {
-                  n: "05",
-                  title: "Ask what a claim rests on",
-                  body: "For any figure on any supplier's site, ask what document supports it. That question is why this site publishes a short list rather than a long one.",
-                },
-              ].map((step) => (
+              {verificationSteps.map((step, i) => (
                 <li
-                  key={step.n}
+                  key={step.title}
                   className="grid grid-cols-1 gap-2 border-b border-ink/15 py-5 sm:grid-cols-[3rem_1fr] sm:gap-6"
                 >
-                  <span className="numeral text-lg text-ink">{step.n}</span>
+                  <span className="numeral text-lg text-ink">{String(i + 1).padStart(2, "0")}</span>
                   <div>
                     <h3 className="font-display text-base font-bold uppercase tracking-tight text-ink">
                       {step.title}
@@ -212,6 +188,9 @@ export default function AboutPage() {
                 </li>
               ))}
             </ol>
+            <div className="mt-6">
+              <ArrowLink href="/verification">The full business verification page</ArrowLink>
+            </div>
           </div>
         </div>
       </Section>

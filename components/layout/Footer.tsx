@@ -128,13 +128,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Closing statement */}
+        {/* Closing statement. Not "Let's build your next program": the
+            homepage's inquiry section now carries that line directly above,
+            and the same sentence twice in a row reads as a template. */}
         <div className="mt-20 border-t border-line-invert pt-12 lg:mt-28">
           <Link href="/request-a-quote" className="group block">
             <MaskedHeading
               lines={[
-                { text: "LET'S BUILD" },
-                { text: "YOUR NEXT PROGRAM." },
+                { text: "START WITH" },
+                { text: "ONE STYLE." },
               ]}
               as="p"
               className="font-display text-mega text-paper transition-colors duration-500 group-hover:text-lime"

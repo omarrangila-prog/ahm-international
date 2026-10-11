@@ -12,6 +12,7 @@ import { Faq } from "@/components/ui/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { IndustryCard } from "@/components/products/IndustryCard";
 import { Button } from "@/components/ui/Button";
 import { productCategories, getCategory, SPEC_DISCLAIMER } from "@/data/products";
@@ -103,6 +104,7 @@ export default async function ProductCategoryPage({ params }: Params) {
 
   return (
     <>
+      <PageViewEvent event="product_view" detail={category.slug} />
       <JsonLd
         data={productSchema({
           name: `${category.name} manufacturing`,
@@ -263,6 +265,42 @@ export default async function ProductCategoryPage({ params }: Params) {
         </div>
       </Section>
 
+
+      {/* ---------------- Cost comparison ---------------- */}
+      {category.costComparison && (
+        <Section zone="lime" spacing="lg" tooth aria-labelledby="compare-heading">
+          <div className="shell-wide relative z-10 grid grid-cols-12 gap-y-10 lg:gap-x-12">
+            <div className="col-span-12 lg:col-span-5">
+              <Eyebrow>Already buying?</Eyebrow>
+              <h2 id="compare-heading" className="mt-5 font-display text-h1 text-ink">
+                {category.costComparison.heading}
+              </h2>
+              <p className="mt-6 max-w-md text-ink/75">{category.costComparison.intro}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button
+                  href={`/request-a-quote?${new URLSearchParams({ category: category.name, source: `${category.slug}_comparison` })}`}
+                  size="md"
+                  withArrow
+                >
+                  Send your {category.programNoun} details
+                </Button>
+                <Button href="/send-tech-pack" variant="outline" size="md">
+                  Upload a tech pack
+                </Button>
+              </div>
+            </div>
+            <ol className="col-span-12 grid grid-cols-1 gap-px border border-ink/20 bg-ink/20 sm:grid-cols-2 lg:col-span-7">
+              {category.costComparison.steps.map((step, i) => (
+                <li key={step.title} className="bg-lime p-6">
+                  <p className="label text-ink/70">{numeral(i + 1)}</p>
+                  <h3 className="mt-3 font-display text-lg font-bold tracking-[-0.015em] text-ink">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Section>
+      )}
 
       {/* ---------------- Photographed samples ---------------- */}
       {photographedSamples.length > 0 && (

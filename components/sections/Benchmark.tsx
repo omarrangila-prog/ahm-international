@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ArrowRight, Upload } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
@@ -48,6 +48,7 @@ const DESTINATIONS = [
   "Germany",
   "Netherlands",
   "Australia",
+  "United Arab Emirates",
   "Other",
 ];
 
@@ -109,6 +110,17 @@ export function Benchmark() {
   const [delivery, setDelivery] = useState(DELIVERIES[1]);
   const [destination, setDestination] = useState(DESTINATIONS[0]);
 
+  // A buyer who changes one field has started a benchmark, whether or not they
+  // go on to request the quote. Counted once per visit to the section.
+  const started = useRef(false);
+  const withStart = (set: (value: string) => void) => (value: string) => {
+    if (!started.current) {
+      started.current = true;
+      track("benchmark_start");
+    }
+    set(value);
+  };
+
   const categoryNames = useMemo(() => productCategories.map((c) => c.name), []);
   const fabricNames = useMemo(() => [...materials.map((m) => m.name), "Not sure. Recommend options"], []);
 
@@ -137,13 +149,13 @@ export function Benchmark() {
       <div className="shell-wide relative z-10 grid grid-cols-12 gap-y-12 lg:gap-x-12">
         {/* ---------------- Argument ---------------- */}
         <div className="col-span-12 lg:col-span-5">
-          <Eyebrow>Already sourcing?</Eyebrow>
+          <Eyebrow>Already buying aprons or uniforms?</Eyebrow>
 
           <MaskedHeading
             as="h2"
             id="benchmark-heading"
             className="mt-6 font-display text-display text-ink"
-            lines={[{ text: "Give us" }, { text: "one style" }, { text: "to benchmark.", className: "text-ink" }]}
+            lines={[{ text: "Let us" }, { text: "benchmark" }, { text: "one style.", className: "text-ink" }]}
           />
 
           <div className="mt-8 max-w-md space-y-5 text-ink/70">
@@ -194,18 +206,18 @@ export function Benchmark() {
             </div>
 
             <div className="px-6 py-2 sm:px-8">
-              <SpecField label="Product" value={category} options={categoryNames} onChange={setCategory} accent />
+              <SpecField label="Product" value={category} options={categoryNames} onChange={withStart(setCategory)} accent />
               <div className="grid grid-cols-[9rem_1fr] items-center gap-3 border-b border-ink/10 py-3.5 sm:grid-cols-[11rem_1fr]">
                 <span className="label text-ink/65">Construction</span>
                 <span className="font-display text-[0.9375rem] font-semibold tracking-[-0.015em] text-ink/65">
                   {construction}
                 </span>
               </div>
-              <SpecField label="Fabric" value={fabric} options={fabricNames} onChange={setFabric} />
-              <SpecField label="Decoration" value={decoration} options={DECORATIONS} onChange={setDecoration} />
-              <SpecField label="Quantity" value={quantity} options={QUANTITIES} onChange={setQuantity} />
-              <SpecField label="Target delivery" value={delivery} options={DELIVERIES} onChange={setDelivery} />
-              <SpecField label="Destination" value={destination} options={DESTINATIONS} onChange={setDestination} />
+              <SpecField label="Fabric" value={fabric} options={fabricNames} onChange={withStart(setFabric)} />
+              <SpecField label="Decoration" value={decoration} options={DECORATIONS} onChange={withStart(setDecoration)} />
+              <SpecField label="Quantity" value={quantity} options={QUANTITIES} onChange={withStart(setQuantity)} />
+              <SpecField label="Target delivery" value={delivery} options={DELIVERIES} onChange={withStart(setDelivery)} />
+              <SpecField label="Destination" value={destination} options={DESTINATIONS} onChange={withStart(setDestination)} />
             </div>
 
             {/* Card footer. The honest output */}

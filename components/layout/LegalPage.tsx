@@ -22,12 +22,15 @@ export function LegalPage({
   intro,
   path,
   sections,
+  children,
 }: {
   eyebrow: string;
   headingLines: { text: string; className?: string }[];
   intro: string;
   path: string;
   sections: LegalSection[];
+  /** Rendered after the sections, e.g. the consent control on /cookies. */
+  children?: React.ReactNode;
 }) {
   return (
     <>
@@ -76,6 +79,7 @@ export function LegalPage({
                 </Reveal>
               ))}
             </div>
+            {children}
           </div>
         </div>
       </Section>

@@ -32,7 +32,7 @@ export function DevelopmentTimeline() {
     <Section zone="lime" spacing="lg" tooth aria-labelledby="development-heading">
       <div className="shell-wide relative z-10">
         <div className="max-w-4xl">
-          <Eyebrow>Development</Eyebrow>
+          <Eyebrow>How we make your product</Eyebrow>
             <MaskedHeading
               as="h2"
               id="development-heading"

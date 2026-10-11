@@ -1,11 +1,15 @@
 import type { NextConfig } from "next";
 import { securityHeaders, apiHeaders } from "./lib/security-headers";
+import { legacyHostRedirects } from "./lib/domains";
 
 const nextConfig: NextConfig = {
   // Brief §38 moved the sourcing pillars to keyword-first root URLs. These are
   // permanent so any existing link or index entry follows to the one canonical URL.
   async redirects() {
     return [
+      // Old hostnames first, so a legacy URL lands on the canonical host in one
+      // hop rather than being path-redirected on the wrong host first.
+      ...legacyHostRedirects(),
       { source: "/product-development", destination: "/development", permanent: true },
       { source: "/sourcing/apparel-manufacturer-pakistan", destination: "/apparel-manufacturer-pakistan", permanent: true },
       { source: "/sourcing/apparel-exporter-pakistan", destination: "/apparel-exporter-pakistan", permanent: true },

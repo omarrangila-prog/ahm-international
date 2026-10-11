@@ -19,6 +19,7 @@ export type AnalyticsEvent =
   | "rfq_submit_error"
   | "email_click"
   | "phone_click"
+  | "whatsapp_click"
   | "book_call_click"
   | "mega_menu_open"
   | "benchmark_start"
@@ -34,7 +35,12 @@ export type AnalyticsEvent =
   | "contact_clicked"
   // Private showroom (§27) — emitted once the showroom ships
   | "showroom_opened"
-  | "showroom_style_selected";
+  | "showroom_style_selected"
+  // Sourcing assistant. Never carries what the buyer typed.
+  | "assistant_open"
+  | "assistant_question"
+  | "assistant_link"
+  | "assistant_handoff";
 
 type Payload = Record<string, string | number | boolean | undefined>;
 

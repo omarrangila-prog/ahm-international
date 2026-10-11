@@ -80,8 +80,8 @@ per file and exits non-zero on any FAIL, so it can gate a deploy.
   the wordmark mid-letter ("NTERN") and cost 107 kB each on every page; the
   original build package flagged a vector master as the P0 brand task. The
   rasters are archived in `assets-master/brand/`.
-- `/resources` publishes five complete guides and a visible backlog of twenty
-  more. Titles are not articles.
+- `/resources` publishes twenty-two complete guides and a visible backlog of
+  fifteen more. Titles are not articles.
 - The export globe draws **one** arc. The component it came from ships forty
   fabricated ones. One lane is what `data/markets.ts` flags `documentedExport`,
   and the arcs are derived from that flag, so a market cannot appear on the
@@ -163,12 +163,12 @@ publication permission. `npm run images:gaps` must stay at 0.
 npm run audit       SEO basics (titles, descriptions, H1, canonical) — needs a server
 npm run seo:deep    OG/Twitter, heading skips, alt, JSON-LD, breadcrumbs
 npm run contrast    WCAG AA on the rendered page, parses oklab()
-npm run responsive  12 viewports x 20 routes, reachable overflow only
+npm run responsive  12 viewports x 22 routes, reachable overflow only
 npm run targets     WCAG 2.2 SC 2.5.8 with its own exceptions applied
 npm run images:gaps empty image frames actually rendered
 npm run links       internal link targets
 npm run weight      cold mobile bytes by type + LCP (needs a production server)
-npm run a11y        axe-core WCAG 2.2 AA, 17 routes x 2 widths
+npm run a11y        axe-core WCAG 2.2 AA, 21 routes x 2 widths
 npm run console     uncaught exceptions, console errors, failed requests
 ```
 
@@ -402,6 +402,151 @@ Every statement is checkable against the code.
 
 They are drafts. `LEGAL_REVIEW_NOTICE` renders on each page and is part of the
 shared template, so the draft status cannot be lost by editing one page.
+
+## Generated scenes are not photographs
+
+Fifteen images of "AHM operations" were generated from `asset-pack/prompts/`
+and were live until October 2026: a floor of branded operators under "LINE A-1"
+signage, an AHM quality check sheet with a signature and a date, a warehouse
+and a shipping container painted with the company name, and the documented US
+apron program illustrated with an apron carrying AHM's own logo. A buyer reads a
+factory photograph as evidence of the factory, so each asserted scale, staff or
+records that nothing verifies. They are in `asset-pack/generated-hold/`.
+
+The rule is rule 1 applied to pictures: an image of the facility, the people or
+the paperwork must be a photograph of that thing. Product renders on a white
+plate, fabric macros and the plain carton mockup are not claims about
+operations and stay. Partner-factory photographs are fine when labelled as a
+partner's.
+
+## AHM runs its own manufacturing and uses partner factories
+
+The owner's brief of 10 October 2026 states both, and `company.manufacturingModel`
+records it with its source. Two rules hold wherever it is used: a partner
+factory is never called company-owned, and nothing implies all production
+happens in one building. Which families are made where is unknown, so
+`routes` in `data/manufacturing-network.ts` is empty and /manufacturing-network
+hides that column; the column appears as soon as one family is filled in.
+
+Where a procedure would go and none has been described (how partners are
+chosen, when the facility is disclosed), the pages give the buyer the question
+to ask instead. Do not replace a question with an invented process.
+
+## RFQs go to the mailbox, and only 4 MB fits
+
+`/api/rfq` emails each request to the company mailbox over Hostinger SMTP
+(`lib/rfq-mail.ts`), attachments included; `SMTP_PASS` is the only variable it
+needs. `delivered` is true only when SMTP or the webhook accepted it, and the
+two outcome screens are different screens, not one with a caveat: "RFQ
+received" is reserved for a delivered request.
+
+Vercel refuses request bodies over 4.5 MB before the route runs, with plain
+text. The form once advertised 40 MB, failed on any real tech pack, and told
+the buyer to check their connection. Without the private store the cap is
+4 MB in total; larger files go by email with the reference. A refused file
+no longer fails the enquiry.
+
+## With the private store, files skip the function entirely
+
+`ahm-rfq-files` is a **private** Vercel Blob store connected to the project
+(production, preview, development). When `BLOB_READ_WRITE_TOKEN` is present the
+quote form switches to direct uploads (`uploadMode="direct"`, decided at build
+time in the page): the browser asks `/api/rfq/upload` for a token bound to one
+pathname, one extension's content types, 25 MB and thirty minutes, uploads
+straight to the store, and the submission then carries only pathnames.
+`lib/uploads/claim.ts` re-checks each one (exists, recent, within limits,
+leading bytes match the extension), moves it from `rfq-incoming/<uuid>/` to
+`rfq/<REF>/`, deletes what fails, and attaches to the email whatever fits in
+10 MB. The store's own URLs answer 403 to everyone; `/pipeline/files/...` is
+the only way out, behind a staff session.
+
+- **Namespaces.** Production writes at the root, previews under `preview/`,
+  local runs under `local/` (`lib/storage/namespace.ts`). One store serves all
+  three, so without this a preview test enquiry lands in production's register.
+- **Retention is one number** (`lib/retention.ts`, two years by default) read
+  by the daily job that deletes and the privacy policy that promises.
+  Unclaimed uploads go after a day.
+- **The Blob client retries a dead upload for about seventeen minutes.**
+  `direct-client.ts` aborts a file that has sent nothing for 45 seconds, and the
+  form then offers "Try again" or "Send without it". Measured from the last
+  progress event, so a slow upload that is moving is never cut off.
+- `connect-src` gains `https://vercel.com` (the Blob API) only in a build with
+  the store; `tests/uploads.test.ts` holds that it is the only change.
+
+## The enquiry register lives in the same store
+
+`/pipeline` is the brief's sales pipeline: the eleven stages in the owner's
+order, owner, follow-up and last-contact dates, quotation reference, lost
+reason, notes, reports and CSV export. It is JSON documents in the private
+store, not a database: `pipeline/leads/<REF>.json` is the record and
+`pipeline/index.json` is derived from it for the board. Writes use the ETag
+(`ifMatch`) and retry on conflict (`lib/storage/json-store.ts`); the "Rebuild
+index" button regenerates the index from the records if the two ever diverge.
+
+**A compressed read returns a weak ETag** (`W/"…"`) and a conditional write
+given that form is always refused. `strongEtag()` strips the prefix. Small
+documents read back strong, so this passed every probe and failed only once a
+real lead record grew past the compression threshold.
+
+Sign-in is an emailed one-time link (there are no passwords to manage): the
+link opens a page with a button, because mail scanners open links and a link
+that signed in on GET would be spent before the person clicked it. Single use
+is a create-only marker in the store, which lets exactly one of two racing
+clicks win. Staff and roles come from `PIPELINE_STAFF` and are re-read on every
+request; unset, the company mailbox is the only account, as admin. Links in
+emails are built from `pipelineOrigin()`, never the request's Host header:
+a forged Host would otherwise mail a staff member a genuine link to someone
+else's server. The session cookie is scoped to `/pipeline`, which also keeps
+the public site's chrome off those pages (`PublicChrome`).
+
+Every page, action and route under `/pipeline` checks the session itself.
+There is no proxy and no layout check to rely on.
+
+The daily job (`/api/cron/daily`, `vercel.json`) deletes unclaimed and expired
+files and emails staff an internal follow-up digest. It never writes to a
+buyer: an automated chaser is the unsolicited message the brief rules out.
+
+## The sourcing assistant answers from the site, and only when keyed
+
+`ANTHROPIC_API_KEY` turns it on; without one nothing renders and nothing ships.
+The corpus (`lib/assistant/knowledge.ts`) is built from the same data modules
+the pages render, and names the unpublished fields (MOQ, lead time, capacity,
+certifications) as unpublished, because a model told nothing about them fills
+the gap. The base URL is fixed to Anthropic's; only a localhost override is
+honoured, for tests. A third-party "compatible" endpoint would receive every
+buyer's questions. Answers may link only to site paths, the mailbox and the
+WhatsApp number (`safeHref`), whatever the model writes. Nothing a buyer types
+is stored or logged.
+
+## Where an enquiry came from is kept in page memory
+
+Landing page, referring host and utm tags are held in a module variable
+(`lib/attribution.ts`) and posted only with an enquiry. Not sessionStorage:
+writing campaign data to the device is not strictly necessary for anything the
+visitor asked for, so in the EU and UK it would need consent first. The site
+navigates client-side, so the value survives the walk to the quote form.
+
+## The full quote form could not be sent, and nobody saw why
+
+Two bugs, both live until October 2026, both silent:
+
+- The optional Gender select posts "" and the schema's enum refused it. The
+  error rendered on step 2 while the buyer pressed send on step 7, so
+  "Submit for Review" did nothing. Optional selects now use `optionalChoice`,
+  and a failed submit jumps to the earliest step with a problem.
+- "Continue" and "Submit for Review" were one `<button>` whose type flipped
+  during the click from the Files step, so the browser submitted the form from
+  "Continue" and the buyer never saw the review step. They now have distinct
+  keys. Don't merge them back into one element.
+
+## Analytics wait for consent, and the legal text follows the config
+
+GA4 renders nothing unless `NEXT_PUBLIC_GA_ID` is set, and with it requests
+gtag.js only after "Allow". The CSP gains Google's origins only in that build.
+The privacy and cookie text is generated from the same configuration the code
+reads (`privacySectionsFor`, `cookieSectionsFor`), and `tests/legal-claims.test.ts`
+checks both states of each. Do not hand-edit one state of the policy without
+the other.
 
 ## Before launch
 

@@ -22,35 +22,10 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "height": 1600,
     "blur": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAACwAQCdASoQABAABIB0JZwAAudflaoQAP7ufyqUnHN4UAAA"
   },
-  "/assets/case-studies/uniform-apron-program/product.webp": {
-    "width": 1600,
-    "height": 1600,
-    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoQABAABIB0JZwAApQdlEIXIgAA/vN7fPCrKlmnNCD15KNrPjMookK9/OASdhamljAM1fvIpFOZRnUvI5z5btK1IoAAAA=="
-  },
   "/assets/development/fabric-swatches.webp": {
     "width": 1600,
     "height": 900,
     "blur": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoQAAkABIB0JQBOgBbr1JdwAP7nOb8Lms1Dknv1J1yg56mAcp8eadif0PofvpYVKqa1MxLP8qiN7hiSb84AAA=="
-  },
-  "/assets/development/measurement.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAQCdASoQAAkABIB0JYwCdADa7ASagAD+wHBQ3igJ1Ziu3Y8zvrrxMxux66aBEuGTi9suCwOZbEjNKsf0/vWHwSgAAA=="
-  },
-  "/assets/development/pattern.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQAAkABIB0JQBOkCYiSHQiAAD8Nl5QHFuk0tDCvI4oPoDd897gFnK5B+KmS5kQAAA="
-  },
-  "/assets/development/tech-pack.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoQAAkABIB0JQBdgBU9ymU+gAD+5oOAzHRhSBOmS/QY+MWet18ObsQT+tnsr8OaUFHp0FCr5+BiNPODAAA="
-  },
-  "/assets/development/trims.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACQAQCdASoQAAkABIB0JZwAAlE+RMAA/OGB7/PQ6IzkLQR92mjilerjxvLw8jJ8wDzpByJJ6iDOdpeGAdz31zTC/rSNd44AAAA="
   },
   "/assets/export/carton-marking.webp": {
     "width": 1200,
@@ -61,16 +36,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "width": 1600,
     "height": 900,
     "blur": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAQAgCdASoQAAkABIB0JYgCdH8AFXk6kXIAAP7vy55mQjJ+LaAWCsorMrL8TZ/4rkllpAFFPkgAAA=="
-  },
-  "/assets/export/container-loading.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoQAAkABIB0JZACdADMsXXriAD8jDLEBp9ecR21S5o1kH3hSUQiCpRys5TKFJhSbrnAOycHkqZSmaO0pvYB+JS+4IYAAA=="
-  },
-  "/assets/export/warehouse.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAkABIB0JZACdAEQz7zowADJcBH6KtwUctMPWcx8uPG04S7NtLwzRfSbsDAA"
   },
   "/assets/fabrics/canvas.webp": {
     "width": 1200,
@@ -121,46 +86,6 @@ export const assetManifest: Record<string, ManifestEntry> = {
     "width": 1200,
     "height": 1200,
     "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQABAABIB0JQBOgCG+sEpO8AAA/tWBSk+2eB4QS6LQZbapImPRMAAA"
-  },
-  "/assets/factory/cutting.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACwAQCdASoQAAkABIB0JZQAAp2l5vmQAP6muRSHGBVkqP4k14BVnOPCw/LfDOIltoV9kMe+CAAAAA=="
-  },
-  "/assets/factory/embroidery.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQAAkABIB0JZwAApOpvSlCt6AA+pGpPqEwC2N+Z4LRx+5ICptG8OrLUe3EARK4wAA="
-  },
-  "/assets/factory/fabric-inspection.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAQCdASoQAAkABIB0JYwAAxPH+OyxHYAA/r6CxF8aemJfB4A2duLBs5iNCZX5bo0tYsV42ese8lLjHm2AAA=="
-  },
-  "/assets/factory/finishing.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABIB0JZwAAvh5r3m+MAD7IuqH6Syw459YlkEOi1iFcDOlfJLhPCc0iw9guFZny0AchJUIAA=="
-  },
-  "/assets/factory/packing.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoQAAkABIB0JQBOgBLpU7cAAPsiwaac0DN3eM6hKxIaCnViU3E2xliWY/GFkS/RduICBjczqDVhxgAA"
-  },
-  "/assets/factory/quality-control.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoQAAkABIB0JZwAApv1olqAAAD+wSKlRCico/Bbp//Jta5CDYkF9b/HVQ/YQA9sf4EjwXKYLBUAGnKCHxGHAAAA"
-  },
-  "/assets/factory/sewing.webp": {
-    "width": 1600,
-    "height": 900,
-    "blur": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAkABIB0JYwC7AEO2zCrVIAA9G2FNjNAWk8et60NYa/QRqQr5f8yKqJt3RvMpvNa6Nlw+HBdzy9gAAA="
-  },
-  "/assets/hero/hero-sewing-01.webp": {
-    "width": 1920,
-    "height": 1080,
-    "blur": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABIB0JYwC7AEfUKOKQAD925yORHgZ1oSm4aSiTSGbSXb505d/Y8EdtJlM/ULdmWhKP4uEAA=="
   },
   "/assets/products/aprons/apron-black-front.webp": {
     "width": 1600,

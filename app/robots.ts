@@ -18,7 +18,8 @@ export default function robots(): MetadataRoute.Robots {
         // Private showrooms carry per-buyer content and are
         // additionally noindex at the page level. Disallowing them here keeps the
         // paths out of crawl logs as well — spec §27 and §49.
-        disallow: ["/api/", "/showroom/"],
+        // The enquiry register is staff-only and noindex as well.
+        disallow: ["/api/", "/showroom/", "/pipeline"],
       },
     ],
     sitemap: [`${company.siteUrl}/sitemap.xml`, `${company.siteUrl}/image-sitemap.xml`],

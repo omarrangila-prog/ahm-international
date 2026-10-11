@@ -84,6 +84,16 @@ export type ProductCategory = {
    * deployed set — see asset-pack/client-branded-hold.
    */
   photography?: AssetKey[];
+  /**
+   * An invitation to send the article a buyer already purchases and have it
+   * costed like for like. Optional: a family shows it only once the process
+   * behind it is one AHM runs for that family.
+   */
+  costComparison?: {
+    heading: string;
+    intro: string;
+    steps: { title: string; body: string }[];
+  };
   seoTitle: string;
   seoDescription: string;
 };
@@ -226,7 +236,8 @@ export const productCategories: ProductCategory[] = [
     articles: [
       { name: "Three-Pocket Bib Apron", asset: "products.apron.front", note: "Divided patch pocket, bar-tacked stress points, adjustable neck" },
       { name: "Three-Pocket Waist Apron", asset: "renders.waistApron", note: "Divided pocket, extended waist ties" },
-      { name: "Chef Beanie", asset: "renders.chefBeanie", note: "Ventilated crown, elasticated or tie back" },
+      // The chef beanie was listed here. It is headwear, not an apron, and is
+      // catalogued under Hospitality & Food Service with the rest of chef wear.
     ],
     specification: [
       { label: "Fabric options", value: "65/35 poly-cotton twill, poly-cotton poplin, cotton canvas, stain-release finished woven" },
@@ -245,6 +256,32 @@ export const productCategories: ProductCategory[] = [
     applications: ["Grocery", "Hospitality", "Food Service", "Retail", "Events"],
     heroAsset: "products.apron.front",
     detailAssets: ["products.apron.detail", "products.apron.fabric", "products.apron.back"],
+    // The process is the one the owner described in the brief of 10 October
+    // 2026: reference in, construction reviewed, open points clarified, FOB
+    // quotation out. No step produces a number before the last one.
+    costComparison: {
+      heading: "Send us your existing apron for cost comparison.",
+      intro:
+        "Already buying aprons? Send the specification of the one you buy now and get an FOB quotation for the same apron. There is no instant price: a comparison is only useful when both quotations describe the same article.",
+      steps: [
+        {
+          title: "You send the reference",
+          body: "The current apron's tech pack, or clear photographs with its measurements. Add the quantity and destination.",
+        },
+        {
+          title: "AHM reviews the construction",
+          body: "Fabric and weight, pocket layout, straps and ties, hardware, reinforcement, labels and packing, read from the reference rather than assumed.",
+        },
+        {
+          title: "Open points are clarified",
+          body: "Anything the reference leaves open is asked about before costing, so the price answers the question you asked.",
+        },
+        {
+          title: "An FOB quotation is prepared",
+          body: "On the same basis as the apron you buy now, so the two can be compared line by line. The final price depends on the confirmed specification and commercial approval.",
+        },
+      ],
+    },
     seoTitle: "Apron Manufacturing for Uniform Programs",
     seoDescription:
       "Bib, waist and chef aprons made to your specification. Documented FOB export of poly-cotton uniform aprons to the United States.",

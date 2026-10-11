@@ -100,6 +100,8 @@ export const routes: RouteEntry[] = [
     changeFrequency: "yearly" as const,
   })),
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/manufacturing-network", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/verification", priority: 0.7, changeFrequency: "monthly" },
   { path: "/sustainability", priority: 0.5, changeFrequency: "yearly" },
 
   // Legal. Low priority but genuinely indexable — a procurement reviewer looks

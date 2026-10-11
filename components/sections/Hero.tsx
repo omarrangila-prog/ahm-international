@@ -1,9 +1,8 @@
-import { ArrowRight, Upload } from "lucide-react";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { HeroVisual } from "./HeroVisual";
 import { Button } from "@/components/ui/Button";
-import { RfqClickLink } from "@/components/ui/TrackedLink";
+import { TrackedButton } from "@/components/ui/TrackedLink";
 
 /**
  * Homepage hero.
@@ -34,7 +33,7 @@ export function Hero() {
 
           {/* Painted immediately. It is the largest element above the fold, so
               masking it would postpone LCP by the length of the animation. */}
-          <p className="label mb-5 text-balance text-ink/65">Your next Pakistan manufacturing partner</p>
+          <p className="label mb-5 text-balance text-ink/65">Pakistan-based apparel manufacturing &amp; export</p>
 
           <MaskedHeading
             instant
@@ -48,42 +47,31 @@ export function Hero() {
           />
 
           <div className="enter" style={{ "--enter-delay": "0.3s" } as React.CSSProperties}>
+            {/* Names both kinds of production on purpose. A line that said only
+                "our manufacturing" would let a partner's floor be read as AHM's. */}
             <p className="mt-8 max-w-xl text-lead text-ink/70">
-              Product development, sourcing and apparel manufacturing in Pakistan for
-              international uniform, workwear and private-label programs.
+              Custom apparel development and manufacturing through our own operations and
+              specialist production partners, for international uniform, workwear and
+              private-label programs.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <MagneticButton>
-                <Button href="/benchmark-a-style" size="lg" withArrow>
-                  Benchmark a Style
-                </Button>
+                <TrackedButton href="/request-a-quote" size="lg" withArrow event="hero_rfq_click" location="hero">
+                  Request FOB Quote
+                </TrackedButton>
               </MagneticButton>
               <MagneticButton>
-                <Button href="/send-tech-pack" variant="outline" size="lg">
-                  Send Tech Pack
+                <Button href="/benchmark-a-style" variant="outline" size="lg">
+                  Benchmark your current style
                 </Button>
               </MagneticButton>
-              <Button href="/capabilities" variant="ghost" size="lg">
-                View Capabilities
+            </div>
+            <div className="mt-6">
+              <Button href="/manufacturing-network" variant="ghost" size="md">
+                Explore our manufacturing
               </Button>
             </div>
-
-            <RfqClickLink
-              href="/request-a-quote#files"
-              event="techpack_upload_start"
-              location="hero"
-              className="group mt-7 inline-flex items-center gap-2 text-sm text-ink/70 transition-colors hover:text-ink"
-            >
-              <Upload className="h-4 w-4" aria-hidden="true" />
-              <span className="underline-offset-4 group-hover:underline">
-                Have a tech pack? Upload it
-              </span>
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </RfqClickLink>
           </div>
         </div>
 

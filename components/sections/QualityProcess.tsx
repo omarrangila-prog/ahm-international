@@ -40,7 +40,7 @@ export function QualityProcess() {
               as="h2"
               id="quality-heading"
               className="mt-6 font-display text-display text-white"
-              lines={[{ text: "QUALITY IS A PROCESS," }, { text: "NOT A FINAL INSPECTION.", className: "text-lime" }]}
+              lines={[{ text: "QUALITY IS BUILT" }, { text: "INTO THE PROCESS.", className: "text-lime" }]}
             />
           <p className="mt-7 max-w-2xl text-lead text-white/95">
               An inspection that only happens at the end can reject a shipment. It cannot save one.

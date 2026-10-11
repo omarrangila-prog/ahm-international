@@ -63,6 +63,7 @@ export function WhatsAppLink({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => {
+        track("whatsapp_click");
         track("contact_clicked", { channel: "whatsapp" });
       }}
       className={className ?? "inline-block py-1 underline underline-offset-4 transition-colors hover:text-lime"}

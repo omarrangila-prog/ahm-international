@@ -10,9 +10,9 @@ cannot disagree with what the site renders.
 | | Count |
 |---|---|
 | Slots defined | 143 |
-| Canonical file in place | 59 |
+| Canonical file in place | 44 |
 | Showing a stand-in | 9 |
-| **Leaving a visible gap** | **75** |
+| **Leaving a visible gap** | **90** |
 
 Slots below marked **GAP** render nothing. Shoot those first.
 
@@ -35,12 +35,110 @@ No component or layout change is needed at any point.
 
 Ranked by whether the slot is empty, then by how many pages ask for it.
 
+### development.techPack — **GAP**
+
+- **Path:** `/assets/development/tech-pack.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Technical pack open on the development table beside a reference garment
+- **Used by:** `app/development/page.tsx`, `app/about/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+
+### factory.sewing — **GAP**
+
+- **Path:** `/assets/factory/sewing.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Stitching line assembling uniform garments
+- **Used by:** `app/manufacturing/page.tsx`, `app/about/page.tsx`, `data/sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`, `data/products.ts`
+
+### factory.qualityControl — **GAP**
+
+- **Path:** `/assets/factory/quality-control.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Inspector checking a finished garment against the approved sample
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/quality/page.tsx`, `app/about/page.tsx`, `components/sections/QualityProcess.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`
+
+### factory.packing — **GAP**
+
+- **Path:** `/assets/factory/packing.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Folded garments being polybagged and packed to buyer instruction
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/quality/page.tsx`, `app/export/page.tsx`, `components/sections/ExportSection.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`
+
+### export.containerLoading — **GAP**
+
+- **Path:** `/assets/export/container-loading.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Cartons being loaded into a container for FOB handover
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/export/page.tsx`, `components/sections/ExportSection.tsx`, `data/sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`
+
+### factory.cutting — **GAP**
+
+- **Path:** `/assets/factory/cutting.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Fabric lay being cut against a marker on the cutting table
+- **Used by:** `app/capabilities/page.tsx`, `app/about/page.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/products.ts`, `data/guides.ts`
+
+### export.warehouse — **GAP**
+
+- **Path:** `/assets/export/warehouse.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Finished goods staged in the warehouse ahead of dispatch
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/about/page.tsx`, `app/export/page.tsx`, `components/sections/ExportSection.tsx`, `data/sourcing.ts`, `data/manufacturing.ts`
+
+### factory.fabricInspection — **GAP**
+
+- **Path:** `/assets/factory/fabric-inspection.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Fabric being checked on an inspection frame before cutting
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/quality/page.tsx`, `components/sections/QualityProcess.tsx`, `data/manufacturing.ts`, `data/process.ts`
+
+### factory.finishing — **GAP**
+
+- **Path:** `/assets/factory/finishing.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Pressing and finishing station
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/quality/page.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/products.ts`
+
+### development.pattern — **GAP**
+
+- **Path:** `/assets/development/pattern.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Pattern pieces and a digitised marker
+- **Used by:** `components/sections/DevelopmentLab.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`
+
 ### development.sample — **GAP**
 
 - **Path:** `/assets/development/sample-development.webp`
 - **Master size:** 3840 × 2160 (16:9 landscape)
 - **Subject:** Sample garment on a form during a fit review
 - **Used by:** `data/capabilities.ts`, `data/manufacturing.ts`, `data/verification.ts`, `data/process.ts`
+
+### development.measurement — **GAP**
+
+- **Path:** `/assets/development/measurement.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Garment being measured against the approved size specification
+- **Used by:** `app/quality/page.tsx`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+
+### factory.embroidery — **GAP**
+
+- **Path:** `/assets/factory/embroidery.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Multi-head embroidery machine running a logo on garment panels
+- **Used by:** `components/sections/DevelopmentLab.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`
+
+### development.trims — **GAP**
+
+- **Path:** `/assets/development/trims.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Buttons, zips, drawcords and labels arranged as a trim board
+- **Used by:** `components/sections/DevelopmentLab.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`
+
+### hero.sewing — **GAP**
+
+- **Path:** `/assets/hero/hero-sewing-01.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Industrial sewing machine stitching a charcoal workwear garment, operator hands guiding the fabric
+- **Used by:** `app/image-sitemap.xml/route.ts`, `components/sections/HeroVisual.tsx`
 
 ### products.polo.detail — **GAP**
 
@@ -69,6 +167,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3840 × 2160 (16:9 landscape)
 - **Subject:** Screen printing carousel applying a placement print
 - **Used by:** `data/capabilities.ts`, `data/manufacturing.ts`
+
+### caseStudy.apronProgram.product — **GAP**
+
+- **Path:** `/assets/case-studies/uniform-apron-program/product.webp`
+- **Master size:** mixed — see manifest
+- **Subject:** Bib apron produced for a uniform program
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/caseStudies.ts`
 
 ### products.apron.back — **GAP**
 
@@ -634,20 +739,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 ## In place
 
-59 canonical files.
+44 canonical files.
 
 - `/assets/case-studies/uniform-apron-program/detail.webp` — 1600×1600
 - `/assets/case-studies/uniform-apron-program/fabric.webp` — 1600×1600
-- `/assets/case-studies/uniform-apron-program/product.webp` — 1600×1600
 - `/assets/development/fabric-swatches.webp` — 1600×900
-- `/assets/development/measurement.webp` — 1600×900
-- `/assets/development/pattern.webp` — 1600×900
-- `/assets/development/tech-pack.webp` — 1600×900
-- `/assets/development/trims.webp` — 1600×900
 - `/assets/export/carton-marking.webp` — 1200×1200
 - `/assets/export/cartons.webp` — 1600×900
-- `/assets/export/container-loading.webp` — 1600×900
-- `/assets/export/warehouse.webp` — 1600×900
 - `/assets/fabrics/canvas.webp` — 1200×1200
 - `/assets/fabrics/cotton-pique.webp` — 1200×1200
 - `/assets/fabrics/fleece.webp` — 1200×1200
@@ -658,14 +756,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - `/assets/fabrics/single-jersey.webp` — 1200×1200
 - `/assets/fabrics/softshell.webp` — 1200×1200
 - `/assets/fabrics/woven.webp` — 1200×1200
-- `/assets/factory/cutting.webp` — 1600×900
-- `/assets/factory/embroidery.webp` — 1600×900
-- `/assets/factory/fabric-inspection.webp` — 1600×900
-- `/assets/factory/finishing.webp` — 1600×900
-- `/assets/factory/packing.webp` — 1600×900
-- `/assets/factory/quality-control.webp` — 1600×900
-- `/assets/factory/sewing.webp` — 1600×900
-- `/assets/hero/hero-sewing-01.webp` — 1920×1080
 - `/assets/products/aprons/apron-black-front.webp` — 1600×1600
 - `/assets/products/aprons/apron-fabric-macro.webp` — 1200×1200
 - `/assets/products/fleece/fleece-fabric-macro.webp` — 1200×1200
