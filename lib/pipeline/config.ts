@@ -31,6 +31,18 @@ export function pipelineStatus(env: Env = process.env) {
     link,
     /** PIN sign-in is available. */
     pin,
+    /**
+     * Why a PIN that has been set is not working, or null. Shown on the sign-in
+     * page: an unusable PIN otherwise looks exactly like no PIN at all, which is
+     * how the first one failed in production.
+     */
+    pinIssue: !pinSet || pin
+      ? null
+      : !pinFrom(env)
+        ? "A PIN is set for this site, but it is not 4 to 12 plain digits, so PIN sign-in is off. Enter it again in Vercel as PIPELINE_PIN, digits only, then redeploy."
+        : !pinAccount(env)
+          ? "A PIN is set, but there is no admin on the staff list (PIPELINE_STAFF) for it to sign in as."
+          : null,
     missing: [
       ...(storage ? [] : ["the private file store (BLOB_READ_WRITE_TOKEN)"]),
       ...(mail || pin ? [] : ["the mailbox password (SMTP_PASS), which sign-in links are sent with, or a PIN (PIPELINE_PIN)"]),
