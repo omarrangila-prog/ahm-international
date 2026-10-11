@@ -54,7 +54,9 @@ export async function createJson(pathname: string, data: unknown): Promise<boole
     });
     return true;
   } catch (error) {
-    if (isAlreadyExists(error)) return false;
+    // A create racing another write to the same pathname loses either way:
+    // single-use markers and new references both want exactly one winner.
+    if (isAlreadyExists(error) || isConflict(error)) return false;
     throw error;
   }
 }
@@ -62,6 +64,20 @@ export async function createJson(pathname: string, data: unknown): Promise<boole
 /** The SDK reports an existing blob as a generic error; its message is the only signal. */
 function isAlreadyExists(error: unknown): boolean {
   return error instanceof Error && /already exists/i.test(error.message);
+}
+
+/**
+ * Two ways the store refuses a write because another one got there first: a
+ * stale ETag (412, typed), and a write that overlapped another in flight on
+ * the same pathname, which the SDK reports as a generic "bad request" whose
+ * message is the only signal. The second only shows under parallel writes;
+ * it surfaced when twenty PIN attempts were fired at one counter at once.
+ */
+function isConflict(error: unknown): boolean {
+  return (
+    error instanceof BlobPreconditionFailedError ||
+    (error instanceof Error && /conflicting operation/i.test(error.message))
+  );
 }
 
 export class ConflictError extends Error {
@@ -104,7 +120,7 @@ export async function updateJson<T>(
       }
       return next;
     } catch (error) {
-      if (!(error instanceof BlobPreconditionFailedError)) throw error;
+      if (!isConflict(error)) throw error;
       // Back off a little, with jitter, so two writers do not collide again.
       await new Promise((resolve) => setTimeout(resolve, 40 * (attempt + 1) + Math.random() * 60));
     }

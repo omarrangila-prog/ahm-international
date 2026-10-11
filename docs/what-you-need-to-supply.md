@@ -42,6 +42,7 @@ enquiry register. Nothing to do; do not make it public.
 
 | Decision | Where | Default if you do nothing |
 |---|---|---|
+| A PIN for signing in without email | `PIPELINE_PIN` in Vercel, 4 to 12 digits, marked Sensitive. It signs in as the first admin. Avoid 1234, 0000 and repeated digits; they are the first ones anyone tries. | No PIN: sign in with the emailed link |
 | Who may sign in, and as what | `PIPELINE_STAFF` in Vercel, e.g. `info@ahminternationals.com:admin, ali@ahminternationals.com:sales, owner@…:viewer` | Only `info@ahminternationals.com`, as admin |
 | How long buyer files are kept | `RFQ_FILE_RETENTION_DAYS` (minimum 30) | 730 days (two years). The privacy policy states whatever this is. |
 | Lock the daily job to Vercel's scheduler | `CRON_SECRET`, any long random string | Open, but it runs at most once a day and only deletes what the schedule would |

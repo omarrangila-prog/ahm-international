@@ -30,7 +30,8 @@
     "photos:needed": "node --experimental-strip-types --import ./tests/register.mjs scripts/missing-product-photos.mjs",
     "weight": "node scripts/weight-audit.mjs",
     "a11y": "node scripts/a11y-audit.mjs",
-    "console": "node scripts/console-audit.mjs"
+    "console": "node scripts/console-audit.mjs",
+    "mail:check": "node scripts/mail-check.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",

@@ -2,6 +2,7 @@ import { list } from "@vercel/blob";
 import { createJson, deleteBlobs, readJson, updateJson } from "../storage/json-store";
 import { storageNamespace } from "../storage/namespace";
 import { applyChanges, summarise, type Lead, type LeadChanges, type LeadSummary } from "./model";
+import { pinDay, pinMatches, PIN_DAILY_LIMIT, type PinDay } from "./pin";
 
 /**
  * The register's reads and writes.
@@ -9,6 +10,7 @@ import { applyChanges, summarise, type Lead, type LeadChanges, type LeadSummary 
  *   <ns>pipeline/leads/<REF>.json   one document per enquiry, the record
  *   <ns>pipeline/index.json         one row per enquiry, what the board reads
  *   <ns>pipeline/auth/used/<n>.json sign-in links already used
+ *   <ns>pipeline/auth/pin/<day>.json PIN attempts counted that UTC day
  *   <ns>pipeline/jobs/<name>.json   the daily job's once-a-day marker
  *
  * The lead document is the truth and the index is derived from it. Every write
@@ -28,6 +30,8 @@ function paths(ns: string = storageNamespace()) {
     index: `${ns}pipeline/index.json`,
     usedDir: `${ns}pipeline/auth/used/`,
     used: (id: string) => `${ns}pipeline/auth/used/${id}.json`,
+    pinDir: `${ns}pipeline/auth/pin/`,
+    pin: (day: string) => `${ns}pipeline/auth/pin/${day}.json`,
     jobsDir: `${ns}pipeline/jobs/`,
     job: (name: string) => `${ns}pipeline/jobs/${name}.json`,
   };
@@ -112,6 +116,31 @@ export async function rebuildIndex(): Promise<number> {
 export async function markUsed(id: string): Promise<boolean> {
   if (!/^[A-Za-z0-9_-]{8,64}$/.test(id)) return false;
   return createJson(paths().used(id), { at: new Date().toISOString() });
+}
+
+/**
+ * One PIN attempt, counted before it is checked. Reserving first is what makes
+ * the limit hold under parallel guesses: each request takes a slot with a
+ * conditional write before it learns anything, so twenty simultaneous guesses
+ * cannot all slip in under a limit of ten. A correct PIN gives its slot back,
+ * so the owner signing in does not use up the day.
+ */
+export async function attemptPin(given: string, expected: string, now = new Date()): Promise<"ok" | "wrong" | "locked"> {
+  const pathname = paths().pin(pinDay(now));
+  let reserved = false;
+  await updateJson<PinDay>(pathname, () => ({ attempts: 0 }), (day) => {
+    reserved = day.attempts < PIN_DAILY_LIMIT;
+    return reserved ? { attempts: day.attempts + 1 } : null;
+  });
+  if (!reserved) return "locked";
+  if (!pinMatches(given, expected)) return "wrong";
+
+  try {
+    await updateJson<PinDay>(pathname, () => ({ attempts: 0 }), (day) => ({ attempts: Math.max(0, day.attempts - 1) }));
+  } catch {
+    // The slot stays taken. One fewer attempt today is not worth refusing a correct PIN over.
+  }
+  return "ok";
 }
 
 /** Once-per-name marker for scheduled work, e.g. "daily-2026-10-10". */

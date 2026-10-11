@@ -94,6 +94,15 @@ Mark `SMTP_PASS` as Sensitive. It has no `NEXT_PUBLIC_` prefix, so it never
 reaches a browser. Redeploy after setting it; then submit one clearly labelled
 test request and confirm it arrives in the inbox with its attachment.
 
+Check the password with `npm run mail:check` before it goes into Vercel. It
+logs in to Hostinger and out again, sends nothing, and takes the password at a
+hidden prompt. A wrong password does not fail the build. It fails every
+sign-in link and RFQ email afterwards with `535 authentication failed` in the
+runtime log, and nothing on screen shows it: the sign-in page says "link sent"
+for any address, so that it cannot be used to find out who is staff. That is
+how the first production sign-in failed on 11 October. The password is the
+mailbox's own, the one that opens webmail, not the Hostinger account login.
+
 Until it is set, the form still validates and issues a reference, and the buyer
 sees a screen headed "One more step" that gives the email and WhatsApp with the
 reference in the subject line. It never says "RFQ received" unless a destination
@@ -106,7 +115,9 @@ the most a Vercel function body can carry. Files that fit in 10 MB are also
 attached to the email; the rest are linked to the enquiry register.
 
 **The enquiry register** at `/pipeline` records every enquiry once the store is
-connected, and staff sign in with an emailed link, so it too needs `SMTP_PASS`.
+connected. Staff sign in with an emailed link, which needs `SMTP_PASS`, or
+with `PIPELINE_PIN` (4 to 12 digits, Sensitive), which signs in as the first
+admin and stops working for the day after ten wrong attempts.
 `PIPELINE_STAFF` lists who may sign in; unset, it is `info@` alone, as admin.
 See `docs/what-you-need-to-supply.md` §2a.
 
