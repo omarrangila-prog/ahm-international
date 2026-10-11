@@ -1,0 +1,225 @@
+{
+  "about": "Images known to be generated rather than photographed, by content hash. scripts/scan-assets.mjs marks any published file whose contents match one of these hashes as generated, whatever its path, so a generated image cannot lose its label by being moved, and a real photograph dropped in at the same path loses it without anyone editing this list. Paths under asset-pack/ are withdrawn images, listed so that one put back is labelled. Remove an entry when its published file is replaced by a photograph; the scan warns when one is stale.",
+  "files": {
+    "/assets/development/fabric-swatches.webp": {
+      "sha256": "4ab7400a1c96f37220e2f2f05e19feac3bd8f17778c61881b9c9cae6c3133f5b",
+      "evidence": "Generation prompt asset-pack/prompts/development__fabric-swatches.prompt.txt"
+    },
+    "/assets/export/carton-marking.webp": {
+      "sha256": "e58177e1423b23732432b8e29b2e75ab22242af95638e8b4d6aa72c615cacf4c",
+      "evidence": "Generation prompt asset-pack/prompts/export__carton-marking.prompt.txt"
+    },
+    "/assets/export/cartons.webp": {
+      "sha256": "a75ce863decb00ddeb98b21b7e08edc7941bf5acab5841b7b8062919e78ea943",
+      "evidence": "Generation prompt asset-pack/prompts/export__cartons.prompt.txt"
+    },
+    "/assets/fabrics/cotton-pique.webp": {
+      "sha256": "d053f4a532ab7c4ab854f472afa20449600bf286cbe36e8b7622970237ea79ab",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__cotton-pique.prompt.txt"
+    },
+    "/assets/fabrics/fleece.webp": {
+      "sha256": "50112d73e69c70bea6da3a988081942ddbb033661204ddb7753ecb219e37821b",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__fleece.prompt.txt"
+    },
+    "/assets/fabrics/polycotton-twill.webp": {
+      "sha256": "67feb0d74551f413386cfeb9876cbcc6e9c7984a4f75c2dd2a1a1292e2bb6f94",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__polycotton-twill.prompt.txt"
+    },
+    "/assets/fabrics/polyester-performance.webp": {
+      "sha256": "7b099036480327ad732c590fefb9f77a381f505a2ad4f7d499f184d16a169c62",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__polyester-performance.prompt.txt"
+    },
+    "/assets/fabrics/softshell.webp": {
+      "sha256": "6d0b07e4fb7cb2790ffdf7b0a25d2100d49c3b2dae83d4839fcdde4169bf8341",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__softshell.prompt.txt"
+    },
+    "/assets/fabrics/woven.webp": {
+      "sha256": "75f58271043db2424ae73a991be9be00180e426f0e770813fb7c66fa924eee94",
+      "evidence": "Generation prompt asset-pack/prompts/fabrics__woven.prompt.txt"
+    },
+    "/assets/products/aprons/apron-black-front.webp": {
+      "sha256": "edb6d03ede6124550ef5e9f9bf49fd726709a66a6f5f7a9237eb53cae3b22a46",
+      "evidence": "Generation prompt asset-pack/prompts/products__aprons__apron-black-front.prompt.txt"
+    },
+    "/assets/products/aprons/apron-fabric-macro.webp": {
+      "sha256": "53b5b487f14bd6a2287f34ac46abe7cef0abab30fa4aea65901d183636654c22",
+      "evidence": "Generation prompt asset-pack/prompts/products__aprons__apron-fabric-macro.prompt.txt"
+    },
+    "/assets/products/fleece/fleece-fabric-macro.webp": {
+      "sha256": "ecd044fdb2ef8ba511be34716a39a0cbc8f4511df6a672695d605fdb13babe17",
+      "evidence": "Generation prompt asset-pack/prompts/products__fleece__fleece-fabric-macro.prompt.txt"
+    },
+    "/assets/products/photography/denim-utility-jacket.webp": {
+      "sha256": "57c644c587bb3b2460b8c4705c9a0ceeddde7ae45c164fb281c9e529442ca7bc",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/henley-green.webp": {
+      "sha256": "12cb0bc93f0ce615bbf4711293cf76f893111f0e8b67d9e34eebdb0c75f37a0f",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/henley-navy.webp": {
+      "sha256": "c2b98bb1c4e24fac9cbacbca4cd8039c3c8c1bdd08fe02bdc79616ff8b5b9ff3",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/henley-tee-navy.webp": {
+      "sha256": "5ad150df8f9b63b3c1dcbab5a914ea395bf083d1c059b2097c0707f925802b4e",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/henley-waffle-navy.webp": {
+      "sha256": "58d95d9f6bb8ef94c682cbe6db7b8c72acd3113e428a7bb36d63c9bc68831646",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/hoodie-navy-alt.webp": {
+      "sha256": "7e92b9415b55230869d11ac080dd7dacb5a2bd66e69ff879b59cedd72375cb56",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/hoodie-navy.webp": {
+      "sha256": "6ae3a61db2646e6bd21ad02e2cfaae28f9825957acceb6945be9269718d00825",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/lounge-pant-grid.webp": {
+      "sha256": "7662f924d1de4ee31dd1188b53eec04c1557d86a788e99ca3edd6ef11d89275e",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/pant-camo.webp": {
+      "sha256": "40aae3285cd9b4911c0dab84c2eb8c190a4a1560337c1765dccca8ec4acac600",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/polo-dress-navy.webp": {
+      "sha256": "1ee06926fb1f5e12d42032f005c868ac4fded45ebab9f253b3f3f3f86395ad44",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/polo-taupe-long-sleeve.webp": {
+      "sha256": "8863131cfc2ad9786b5edb218ac5619afc3f8dbcf53ab5f7c4bd81d0e1b2bd8a",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/polo-yellow.webp": {
+      "sha256": "e0c94c3fb0f2aa3627deedb6bfbd351e6abbe6e06d900a7237df8e86074dfc04",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-camel.webp": {
+      "sha256": "ff4d844bf7dd385555abbca49d5254343bfdc6aaa67d485571fdc827a66f4267",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-herringbone.webp": {
+      "sha256": "f9e3f792dc4d002786e12ec3a963996934f45df97295d5fede89105ca9ca2d84",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-navy-looped.webp": {
+      "sha256": "1135cb8b65caeb668cc4c764c977a0d050e86155eee73d9def175d1605ce3acb",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-navy.webp": {
+      "sha256": "dbb7efbbb050631f08bad2c2ff4c6b1f0df929fcae46bf6f94c68a35081e176a",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-plaid-maroon.webp": {
+      "sha256": "82a81b2bb56ce84ff5d2de0b4ff86039b5feebea0ee32d97388fb2e22c6eda4e",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/scarf-plaid-olive.webp": {
+      "sha256": "0fbc953ca2808b6e353987970fff17e910ff7b8246bfc10b7c16f423b97bc6d9",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/thermal-sage-alt.webp": {
+      "sha256": "21608e8ad6c89745d1f00398df9cb9a1b45ab5de2efeadd70917cfdec9dae979",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/thermal-sage.webp": {
+      "sha256": "bdfab4208865a7f6fdb4e35a60cdef54b5e1a5cb4486fea90c1d16f40e3eb3cd",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/utility-bomber-charcoal.webp": {
+      "sha256": "392b64264b51aa356e2d6a6e55dfaeeff2fde46ad32d0d69347874f260dbc59b",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/work-vest-orange.webp": {
+      "sha256": "877272e233bfad322e4c390c4a76fbe956422687f87822a82b782e1479ad510c",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/zip-hoodie-grey.webp": {
+      "sha256": "7d783b41a6596feb5fcb94f3a0df5e736672b0a51d805b43c6ee2bcb96c08bc0",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/photography/zip-hoodie-navy.webp": {
+      "sha256": "6f25bf2c008157b510c03e8d4fc3c3fb56fd92f4bd74359ad4fde7643db2f6f8",
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+    },
+    "/assets/products/polos/polo-fabric-macro.webp": {
+      "sha256": "8c1e24791ee4bd4960fcbf6f740ec1921f6733407918325091519f796cdf8a33",
+      "evidence": "Generation prompt asset-pack/prompts/products__polos__polo-fabric-macro.prompt.txt"
+    },
+    "/assets/products/tshirts/tee-fabric-macro.webp": {
+      "sha256": "1ff4796963678f1183d528583897c6662316e279d8a4eada1f13d5cce4ce4c23",
+      "evidence": "Generation prompt asset-pack/prompts/products__tshirts__tee-fabric-macro.prompt.txt"
+    },
+    "asset-pack/generated-hold/case-studies/uniform-apron-program/detail.webp": {
+      "sha256": "6bb72d9399cc338a7884a0e1fe7d683cffa1bfa07345adb40a9d94ae940dc4cf",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/case-studies/uniform-apron-program/fabric.webp": {
+      "sha256": "a3b12b4fb6902d1d0b8bcf52325c51fc4ffc78ae6056b1f0c9aa8e0d0ff03d6d",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/case-studies/uniform-apron-program/product.webp": {
+      "sha256": "f5fe97af60a6085f4eb5c016e2e8ce6492bfec4774e926d460a45ca2c9663ef1",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/development/measurement.webp": {
+      "sha256": "a52bee215c53deffce9a3950a6c6e9d0f76a6c0b960a63c1acbbb60edc45c389",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/development/pattern.webp": {
+      "sha256": "1162b51867c128d5944999b22e5558d003fefe7770e31a21a4c3c299d2b8589c",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/development/tech-pack.webp": {
+      "sha256": "b50bde016031e0661b5ef957b1ab499176fda6200568b4240708b9ad868fa8cd",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/development/trims.webp": {
+      "sha256": "96b55e63b39d2017ed018bd5eed4313160db63779422a0d6e4932653b1a32ddb",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/export/container-loading.webp": {
+      "sha256": "37dfe3c8eb91f5983567d546b987e13c7e4fda82d1826a0f8e101759a05379e6",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/export/warehouse.webp": {
+      "sha256": "f31ec67b07f69ffe746618b17d8217e7c53d7e0b50e88360b29fae9e78192bdf",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/cutting.webp": {
+      "sha256": "f1f4de269e879486a6429637df74ec22336fc4054e86cc44719b05f995912750",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/embroidery.webp": {
+      "sha256": "1d2ff5cc762438b9275f8bc2ef3de35a4f1e98398dc8196aa4f2c28cb88885cc",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/fabric-inspection.webp": {
+      "sha256": "576fe5a237411340692a6dafc365cbb091fce794c1b69912de28fad06f51a89f",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/finishing.webp": {
+      "sha256": "5156ed9affca217d158832f158f1da41832ac422f64fde4a5006950966a122ca",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/packing.webp": {
+      "sha256": "8d6e3d32a6f53b8d5d0f9898bfdfa7efe94ced79fdc20f9c390dd66f28adb40b",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/quality-control.webp": {
+      "sha256": "dfda298d9adc386eb164c1799d50eea95d3b32046b243523e18ebda22186f99d",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/factory/sewing.webp": {
+      "sha256": "814f88a490e3b4802c3558c9a1e10cfbf3ce3895dbbd5da1d2753770bff0691b",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    },
+    "asset-pack/generated-hold/hero/hero-sewing-01.webp": {
+      "sha256": "5f632d6a339aca812ce0fe6502e894807d7cdd48c257888b6bd782c0a4927dfc",
+      "evidence": "Withdrawn generated image, see asset-pack/generated-hold/README.md. Listed so that it is labelled wherever it is put back."
+    }
+  }
+}

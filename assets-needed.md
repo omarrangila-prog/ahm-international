@@ -9,10 +9,11 @@ cannot disagree with what the site renders.
 
 | | Count |
 |---|---|
-| Slots defined | 143 |
-| Canonical file in place | 44 |
+| Slots defined | 152 |
+| Canonical file in place | 42 |
 | Showing a stand-in | 9 |
-| **Leaving a visible gap** | **90** |
+| **Leaving a visible gap** | **101** |
+| Rendering a generated image, labelled "AI illustration" | 47 |
 
 Slots below marked **GAP** render nothing. Shoot those first.
 
@@ -158,7 +159,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 - **Path:** `/assets/products/photography/polo-navy-embroidered.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy uniform polo with embroidered logos. Photographed production sample
+- **Subject:** Navy uniform polo with embroidered logos
 - **Used by:** `data/products.ts`, `data/guides.ts`
 
 ### factory.printing — **GAP**
@@ -173,6 +174,20 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/case-studies/uniform-apron-program/product.webp`
 - **Master size:** mixed — see manifest
 - **Subject:** Bib apron produced for a uniform program
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/caseStudies.ts`
+
+### caseStudy.apronProgram.fabric — **GAP**
+
+- **Path:** `/assets/case-studies/uniform-apron-program/fabric.webp`
+- **Master size:** mixed — see manifest
+- **Subject:** Macro view of the 65/35 poly-cotton fabric used in the apron program
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/caseStudies.ts`
+
+### caseStudy.apronProgram.detail — **GAP**
+
+- **Path:** `/assets/case-studies/uniform-apron-program/detail.webp`
+- **Master size:** mixed — see manifest
+- **Subject:** Construction detail from the apron program
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/caseStudies.ts`
 
 ### products.apron.back — **GAP**
@@ -228,322 +243,322 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 - **Path:** `/assets/products/photography/waist-apron.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Three-pocket waist apron. Photographed production sample
+- **Subject:** Three-pocket waist apron
 - **Used by:** `data/products.ts`
 
 ### renders.chefCoat — **GAP**
 
 - **Path:** `/assets/products/photography/chef-coat.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Double-breasted chef coat. Photographed production sample
+- **Subject:** Double-breasted chef coat
 - **Used by:** `data/products.ts`
 
 ### renders.chefBeanie — **GAP**
 
 - **Path:** `/assets/products/photography/chef-beanie.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Chef beanie. Photographed production sample
+- **Subject:** Chef beanie
 - **Used by:** `data/products.ts`
 
 ### renders.crewNeckTee — **GAP**
 
 - **Path:** `/assets/products/photography/crew-neck-tee.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Crew-neck uniform T-shirt. Photographed production sample
+- **Subject:** Crew-neck uniform T-shirt
 - **Used by:** `data/products.ts`
 
 ### renders.crewneckSweatshirt — **GAP**
 
 - **Path:** `/assets/products/photography/crewneck-sweatshirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Crewneck sweatshirt. Photographed production sample
+- **Subject:** Crewneck sweatshirt
 - **Used by:** `data/products.ts`
 
 ### renders.buttonFrontShirt — **GAP**
 
 - **Path:** `/assets/products/photography/button-front-shirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Button-front uniform shirt. Photographed production sample
+- **Subject:** Button-front uniform shirt
 - **Used by:** `data/products.ts`
 
 ### renders.utilityWorkShirt — **GAP**
 
 - **Path:** `/assets/products/photography/utility-work-shirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Utility work shirt. Photographed production sample
+- **Subject:** Utility work shirt
 - **Used by:** `data/products.ts`
 
 ### renders.workShort — **GAP**
 
 - **Path:** `/assets/products/photography/work-short.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Uniform work short. Photographed production sample
+- **Subject:** Uniform work short
 - **Used by:** `data/products.ts`
 
 ### renders.safetyVest — **GAP**
 
 - **Path:** `/assets/products/photography/safety-vest.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Reflective safety vest. Photographed production sample
+- **Subject:** Reflective safety vest
 - **Used by:** `data/products.ts`
 
 ### renders.uniformCap — **GAP**
 
 - **Path:** `/assets/products/photography/uniform-cap.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Structured uniform cap. Photographed production sample
+- **Subject:** Structured uniform cap
 - **Used by:** `data/products.ts`
 
 ### renders.uniformTie — **GAP**
 
 - **Path:** `/assets/products/photography/uniform-tie.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Corporate uniform tie. Photographed production sample
+- **Subject:** Corporate uniform tie
 - **Used by:** `data/products.ts`
 
 ### photo.pleatedTrouserKhaki — **GAP**
 
 - **Path:** `/assets/products/photography/pleated-trouser-khaki.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Khaki pleated uniform trouser. Photographed production sample
+- **Subject:** Khaki pleated uniform trouser
 - **Used by:** `data/products.ts`
 
 ### photo.hoodieWhite — **GAP**
 
 - **Path:** `/assets/products/photography/hoodie-white.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White pullover hooded sweatshirt. Photographed production sample
+- **Subject:** White pullover hooded sweatshirt
 - **Used by:** `data/products.ts`
 
 ### photo.chinoBeige — **GAP**
 
 - **Path:** `/assets/products/photography/chino-beige.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Beige cotton chino trouser. Photographed production sample
+- **Subject:** Beige cotton chino trouser
 - **Used by:** `data/products.ts`
 
 ### photo.sleevelessHoodieBlack — **GAP**
 
 - **Path:** `/assets/products/photography/sleeveless-hoodie-black.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Black sleeveless hooded top. Photographed production sample
+- **Subject:** Black sleeveless hooded top
 - **Used by:** `data/products.ts`
 
 ### photo.poloBlackEmbroidered — **GAP**
 
 - **Path:** `/assets/products/photography/polo-black-embroidered.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Black uniform polo with embroidered chest logo. Photographed production sample
+- **Subject:** Black uniform polo with embroidered chest logo
 - **Used by:** `data/products.ts`
 
 ### photo.poloBlackCrest — **GAP**
 
 - **Path:** `/assets/products/photography/polo-black-crest.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Black long-sleeve polo with embroidered crest. Photographed production sample
+- **Subject:** Black long-sleeve polo with embroidered crest
 - **Used by:** `data/products.ts`
 
 ### photo.poloBlackService — **GAP**
 
 - **Path:** `/assets/products/photography/polo-black-service.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Black service polo with embroidered chest mark. Photographed production sample
+- **Subject:** Black service polo with embroidered chest mark
 - **Used by:** `data/products.ts`
 
 ### photo.poloRoyalEmbroidered — **GAP**
 
 - **Path:** `/assets/products/photography/polo-royal-embroidered.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Royal blue uniform polo with embroidered logo. Photographed production sample
+- **Subject:** Royal blue uniform polo with embroidered logo
 - **Used by:** `data/products.ts`
 
 ### photo.poloNavyCorporate — **GAP**
 
 - **Path:** `/assets/products/photography/polo-navy-corporate.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy corporate polo with embroidered chest logo. Photographed production sample
+- **Subject:** Navy corporate polo with embroidered chest logo
 - **Used by:** `data/products.ts`
 
 ### photo.poloCream — **GAP**
 
 - **Path:** `/assets/products/photography/polo-cream.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Cream pique polo with hangtag. Photographed production sample
+- **Subject:** Cream pique polo with hangtag
 - **Used by:** `data/products.ts`
 
 ### photo.poloGreenRibbed — **GAP**
 
 - **Path:** `/assets/products/photography/polo-green-ribbed.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Ribbed dark green uniform polo. Photographed production sample
+- **Subject:** Ribbed dark green uniform polo
 - **Used by:** `data/products.ts`
 
 ### photo.teeGreyBranded — **GAP**
 
 - **Path:** `/assets/products/photography/tee-grey-branded.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Grey cotton T-shirt with woven neck label. Photographed production sample
+- **Subject:** Grey cotton T-shirt with woven neck label
 - **Used by:** `data/products.ts`
 
 ### photo.teeHeatherGraphic — **GAP**
 
 - **Path:** `/assets/products/photography/tee-heather-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Heather grey T-shirt with screen-printed graphic. Photographed production sample
+- **Subject:** Heather grey T-shirt with screen-printed graphic
 - **Used by:** `data/products.ts`
 
 ### photo.teeGreyGraphic — **GAP**
 
 - **Path:** `/assets/products/photography/tee-grey-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Grey T-shirt with screen-printed chest graphic. Photographed production sample
+- **Subject:** Grey T-shirt with screen-printed chest graphic
 - **Used by:** `data/products.ts`
 
 ### photo.hoodieHeatherGraphic — **GAP**
 
 - **Path:** `/assets/products/photography/hoodie-heather-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Heather grey zip hoodie with placement print. Photographed production sample
+- **Subject:** Heather grey zip hoodie with placement print
 - **Used by:** `data/products.ts`
 
 ### photo.joggerGreyGraphic — **GAP**
 
 - **Path:** `/assets/products/photography/jogger-grey-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Grey fleece jogger with printed hip graphic. Photographed production sample
+- **Subject:** Grey fleece jogger with printed hip graphic
 - **Used by:** `data/products.ts`
 
 ### photo.poloMaroon — **GAP**
 
 - **Path:** `/assets/products/photography/polo-maroon.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Maroon pique polo with embroidered chest crest. Photographed production sample
+- **Subject:** Maroon pique polo with embroidered chest crest
 - **Used by:** `data/products.ts`
 
 ### photo.hoodieBlack — **GAP**
 
 - **Path:** `/assets/products/photography/hoodie-black.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Black pullover hooded sweatshirt. Photographed production sample
+- **Subject:** Black pullover hooded sweatshirt
 - **Used by:** `data/products.ts`
 
 ### photo.poloWhiteTagged — **GAP**
 
 - **Path:** `/assets/products/photography/polo-white-tagged.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White pique polo with brand hangtag. Photographed production sample
+- **Subject:** White pique polo with brand hangtag
 - **Used by:** `data/products.ts`
 
 ### photo.poloNavyGrocery — **GAP**
 
 - **Path:** `/assets/products/photography/polo-navy-grocery.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy grocery uniform polo with embroidered logo. Photographed production sample
+- **Subject:** Navy grocery uniform polo with embroidered logo
 - **Used by:** `data/products.ts`
 
 ### photo.poloNavyTipped — **GAP**
 
 - **Path:** `/assets/products/photography/polo-navy-tipped.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy polo with contrast tipped collar. Photographed production sample
+- **Subject:** Navy polo with contrast tipped collar
 - **Used by:** `data/products.ts`
 
 ### photo.poloLime — **GAP**
 
 - **Path:** `/assets/products/photography/polo-lime.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Neon lime pique uniform polo. Photographed production sample
+- **Subject:** Neon lime pique uniform polo
 - **Used by:** `data/products.ts`
 
 ### photo.hoodiePinkGraphic — **GAP**
 
 - **Path:** `/assets/products/photography/hoodie-pink-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Pastel pink hooded sweatshirt with embroidered graphic. Photographed production sample
+- **Subject:** Pastel pink hooded sweatshirt with embroidered graphic
 - **Used by:** `data/products.ts`
 
 ### photo.teePink — **GAP**
 
 - **Path:** `/assets/products/photography/tee-pink.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Pink cotton T-shirt. Photographed production sample
+- **Subject:** Pink cotton T-shirt
 - **Used by:** `data/products.ts`
 
 ### photo.poloRedColourblock — **GAP**
 
 - **Path:** `/assets/products/photography/polo-red-colourblock.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Red and black colour-block polo with printed chest panel. Photographed production sample
+- **Subject:** Red and black colour-block polo with printed chest panel
 - **Used by:** `data/products.ts`
 
 ### photo.poloRedGrocery — **GAP**
 
 - **Path:** `/assets/products/photography/polo-red-grocery.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Red grocery uniform polo with embroidered logo. Photographed production sample
+- **Subject:** Red grocery uniform polo with embroidered logo
 - **Used by:** `data/products.ts`
 
 ### photo.poloRed — **GAP**
 
 - **Path:** `/assets/products/photography/polo-red.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Red pique polo with embroidered chest mark. Photographed production sample
+- **Subject:** Red pique polo with embroidered chest mark
 - **Used by:** `data/products.ts`
 
 ### photo.sweaterRedStriped — **GAP**
 
 - **Path:** `/assets/products/photography/sweater-red-striped.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Red striped v-neck sweater. Photographed production sample
+- **Subject:** Red striped v-neck sweater
 - **Used by:** `data/products.ts`
 
 ### photo.teeSkyBlue — **GAP**
 
 - **Path:** `/assets/products/photography/tee-sky-blue.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Sky blue cotton T-shirt. Photographed production sample
+- **Subject:** Sky blue cotton T-shirt
 - **Used by:** `data/products.ts`
 
 ### photo.sleevelessHoodieWhite — **GAP**
 
 - **Path:** `/assets/products/photography/sleeveless-hoodie-white.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White sleeveless hooded top. Photographed production sample
+- **Subject:** White sleeveless hooded top
 - **Used by:** `data/products.ts`
 
 ### photo.onesieWhitePrint — **GAP**
 
 - **Path:** `/assets/products/photography/onesie-white-print.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White infant bodysuit with printed graphic. Photographed production sample
+- **Subject:** White infant bodysuit with printed graphic
 - **Used by:** `data/products.ts`
 
 ### photo.onesieWhiteText — **GAP**
 
 - **Path:** `/assets/products/photography/onesie-white-text.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White infant bodysuit with printed text. Photographed production sample
+- **Subject:** White infant bodysuit with printed text
 - **Used by:** `data/products.ts`
 
 ### photo.poloWhite — **GAP**
 
 - **Path:** `/assets/products/photography/polo-white.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White pique polo with hangtag. Photographed production sample
+- **Subject:** White pique polo with hangtag
 - **Used by:** `data/products.ts`
 
 ### photo.poloWhiteTipped — **GAP**
 
 - **Path:** `/assets/products/photography/polo-white-tipped.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White polo with green tipped collar and cuffs. Photographed production sample
+- **Subject:** White polo with green tipped collar and cuffs
 - **Used by:** `data/products.ts`
 
 ### photo.poloWhiteEmbroidered — **GAP**
 
 - **Path:** `/assets/products/photography/polo-white-embroidered.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** White long-sleeve polo with embroidered chest crest. Photographed production sample
+- **Subject:** White long-sleeve polo with embroidered chest crest
 - **Used by:** `data/products.ts`
 
 ### industries.grocery — **GAP**
@@ -588,6 +603,69 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Corporate team in branded uniform shirts
 - **Used by:** `data/industries.ts`
 
+### facility.own.cutting — **GAP**
+
+- **Path:** `/assets/facility/own/cutting.webp`
+- **Master size:** see manifest
+- **Subject:** Cutting table in AHM's own manufacturing facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.own.sewing — **GAP**
+
+- **Path:** `/assets/facility/own/sewing.webp`
+- **Master size:** see manifest
+- **Subject:** Stitching line in AHM's own manufacturing facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.own.reinforcement — **GAP**
+
+- **Path:** `/assets/facility/own/reinforcement.webp`
+- **Master size:** see manifest
+- **Subject:** Bar-tack or reinforcement stitching at AHM's own facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.own.inspection — **GAP**
+
+- **Path:** `/assets/facility/own/inspection.webp`
+- **Master size:** see manifest
+- **Subject:** Garment inspected against the approved sample at AHM's own facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.own.sampling — **GAP**
+
+- **Path:** `/assets/facility/own/sampling.webp`
+- **Master size:** see manifest
+- **Subject:** Sample development at AHM's own facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.own.packing — **GAP**
+
+- **Path:** `/assets/facility/own/packing.webp`
+- **Master size:** see manifest
+- **Subject:** Packing to buyer instruction at AHM's own facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.partner.floor — **GAP**
+
+- **Path:** `/assets/facility/partner/floor.webp`
+- **Master size:** see manifest
+- **Subject:** Production floor at a partner manufacturing facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.partner.process — **GAP**
+
+- **Path:** `/assets/facility/partner/process.webp`
+- **Master size:** see manifest
+- **Subject:** Specialist process at a partner manufacturing facility
+- **Used by:** `data/facility-gallery.ts`
+
+### facility.partner.inspection — **GAP**
+
+- **Path:** `/assets/facility/partner/inspection.webp`
+- **Master size:** see manifest
+- **Subject:** Inspection at a partner manufacturing facility
+- **Used by:** `data/facility-gallery.ts`
+
 ### caseStudy.apronProgram.hero — **GAP**
 
 - **Path:** `/assets/case-studies/uniform-apron-program/hero.webp`
@@ -613,59 +691,129 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 
 - **Path:** `/assets/products/photography/bib-apron.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Three-pocket bib apron. Photographed production sample
+- **Subject:** Three-pocket bib apron
 - **Used by:** no component yet
 
 ### renders.classicPolo — **GAP**
 
 - **Path:** `/assets/products/photography/classic-polo.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Classic short-sleeve polo. Photographed production sample
+- **Subject:** Classic short-sleeve polo
 - **Used by:** no component yet
 
 ### renders.longSleevePolo — **GAP**
 
 - **Path:** `/assets/products/photography/long-sleeve-polo.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Long-sleeve uniform polo. Photographed production sample
+- **Subject:** Long-sleeve uniform polo
 - **Used by:** no component yet
 
 ### renders.pulloverHoodie — **GAP**
 
 - **Path:** `/assets/products/photography/pullover-hoodie.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Pullover hoodie. Photographed production sample
+- **Subject:** Pullover hoodie
 - **Used by:** no component yet
 
 ### renders.fleeceJacket — **GAP**
 
 - **Path:** `/assets/products/photography/fleece-jacket.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Full-zip fleece jacket. Photographed production sample
+- **Subject:** Full-zip fleece jacket
 - **Used by:** no component yet
 
 ### renders.workJacket — **GAP**
 
 - **Path:** `/assets/products/photography/work-jacket.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Utility work jacket. Photographed production sample
+- **Subject:** Utility work jacket
 - **Used by:** no component yet
 
 ### renders.workTrouser — **GAP**
 
 - **Path:** `/assets/products/photography/work-trouser.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Uniform work trouser. Photographed production sample
+- **Subject:** Uniform work trouser
 - **Used by:** no component yet
 
 ### photo.denimWorkShirt — **GAP**
 
 - **Path:** `/assets/products/photography/denim-work-shirt.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Indigo denim work shirt with chest pocket. Photographed production sample
+- **Subject:** Indigo denim work shirt with chest pocket
 - **Used by:** no component yet
 
-### products.polo.front
+### products.apron.front — generated, wants a photograph
+
+- **Path:** `/assets/products/aprons/apron-black-front.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Black bib apron with a divided patch pocket, adjustable neck strap and waist ties, front view
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/case-studies/page.tsx`, `app/case-studies/[slug]/page.tsx`, `app/products/[slug]/page.tsx`, `app/not-found.tsx`, `components/products/ProductIndex.tsx`, `components/sections/CaseStudyFeature.tsx`, `components/sections/HeroVisual.tsx`, `data/guides-sourcing.ts`, `data/industries.ts`, `data/products.ts`, `data/guides.ts`
+
+### fabrics.polycottonTwill — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/polycotton-twill.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of poly-cotton twill weave
+- **Used by:** `app/sustainability/page.tsx`, `data/guides-sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+
+### photo.poloTaupeLongSleeve — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/polo-taupe-long-sleeve.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Taupe long-sleeve uniform polo
+- **Used by:** `app/image-sitemap.xml/route.ts`, `components/products/ProductIndex.tsx`, `components/sections/BuyerChallenge.tsx`, `components/sections/HeroVisual.tsx`, `data/industries.ts`, `data/products.ts`
+
+### photo.utilityBomberCharcoal — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/utility-bomber-charcoal.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Charcoal utility bomber jacket
+- **Used by:** `app/image-sitemap.xml/route.ts`, `components/products/ProductIndex.tsx`, `components/sections/HeroVisual.tsx`, `data/industries.ts`, `data/products.ts`
+
+### development.swatches — generated, wants a photograph
+
+- **Path:** `/assets/development/fabric-swatches.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Fabric swatch cards fanned out for material selection
+- **Used by:** `app/materials/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+
+### fabrics.cottonPique — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/cotton-pique.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of cotton pique knit structure
+- **Used by:** `data/manufacturing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+
+### fabrics.woven — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/woven.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of woven shirting fabric
+- **Used by:** `data/guides-sourcing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+
+### export.cartonMarking — generated, wants a photograph
+
+- **Path:** `/assets/export/carton-marking.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Shipping marks and carton labelling applied to an export carton
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/export/page.tsx`, `data/manufacturing.ts`, `data/guides.ts`
+
+### export.cartons — generated, wants a photograph
+
+- **Path:** `/assets/export/cartons.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Export cartons stacked and sealed for shipment
+- **Used by:** `app/image-sitemap.xml/route.ts`, `data/sourcing.ts`, `data/manufacturing.ts`
+
+### products.apron.fabric — generated, wants a photograph
+
+- **Path:** `/assets/products/aprons/apron-fabric-macro.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of stain-release poly-cotton apron fabric
+- **Used by:** `data/guides-sourcing.ts`, `data/products.ts`
+
+### products.polo.front — generated, wants a photograph
 
 - **Path:** `/assets/products/polos/polo-blue-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -673,7 +821,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/polo-taupe-long-sleeve.webp`
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
-### products.fleece.front
+### products.fleece.front — generated, wants a photograph
 
 - **Path:** `/assets/products/fleece/fleece-jacket-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -681,7 +829,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/zip-hoodie-navy.webp`
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
-### products.bottoms.front
+### products.bottoms.front — generated, wants a photograph
 
 - **Path:** `/assets/products/bottoms/work-pant-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -689,7 +837,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/pant-camo.webp`
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
-### products.outerwear.front
+### products.outerwear.front — generated, wants a photograph
 
 - **Path:** `/assets/products/outerwear/softshell-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -697,7 +845,98 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/utility-bomber-charcoal.webp`
 - **Used by:** `app/image-sitemap.xml/route.ts`, `data/products.ts`
 
-### products.fleece.back
+### photo.workVestOrange — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/work-vest-orange.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** High-visibility orange buttoned work vest
+- **Used by:** `data/industries.ts`, `data/products.ts`
+
+### photo.loungePantGrid — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/lounge-pant-grid.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Cream and navy grid lounge trouser
+- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
+
+### photo.zipHoodieNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/zip-hoodie-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy full-zip hooded fleece
+- **Used by:** `data/industries.ts`, `data/products.ts`
+
+### photo.hoodieNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/hoodie-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy pullover hooded sweatshirt
+- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
+
+### photo.henleyWaffleNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/henley-waffle-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy waffle-knit henley
+- **Used by:** `data/industries.ts`, `data/products.ts`
+
+### photo.denimUtilityJacket — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/denim-utility-jacket.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy denim utility jacket
+- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
+
+### photo.henleyTeeNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/henley-tee-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy short-sleeve henley T-shirt
+- **Used by:** `data/industries.ts`, `data/products.ts`
+
+### photo.poloYellow — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/polo-yellow.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Pale yellow pique uniform polo
+- **Used by:** `data/industries.ts`, `data/products.ts`
+
+### photo.pantCamo — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/pant-camo.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Woodland camouflage elastic-cuff trouser
+- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
+
+### fabrics.polyesterPerformance — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/polyester-performance.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of performance polyester knit
+- **Used by:** `data/materials.ts`, `data/guides.ts`
+
+### fabrics.fleece — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/fleece.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of brushed-back fleece
+- **Used by:** `data/materials.ts`, `data/products.ts`
+
+### fabrics.softshell — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/softshell.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of bonded softshell fabric
+- **Used by:** `data/materials.ts`, `data/products.ts`
+
+### products.polo.fabric — generated, wants a photograph
+
+- **Path:** `/assets/products/polos/polo-fabric-macro.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of cotton pique polo fabric
+- **Used by:** `data/products.ts`
+
+### products.fleece.back — generated, wants a photograph
 
 - **Path:** `/assets/products/fleece/fleece-jacket-back.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -705,23 +944,79 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/hoodie-navy.webp`
 - **Used by:** `data/products.ts`
 
-### photo.zipHoodieGreyGraphic
+### products.fleece.fabric — generated, wants a photograph
+
+- **Path:** `/assets/products/fleece/fleece-fabric-macro.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of brushed-back fleece
+- **Used by:** `data/products.ts`
+
+### photo.henleyGreen — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/henley-green.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Forest green long-sleeve henley
+- **Used by:** `data/products.ts`
+
+### photo.zipHoodieGreyGraphic — generated, wants a photograph
 
 - **Path:** `/assets/products/photography/zip-hoodie-grey-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Grey full-zip hooded sweatshirt with placement print. Photographed production sample
+- **Subject:** Grey full-zip hooded sweatshirt with placement print
 - **Currently showing:** `/assets/products/photography/zip-hoodie-grey.webp`
 - **Used by:** `data/products.ts`
 
-### photo.vestOrangePrinted
+### photo.zipHoodieGrey — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/zip-hoodie-grey.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Grey full-zip hooded fleece
+- **Used by:** `data/products.ts`
+
+### photo.hoodieNavyAlt — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/hoodie-navy-alt.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy hooded sweatshirt
+- **Used by:** `data/products.ts`
+
+### photo.henleyNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/henley-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy long-sleeve henley
+- **Used by:** `data/products.ts`
+
+### photo.poloDressNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/polo-dress-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy service polo dress
+- **Used by:** `data/products.ts`
+
+### photo.vestOrangePrinted — generated, wants a photograph
 
 - **Path:** `/assets/products/photography/vest-orange-printed.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Orange sleeveless vest with screen-printed text. Photographed production sample
+- **Subject:** Orange sleeveless vest with screen-printed text
 - **Currently showing:** `/assets/products/photography/work-vest-orange.webp`
 - **Used by:** `data/products.ts`
 
-### products.polo.back
+### photo.thermalSage — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/thermal-sage.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Sage waffle-knit thermal shirt
+- **Used by:** `data/products.ts`
+
+### photo.thermalSageAlt — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/thermal-sage-alt.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Sage waffle-knit thermal shirt, alternate view
+- **Used by:** `data/products.ts`
+
+### products.polo.back — generated, wants a photograph
 
 - **Path:** `/assets/products/polos/polo-blue-back.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -729,7 +1024,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/polo-taupe-long-sleeve.webp`
 - **Used by:** no component yet
 
-### products.tee.front
+### products.tee.front — generated, wants a photograph
 
 - **Path:** `/assets/products/tshirts/performance-tee-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
@@ -737,12 +1032,59 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Currently showing:** `/assets/products/photography/henley-tee-navy.webp`
 - **Used by:** no component yet
 
+### products.tee.fabric — generated, wants a photograph
+
+- **Path:** `/assets/products/tshirts/tee-fabric-macro.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of performance knit T-shirt fabric
+- **Used by:** no component yet
+
+### photo.scarfCamel — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-camel.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Camel fringed scarf
+- **Used by:** no component yet
+
+### photo.scarfHerringbone — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-herringbone.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Charcoal herringbone scarf
+- **Used by:** no component yet
+
+### photo.scarfPlaidMaroon — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-plaid-maroon.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Maroon plaid fringed scarf
+- **Used by:** no component yet
+
+### photo.scarfNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Midnight navy fringed scarf
+- **Used by:** no component yet
+
+### photo.scarfNavyLooped — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-navy-looped.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy scarf, looped arrangement
+- **Used by:** no component yet
+
+### photo.scarfPlaidOlive — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/scarf-plaid-olive.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Olive plaid fringed scarf
+- **Used by:** no component yet
+
 ## In place
 
-44 canonical files.
+42 canonical files.
 
-- `/assets/case-studies/uniform-apron-program/detail.webp` — 1600×1600
-- `/assets/case-studies/uniform-apron-program/fabric.webp` — 1600×1600
 - `/assets/development/fabric-swatches.webp` — 1600×900
 - `/assets/export/carton-marking.webp` — 1200×1200
 - `/assets/export/cartons.webp` — 1600×900

@@ -114,11 +114,24 @@ change: run `npm run images:build` and `npm run assets`, and the section that
 was hiding its image starts showing it. The full list, with paths and sizes, is
 in `assets-needed.md` (`npm run assets:report` regenerates it).
 
+**First, the camera originals of the product samples.** Every garment image on
+the site is AI-generated: the 24 in the product galleries were made from files
+in `asset-pack/AHM_All_Individual_Generated_Product_Images/`, whose README says
+the raw camera originals were left out. Since 11 October 2026 each one is
+labelled "AI illustration" on the page. The photographs those images were
+probably made from are the single most valuable thing to send: dropped in at
+the same paths, they replace the illustrations and the labels go by themselves.
+One question with them: the bib apron is sold as "Three-Pocket", but its
+illustration shows one pocket divided in two. Which is right?
+
 In order of what they unlock:
 
 | Shots | Paths | What it unlocks |
 |---|---|---|
-| Production floor, wide | `public/assets/hero/hero-sewing-01.webp` | The homepage hero photograph. Until then the hero shows real product photographs. |
+| Camera originals of the product samples, unbranded | `assets-master/product-photography/` (same filenames), then `npm run photos` | Replaces the 24 AI illustrations in the product galleries |
+| AHM's own facility: cutting, stitching, reinforcement, inspection, sampling, packing | `public/assets/facility/own/*.webp` | The "AHM-Owned Manufacturing" gallery on /manufacturing-network |
+| A partner's facility, with that partner's permission | `public/assets/facility/partner/*.webp` | The "Partner Manufacturing Facilities" gallery, labelled as a partner's |
+| Production floor, wide | `public/assets/hero/hero-sewing-01.webp` | The homepage hero photograph. Until then the hero shows AI illustrations of three articles, labelled. |
 | Fabric inspection, cutting, sewing, embroidery, printing, finishing, quality control, packing | `public/assets/factory/*.webp` | /capabilities, /quality, /about, the process timeline |
 | Tech pack review, pattern, measurement, trims, sample development | `public/assets/development/*.webp` | /development and the timeline |
 | Warehouse, container loading | `public/assets/export/*.webp` | /export |

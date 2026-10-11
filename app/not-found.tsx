@@ -79,7 +79,7 @@ export default function NotFound() {
               sizes={SIZES.half}
               className="h-full w-full"
               imageClassName="object-contain p-8"
-              alt="Three-pocket bib apron, studio view"
+              alt="Black bib apron, studio view"
             />
           </div>
         </div>

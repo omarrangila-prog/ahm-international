@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { preload } from "react-dom";
 import { Archivo, Instrument_Sans } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { PrintHeader } from "@/components/layout/PrintHeader";
@@ -107,6 +108,13 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // The canvas weave is painted across every zoned section, so on most routes
+  // the hero section's background is the Largest Contentful Paint. Declared
+  // only in CSS, it was not requested until the stylesheet had been parsed:
+  // Lighthouse put 1.3 to 1.5 seconds of "load delay" on it on a mobile
+  // profile. Preloaded, it starts with the fonts.
+  preload("/assets/texture/weave.webp", { as: "image", fetchPriority: "high" });
+
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body className="antialiased">

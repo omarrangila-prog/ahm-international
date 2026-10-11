@@ -78,7 +78,9 @@ export type ProductCategory = {
   /** Supporting detail photography. */
   detailAssets: AssetKey[];
   /**
-   * Photographed production samples for this category.
+   * Sample-style images for this category. Generated, not photographed, as of
+   * October 2026 (data/generated-images.json); the gallery says so and goes
+   * back to "Photographed from production" by itself once they are replaced.
    *
    * Unbranded articles only. Anything carrying a client mark is held out of the
    * deployed set — see asset-pack/client-branded-hold.
@@ -93,6 +95,17 @@ export type ProductCategory = {
     heading: string;
     intro: string;
     steps: { title: string; body: string }[];
+  };
+  /**
+   * Construction points marked on one image of the family, positioned in
+   * percent of that image. Only features the image visibly shows: one that is
+   * specified per order but not visible goes in `note`, not on a marker, and
+   * nothing here says a feature is standard.
+   */
+  callouts?: {
+    asset: AssetKey;
+    note: string;
+    points: { x: number; y: number; title: string; body: string }[];
   };
   seoTitle: string;
   seoDescription: string;
@@ -260,9 +273,9 @@ export const productCategories: ProductCategory[] = [
     // 2026: reference in, construction reviewed, open points clarified, FOB
     // quotation out. No step produces a number before the last one.
     costComparison: {
-      heading: "Send us your existing apron for cost comparison.",
+      heading: "Already sourcing aprons? Let us benchmark your current style.",
       intro:
-        "Already buying aprons? Send the specification of the one you buy now and get an FOB quotation for the same apron. There is no instant price: a comparison is only useful when both quotations describe the same article.",
+        "Share your existing specification, construction requirements and estimated quantity for a manufacturing and FOB costing review of the same apron. There is no instant price: a comparison is only useful when both quotations describe the same article.",
       steps: [
         {
           title: "You send the reference",
@@ -279,6 +292,30 @@ export const productCategories: ProductCategory[] = [
         {
           title: "An FOB quotation is prepared",
           body: "On the same basis as the apron you buy now, so the two can be compared line by line. The final price depends on the confirmed specification and commercial approval.",
+        },
+      ],
+    },
+    callouts: {
+      asset: "products.apron.front",
+      note: "Marked on an AI illustration of the style, not a photograph. Bar-tacking at pocket mouths and strap attachments, labels and finishing are specified per order and are not shown here. No feature above is standard on every apron.",
+      points: [
+        {
+          x: 66.5,
+          y: 14.5,
+          title: "Adjustable neck strap",
+          body: "A slider buckle on the neck strap sets the bib height for each wearer. Strap width, length and hardware are set in the specification.",
+        },
+        {
+          x: 48.6,
+          y: 66,
+          title: "Divided patch pocket",
+          body: "One patch pocket stitched through the centre into two compartments. Pocket count, size and placement follow your specification.",
+        },
+        {
+          x: 89,
+          y: 52,
+          title: "Waist ties",
+          body: "Ties sewn at the side of the bib. Length and width are set per program, including extended ties that wrap round to the front.",
         },
       ],
     },

@@ -126,6 +126,8 @@ export function RfqForm({ uploadMode = "form", storageNamespace = "" }: { upload
     const searchParams = new URLSearchParams(window.location.search);
     const map: [string, keyof RfqInput][] = [
       ["category", "category"],
+      // From an article card on a product page: the buyer has already picked one.
+      ["style", "styleName"],
       ["fabric", "fabric"],
       // Carried by the GSM calculator on /materials, so a buyer who has just
       // worked out a weight does not retype it into the field below.

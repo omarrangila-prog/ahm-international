@@ -131,7 +131,7 @@ export default async function CaseStudyPage({ params }: Params) {
                     sizes={SIZES.half}
                     className="h-full w-full"
                     imageClassName="object-contain p-10"
-                    alt="Three-pocket bib apron of the type produced for this program"
+                    alt="Illustration of a bib apron of the type produced for this program"
                   />
                 </div>
               </Reveal>
@@ -168,9 +168,12 @@ export default async function CaseStudyPage({ params }: Params) {
       </Section>
 
       <CtaBand
-        headingLines={[{ text: "RUN A SIMILAR" }, { text: "PROGRAM." }]}
+        headingLines={[{ text: "DISCUSS A SIMILAR" }, { text: "MANUFACTURING" }, { text: "PROGRAM." }]}
         body="Send your apron or uniform specification and we will come back on construction, fabric options and commercial FOB costing."
-        primary={{ label: "Request FOB Quote", href: "/request-a-quote" }}
+        primary={{
+          label: "Discuss a similar program",
+          href: `/request-a-quote?${new URLSearchParams({ category: "Aprons", source: `case_study_${study.slug}` })}`,
+        }}
         secondary={{ label: "Apron manufacturing", href: "/products/aprons" }}
         zone="lime"
       />

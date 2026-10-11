@@ -36,3 +36,17 @@ place each file at its canonical path under `public/assets/`, then run
 `git mv` a file back to the same path under `public/assets/` and run
 `npm run assets`. Do it only with the owner's explicit decision that a
 generated image may stand for the real thing, and label it on the page.
+
+## Withdrawn 11 October 2026
+
+`case-studies/uniform-apron-program/detail.webp` and `fabric.webp` stayed when
+the scenes above went, and should not have. Both were generated from the
+prompts of the same names, and the case study captioned them "Construction
+detail from the apron program" and "the 65/35 poly-cotton fabric used in the
+apron program". A close-up presented as the documented program's own
+construction is the strongest evidence claim on the page, and it was a picture
+of nothing that was made.
+
+Generated images that remain on the site are listed in
+`data/generated-images.json` and carry an "AI illustration" label wherever
+they appear with meaning (see `SmartImage`).

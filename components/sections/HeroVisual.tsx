@@ -6,8 +6,12 @@ import Image from "next/image";
  * Hero visual.
  *
  * Renders the hero photograph once `hero-sewing-01.webp` exists. Until then it
- * composes a lay-down from photographed articles that actually exist. Missing
- * files are skipped — nothing is drawn in their place.
+ * composes a lay-down from article images that actually exist. Missing files
+ * are skipped — nothing is drawn in their place.
+ *
+ * The lay-down images are generated, so the article list ends with a line
+ * saying so, at every width. It is the one place on the site that bypasses
+ * SmartImage, and so the one place its label would not reach.
  */
 
 const layDown = [
@@ -15,7 +19,7 @@ const layDown = [
   { key: "photo.poloTaupeLongSleeve", code: "Classic polo", label: "Long-sleeve uniform polo", className: "right-[5%] top-[8%] w-[36%] z-10" },
   // Kept above the lower guide line (78%): the article codes are set below it,
   // and an apron reaching the bottom edge put its own caption on top of it.
-  { key: "products.apron.front", code: "Bib apron", label: "Three-pocket bib apron", className: "left-[34%] bottom-[24%] w-[28%] z-30" },
+  { key: "products.apron.front", code: "Bib apron", label: "Divided patch pocket", className: "left-[34%] bottom-[24%] w-[28%] z-30" },
 ] as const;
 
 function LayDown() {
@@ -73,6 +77,9 @@ function LayDown() {
             {item.label}
           </li>
         ))}
+        {layDown.some((item) => resolveAsset(item.key).generated) && (
+          <li className="label mt-1 text-ink">AI illustrations, not photographs</li>
+        )}
       </ul>
 
       {/* Top-left, the one corner the lay-down leaves empty; bottom-right ran

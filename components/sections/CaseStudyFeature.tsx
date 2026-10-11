@@ -75,16 +75,16 @@ export function CaseStudyFeature() {
                         sizes={SIZES.third}
                         className="h-full w-full"
                         imageClassName="object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
-                        alt="Bib apron of the type produced for the documented uniform program"
+                        alt="Illustration of a bib apron of the type produced for the documented uniform program"
                       />
-                      <span className="absolute left-4 top-4 bg-ink px-2.5 py-1 label text-lime">
-                        Documented
-                      </span>
                     </div>
                   )}
 
                   <div className="flex flex-col justify-center border-t border-ink/10 p-7 sm:border-t-0 sm:border-l sm:p-8">
-                    <p className="label text-ink/65">{study.market}</p>
+                    {/* On the text, not the picture: the program is documented,
+                        the illustration beside it is not a record of it. */}
+                    <span className="self-start bg-ink px-2.5 py-1 label text-lime">Documented</span>
+                    <p className="mt-4 label text-ink/65">{study.market}</p>
                     <h3 className="mt-3 font-display text-2xl font-extrabold uppercase leading-[1.05] tracking-[-0.03em] text-ink sm:text-3xl">
                       {study.anonymisedTitle}
                     </h3>

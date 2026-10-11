@@ -141,6 +141,23 @@ test("the report counts records and nothing else", () => {
   assert.equal(r.funnel[stageIndex("purchase-order")].reached, 1);
   assert.equal(r.quality.withFiles, 1);
   assert.equal(r.followUp.medianDaysToFirstContact, 2);
+
+  // Each breakdown row is carried to the order: Canada sent the one that was won.
+  assert.deepEqual(r.byCountry.map((c) => [c.key, c.quoted, c.won]), [
+    ["Canada", 2, 1],
+    ["United Kingdom", 1, 0],
+  ]);
+  const step = (name: string) => r.conversion.find((c) => c.step === name)!;
+  assert.deepEqual([step("Enquiry to qualified").part, step("Enquiry to qualified").whole], [3, 4]);
+  assert.deepEqual([step("Qualified to quotation").part, step("Qualified to quotation").whole], [3, 3]);
+  assert.deepEqual([step("Quotation to order").part, step("Quotation to order").whole], [1, 3]);
+  // Production is past sampling in the stage order, so the order counts as sampled.
+  assert.deepEqual([step("Quotation to sample").part, step("Order to repeat business").whole], [1, 1]);
+});
+
+test("conversion on an empty register is all zeros, not a division by zero", () => {
+  const r = buildReport([], NOW);
+  for (const c of r.conversion) assert.deepEqual([c.part, c.whole], [0, 0], c.step);
 });
 
 test("the digest finds overdue follow-ups and quiet quotations, and nothing that is fine", () => {
