@@ -7,6 +7,7 @@ import { Faq } from "@/components/ui/Faq";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { commercialAnswers } from "@/data/company";
 import { pageMetadata } from "@/lib/seo";
+import { storageEnabled, storageNamespace } from "@/lib/storage/namespace";
 
 export const metadata: Metadata = pageMetadata({
   title: "Request an FOB Quote",
@@ -33,7 +34,13 @@ export default function RequestQuotePage() {
                 useSearchParams(), so it prerenders with the rest of the page
                 instead of shipping a "Loading" placeholder as the entire
                 lead-capture path. */}
-            <RfqForm />
+            {/* The upload route is decided at build time from the deployment's
+                configuration; the namespace keeps preview uploads out of
+                production's files. Neither value is secret. */}
+            <RfqForm
+              uploadMode={storageEnabled() ? "direct" : "form"}
+              storageNamespace={storageEnabled() ? storageNamespace() : ""}
+            />
           </div>
 
           <aside className="col-span-12 lg:col-span-4">

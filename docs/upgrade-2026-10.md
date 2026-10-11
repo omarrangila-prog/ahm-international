@@ -1,8 +1,9 @@
 # Website upgrade, October 2026
 
 Against the brief of 10 October 2026 ("World-class website transformation").
-Branch `upgrade/hybrid-model-and-rfq-delivery`. Nothing in this round has been
-deployed; production still runs the code from before it.
+Branch `upgrade/hybrid-model-and-rfq-delivery`. Not yet deployed: production
+still runs the code from before this round (see §5). §7 covers the second
+round on the same day: the enquiry register, large uploads and the assistant.
 
 What the owner has to supply is in `what-you-need-to-supply.md`. How to launch
 is in `../LAUNCH.md`. This document is the record: what was found, what was
@@ -23,6 +24,8 @@ the fix. Every item below was reproduced before it was changed.
 | C2 | Quote requests reached no one, and both forms still said "RFQ received… our commercial team will review your requirements" | `app/api/rfq/route.ts`, both forms | Every enquiry lost behind a confirmation | SMTP delivery to the company mailbox with attachments; a separate "One more step" screen when nothing was delivered; `rfq_completed` fires only on delivery | Production build against a local SMTP server: notifications, Reply-To, a 200 kB PDF byte-identical, both screens in a browser |
 | C3 | Fifteen generated images presented as photographs of AHM operations: branded operators under "LINE A-1" signs, an AHM quality check sheet with a signature and date, a signed warehouse and container, and an AHM-logo apron on the documented case study | `public/assets/{hero,factory,development,export,case-studies}` | Fabricated evidence of scale, staff and records on a site whose first rule is that nothing is invented | Moved to `asset-pack/generated-hold/` with a README; sections restructure | `images:gaps` 0 on 86 routes; screenshots of every affected page |
 | C4 | Next.js 16.3.1 carried published remote-code-execution and SSRF advisories (image optimiser with AVIF, `next/og`) | `package.json` | Security exposure on a site a buyer's IT team may scan | Next 16.4.0; nodemailer 10.1.0 | `npm audit --omit=dev`: 0 vulnerabilities |
+| C5 | The full quote form could not be sent by any buyer who left the optional Gender select blank: its empty value failed the schema, the error showed on step 2, and "Submit for Review" on step 7 did nothing at all | `lib/rfq-schema.ts` | Every full-form enquiry from a buyer who skipped Gender was lost without a message, on the live site | Optional selects accept "not answered"; a failed submit jumps to the step with the problem and says so | Reproduced on www.ahminternationals.com (validation only, nothing sent); regression tests in `tests/rfq-schema.test.ts`; e2e |
+| C6 | "Continue" on the Files step submitted the form: one button element changed type during the click, and the browser took the click as a submit | `components/forms/RfqForm.tsx` | Buyers who did fill Gender were sent past the review step without seeing it | Separate elements for the two buttons | e2e asserts the review step appears and no request is made before "Submit for Review" |
 
 ### High
 
@@ -64,13 +67,13 @@ the fix. Every item below was reproduced before it was changed.
 | P1 | NTN and street address | AHM |
 | P1 | GA4 ID, Search Console DNS verification, sitemap submission | AHM accounts |
 | P1 | Legal review | A lawyer |
-| P2 | Lead pipeline (stages, owner, follow-ups). Recommended route: a hosted CRM fed by `RFQ_WEBHOOK_URL`, rather than a bespoke dashboard that would need a database and staff authentication this site does not have | Choice of CRM |
-| P2 | Direct-to-storage uploads (private Vercel Blob) so tech packs over 4 MB arrive through the form | A storage token |
-| P2 | Shared rate limiting (Redis or Vercel's), then switch on the buyer receipt | A Redis or platform limiter |
+| ~~P2~~ | ~~Lead pipeline~~ Built: `/pipeline`, see §7 | Done; needs `SMTP_PASS` for sign-in |
+| ~~P2~~ | ~~Direct-to-storage uploads~~ Built: private store created and connected, see §7 | Done |
+| P2 | Shared rate limiting, then switch on the buyer receipt. Limits are still per server instance; the assistant's real cost ceiling is the spend limit on its API key | A shared store for counters, if abuse ever shows up |
 | P3 | Annotated apron close-ups (pocket bar-tacks, straps, labels) | Real detail photographs |
 | P3 | Company profile and capability sheets as PDFs | Approved facts and photographs |
 | P3 | Further case studies | Customer permission |
-| P3 | AI sourcing assistant, limited to published content | The brief's own condition (a reliable RFQ first), a valid key, and a defined scope |
+| P3 | AI sourcing assistant, limited to published content. Built, see §7; off until a key is set | An Anthropic API key with a spend limit, after the first real enquiry arrives |
 
 ---
 
@@ -134,8 +137,10 @@ mailbox (needs `SMTP_PASS`), and GA4 data arriving in a real property.
   "Promote to Production". Instant, no rebuild.
 - In git: revert the merge commit on `main` and push.
 - By configuration: removing `SMTP_PASS` returns the form to "One more step";
-  removing `NEXT_PUBLIC_GA_ID` removes the consent bar and all Google requests.
-  Both need a redeploy.
+  removing `NEXT_PUBLIC_GA_ID` removes the consent bar and all Google requests;
+  `ASSISTANT_ENABLED=false` removes the assistant without deleting the key.
+  All need a redeploy. Do not disconnect the private store to undo uploads:
+  it also holds the enquiry register.
 - Withdrawn images: `git mv` a file back from `asset-pack/generated-hold/` and
   run `npm run assets`. Read the README there first.
 
@@ -144,16 +149,66 @@ mailbox (needs `SMTP_PASS`), and GA4 data arriving in a real property.
 ## 6. Scorecard
 
 The brief's rubric. "Before" is the production site at the start of this round;
-"after" is this branch before the owner's actions; "next" is after the P0 and
-P1 items above. Scores are judgements; the evidence column is what they rest on.
+"round 1" and "round 2" are this branch before the owner's actions; "next" is
+after the P0 and P1 items above. Scores are judgements; the evidence column is
+what they rest on.
 
-| Category | Max | Before | After | Next | Evidence and what holds it back |
-|---|---:|---:|---:|---:|---|
-| Visual design and branding | 15 | 10 | 11 | 13 | Coherent system, honest hero. Capped by the absence of real photography: a premium manufacturer site without its own floor on it cannot reach the top band. |
-| Manufacturing credibility and buyer trust | 20 | 10 | 15 | 18 | Generated evidence removed, model explained, verification page with a document request. Missing: NTN, facility photographs, certifications, a second case study. |
-| Content and product presentation | 15 | 11 | 12 | 13 | Aprons lead, six new guides, cost comparison, taxonomy fixed. Missing: product detail photography and annotations. |
-| Conversion and inquiry experience | 20 | 8 | 14 | 18 | Honest outcomes, uploads that work, mail delivery built and tested. Production still delivers nothing until `SMTP_PASS` is set. |
-| SEO and discoverability | 10 | 8 | 9 | 9 | One canonical host, clean audits, schema fixed. Search Console not yet connected. |
-| Technical performance and reliability | 10 | 6 | 9 | 9 | Advisories closed, LCP under one second locally. Rate limiting is per instance. |
-| Accessibility and mobile usability | 10 | 9 | 9 | 9 | Every sweep clean before and after. |
-| **Total** | **100** | **62** | **79** | **89** | |
+"Before" for conversion was scored before C5 and C6 were found. With a full
+form that could not be sent, it was lower than 8.
+
+| Category | Max | Before | Round 1 | Round 2 | Next | Evidence and what holds it back |
+|---|---:|---:|---:|---:|---:|---|
+| Visual design and branding | 15 | 10 | 11 | 11 | 13 | Coherent system, honest hero. Capped by the absence of real photography: a premium manufacturer site without its own floor on it cannot reach the top band. |
+| Manufacturing credibility and buyer trust | 20 | 10 | 15 | 15 | 18 | Generated evidence removed, model explained, verification page with a document request. Missing: NTN, facility photographs, certifications, a second case study. |
+| Content and product presentation | 15 | 11 | 12 | 12 | 13 | Aprons lead, six new guides, cost comparison, taxonomy fixed. The assistant adds nothing until it is keyed. Missing: product detail photography and annotations. |
+| Conversion and inquiry experience | 20 | 8 | 14 | 17 | 19 | The full form can be sent again; 25 MB uploads; recoverable upload failures; every enquiry recorded and worked in a register with follow-up reminders. Production still delivers nothing until `SMTP_PASS` is set. |
+| SEO and discoverability | 10 | 8 | 9 | 9 | 9 | One canonical host, clean audits, schema fixed. Search Console not yet connected. |
+| Technical performance and reliability | 10 | 6 | 9 | 9 | 9 | Advisories closed, LCP under one second locally, end-to-end tested against the real store. Rate limiting is per instance. |
+| Accessibility and mobile usability | 10 | 9 | 9 | 9 | 9 | Every sweep clean, including the register and the open assistant. |
+| **Total** | **100** | **62** | **79** | **82** | **90** | |
+
+---
+
+## 7. Round 2: the enquiry register, large uploads, the assistant
+
+The owner asked for the three deferred items. Each is built to switch on from
+configuration, and none sends a buyer a message nobody wrote.
+
+### What was built
+
+| Item | What it does | Needs |
+|---|---|---|
+| Private file store | Created 10 October: `ahm-rfq-files`, private, connected to production, preview and development. Tech packs go from the browser straight to it, 25 MB a file and 60 MB in total, and are checked by content before an enquiry claims them. Files are deleted two years after the enquiry; abandoned uploads after a day. | Nothing further |
+| Enquiry register, `/pipeline` | The brief's eleven stages, commercial owner, follow-up and last-contact dates, quotation reference, lost reason, notes and history, files, source and campaign. Board and list views, reports (by country, product and source; stage reached; quotation outcomes; follow-up performance; enquiry quality), CSV export. Emailed one-time sign-in; admin, sales and viewer roles. | `SMTP_PASS` for sign-in; optionally `PIPELINE_STAFF` |
+| Follow-up reminders | One internal email each morning: overdue follow-ups, unqualified enquiries, specifications awaited, quiet quotations and samples, shipped orders due a repeat call. Nothing is sent to buyers. | `SMTP_PASS` |
+| Sourcing assistant | A button that opens a panel; never opens itself. Answers from the site's own content only, names what is not published, links only to site pages, the mailbox and WhatsApp, keeps a person one click away, stores nothing. | `ANTHROPIC_API_KEY`, with a spend limit set on it |
+| Campaign attribution | Landing page, referring site and utm tags travel with an enquiry. Held in page memory, never on the device, so no consent is needed. | Nothing |
+
+### Found and fixed on the way
+
+- **C5 and C6** in §1: the full quote form could not be sent by a buyer who
+  left Gender blank, and "Continue" on the Files step skipped the review step.
+  Both were live on www.ahminternationals.com.
+- A compressed read of a register document returns a weak ETag, which a
+  conditional write always refuses. Small probes passed; the first real lead
+  record failed. Normalised in `lib/storage/json-store.ts`.
+- The Blob client retries a dead upload for about seventeen minutes. Uploads
+  that make no progress for 45 seconds are now abandoned, and the buyer chooses
+  between "Try again" and "Send without it".
+- The assistant's screen-reader announcement read markdown aloud, brackets and
+  paths included.
+
+### How it was tested
+
+A production build on localhost, against the real private store under a
+throwaway `e2e-` prefix (deleted afterwards, 0 left), a local SMTP server, and
+a local stand-in for the Anthropic API. Nothing was sent to the real mailbox or
+to Anthropic.
+
+| Check | Result |
+|---|---|
+| Unit and invariant tests | 152 pass |
+| End-to-end, Playwright, run in the working session (the script was not kept in the repository) | 55 of 55: 6 MB and 5 MB files through the form; spoofed PNG refused and deleted; attachment byte-identical; over-budget file linked to the register; campaign carried through client-side navigation; store URLs answer 403; files need a session; unlisted address gets the same reply and no email; link single-use and not spent by opening; cookie HttpOnly, Lax, `/pipeline`; changes logged; absent fields untouched; viewer cannot edit or export; failed upload recoverable; assistant streams, refuses foreign links, sends the site as a cached block, survives an outage, refuses other origins; daily job once a day; digest to staff only; no console errors or CSP violations |
+| axe-core on the register and the open assistant | 0 violations, desktop and mobile, 9 views each |
+| Site-wide audits, production build with every feature on (store, mail, register, assistant) | `a11y` 21 routes x 2 widths: no violations. `contrast` 86 routes: no text below AA. `targets`: no failures. `console` 86 routes: no errors or failed requests. `audit` and `seo:deep` 86 routes: pass, nothing found. `links`: none broken. `images:gaps`: 0. `responsive` 264 loads: no defects |
+| Lint, typecheck, `npm audit --omit=dev` | Clean; 0 vulnerabilities |

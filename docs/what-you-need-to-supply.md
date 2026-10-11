@@ -14,10 +14,12 @@ photographs are needed again.
 
 | What | Where | Why it blocks |
 |---|---|---|
-| The `info@ahminternationals.com` mailbox password | Vercel → Settings → Environment Variables → `SMTP_PASS`, marked Sensitive, then redeploy | Until it is set, quote requests reach no one. Buyers are told so and given the email and WhatsApp, but the form itself delivers nothing. |
+| The `info@ahminternationals.com` mailbox password | Vercel → Settings → Environment Variables → `SMTP_PASS`, marked Sensitive, then redeploy | Until it is set, quote requests reach no one by email, and nobody can sign in to the enquiry register (sign-in links are emailed). Buyers are told so and given the email and WhatsApp. |
 
-After it is set: send one test request marked as a test, and confirm it arrives
-with its attachment. Do not paste the password into a chat or a file.
+After it is set: send one test request marked as a test, with a small PDF, and
+confirm it arrives with its attachment. Then sign in at
+`https://www.ahminternationals.com/pipeline` with `info@ahminternationals.com`.
+Do not paste the password into a chat or a file.
 
 ---
 
@@ -27,7 +29,47 @@ with its attachment. Do not paste the password into a chat or a file.
 |---|---|
 | Change the apex redirect from 307 to **308 Permanent** | Settings → Domains → `ahminternationals.com` → Edit |
 | Delete the duplicate project `ahm-international-sk7y` (optional; it now redirects to www) | That project → Settings → Advanced → Delete |
-| Merge the upgrade branch so it deploys | GitHub, or ask for it to be merged |
+| Merge the upgrade branch so it deploys | GitHub, or allow it to be pushed (see the note at the end) |
+
+**Already done, 10 October:** the private file store `ahm-rfq-files` was
+created and connected to the project (production, preview and development).
+That is what lets buyers upload tech packs up to 25 MB each, and it holds the
+enquiry register. Nothing to do; do not make it public.
+
+---
+
+## 2a. The enquiry register (`/pipeline`)
+
+| Decision | Where | Default if you do nothing |
+|---|---|---|
+| Who may sign in, and as what | `PIPELINE_STAFF` in Vercel, e.g. `info@ahminternationals.com:admin, ali@ahminternationals.com:sales, owner@…:viewer` | Only `info@ahminternationals.com`, as admin |
+| How long buyer files are kept | `RFQ_FILE_RETENTION_DAYS` (minimum 30) | 730 days (two years). The privacy policy states whatever this is. |
+| Lock the daily job to Vercel's scheduler | `CRON_SECRET`, any long random string | Open, but it runs at most once a day and only deletes what the schedule would |
+
+Admins can export CSV and delete enquiries; sales can update them; viewers can
+only read. Every morning (09:00 Karachi) the register emails staff a list of
+overdue follow-ups, unqualified enquiries, quiet quotations and samples. It
+never emails a buyer.
+
+---
+
+## 2b. The sourcing assistant (optional)
+
+Off until you add a key. The brief says to add it only once quote requests
+arrive reliably, so the order is: set `SMTP_PASS`, receive one real enquiry by
+email, then switch this on.
+
+1. Create an API key at console.anthropic.com, under AHM's own account.
+2. In the same console, set a **monthly spend limit**. That is the ceiling on
+   what the assistant can cost, whatever happens on the website.
+3. In Vercel, add `ANTHROPIC_API_KEY` (Sensitive) and redeploy.
+4. Optional: `ASSISTANT_MODEL=claude-sonnet-5-5` or `claude-haiku-5-5` for a
+   lower bill. The default is Claude Opus 5.5, the model least likely to
+   answer a question about MOQ or capacity with a guess.
+
+Do not use the key and the third-party address pasted into a chat on
+9 October. The site only talks to Anthropic's own API, on purpose: a proxy
+would see every buyer's questions.
 
 ---
 
@@ -43,6 +85,8 @@ These statements are on the upgrade branch. Each rests on the brief of
 | "Your agreement is with AHM" whichever facility makes the bulk | /manufacturing-network | page text |
 | The apron cost-comparison process: reference in, construction reviewed, open points clarified, FOB quotation out | /products/aprons | `costComparison` in `data/products.ts` |
 | Confidential documents may be shared under an NDA | /verification | page text |
+| The assistant's notice: answers from the website, by an AI model (Claude, by Anthropic), can be wrong, no prices/MOQs/lead times, no confidential specifications | The assistant panel | `components/assistant/AssistantPanel.tsx` |
+| Privacy policy: the enquiry register, private storage, the two-year file retention, the staff sign-in cookie, the assistant and Anthropic | /privacy, /cookies | `data/legal.ts` (generated from the configuration) |
 | "Development, production and quality coordination under AHM's own management" | Homepage section 02, /manufacturing-network | component text |
 
 ---
@@ -97,3 +141,16 @@ In order of what they unlock:
 
 The AI API key pasted into a chat on 9 October, with a third-party base URL,
 should be revoked and replaced. It was never written to this repository.
+
+---
+
+## 8. Deploying this work
+
+Every push to `main` deploys to www.ahminternationals.com. The assistant that
+built this cannot push to `main` on its own: deploying to production is
+blocked in its permission settings, deliberately. To deploy, either merge the
+branch on GitHub yourself, or allow the push when asked (or add a permission
+rule for `git push` in Claude Code's settings).
+
+Rolling back is one click: Vercel → Deployments → the previous production
+deployment → Promote to Production.

@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { FileText, Upload, X, AlertCircle } from "lucide-react";
-import { ACCEPT_ATTRIBUTE, MAX_FILE_BYTES, MAX_FILES, MAX_TOTAL_BYTES, isAcceptedUpload, sanitiseFilename, ACCEPTED_LABEL } from "@/lib/upload-policy";
+import { ACCEPT_ATTRIBUTE, FORM_LIMITS, isAcceptedUpload, sanitiseFilename, ACCEPTED_LABEL, type UploadLimits } from "@/lib/upload-policy";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -13,24 +13,33 @@ import { cn } from "@/lib/utils";
  * problem immediately instead of after a slow upload — the server applies the
  * same rules again, because client-side checks are a courtesy and not a control.
  *
+ * The limits come from the page, because they depend on the deployment: the
+ * form-body ceiling when files travel inside the form, and the larger
+ * direct-upload limits when they go straight to private storage. Both are in
+ * lib/upload-policy.ts.
+ *
  * Filenames are sanitised before display: they come from the user's machine and
  * are rendered back into the page, so a name containing markup or control
  * characters is neutralised rather than trusted.
  */
 
-function formatBytes(bytes: number) {
+export function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} kB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
+const mb = (bytes: number) => Math.round(bytes / 1024 / 1024);
+
 export function FileDrop({
   files,
   onChange,
+  limits = FORM_LIMITS,
   tone = "light",
 }: {
   files: File[];
   onChange: (files: File[]) => void;
+  limits?: UploadLimits;
   tone?: "light" | "dark";
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,12 +53,13 @@ export function FileDrop({
 
       const next = [...files];
       let total = files.reduce((sum, f) => sum + f.size, 0);
+      const ceiling = limits.mode === "direct" ? "the most the form accepts per file" : "the most the form can carry";
 
       for (const file of Array.from(incoming)) {
         const safeName = sanitiseFilename(file.name);
 
-        if (next.length >= MAX_FILES) {
-          setError(`You can attach up to ${MAX_FILES} files.`);
+        if (next.length >= limits.maxFiles) {
+          setError(`You can attach up to ${limits.maxFiles} files.`);
           break;
         }
         if (!isAcceptedUpload(safeName, file.type)) {
@@ -57,16 +67,16 @@ export function FileDrop({
           track("techpack_upload_error", { reason: "type" });
           continue;
         }
-        if (file.size > MAX_FILE_BYTES) {
+        if (file.size > limits.maxFileBytes) {
           setError(
-            `"${safeName}" is larger than ${Math.round(MAX_FILE_BYTES / 1024 / 1024)} MB, the most the form can carry. Submit without it and email it with the reference you get.`,
+            `"${safeName}" is larger than ${mb(limits.maxFileBytes)} MB, ${ceiling}. Submit without it and email it with the reference you get.`,
           );
           track("techpack_upload_error", { reason: "file_size" });
           continue;
         }
-        if (total + file.size > MAX_TOTAL_BYTES) {
+        if (total + file.size > limits.maxTotalBytes) {
           setError(
-            `"${safeName}" would take the attachments over ${Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB. Submit without it and email it with the reference you get.`,
+            `"${safeName}" would take the attachments over ${mb(limits.maxTotalBytes)} MB. Submit without it and email it with the reference you get.`,
           );
           track("techpack_upload_error", { reason: "total_size" });
           continue;
@@ -78,12 +88,14 @@ export function FileDrop({
         total += file.size;
       }
 
-      if (next.length !== files.length) {
+      // In direct mode the upload happens at send time, and the form reports
+      // completion then; selecting a file is not uploading it.
+      if (limits.mode === "form" && next.length !== files.length) {
         track("techpack_upload_complete", { count: next.length });
       }
       onChange(next);
     },
-    [files, onChange],
+    [files, onChange, limits],
   );
 
   const dark = tone === "dark";
@@ -127,7 +139,10 @@ export function FileDrop({
           </span>
         </div>
         <p className={cn("text-xs", dark ? "text-current/70" : "text-ink/65")}>
-          {ACCEPTED_LABEL} · up to {MAX_FILES} files · {Math.round(MAX_TOTAL_BYTES / 1024 / 1024)} MB in total.
+          {ACCEPTED_LABEL} · up to {limits.maxFiles} files ·{" "}
+          {limits.maxFileBytes < limits.maxTotalBytes
+            ? `${mb(limits.maxFileBytes)} MB each, ${mb(limits.maxTotalBytes)} MB in total.`
+            : `${mb(limits.maxTotalBytes)} MB in total.`}{" "}
           Larger files can be emailed with your reference.
         </p>
 

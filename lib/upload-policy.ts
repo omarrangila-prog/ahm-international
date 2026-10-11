@@ -20,12 +20,55 @@
  *
  * 4 MB in total leaves room for the multipart framing and the text fields.
  * Anything larger is sent by email with the reference the form returns, which
- * the form says at the point the file is refused. Raising this needs direct
- * browser-to-storage upload, not a bigger number here.
+ * the form says at the point the file is refused.
+ *
+ * These are the limits when files travel inside the form submission. When the
+ * private store is configured, files go from the browser straight to it and
+ * never pass through a function, so the platform ceiling no longer applies and
+ * `DIRECT_LIMITS` below are the ones enforced.
  */
 export const MAX_TOTAL_BYTES = 4 * 1024 * 1024; // 4 MB per submission
 export const MAX_FILE_BYTES = MAX_TOTAL_BYTES; // a single file may use all of it
 export const MAX_FILES = 6;
+
+/**
+ * How files reach the server on this deployment.
+ *
+ *   form    inside the multipart submission, 4 MB in total
+ *   direct  browser to private storage, then claimed by the submission
+ */
+export type UploadMode = "form" | "direct";
+
+export type UploadLimits = {
+  mode: UploadMode;
+  maxFiles: number;
+  maxFileBytes: number;
+  maxTotalBytes: number;
+};
+
+export const FORM_LIMITS: UploadLimits = {
+  mode: "form",
+  maxFiles: MAX_FILES,
+  maxFileBytes: MAX_FILE_BYTES,
+  maxTotalBytes: MAX_TOTAL_BYTES,
+};
+
+/**
+ * 25 MB covers a tech pack with embedded photography; 60 MB in total covers a
+ * pack, a spec sheet and reference images. Above that a buyer is usually
+ * sending a folder of artwork, which is better agreed by email than pushed
+ * through a form.
+ */
+export const DIRECT_LIMITS: UploadLimits = {
+  mode: "direct",
+  maxFiles: MAX_FILES,
+  maxFileBytes: 25 * 1024 * 1024,
+  maxTotalBytes: 60 * 1024 * 1024,
+};
+
+export function uploadLimits(mode: UploadMode): UploadLimits {
+  return mode === "direct" ? DIRECT_LIMITS : FORM_LIMITS;
+}
 
 /** Accepted upload types, keyed by extension. */
 export const ACCEPTED_UPLOADS: Record<string, string[]> = {
@@ -66,9 +109,15 @@ export const ACCEPTED_LABEL = (() => {
 })();
 
 /** Every numeric limit in one sentence, including the total. */
-export const UPLOAD_LIMITS = `Up to ${MAX_FILES} files and ${mb(
-  MAX_TOTAL_BYTES,
-)} MB in total. Larger files can be emailed with the reference the form gives you.`;
+export function uploadLimitsText(mode: UploadMode): string {
+  const limits = uploadLimits(mode);
+  return limits.maxFileBytes < limits.maxTotalBytes
+    ? `Up to ${limits.maxFiles} files, ${mb(limits.maxFileBytes)} MB per file and ${mb(limits.maxTotalBytes)} MB in total. Anything larger can be emailed with the reference the form gives you.`
+    : `Up to ${limits.maxFiles} files and ${mb(limits.maxTotalBytes)} MB in total. Larger files can be emailed with the reference the form gives you.`;
+}
+
+/** The form-mode sentence, for callers that do not know the deployment's mode. */
+export const UPLOAD_LIMITS = uploadLimitsText("form");
 
 /**
  * Strips directory components and control characters from an uploaded filename.

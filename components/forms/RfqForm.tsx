@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { TextField, TextAreaField, SelectField, CheckChip, CheckboxField, Honeypot } from "./Fields";
-import { FileDrop } from "./FileDrop";
+import { FileDrop, formatBytes } from "./FileDrop";
 import { SubmissionOutcome } from "./SubmissionOutcome";
-import { rfqSchema, RFQ_STEPS, type RfqInput } from "@/lib/rfq-schema";
+import { rfqSchema, RFQ_STEPS, FIELD_STEP, type RfqInput } from "@/lib/rfq-schema";
+import type { FieldErrors } from "react-hook-form";
+import { uploadLimits, sanitiseFilename, type UploadMode } from "@/lib/upload-policy";
+import { uploadDirect } from "@/lib/uploads/direct-client";
+import { readAttribution } from "@/lib/attribution";
 import { productCategories } from "@/data/products";
 import { materials } from "@/data/materials";
 import { track } from "@/lib/analytics";
@@ -45,7 +49,12 @@ const GENDERS = ["Unisex", "Men's", "Women's", "Both men's and women's", "Not su
 const DECORATIONS = ["Embroidery", "Screen print", "Heat transfer", "Woven badges", "Applied patches", "Printed labels", "Reflective tape", "None"];
 const REPEAT = ["Yes", "No", "Not sure yet"] as const;
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "uploading" | "upload_failed" | "submitting" | "success" | "error";
+
+type UploadState = { status: "uploading" | "done" | "failed"; progress: number; reason?: string };
+
+/** Stable identity for a selected file across renders and retries. */
+const fileKey = (file: File) => `${file.name}:${file.size}:${file.lastModified}`;
 
 /** Fields validated before each step is allowed to advance. */
 const stepFields: Record<number, (keyof RfqInput)[]> = {
@@ -58,9 +67,23 @@ const stepFields: Record<number, (keyof RfqInput)[]> = {
   6: [],
 };
 
-export function RfqForm() {
+/**
+ * `uploadMode` and `storageNamespace` come from the page, which reads the
+ * deployment's configuration at build time. In "direct" mode files go from the
+ * browser to private storage before the form is sent, so they are not bound by
+ * the 4 MB function-body ceiling; the form then sends only their pathnames.
+ */
+export function RfqForm({ uploadMode = "form", storageNamespace = "" }: { uploadMode?: UploadMode; storageNamespace?: string }) {
+  const direct = uploadMode === "direct";
+  const limits = uploadLimits(uploadMode);
   const [step, setStep] = useState(0);
   const [files, setFiles] = useState<File[]>([]);
+  const [uploadStates, setUploadStates] = useState<Record<string, UploadState>>({});
+  // Completed uploads survive a retry, so only the failed ones are sent again.
+  const uploaded = useRef(new Map<string, { pathname: string; name: string }>());
+  // Read after the uploads settle, so a ref rather than state from the render that started them.
+  const failures = useRef(new Map<string, string>());
+  const uploadId = useRef<string | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [reference, setReference] = useState<string | null>(null);
   const [delivered, setDelivered] = useState(true);
@@ -153,11 +176,73 @@ export function RfqForm() {
     document.getElementById("rfq-top")?.scrollIntoView({ block: "start" });
   }
 
-  async function onSubmit(values: RfqInput) {
-    setStatus("submitting");
+  /**
+   * A submit that fails validation must never look like nothing happened.
+   * Go to the earliest step with a problem, where the field shows its error.
+   */
+  function onInvalid(fieldErrors: FieldErrors<RfqInput>) {
+    const steps = Object.keys(fieldErrors)
+      .map((field) => FIELD_STEP[field])
+      .filter((n): n is number => n !== undefined);
+    if (steps.length) setStep(Math.min(...steps));
+    setServerError("Something needs attention before this can be sent. We have taken you to it.");
+    setStatus("error");
+    track("rfq_submit_error", { variant: "full", reason: "client_validation" });
+  }
+
+  const submit = (sendWithoutFailed = false) => handleSubmit((v) => onSubmit(v, sendWithoutFailed), onInvalid);
+
+  /** Uploads every selected file not already uploaded. True when all are in. */
+  async function uploadPending(): Promise<boolean> {
+    uploadId.current ??= crypto.randomUUID();
+    const id = uploadId.current;
+    const pending = files.filter((f) => !uploaded.current.has(fileKey(f)));
+    if (!pending.length) return true;
+
+    const set = (key: string, state: UploadState) => setUploadStates((s) => ({ ...s, [key]: state }));
+    for (const f of pending) set(fileKey(f), { status: "uploading", progress: 0 });
+
+    const results = await Promise.all(
+      pending.map(async (file) => {
+        const key = fileKey(file);
+        const result = await uploadDirect(file, {
+          namespace: storageNamespace,
+          uploadId: id,
+          onProgress: (progress) => set(key, { status: "uploading", progress }),
+        });
+        if (result.ok) {
+          uploaded.current.set(key, { pathname: result.pathname, name: result.name });
+          failures.current.delete(key);
+          set(key, { status: "done", progress: 100 });
+        } else {
+          failures.current.set(key, result.reason);
+          set(key, { status: "failed", progress: 0, reason: result.reason });
+        }
+        return result.ok;
+      }),
+    );
+    return results.every(Boolean);
+  }
+
+  async function onSubmit(values: RfqInput, sendWithoutFailed = false) {
     setServerError(null);
     track("rfq_submit", { variant: "full", files: files.length });
 
+    if (direct && files.length) {
+      setStatus("uploading");
+      const allIn = await uploadPending();
+      if (allIn) {
+        track("techpack_upload_complete", { count: files.length, mode: "direct" });
+      } else if (!sendWithoutFailed) {
+        // Stop before sending: the buyer chooses between retrying and sending
+        // without the file, and nothing they typed is lost either way.
+        setStatus("upload_failed");
+        track("techpack_upload_error", { reason: "upload" });
+        return;
+      }
+    }
+
+    setStatus("submitting");
     const body = new FormData();
     body.append("variant", "full");
 
@@ -169,7 +254,27 @@ export function RfqForm() {
         body.append(key, String(value));
       }
     }
-    for (const file of files) body.append("files", file);
+
+    // Files that never reached storage are reported on the outcome screen
+    // with the rest, so the buyer knows exactly what to email.
+    const notUploaded: RejectedFile[] = [];
+    if (direct) {
+      const done = files.flatMap((f) => uploaded.current.get(fileKey(f)) ?? []);
+      for (const f of files) {
+        if (!uploaded.current.has(fileKey(f))) {
+          notUploaded.push({ name: sanitiseFilename(f.name), reason: failures.current.get(fileKey(f)) ?? "the upload did not complete" });
+        }
+      }
+      if (done.length && uploadId.current) {
+        body.append("uploadId", uploadId.current);
+        body.append("uploads", JSON.stringify(done));
+      }
+    } else {
+      for (const file of files) body.append("files", file);
+    }
+
+    const arrival = readAttribution();
+    if (arrival) body.append("attribution", arrival);
 
     const result = await submitRfq(body);
 
@@ -183,12 +288,12 @@ export function RfqForm() {
 
     setReference(result.reference);
     setDelivered(result.kind === "delivered");
-    setRejectedFiles(result.rejectedFiles);
+    setRejectedFiles([...notUploaded, ...result.rejectedFiles]);
     setStatus("success");
     // Only a delivered request is a completion. An undelivered one is still
     // a buyer who needs to act, and counting it would flatter the funnel.
     if (result.kind === "delivered") {
-      track("rfq_completed", { variant: "full", files: files.length - result.rejectedFiles.length });
+      track("rfq_completed", { variant: "full", files: Math.max(0, files.length - notUploaded.length - result.rejectedFiles.length) });
     } else {
       track("rfq_submit_error", { variant: "full", reason: "undelivered" });
     }
@@ -244,7 +349,7 @@ export function RfqForm() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} onFocus={begin} noValidate className="relative border border-ink/15 bg-paper p-6 sm:p-8 lg:p-10">
+      <form onSubmit={submit()} onFocus={begin} noValidate className="relative border border-ink/15 bg-paper p-6 sm:p-8 lg:p-10">
         <Honeypot register={register("faxNumber")} />
         <input type="hidden" {...register("source")} />
 
@@ -398,9 +503,11 @@ export function RfqForm() {
                 <p className="mt-3 max-w-lg text-ink/65">
                   Tech pack, sketch, reference images, bill of materials, size specification or an
                   existing quotation. Everything you send is treated as confidential.
+                  {direct &&
+                    " Files go to private storage when you press send, are checked on our server, and can be opened only by our commercial team."}
                 </p>
                 <div className="mt-8">
-                  <FileDrop files={files} onChange={setFiles} />
+                  <FileDrop files={files} onChange={setFiles} limits={limits} />
                 </div>
               </fieldset>
             )}
@@ -471,6 +578,68 @@ export function RfqForm() {
             )}
         </div>
 
+        {direct && (status === "uploading" || status === "upload_failed") && files.length > 0 && (
+          <div className="mt-6 border border-ink/15 p-4 sm:p-5">
+            <p className="text-sm font-medium text-ink" role={status === "upload_failed" ? "alert" : "status"}>
+              {status === "uploading"
+                ? `Uploading ${files.length === 1 ? "your file" : `${files.length} files`} to private storage…`
+                : "Not every file uploaded. Your details are still in the form."}
+            </p>
+            <ul className="mt-3 flex flex-col gap-2.5">
+              {files.map((file) => {
+                const state = uploadStates[fileKey(file)];
+                const name = sanitiseFilename(file.name);
+                return (
+                  <li key={fileKey(file)} className="text-sm">
+                    <span className="flex items-baseline justify-between gap-3">
+                      <span className="min-w-0 truncate text-ink">{name}</span>
+                      <span className="shrink-0 text-xs text-ink/70">
+                        {state?.status === "done"
+                          ? "Uploaded"
+                          : state?.status === "failed"
+                            ? "Failed"
+                            : `${Math.round(state?.progress ?? 0)}% of ${formatBytes(file.size)}`}
+                      </span>
+                    </span>
+                    {state?.status === "failed" ? (
+                      <span className="mt-0.5 block text-xs text-ink/75">{state.reason}</span>
+                    ) : (
+                      <span
+                        className="mt-1.5 block h-1 bg-ink/12"
+                        role="progressbar"
+                        aria-label={`Upload of ${name}`}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-valuenow={Math.round(state?.progress ?? 0)}
+                      >
+                        <span className="block h-full bg-ink transition-[width] duration-200" style={{ width: `${state?.progress ?? 0}%` }} />
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+            {status === "upload_failed" && (
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => void submit()()}
+                  className="inline-flex h-11 items-center bg-ink px-5 font-display text-xs font-bold uppercase tracking-[0.08em] text-paper hover:bg-lime hover:text-ink"
+                >
+                  Try again
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void submit(true)()}
+                  className="inline-flex h-11 items-center border border-ink/25 px-5 font-display text-xs font-bold uppercase tracking-[0.08em] text-ink hover:border-ink"
+                >
+                  Send without {files.filter((f) => !uploaded.current.has(fileKey(f))).length === 1 ? "it" : "them"}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         {serverError && (
           <p role="alert" className="mt-6 border-l-2 border-ink pl-3 text-sm text-ink">
             {serverError}
@@ -489,16 +658,22 @@ export function RfqForm() {
             Back
           </button>
 
+          {/* Distinct keys, so the two are different elements. Without them
+              React reused one <button> and flipped its type during the click
+              on "Continue" from the Files step; the browser then took that
+              same click as a submit, and the form was sent before the buyer
+              ever saw the review step. */}
           {isLast ? (
             <button
+              key="submit"
               type="submit"
-              disabled={status === "submitting"}
+              disabled={status === "submitting" || status === "uploading"}
               className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-lime hover:text-ink disabled:opacity-60"
             >
-              {status === "submitting" ? (
+              {status === "submitting" || status === "uploading" ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  Submitting
+                  {status === "uploading" ? "Uploading" : "Submitting"}
                 </>
               ) : (
                 <>
@@ -509,6 +684,7 @@ export function RfqForm() {
             </button>
           ) : (
             <button
+              key="continue"
               type="button"
               onClick={next}
               className="group inline-flex h-14 items-center justify-center gap-2.5 bg-ink px-8 font-display text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-paper transition-colors duration-300 hover:bg-lime hover:text-ink"

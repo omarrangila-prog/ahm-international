@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { RfqForm } from "@/components/forms/RfqForm";
-import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "@/lib/upload-policy";
+import { ACCEPTED_LABEL, uploadLimitsText, type UploadMode } from "@/lib/upload-policy";
+import { storageEnabled, storageNamespace } from "@/lib/storage/namespace";
 import { ContentBlocks } from "@/components/ui/ContentBlocks";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { pageMetadata } from "@/lib/seo";
@@ -38,6 +39,7 @@ const blocks: ContentBlock[] = [
 ];
 
 export default function SendTechPackPage() {
+  const uploadMode: UploadMode = storageEnabled() ? "direct" : "form";
   return (
     <>
       <PageHero
@@ -54,7 +56,7 @@ export default function SendTechPackPage() {
             {/* Same as /request-a-quote: the boundary existed only because the
                 form read useSearchParams(), and it cost this page its form in
                 the prerendered HTML. */}
-            <RfqForm />
+            <RfqForm uploadMode={uploadMode} storageNamespace={uploadMode === "direct" ? storageNamespace() : ""} />
           </div>
 
           <aside className="col-span-12 lg:col-span-4">
@@ -68,7 +70,7 @@ export default function SendTechPackPage() {
                 ))}
               </ul>
               <p className="mt-5 text-sm leading-relaxed text-ink/65">
-                {UPLOAD_LIMITS} Everything you send is treated as confidential.
+                {uploadLimitsText(uploadMode)} Everything you send is treated as confidential.
               </p>
             </div>
           </aside>

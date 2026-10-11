@@ -8,10 +8,10 @@ export { mailConfig, type MailConfig } from "./mail-config";
  *
  * Every accepted request is sent to info@ahminternationals.com through
  * Hostinger's authenticated SMTP, with the buyer's attachments on the message.
- * The mailbox is the record: nothing is written to a public URL, and the tech
- * pack is never reachable by anyone who does not already have access to that
- * inbox. Buyer specifications are commercially sensitive, so that property is
- * the reason this path was chosen over an object store.
+ * Nothing is ever written to a public URL. When the private store is
+ * configured, files also live there (see lib/uploads/claim.ts): attached while
+ * they fit in one message, and otherwise listed with a link to the enquiry
+ * register, which only signed-in staff can open.
  *
  * Configuration is environment-only and server-only. None of these variables
  * carry a NEXT_PUBLIC_ prefix, so none of them can be inlined into a browser
@@ -90,6 +90,12 @@ export type RfqMailInput = {
   attachments: Attachment[];
   rejected: RejectedFile[];
   receivedAt: Date;
+  /** Files held in the private store that were too large to attach. */
+  storedOnly?: { name: string; size: number }[];
+  /** The enquiry in the register, when the register is on. */
+  leadUrl?: string | null;
+  /** Campaign, referring site or landing page, already reduced to one line. */
+  arrivedVia?: string | null;
 };
 
 /** The notification the commercial team receives. */
@@ -97,10 +103,13 @@ export function buildNotification(input: RfqMailInput) {
   const { reference, fields, attachments, rejected } = input;
   const company = oneLine(fields.company) || "Unknown company";
   const product = oneLine(fields.category);
+  const storedOnly = input.storedOnly ?? [];
 
   const lines: string[] = [
     `Request for quotation ${reference}`,
     `Received ${input.receivedAt.toISOString().replace("T", " ").slice(0, 16)} UTC via the ${input.variant === "mini" ? "short" : "full"} form.`,
+    ...(input.arrivedVia ? [`Arrived via: ${oneLine(input.arrivedVia, 200)}`] : []),
+    ...(input.leadUrl ? [`Enquiry register: ${input.leadUrl}`] : []),
     "",
   ];
 
@@ -121,8 +130,14 @@ export function buildNotification(input: RfqMailInput) {
   if (attachments.length) {
     lines.push(`Attached (${attachments.length}):`);
     for (const a of attachments) lines.push(`  - ${a.filename} (${Math.round(a.content.length / 1024)} kB)`);
-  } else {
+  } else if (!storedOnly.length) {
     lines.push("No files attached.");
+  }
+  if (storedOnly.length) {
+    if (attachments.length) lines.push("");
+    lines.push(`Too large to attach, kept in the enquiry register (${storedOnly.length}):`);
+    for (const f of storedOnly) lines.push(`  - ${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`);
+    if (input.leadUrl) lines.push(`  Download them from ${input.leadUrl}`);
   }
   if (rejected.length) {
     lines.push("");
@@ -179,8 +194,8 @@ export type DeliveryResult = { delivered: boolean; acknowledged: boolean };
  * reached the team should not be told otherwise because their own mail server
  * refused a courtesy copy.
  */
-export async function sendRfqMail(input: RfqMailInput, config: MailConfig): Promise<DeliveryResult> {
-  const transport = nodemailer.createTransport({
+export function transportFor(config: MailConfig) {
+  return nodemailer.createTransport({
     host: config.host,
     port: config.port,
     secure: config.secure,
@@ -191,6 +206,10 @@ export async function sendRfqMail(input: RfqMailInput, config: MailConfig): Prom
     greetingTimeout: 10_000,
     socketTimeout: 20_000,
   });
+}
+
+export async function sendRfqMail(input: RfqMailInput, config: MailConfig): Promise<DeliveryResult> {
+  const transport = transportFor(config);
 
   const notification = buildNotification(input);
   const info = await transport.sendMail({

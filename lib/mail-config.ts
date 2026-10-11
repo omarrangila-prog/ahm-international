@@ -6,6 +6,10 @@
  * library to find out. See lib/rfq-mail.ts for what each variable does.
  */
 
+import { storageEnabled } from "./storage/namespace";
+import { assistantEnabled } from "./assistant/config";
+import { fileRetentionDays } from "./retention";
+
 export type MailConfig = {
   host: string;
   port: number;
@@ -37,12 +41,27 @@ export function mailConfig(env: Env = process.env): MailConfig | null {
   };
 }
 
-/** Where enquiries go on this deployment. Read once, at build or request time. */
-export function enquiryDelivery(env: Env = process.env) {
+/**
+ * What this deployment does with an enquiry and with what a visitor types,
+ * read from the same environment the handlers read. The privacy policy is
+ * generated from this, so it describes the deployment it is served from.
+ */
+export function enquiryDelivery(env: Env = process.env): EnquiryDelivery {
   return {
     mail: mailConfig(env) !== null,
     webhook: Boolean(env.RFQ_WEBHOOK_URL?.trim()),
+    storage: storageEnabled(env),
+    assistant: assistantEnabled(env),
+    retentionDays: fileRetentionDays(env),
   };
 }
 
-export type EnquiryDelivery = ReturnType<typeof enquiryDelivery>;
+export type EnquiryDelivery = {
+  mail: boolean;
+  webhook: boolean;
+  /** Files and the enquiry register in the private store. */
+  storage?: boolean;
+  /** The sourcing assistant, which sends questions to Anthropic. */
+  assistant?: boolean;
+  retentionDays?: number;
+};

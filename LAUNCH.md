@@ -99,11 +99,21 @@ sees a screen headed "One more step" that gives the email and WhatsApp with the
 reference in the subject line. It never says "RFQ received" unless a destination
 accepted the request. The privacy policy describes whichever state is deployed.
 
-**Uploads are capped at 4 MB in total**, because Vercel refuses any function
-body over 4.5 MB before the route runs. Larger tech packs are emailed with the
-reference; the form says so when it refuses a file. Raising the cap needs direct
-browser-to-storage upload (private Vercel Blob, for example), not a bigger
-number in `lib/upload-policy.ts`.
+**Uploads: 25 MB a file, 60 MB in total,** because the private store
+`ahm-rfq-files` is connected (since 10 October) and files go from the browser
+straight to it. Without the store a deployment falls back to 4 MB in total,
+the most a Vercel function body can carry. Files that fit in 10 MB are also
+attached to the email; the rest are linked to the enquiry register.
+
+**The enquiry register** at `/pipeline` records every enquiry once the store is
+connected, and staff sign in with an emailed link, so it too needs `SMTP_PASS`.
+`PIPELINE_STAFF` lists who may sign in; unset, it is `info@` alone, as admin.
+See `docs/what-you-need-to-supply.md` §2a.
+
+**The sourcing assistant** is off until `ANTHROPIC_API_KEY` is set, and should
+stay off until a real enquiry has arrived by email (the brief's own condition).
+Set a monthly spend limit on the key in the Anthropic Console first. See §2b of
+the same document.
 
 **The buyer receipt is off by default** because the rate limiter is in-memory
 and per instance. The receipt carries no buyer-supplied text, so it cannot be

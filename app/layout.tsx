@@ -8,9 +8,12 @@ import { Footer } from "@/components/layout/Footer";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { Measurement } from "@/components/analytics/Measurement";
+import { PublicChrome, ArrivalCapture } from "@/components/layout/PublicChrome";
+import { AssistantLauncher } from "@/components/assistant/AssistantLauncher";
+import { assistantEnabled } from "@/lib/assistant/config";
 import { organizationSchema, websiteSchema, siteConfig } from "@/lib/seo";
 import { serialiseJsonLd } from "@/lib/json-ld";
-import { company } from "@/data/company";
+import { company, publicValue } from "@/data/company";
 import "./globals.css";
 
 /* Self-hosted by next/font — no render-blocking request to Google. */
@@ -115,8 +118,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
 
         <SmoothScroll />
-        <AnnouncementBar />
-        <Header />
+        {/* The enquiry register under /pipeline is internal; the public
+            chrome stays off it. */}
+        <PublicChrome>
+          <AnnouncementBar />
+          <Header />
+        </PublicChrome>
         <PrintHeader />
 
         {/* Bottom padding clears the sticky mobile CTA bar. */}
@@ -124,11 +131,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <RouteTransition>{children}</RouteTransition>
         </main>
 
-        <Footer />
-        <MobileCtaBar />
-        {/* Renders nothing unless NEXT_PUBLIC_GA_ID is set, and loads nothing
-            until the visitor allows it. */}
-        <Measurement />
+        <PublicChrome>
+          <Footer />
+          <MobileCtaBar />
+          {/* Renders nothing unless NEXT_PUBLIC_GA_ID is set, and loads nothing
+              until the visitor allows it. */}
+          <Measurement />
+          {/* Present only when an Anthropic key is configured. */}
+          {assistantEnabled() && (
+            <AssistantLauncher email={publicValue(company.email)} whatsapp={publicValue(company.whatsapp)} />
+          )}
+          <ArrivalCapture />
+        </PublicChrome>
 
         <script
           type="application/ld+json"

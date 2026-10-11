@@ -15,9 +15,10 @@
  * page so that is never quietly forgotten.
  */
 
-import { ACCEPTED_LABEL, UPLOAD_LIMITS } from "../lib/upload-policy";
+import { ACCEPTED_LABEL, uploadLimitsText } from "../lib/upload-policy";
 import { enquiryDelivery, type EnquiryDelivery } from "../lib/mail-config";
 import { measurementEnabled } from "../lib/measurement";
+import { describeDays, DEFAULT_RETENTION_DAYS } from "../lib/retention";
 
 /**
  * What this deployment actually does with an enquiry, read from the same
@@ -39,20 +40,30 @@ export const LEGAL_EFFECTIVE = "September 2026" as const;
 export type LegalSection = { heading: string; body: string[]; list?: string[] };
 
 export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean = measurementEnabled): LegalSection[] {
+  const storage = Boolean(delivery.storage);
+  const assistant = Boolean(delivery.assistant);
+  const retention = describeDays(delivery.retentionDays ?? DEFAULT_RETENTION_DAYS);
+
   return [
     {
       heading: "What this policy covers",
       body: [
-        "This policy covers the AHM International website and the enquiry forms on it. It explains what we collect, why, how long we keep it, and what you can ask us to do with it.",
+        `This policy covers the AHM International website and the enquiry forms on it${assistant ? ", and the sourcing assistant" : ""}. It explains what we collect, why, how long we keep it, and what you can ask us to do with it.`,
         "AHM International is an apparel manufacturing and export business in Karachi, Pakistan. We supply buyers internationally, including in the United Kingdom and the European Union, so this policy is written to the standard those buyers expect.",
       ],
     },
     {
       heading: "What we collect",
-      body: ["Only what you type into a form. There is no account system, no profiling and no tracking of you across other websites."],
+      body: [
+        "Only what you send us, and where an enquiry came from. There are no visitor accounts, no profiling and no tracking of you across other websites.",
+      ],
       list: [
         "Quotation requests: your name, company, business email, and country. Optionally a job title, phone number, website, and the commercial details of your enquiry. Product, quantity, materials, decoration, target price, destination and delivery window.",
-        `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${UPLOAD_LIMITS}`,
+        `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${uploadLimitsText(storage ? "direct" : "form")}`,
+        "Where an enquiry came from: the page you first opened on this visit, the website that linked you here, and any campaign tags in that link (such as utm_source). Your browser sends these to every site it visits. This site keeps them in the open page only, writes nothing to your device, and passes them to us only if you send an enquiry.",
+        ...(assistant
+          ? ["Questions you type into the sourcing assistant, and its answers, while the conversation is open in your browser. See “The sourcing assistant” below."]
+          : []),
         "Technical data needed to accept a submission: your IP address is used to rate-limit the form against automated abuse. It is not stored alongside your enquiry and is not used to identify you.",
       ],
     },
@@ -74,8 +85,8 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
       heading: "Cookies and analytics",
       body: [
         "This website sets no advertising cookies and runs no third-party tracking scripts.",
-        measurementEnabled
-          ? "Google Analytics 4 measures which pages are used, and only if you choose Allow when asked. Declining loads nothing. You can change your choice at any time on the cookie policy page, and withdrawing it deletes the analytics cookies."
+        analytics
+          ?"Google Analytics 4 measures which pages are used, and only if you choose Allow when asked. Declining loads nothing. You can change your choice at any time on the cookie policy page, and withdrawing it deletes the analytics cookies."
           : "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
       ],
     },
@@ -85,7 +96,19 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
         "Our commercial and development team, for the purpose of answering you.",
         delivery.mail
           ? "The infrastructure provider that hosts this website, and the business email provider that hosts our mailbox: your enquiry and any files you attach are delivered to that mailbox by email. Both process data on our instruction and do not use it for their own purposes."
-          : "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes. No email or CRM provider is connected to the enquiry form yet; if one is added, this page will name the category of provider before it is switched on.",
+          : storage
+            ? "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes."
+            : "The infrastructure provider that hosts this website. It processes data on our instruction and does not use it for its own purposes. No email or CRM provider is connected to the enquiry form yet; if one is added, this page will name the category of provider before it is switched on.",
+        ...(storage
+          ? [
+              "The same hosting provider stores your enquiry and the files you attach in private storage, which is our enquiry register. Nothing in it is reachable at a public web address: only AHM staff who sign in can open it.",
+            ]
+          : []),
+        ...(assistant
+          ? [
+              "Anthropic, which provides the AI model behind the sourcing assistant, receives what you type into the assistant in order to answer it, and processes it as our service provider. It receives nothing from the quote form.",
+            ]
+          : []),
         ...(delivery.webhook
           ? ["The enquiry text, without your files, is also passed to the tool we use to track enquiries through to quotation. It processes the data on our instruction."]
           : []),
@@ -105,7 +128,13 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
     {
       heading: "How long we keep it",
       body: [
-        ...(delivery.mail
+        ...(storage
+          ? [
+              `Your enquiry is recorded in our enquiry register${delivery.mail ? " and delivered by email to our business mailbox" : ""}. Files you attach go from your browser to private storage, and are attached to the email too while they fit in one message. Nothing is published at a web address.`,
+              `Files are deleted from storage automatically ${retention} after the enquiry they belong to. Files uploaded to a form that was never sent belong to no enquiry and are deleted within two days.`,
+              `${delivery.mail ? "The register and the mailbox keep" : "The register keeps"} the enquiry, and our notes on it, for as long as the commercial conversation is live, and afterwards for as long as we may reasonably need them — for example to honour a repeat order against a specification you approved earlier.`,
+            ]
+          : delivery.mail
           ? [
               "Your enquiry and any files you attach are delivered by email to our business mailbox. The website itself keeps no copy: a file is held in memory only while the request is processed, and is never written to the website's storage or published at a web address.",
               "In the mailbox, enquiries and attachments are kept for as long as the commercial conversation is live, and afterwards for as long as we may reasonably need them — for example to honour a repeat order against a specification you approved earlier.",
@@ -124,16 +153,29 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
         "Tell you what we hold about you.",
         "Correct anything that is wrong.",
         "Delete anything we hold about you.",
-        delivery.mail
+        delivery.mail || storage
           ? "Send you a copy of what we hold."
           : "Send you a copy of what we hold. While the website does not deliver submissions, it holds nothing from the form beyond a reference number.",
         "Stop using your details for anything other than answering you.",
       ],
     },
+    ...(assistant
+      ? [
+          {
+            heading: "The sourcing assistant",
+            body: [
+              "The assistant answers questions from the information published on this website, using an AI model provided by Anthropic. What you type is sent to Anthropic to produce the answer. This website does not store the conversation; it exists in your browser until you close the panel.",
+              "Please do not enter confidential specifications, target prices or customer names there: use the quote form, which goes to our commercial team. Answers can be wrong, and nothing the assistant says is a quotation or a commitment by AHM International.",
+            ],
+          },
+        ]
+      : []),
     {
       heading: "Security",
       body: [
-        "The site is served over HTTPS. Uploads are validated on the server for file type, extension and size before being accepted, and filenames are sanitised. Submissions are rate-limited.",
+        storage
+          ? "The site is served over HTTPS. Files go from your browser straight to private storage, are checked on our server for type, extension, size and content before they are attached to an enquiry, and can be downloaded only by signed-in AHM staff. Filenames are sanitised and submissions are rate-limited."
+          : "The site is served over HTTPS. Uploads are validated on the server for file type, extension and size before being accepted, and filenames are sanitised. Submissions are rate-limited.",
         "No transmission over the internet is completely secure. If a specification is unusually sensitive, tell us before sending and we will agree a route that suits you.",
       ],
     },
@@ -215,8 +257,11 @@ export const termsSections: LegalSection[] = [
   },
 ];
 
-/** The cookie policy, written for whether a measurement ID is configured. */
-export function cookieSectionsFor(analytics: boolean): LegalSection[] {
+/**
+ * The cookie policy, written for whether a measurement ID is configured and
+ * whether the staff enquiry register exists on this deployment.
+ */
+export function cookieSectionsFor(analytics: boolean, { register = false }: { register?: boolean } = {}): LegalSection[] {
   return [
     {
       heading: "The short version",
@@ -236,7 +281,13 @@ export function cookieSectionsFor(analytics: boolean): LegalSection[] {
         "No advertising or social cookie: there are no embedded social widgets, no advertising tags and no remarketing pixels.",
         analytics
           ? "Your analytics choice is remembered in your browser's local storage so you are not asked on every page. It is not a cookie, holds only \"granted\" or \"denied\", and is never sent to us."
-          : "No preference cookie: the site has no theme switch, no language selector and no login, so there is nothing to remember between visits.",
+          : "No preference cookie: the site has no theme switch, no language selector and no visitor login, so there is nothing to remember between visits.",
+        "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage, and reach us only with an enquiry you send.",
+        ...(register
+          ? [
+              "A sign-in cookie for AHM staff, set only on the internal enquiry register (under /pipeline) after a staff member signs in. It is strictly necessary for that sign-in, is never set for visitors, and is never sent with a request for a public page.",
+            ]
+          : []),
         "Standard server logs, kept by our hosting provider, record requests for security and reliability. These are infrastructure logs, not cookies, and are not used to profile visitors.",
       ],
     },
@@ -263,4 +314,4 @@ export function cookieSectionsFor(analytics: boolean): LegalSection[] {
   ];
 }
 
-export const cookieSections = cookieSectionsFor(measurementEnabled);
+export const cookieSections = cookieSectionsFor(measurementEnabled, { register: Boolean(delivery.storage) });

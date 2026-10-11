@@ -59,7 +59,7 @@ export function rateLimit(key: string, limit: number, windowMs: number): RateLim
  * the client. Directly exposed, it is client-controlled — which is why rate
  * limiting here is one layer, not the only one.
  */
-export function clientKey(headers: Headers): string {
+export function clientKey(headers: Pick<Headers, "get">): string {
   const forwarded = headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0]!.trim();
   return headers.get("x-real-ip") ?? "unknown";

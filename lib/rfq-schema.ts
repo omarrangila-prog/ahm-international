@@ -51,6 +51,16 @@ const requiredText = (field: string, max = 200) =>
 const optionalText = (max = 400) =>
   z.string().trim().max(max, "This is too long").optional().or(z.literal(""));
 
+/**
+ * An optional select. Its placeholder option posts "", which a bare enum
+ * rejects — and because the select sits on step 2 while the submit button is
+ * on step 7, the error rendered off-screen and "Submit for Review" silently
+ * did nothing for any buyer who left Gender unanswered. That shipped. "" now
+ * means "not answered", exactly as it does for optional text.
+ */
+const optionalChoice = <const T extends readonly [string, ...string[]]>(values: T) =>
+  z.enum(values).optional().or(z.literal(""));
+
 export const stepOneSchema = z.object({
   company: requiredText("Company name"),
   name: requiredText("Your name", 120),
@@ -69,7 +79,7 @@ export const stepOneSchema = z.object({
 export const stepTwoSchema = z.object({
   category: requiredText("Product category", 120),
   styleName: optionalText(160),
-  gender: z.enum(["Unisex", "Men's", "Women's", "Both men's and women's", "Not sure yet"]).optional(),
+  gender: optionalChoice(["Unisex", "Men's", "Women's", "Both men's and women's", "Not sure yet"]),
   quantity: requiredText("Estimated quantity", 80),
   sizeRange: optionalText(160),
   colours: optionalText(160),
@@ -94,7 +104,7 @@ export const stepFiveSchema = z.object({
   targetPrice: optionalText(80),
   targetDelivery: optionalText(120),
   destinationPort: optionalText(120),
-  repeatProgram: z.enum(["Yes", "No", "Not sure yet"]).optional(),
+  repeatProgram: optionalChoice(["Yes", "No", "Not sure yet"]),
   annualQuantity: optionalText(80),
 });
 
@@ -121,6 +131,20 @@ export const rfqSchema = stepOneSchema
   });
 
 export type RfqInput = z.infer<typeof rfqSchema>;
+
+/**
+ * Which step asks for each field. When a submit fails validation, the form
+ * goes to the earliest step with a problem instead of leaving the error on a
+ * step the buyer cannot see.
+ */
+export const FIELD_STEP: Record<string, number> = Object.fromEntries([
+  ...Object.keys(stepOneSchema.shape).map((k) => [k, 0]),
+  ...Object.keys(stepTwoSchema.shape).map((k) => [k, 1]),
+  ...Object.keys(stepThreeSchema.shape).map((k) => [k, 2]),
+  ...Object.keys(stepFourSchema.shape).map((k) => [k, 3]),
+  ...Object.keys(stepFiveSchema.shape).map((k) => [k, 4]),
+  ...Object.keys(stepSevenSchema.shape).map((k) => [k, 6]),
+]);
 
 /**
  * Short form embedded on the homepage.

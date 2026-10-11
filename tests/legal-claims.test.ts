@@ -100,6 +100,52 @@ test("with a measurement ID, the cookie policy names GA4, consent first, and how
   assert.doesNotMatch(text, /no consent banner/i);
 });
 
+/**
+ * Private storage, the staff register and the assistant each change what the
+ * policy must say. Every state is checked, because only one is deployed at a
+ * time and the others would otherwise go unread until they were switched on.
+ */
+const fullText = (delivery: Parameters<typeof privacySectionsFor>[0]) =>
+  privacySectionsFor(delivery, false)
+    .flatMap((s) => [s.heading, ...s.body, ...(s.list ?? [])])
+    .join(" ");
+
+test("with private storage on, the policy states the direct-upload limits, the register, and the retention period", () => {
+  const text = fullText({ mail: true, webhook: false, storage: true, retentionDays: 730 });
+  assert.match(text, /25 MB per file and 60 MB in total/);
+  assert.match(text, /enquiry register/);
+  assert.match(text, /only AHM staff who sign in can open it/);
+  assert.match(text, /deleted from storage automatically 2 years after/);
+  assert.match(text, /never sent .* deleted within two days/);
+  assert.doesNotMatch(text, /keeps no copy/i, "the no-copy claim is false once files are stored");
+  assert.doesNotMatch(text, /4 MB in total/);
+});
+
+test("without private storage, the policy keeps the in-form limits and the no-copy statement", () => {
+  const text = fullText({ mail: true, webhook: false, storage: false });
+  assert.match(text, /4 MB in total/);
+  assert.match(text, /keeps no copy/);
+  assert.doesNotMatch(text, /enquiry register/);
+});
+
+test("the assistant is disclosed, with Anthropic named, only when it is on", () => {
+  const on = fullText({ mail: true, webhook: false, assistant: true });
+  assert.match(on, /The sourcing assistant/);
+  assert.match(on, /Anthropic/);
+  assert.match(on, /does not store the conversation/);
+  assert.doesNotMatch(fullText({ mail: true, webhook: false, assistant: false }), /Anthropic|sourcing assistant/);
+});
+
+test("the cookie policy names the staff sign-in cookie only where the register exists", () => {
+  const text = (register: boolean) =>
+    cookieSectionsFor(false, { register })
+      .flatMap((s) => [...s.body, ...(s.list ?? [])])
+      .join(" ");
+  assert.match(text(true), /sign-in cookie for AHM staff/);
+  assert.doesNotMatch(text(false), /sign-in cookie/);
+  assert.match(text(false), /not in a cookie or browser storage/);
+});
+
 test("the privacy policy names Google only when analytics are on", () => {
   const on = privacySectionsFor({ mail: true, webhook: false }, true).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
   const off = privacySectionsFor({ mail: true, webhook: false }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");

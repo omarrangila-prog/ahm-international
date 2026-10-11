@@ -11,6 +11,10 @@
  */
 
 import { GA_CSP, measurementEnabled } from "./measurement";
+import { storageEnabled } from "./storage/namespace";
+
+/** Where @vercel/blob's browser client sends uploads (its API base, not the store's file host). */
+export const BLOB_API_ORIGIN = "https://vercel.com";
 
 /**
  * Content Security Policy.
@@ -40,11 +44,22 @@ import { GA_CSP, measurementEnabled } from "./measurement";
  * `tests/security-headers.test.ts` asserts the production policy cannot contain
  * it.
  */
-export function buildCsp({ development, analytics = false }: { development: boolean; analytics?: boolean }) {
+export function buildCsp({
+  development,
+  analytics = false,
+  directUploads = false,
+}: {
+  development: boolean;
+  analytics?: boolean;
+  directUploads?: boolean;
+}) {
   // GA4's origins are added only when a measurement ID is configured, and only
   // the ones it documents. Loading still waits for consent; this is what lets
   // it load at all once given.
   const ga = (list: readonly string[]) => (analytics ? ` ${list.join(" ")}` : "");
+  // With the private store configured, the browser uploads tech packs to the
+  // Blob API itself. That is the one extra origin, and only for connect.
+  const blob = directUploads ? ` ${BLOB_API_ORIGIN}` : "";
   return [
     "default-src 'self'",
     // Next's hydration bootstrap is inline; see the note above.
@@ -54,7 +69,7 @@ export function buildCsp({ development, analytics = false }: { development: bool
     // data: for blur placeholders, blob: for the file previews in the RFQ form.
     `img-src 'self' data: blob:${ga(GA_CSP.img)}`,
     "font-src 'self'",
-    `connect-src 'self'${ga(GA_CSP.connect)}`,
+    `connect-src 'self'${ga(GA_CSP.connect)}${blob}`,
     "media-src 'self'",
     // The RFQ form must not be able to post anywhere but this origin.
     "form-action 'self'",
@@ -67,7 +82,11 @@ export function buildCsp({ development, analytics = false }: { development: bool
   ].join("; ");
 }
 
-const csp = buildCsp({ development: process.env.NODE_ENV === "development", analytics: measurementEnabled });
+const csp = buildCsp({
+  development: process.env.NODE_ENV === "development",
+  analytics: measurementEnabled,
+  directUploads: storageEnabled(),
+});
 
 export const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },

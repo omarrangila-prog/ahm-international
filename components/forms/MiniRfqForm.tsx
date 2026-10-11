@@ -7,6 +7,7 @@ import { TextField, SelectField } from "./Fields";
 import { productCategories } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { submitRfq } from "@/lib/rfq-client";
+import { readAttribution } from "@/lib/attribution";
 import { SubmissionOutcome } from "./SubmissionOutcome";
 
 /**
@@ -109,6 +110,8 @@ export function MiniRfqForm() {
     const body = new FormData(event.currentTarget);
     body.append("variant", "mini");
     body.append("source", "homepage_mini");
+    const arrival = readAttribution();
+    if (arrival) body.append("attribution", arrival);
 
     const result = await submitRfq(body);
 
