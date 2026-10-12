@@ -69,9 +69,58 @@ test("construction callouts sit on the image they describe", () => {
     for (const p of c.callouts.points) {
       assert.ok(p.x > 0 && p.x < 100 && p.y > 0 && p.y < 100, `${c.slug}: ${p.title}`);
     }
-    // A marked illustration has to say it is one.
-    if (resolveAsset(c.callouts.asset).generated) assert.match(c.callouts.note, /AI illustration/, c.slug);
+    // What the marks are drawn on is derived from the image's record by the
+    // page, so the hand-written note must not say it and go stale.
+    assert.doesNotMatch(c.callouts.note, /render|illustration|photograph/i, c.slug);
   }
+});
+
+test("a verified pairing outranks the generated list, and each origin has its own words", async () => {
+  const { originOf } = await import("../data/assets.ts");
+  const { provenanceMark, provenanceSentence, isRendered } = await import("../lib/provenance.ts");
+  assert.equal(originOf(undefined), "photograph");
+  assert.equal(originOf({ generated: true }), "ai-render");
+  assert.equal(originOf({ origin: "enhanced" }), "enhanced");
+  assert.equal(originOf({ generated: true, origin: "representative" }), "representative");
+  assert.equal(provenanceMark("photograph"), null);
+  assert.equal(provenanceMark("ai-render"), "AI render");
+  assert.equal(provenanceMark("enhanced"), "Actual product · enhanced");
+  assert.equal(provenanceMark("enhanced", "facility"), "Actual facility · enhanced");
+  assert.match(provenanceSentence("enhanced"), /^Actual product — digitally enhanced photography/);
+  assert.match(provenanceSentence("enhanced-footage"), /^Actual manufacturing footage — professionally enhanced/);
+  assert.ok(isRendered("representative") && isRendered("ai-render") && !isRendered("enhanced"));
+});
+
+test("every recorded pairing is complete, and an enhanced one cleared the measured bar", async () => {
+  const { THRESHOLD } = await import("../scripts/provenance-pair.mjs");
+  const verified: Record<string, { sha256: string; origin: string; ssim?: number; reviewedBy?: string; original: { sha256: string } }> =
+    JSON.parse(readFileSync(join(root, "data/verified-originals.json"), "utf8")).files;
+  for (const [path, v] of Object.entries(verified)) {
+    assert.match(v.sha256, /^[0-9a-f]{64}$/, path);
+    assert.match(v.original.sha256, /^[0-9a-f]{64}$/, path);
+    assert.ok(["enhanced", "representative", "footage", "enhanced-footage"].includes(v.origin), path);
+    if (v.origin === "enhanced") assert.ok((v.ssim ?? 0) >= THRESHOLD, `${path} was recorded as enhanced below the threshold`);
+    if (v.origin === "representative") assert.ok(v.reviewedBy, `${path} needs the reviewer's name`);
+    // A generated file cannot be its own camera original.
+    assert.ok(!Object.values(generated).some((g) => g.sha256 === v.original.sha256), `${path}: the original is a generated file`);
+  }
+});
+
+test("a file whose content credential says it was generated is refused as an original", async () => {
+  const { credential } = await import("../scripts/provenance-pair.mjs");
+  const signed = Buffer.from("....c2pa....digitalSourceType http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia ... gpt-image ...");
+  assert.deepEqual(credential(signed), { generated: true, agent: "gpt-image" });
+  assert.equal(credential(Buffer.from("\xff\xd8\xff\xe1Exif\0\0 a phone photograph")), null);
+  const edited = Buffer.from("c2pa ... digitalsourcetype/compositeCapture ...");
+  assert.equal(credential(edited)?.generated, false);
+});
+
+test("the portfolio holds photographs only, and its page is hidden while it is empty", async () => {
+  const { portfolioItems } = await import("../data/portfolio.ts");
+  const { routes } = await import("../data/routes.ts");
+  const items = portfolioItems();
+  for (const item of items) assert.ok(["photograph", "enhanced"].includes(resolveAsset(item.asset).origin), item.name);
+  assert.equal(routes.find((r) => r.path === "/our-work")?.noindex, items.length === 0);
 });
 
 test("WhatsApp links carry digits only and an editable message", () => {
@@ -88,7 +137,9 @@ test("the terms describe the product images that are deployed", async () => {
   const deployed = termsSections.find((s) => s.heading === "Product imagery")!;
   const anyGenerated = Object.values(assetManifest).some((e) => e.generated);
   assert.deepEqual(deployed, imagerySection(anyGenerated));
-  assert.match(imagerySection(true).body.join(" "), /AI-generated illustrations/);
+  assert.match(imagerySection(true).body.join(" "), /AI-generated images/);
+  assert.match(imagerySection(true, true).body.join(" "), /paired with its camera original/);
+  assert.doesNotMatch(imagerySection(true, false).body.join(" "), /enhanced/);
   assert.doesNotMatch(imagerySection(true).body.join(" "), /^Photographs show/);
   assert.doesNotMatch(imagerySection(false).body.join(" "), /does not publish illustrations/);
 });

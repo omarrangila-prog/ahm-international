@@ -108,7 +108,7 @@ cannot disagree with what the site renders.
 | Canonical file in place | ${complete.length} |
 | Showing a stand-in | ${standIns.length} |
 | **Leaving a visible gap** | **${gaps.length}** |
-| Rendering a generated image, labelled "AI illustration" | ${generatedRows.length} |
+| Rendering a generated image, marked "AI render" | ${generatedRows.length} |
 
 ${
   gaps.length === 0

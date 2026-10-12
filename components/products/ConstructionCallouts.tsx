@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
  * finds the strap slider on a black apron at a glance.
  *
  * The image arrives as a rendered node from the server, so the image registry
- * and its "AI illustration" label stay where they are decided.
+ * and its "AI render" mark stay where they are decided.
  */
 
 type Point = { x: number; y: number; title: string; body: string };

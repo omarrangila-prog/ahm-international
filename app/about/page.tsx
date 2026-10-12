@@ -114,11 +114,11 @@ export default function AboutPage() {
                 { label: "Export experience", value: company.exportExperience.statement, status: "verified" },
                 { label: "Documented product", value: "65% polyester / 35% cotton stain-managed bib apron program", status: "verified" },
                 { label: "Registered legal name", value: legal ?? NOT_PUBLISHED, status: legal ? "verified" : "pending" },
-                { label: "NTN / registration number", value: ntn ?? "Ask for registration documents — not published until verified", status: ntn ? "verified" : "pending" },
+                { label: "NTN / registration number", value: ntn ?? "Registration documents shared on request", status: ntn ? "verified" : "pending" },
                 { label: "Street address", value: street ?? "Confirmed during commercial discussion", status: street ? "verified" : "pending" },
-                { label: "Certifications", value: "Confirmed in writing during commercial discussion — no logo without a certificate number", status: "pending" },
+                { label: "Certifications", value: "Confirmed in writing, with certificate number and expiry", status: "pending" },
                 { label: "Production capacity", value: "Confirmed against your quantity and schedule", status: "pending" },
-                { label: "Employee count", value: "Not published", status: "pending" },
+                { label: "Employee count", value: "Shared during supplier qualification", status: "pending" },
               ].map((row) => (
                 // Only dt and dd may sit inside a dl's div wrapper, so the
                 // status rides inside the dd rather than as a third sibling.
@@ -133,7 +133,7 @@ export default function AboutPage() {
                           : "label shrink-0 self-start text-paper/70 sm:w-28"
                       }
                     >
-                      {row.status === "verified" ? "Documented" : "Not published"}
+                      {row.status === "verified" ? "Documented" : "On request"}
                     </span>
                   </dd>
                 </div>

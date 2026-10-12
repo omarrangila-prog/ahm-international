@@ -297,7 +297,7 @@ export const productCategories: ProductCategory[] = [
     },
     callouts: {
       asset: "products.apron.front",
-      note: "Marked on an AI illustration of the style, not a photograph. Bar-tacking at pocket mouths and strap attachments, labels and finishing are specified per order and are not shown here. No feature above is standard on every apron.",
+      note: "Bar-tacking at pocket mouths and strap attachments, labels and finishing are specified per order and are not shown here. No feature above is standard on every apron.",
       points: [
         {
           x: 66.5,

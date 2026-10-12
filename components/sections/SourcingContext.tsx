@@ -56,11 +56,11 @@ export function SourcingContext() {
       </div>
 
       <div className="col-span-12 lg:col-span-5">
-        <p className="label text-current/70">What AHM does not claim</p>
+        <p className="label text-current/70">Standard claims, answered</p>
         <dl className="mt-8 border-t border-current/20">
           {notClaimed.map((item) => (
             <div key={item.claim} className="border-b border-current/20 py-6">
-              <dt className="font-display text-sm font-bold uppercase tracking-[0.02em] text-current/60 line-through decoration-current/40">
+              <dt className="font-display text-sm font-bold uppercase tracking-[0.02em] text-current">
                 {item.claim}
               </dt>
               <dd className="mt-2 text-sm leading-relaxed text-current/75">{item.position}</dd>

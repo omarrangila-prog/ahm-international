@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { resolveAsset, type AssetKey } from "@/data/assets";
+import { resolveAsset, subjectOf, type AssetKey } from "@/data/assets";
+import { provenanceMark, provenanceSentence } from "@/lib/provenance";
 
 /**
  * The only image primitive in the site.
@@ -14,12 +15,13 @@ import { resolveAsset, type AssetKey } from "@/data/assets";
  * Sections that can restructure around a missing image should ask `hasAsset()`
  * and do that instead; an empty frame is a last resort, not a design.
  *
- * A generated image is labelled "AI illustration" in the corner of its frame,
- * wherever it appears. Which files are generated is recorded by content hash
- * (data/generated-images.json), so the label cannot be forgotten by a new
- * component and disappears by itself when a photograph replaces the file. On
- * a decorative image (alt="") the label is still shown but hidden from screen
- * readers, which are not shown the image either.
+ * Anything other than a plain photograph carries a mark in the corner of its
+ * frame saying what it is: "AI render", "Representative render", or "Actual
+ * product · enhanced" for a photograph whose camera original has been paired
+ * with it (lib/provenance.ts). The class is recorded by content hash, so the
+ * mark cannot be forgotten by a new component and changes by itself when the
+ * file does. On a decorative image (alt="") it is still shown but hidden from
+ * screen readers, which are not shown the image either.
  */
 
 type Props = {
@@ -49,7 +51,7 @@ type Props = {
    */
   fallback?: React.ReactNode;
   /**
-   * Shows the "AI illustration" label on a generated image. Leave it on. Turn
+   * Shows the provenance mark (e.g. "AI render"). Leave it on. Turn
    * it off only for a thumbnail too small to carry it whose larger version,
    * labelled, is on the same screen.
    */
@@ -99,6 +101,8 @@ export function SmartImage({
     imageClassName ?? "",
   );
 
+  const mark = provenanceMark(resolved.origin, subjectOf(resolved.kind));
+
   const frame = (
     <div
       className={cn("relative overflow-hidden", className)}
@@ -124,13 +128,13 @@ export function SmartImage({
         // and on ink alike rather than a bright block punched into a dark section.
         (fallback ?? <div className="tooth relative h-full w-full bg-current/[0.06]" aria-hidden="true" />)
       )}
-      {resolved.available && resolved.generated && provenance && (
+      {resolved.available && mark && provenance && (
         <span
           className="pointer-events-none absolute bottom-2 left-2 z-[2] bg-paper/90 px-1.5 py-1 font-display text-[10px] font-semibold uppercase leading-none tracking-[0.08em] text-ink"
           aria-hidden={altText === "" ? true : undefined}
-          title="Generated image, not a photograph of AHM production"
+          title={provenanceSentence(resolved.origin, subjectOf(resolved.kind))}
         >
-          AI illustration
+          {mark}
         </span>
       )}
     </div>

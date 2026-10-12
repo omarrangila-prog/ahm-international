@@ -114,24 +114,53 @@ change: run `npm run images:build` and `npm run assets`, and the section that
 was hiding its image starts showing it. The full list, with paths and sizes, is
 in `assets-needed.md` (`npm run assets:report` regenerates it).
 
-**First, the camera originals of the product samples.** Every garment image on
-the site is AI-generated: the 24 in the product galleries were made from files
-in `asset-pack/AHM_All_Individual_Generated_Product_Images/`, whose README says
-the raw camera originals were left out. Since 11 October 2026 each one is
-labelled "AI illustration" on the page. The photographs those images were
-probably made from are the single most valuable thing to send: dropped in at
-the same paths, they replace the illustrations and the labels go by themselves.
-One question with them: the bib apron is sold as "Three-Pocket", but its
-illustration shows one pocket divided in two. Which is right?
+**First, the camera originals of the product samples.** If these images were
+made by enhancing your photographs, the photographs themselves are what turns
+"AI render" into "Actual product · enhanced". Send the files exactly as the
+phone or camera wrote them (not screenshots, not WhatsApp-compressed copies,
+not the files in `product-photography-original/`, which carry the same
+"created by gpt-image" credential as the rest). For each one, run:
+
+```bash
+npm run provenance:pair -- path/to/IMG_1234.jpg /assets/products/photography/navy-polo.webp
+npm run assets
+```
+
+The script compares the two. If the published image still shows the same
+garment the camera saw, it is recorded as enhanced and every page changes at
+once. If the edit moved seams, pockets or folds, it says so and leaves the
+"AI render" mark; a reviewer who has compared them side by side can then record
+it as a "Representative render" with `--representative --reviewer "Name"`.
+The originals are kept privately in `assets-master/originals/` and never
+published. One question with them: the bib apron is sold as "Three-Pocket",
+but its image shows one pocket divided in two. Which is right?
+
+**Then, films.** Three slots are already placed and render nothing until filled:
+
+| Slot | Shows | Where it appears |
+|---|---|---|
+| `process` | 20-40 s: spreading, cutting, sewing, finishing, packing at AHM's own operation | Homepage, /manufacturing |
+| `quality` | 15-30 s: inline and final inspection, measuring against the spec sheet | /quality |
+| `aprons` | 15-30 s: pocket setting, bar-tacking, strap and tie attachment | /products/aprons |
+
+```bash
+npm run film:build -- path/to/original.mp4 process            # plain footage
+npm run film:build -- path/to/graded.mp4 quality --enhanced   # graded or AI-enhanced
+npm run assets
+```
+
+Phone footage is fine; hold it steady and keep customer labels out of frame.
+Enhancement (grading, stabilising, clean-up) is fine and is labelled "Actual
+footage · enhanced". A clip generated from a prompt is refused.
 
 In order of what they unlock:
 
 | Shots | Paths | What it unlocks |
 |---|---|---|
-| Camera originals of the product samples, unbranded | `assets-master/product-photography/` (same filenames), then `npm run photos` | Replaces the 24 AI illustrations in the product galleries |
+| Camera originals of the product samples, unbranded | `npm run provenance:pair` (above) | Turns the 24 gallery marks into "Actual product · enhanced", and opens /our-work |
 | AHM's own facility: cutting, stitching, reinforcement, inspection, sampling, packing | `public/assets/facility/own/*.webp` | The "AHM-Owned Manufacturing" gallery on /manufacturing-network |
 | A partner's facility, with that partner's permission | `public/assets/facility/partner/*.webp` | The "Partner Manufacturing Facilities" gallery, labelled as a partner's |
-| Production floor, wide | `public/assets/hero/hero-sewing-01.webp` | The homepage hero photograph. Until then the hero shows AI illustrations of three articles, labelled. |
+| Production floor, wide | `public/assets/hero/hero-sewing-01.webp` | The homepage hero photograph. Until then the hero shows AI renders of three articles, marked. |
 | Fabric inspection, cutting, sewing, embroidery, printing, finishing, quality control, packing | `public/assets/factory/*.webp` | /capabilities, /quality, /about, the process timeline |
 | Tech pack review, pattern, measurement, trims, sample development | `public/assets/development/*.webp` | /development and the timeline |
 | Warehouse, container loading | `public/assets/export/*.webp` | /export |

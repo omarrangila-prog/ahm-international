@@ -234,12 +234,13 @@
   /**
    * Woven ground.
    *
-   * A real cotton-canvas macro from the supplied texture library, not
+   * The cotton-canvas texture from the supplied texture library, not
    * procedural noise: high-passed so its lighting gradient is gone, then
    * mirrored into a 2x2 so it tiles seamlessly by construction rather than by
    * luck. 22 kB, greyscale, and the only decoration the palette has left —
    * with two colours doing the work of thirteen, the surface carries the
-   * interest, and for a manufacturer of cloth the honest surface is cloth.
+   * interest. That library is generated (its README says so), so this is a
+   * texture, not a photograph of cloth; it is decoration and claims nothing.
    *
    * Strength is calibrated, not guessed. Multiply at opacity a puts the ground
    * at base * (1 - a + a * tile/255); the first attempt — a weak tile at 6% —

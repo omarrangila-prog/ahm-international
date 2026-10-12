@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ConstructionCallouts } from "@/components/products/ConstructionCallouts";
+import { FilmBand } from "@/components/sections/FilmBand";
+import type { Origin } from "@/lib/provenance";
+import { filmSlots, type FilmId } from "@/data/films";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow, Rule } from "@/components/ui/Section";
@@ -56,6 +59,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   });
 }
 
+/** What the callouts are drawn on, from the image's record rather than the copy. */
+function calloutSurface(origin: Origin): string {
+  switch (origin) {
+    case "enhanced":
+      return "Marked on an enhanced photograph of the actual product.";
+    case "representative":
+      return "Marked on a representative render of an AHM sample.";
+    case "ai-render":
+      return "Marked on an AI render of the style.";
+    default:
+      return "Marked on a photograph of the style.";
+  }
+}
+
 export default async function ProductCategoryPage({ params }: Params) {
   const { slug } = await params;
   const category = getCategory(slug);
@@ -98,8 +115,10 @@ export default async function ProductCategoryPage({ params }: Params) {
    */
   const photographedSamples: AssetKey[] = (category.photography ?? []).filter(hasCanonicalAsset);
   // The gallery is headed by what its images are. Today they are generated;
-  // once every file is a photograph the original heading returns by itself.
+  // once every file is a photograph, or an enhanced one paired with its
+  // camera original, the production heading returns by itself.
   const samplesGenerated = photographedSamples.some((a) => resolveAsset(a).generated);
+  const samplesEnhanced = photographedSamples.some((a) => resolveAsset(a).origin === "enhanced");
 
   const headingLines = category.headline.split("\n").map((line, i) => ({
     text: line,
@@ -225,11 +244,16 @@ export default async function ProductCategoryPage({ params }: Params) {
                   />
                 }
                 points={category.callouts.points}
-                note={category.callouts.note}
+                note={`${calloutSurface(resolveAsset(category.callouts.asset).origin)} ${category.callouts.note}`}
               />
             </div>
           </div>
         </Section>
+      )}
+
+      {/* A construction film for the categories that have a slot (data/films.ts). */}
+      {filmSlots.some((f) => f.id === category.slug) && (
+        <FilmBand id={category.slug as FilmId} eyebrow="In production" />
       )}
 
       {/* ---------------- Specification ---------------- */}
@@ -359,14 +383,18 @@ export default async function ProductCategoryPage({ params }: Params) {
                   lines={
                     samplesGenerated
                       ? [{ text: "Styles in" }, { text: "this category." }]
-                      : [{ text: "Photographed" }, { text: "from production." }]
+                      : samplesEnhanced
+                        ? [{ text: "Actual products," }, { text: "from production." }]
+                        : [{ text: "Photographed" }, { text: "from production." }]
                   }
                 />
               </div>
               <p className="max-w-sm text-sm text-ink/70 lg:pb-2">
                 {samplesGenerated
-                  ? "AI illustrations of styles in this category, not photographs. Ask for photographs or a physical sample of any style before you order. "
-                  : "Articles produced to buyer specification, shown as construction references. "}
+                  ? "Styles AHM makes in this category, shown as AI renders and marked on each image. Request a physical sample of any style before you order. "
+                  : samplesEnhanced
+                    ? "Articles produced to buyer specification. Images marked “enhanced” are photographs of the actual product, digitally retouched and checked against the camera original. "
+                    : "Articles produced to buyer specification, shown as construction references. "}
                 {photographedSamples.length > 12 &&
                   `${photographedSamples.length} ${samplesGenerated ? "styles" : "samples photographed"} for this category.`}
               </p>

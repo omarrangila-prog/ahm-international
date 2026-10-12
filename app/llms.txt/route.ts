@@ -49,11 +49,12 @@ supplies them FOB.
 - Documented export experience: ${company.exportExperience.statement}
 - Documented product experience: 65% polyester / 35% cotton stain-managed bib apron program
 
-## Not published
+## Available on request
 
-The following are deliberately not stated anywhere on this site because they have not been verified
-for publication: production capacity, employee count, factory size, machinery count, years in
-business, certifications, minimum order quantity and production lead time. Pricing, MOQ, sampling
+The following are confirmed during commercial discussion rather than published, so no figure for
+them appears on this site and none should be inferred: production capacity, employee count, factory
+size, machinery count, years in business, certifications, minimum order quantity and production
+lead time. Pricing, MOQ, sampling
 cost and lead time depend on the specific article and are quoted against a buyer's specification.
 
 ## Pages

@@ -136,8 +136,10 @@ page. It parses `oklab()`, which is what Tailwind v4 emits for `text-ink/70`;
 a naive `rgb()` regex reads the lightness as red and invents around seventy
 failures that are not there.
 
-The ground is a real cotton-canvas macro, high-passed to remove its lighting
-gradient and mirrored 2×2 so it tiles seamlessly. 22 kB, on by default —
+The ground is the cotton-canvas texture from the supplied texture library,
+high-passed to remove its lighting gradient and mirrored 2×2 so it tiles
+seamlessly. That library is generated (its README says so), so the ground is
+decoration, not a photograph of cloth, and is recorded as generated. 22 kB, on by default —
 pass `tooth={false}` for a section that must stay flat.
 
 ## Branded customer garments are not published
@@ -441,35 +443,76 @@ The case study's construction close-up and fabric macro followed the scenes
 into `generated-hold/` on 11 October 2026. Both were generated and captioned as
 the documented program's own construction and cloth.
 
-## Every garment image is generated, and says so
+## Every image is labelled by origin, and the label is measured
 
 Found on 11 October 2026: the 24 images in the product galleries, headed
-"Photographed from production" with alt text "Photographed production
-sample", are generated. Their masters share every filename with
-`asset-pack/AHM_All_Individual_Generated_Product_Images/` (ten byte-identical),
-whose README says it holds generated images and excludes the camera originals.
-So do the 39 branded files held back. With the prompt-backed renders and fabric
-macros that makes 38 generated images published and none photographed. The
-camera originals exist somewhere and are the most valuable thing to ask for.
+"Photographed from production", are generated. Their masters share every
+filename with `asset-pack/AHM_All_Individual_Generated_Product_Images/`, whose
+README says it holds generated images and excludes the camera originals, and
+ten of them carry a signed OpenAI content credential (C2PA: software gpt-image,
+action `c2pa.created`, source type `trainedAlgorithmicMedia`, no input image
+recorded). On 12 October the fabric texture library's README turned out to say
+the same of its contents, so four more fabric macros and the weave ground were
+added. 43 published files are generated; none is a photograph.
 
-- `data/generated-images.json` lists generated files **by content hash**, with
-  the evidence for each. `npm run assets` marks any published file whose
-  contents match as `generated` in the manifest, wherever it sits: moving a
-  generated image does not shed the mark, and a photograph dropped in at the
-  same path loses it with no other edit. Withdrawn images are listed too, so
-  one put back is labelled.
-- `SmartImage` prints "AI illustration" in the corner of every generated image
-  it renders, and hides that from screen readers only when the image itself is
-  decorative. `HeroVisual` bypasses SmartImage, so its article list ends
-  "AI illustrations, not photographs" instead.
-- Copy follows the manifest, not the other way round: the product gallery
-  heading, the footer line and the terms' "Product imagery" section all say
-  "photographed" again by themselves once no generated file is published.
-- A generated image never appears where a photograph is evidence: no
-  `kind: "factory"` slot may resolve to one, and the facility gallery drops
-  them outright rather than labelling them.
+The owner's position (12 October) is that AHM's products and footage are real
+and AI tools were used to *enhance* original photographs. That may well be true
+of the camera originals, which have not been supplied. The files on disk say
+"created", not "edited", and the folder named `product-photography-original/`
+holds 28 more files with the same credential. So the site carries classes, not
+one blanket label, and a file moves between them on evidence:
 
-`tests/provenance.test.ts` holds all of it.
+| Origin | Mark | How a file gets it |
+|---|---|---|
+| photograph | none | no record: a camera file |
+| enhanced | Actual product · enhanced | `npm run provenance:pair` measured it against its camera original |
+| representative | Representative render | paired, the edit changed the picture, and a named reviewer confirmed the article |
+| ai-render | AI render | its hash is in `data/generated-images.json` |
+
+- **Pairing is measured.** `scripts/provenance-pair.mjs` refuses an "original"
+  whose content credential says it was generated, then compares luma SSIM at
+  256px. The 0.85 bar was calibrated on the 24 gallery images: a retouched copy
+  scored 0.975, a re-drawn one 0.577, the two closest different garments 0.775.
+  White studio grounds lift every score, so do not lower it to "feel right". A
+  replaced background drops below it; that is the reviewer path, with a name.
+- **Originals stay private.** The pair script copies each original into
+  `assets-master/originals/`, which is gitignored. `data/verified-originals.json`
+  holds only hashes, so the evidence is kept without publishing it.
+- **Words come from one place,** `lib/provenance.ts`: the corner mark, its
+  tooltip, the film caption, the terms and the /verification#imagery table all
+  read it. Copy that depends on the class (the gallery heading, the callout
+  surface sentence, the terms' "Product imagery") is derived from the manifest.
+  The apron callout note must not say what it is drawn on; the page adds that.
+- **No footer disclaimer.** Each image carries its own mark, and the footer
+  links to /verification#imagery. A disclaimer on 86 pages read as defensive and
+  said nothing a mark does not.
+- A rendered image never appears where a photograph is evidence: no
+  `kind: "factory"` slot may resolve to one, the facility gallery drops them,
+  the portfolio excludes them, and films need a footage record.
+
+`tests/provenance.test.ts` and `tests/films.test.ts` hold all of it.
+
+## Films play only when they are footage
+
+`data/films.ts` declares three slots (process, quality, aprons), placed on the
+homepage, /manufacturing, /quality and /products/aprons. `npm run film:build --
+<source> <slot> [--enhanced]` trims, scales and compresses the owner's file
+(H.264 ≤1280px with no audio, a VP9 fallback, a WebP poster), refuses a
+generated source, and records all three as footage. A slot renders nothing
+until then, and a clip dropped into `public/assets/film/` without a record
+never plays. The player plays only in view, never by itself under reduced
+motion or Save-Data, and always has a pause button (WCAG 2.2.2).
+
+No film exists yet. The 27 videos in the owner's home directory were checked
+on 12 October; none shows AHM production.
+
+## The portfolio is derived and hidden until it is real
+
+`/our-work` lists every catalogue article whose image is a photograph or an
+enhanced photograph, with construction, fabric and decoration from the category
+data. While none qualifies it returns 404 and is `noindex` in `data/routes.ts`,
+so it is outside the sitemap and nothing links to it. It appears by itself the
+day the first article is paired.
 
 ## The facility gallery is attributed by path
 

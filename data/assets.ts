@@ -1,4 +1,5 @@
 import { assetManifest } from "./asset-manifest";
+import type { Origin } from "../lib/provenance";
 
 /**
  * SEMANTIC ASSET REGISTRY
@@ -1103,10 +1104,23 @@ export type ResolvedAsset = AssetInput & {
    * hash in data/generated-images.json). SmartImage labels it.
    */
   generated: boolean;
+  /** Where the file came from, for its label (lib/provenance.ts). */
+  origin: Origin;
   width: number;
   height: number;
   blurDataURL?: string;
 };
+
+/** What a picture of this kind would be evidence of, which decides its label. */
+export function subjectOf(kind: AssetKind): "product" | "facility" | "other" {
+  return kind === "factory" ? "facility" : kind === "garment" || kind === "detail" || kind === "fabric" ? "product" : "other";
+}
+
+/** The origin recorded for a manifest entry. Unrecorded files are photographs. */
+export function originOf(entry: { generated?: boolean; origin?: string } | undefined): Origin {
+  if (entry?.origin) return entry.origin as Origin;
+  return entry?.generated ? "ai-render" : "photograph";
+}
 
 /**
  * Look up a semantic key and report whether it can be rendered as a real image.
@@ -1129,6 +1143,7 @@ export function resolveAsset(key: AssetKey): ResolvedAsset {
       key,
       available: false,
       generated: false,
+      origin: "photograph",
       width,
       height: Math.round(width / asset.aspect),
     };
@@ -1140,6 +1155,7 @@ export function resolveAsset(key: AssetKey): ResolvedAsset {
     key,
     available: true,
     generated: Boolean(entry.generated),
+    origin: originOf(entry),
     width: entry.width,
     height: entry.height,
     blurDataURL: entry.blur ?? undefined,

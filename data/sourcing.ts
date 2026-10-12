@@ -116,7 +116,7 @@ export const sourcingPillars: SourcingPillar[] = [
           ["Sampling cost and timing", "Per project. Depends on fabric availability and development work"],
           ["Production lead time", "Per project. Confirmed in the quotation"],
           ["Certifications", "Confirmed in writing during commercial discussion"],
-          ["Production capacity", "Confirmed against your quantity and schedule, not published as a figure"],
+          ["Production capacity", "Confirmed against your quantity and schedule"],
         ],
       },
       {
@@ -564,7 +564,7 @@ export const sourcingPillars: SourcingPillar[] = [
     related: [
       { label: "Apparel manufacturer in Pakistan", href: "/apparel-manufacturer-pakistan", description: "What to send, how development works, and what is verified." },
       { label: "Apparel exporter in Pakistan", href: "/apparel-exporter-pakistan", description: "Export workflow, documentation and handover from Karachi." },
-      { label: "About AHM International", href: "/about", description: "What the company is, and what it does not claim." },
+      { label: "About AHM International", href: "/about", description: "Who the company is, how it works, and what is documented." },
       { label: "Export and logistics", href: "/export", description: "Routes, scope and the documented shipment lane." },
       { label: "Product range", href: "/products", description: "Twelve apparel families manufactured to specification." },
       { label: "Private label manufacturing", href: "/private-label-manufacturing", description: "Producing under a buyer's own brand, and how it differs from OEM." },

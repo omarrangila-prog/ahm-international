@@ -40,7 +40,7 @@ export function isPublishable(status: VerificationStatus): boolean {
 export const VERIFICATION_LABEL: Record<VerificationStatus, string> = {
   verified: "Verified",
   internally_verified: "Internally verified",
-  pending_verification: "Not published",
+  pending_verification: "On request",
   development_capability: "Development capability",
   qualification_required: "Qualification required",
 };
