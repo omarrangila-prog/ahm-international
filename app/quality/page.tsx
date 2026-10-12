@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { QualityProcess } from "@/components/sections/QualityProcess";
+import { FilmBand } from "@/components/sections/FilmBand";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { PageViewEvent } from "@/components/ui/PageViewEvent";
 import { QualityGates } from "@/components/sections/QualityGates";
@@ -66,6 +67,7 @@ export default function QualityPage() {
       />
 
       <QualityProcess />
+      <FilmBand id="quality" eyebrow="On the floor" />
 
       <Section zone="paper" spacing="lg" aria-labelledby="standard-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-10 lg:gap-x-12">
@@ -95,8 +97,7 @@ export default function QualityPage() {
                   <div className="border-l-2 border-ink pl-6">
                     <p className="text-lead text-ink/80">
                       Every stage produces a record: an inspection sheet, a measurement report, a
-                      packing verification. Those records are what a buyer can audit, not a
-                      photograph of a factory floor.
+                      packing verification. Those records are what a buyer can audit.
                     </p>
                     <p className="mt-5 text-ink/70">
                       Documentation from your order is shared on request during production.

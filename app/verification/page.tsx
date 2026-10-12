@@ -9,6 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 import { company, displayValue, publicValue, NOT_PUBLISHED, PER_PROJECT } from "@/data/company";
 import { verificationSteps } from "@/data/trust";
 import { notClaimed } from "@/data/sourcing-context";
+import { provenanceMark, provenanceSentence, type Origin } from "@/lib/provenance";
 
 export const metadata: Metadata = pageMetadata({
   title: "Business Verification",
@@ -91,7 +92,7 @@ export default function VerificationPage() {
       <PageHero
         eyebrow="Business verification"
         headingLines={[{ text: "Check us" }, { text: "before you" }, { text: "trust us." }]}
-        intro="What AHM International publishes and what each fact rests on, how to request the documents that are not published, and how to check any supplier without relying on its website."
+        intro="What AHM International publishes and what each fact rests on, how to request registration and export documents, and how to check any supplier without relying on its website."
         trail={[{ name: "Business verification", path: "/verification" }]}
         zone="paper"
         primaryCta={{ label: "Request documents", href: "#request" }}
@@ -206,22 +207,48 @@ export default function VerificationPage() {
         </div>
       </Section>
 
+      <Section zone="paper" spacing="lg" id="imagery" aria-labelledby="imagery-heading">
+        <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
+          <div className="col-span-12 lg:col-span-4">
+            <Eyebrow>Images</Eyebrow>
+            <h2 id="imagery-heading" className="mt-5 font-display text-h2 text-ink">
+              How images are labelled.
+            </h2>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink/70">
+              Every image carries a mark saying what it is, taken from a record of each file rather than written by
+              hand. When a camera original is supplied, the published image is compared with it, and if it still
+              shows the same garment its mark becomes &ldquo;Actual product &middot; enhanced&rdquo; everywhere at once.
+            </p>
+          </div>
+          <dl className="col-span-12 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:col-span-8">
+            {(["photograph", "enhanced", "representative", "ai-render"] as Origin[]).map((origin) => (
+              <div key={origin} className="bg-paper p-6">
+                <dt className="font-display text-sm font-bold tracking-[-0.01em] text-ink">
+                  {provenanceMark(origin) ?? "No mark"}
+                </dt>
+                <dd className="mt-3 text-sm leading-relaxed text-ink/70">{provenanceSentence(origin)}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </Section>
+
       <Section zone="paper" spacing="lg" aria-labelledby="not-claimed-heading">
         <div className="shell-wide grid grid-cols-12 gap-y-8 lg:gap-x-12">
           <div className="col-span-12 lg:col-span-4">
-            <Eyebrow>Deliberately absent</Eyebrow>
+            <Eyebrow>Before you ask</Eyebrow>
             <h2 id="not-claimed-heading" className="mt-5 font-display text-h2 text-ink">
-              What this site does not claim.
+              Standard claims, answered directly.
             </h2>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink/70">
-              These are the standard claims on supplier profiles from this region. Their absence here is a decision,
-              not an omission.
+              Supplier profiles from this region usually lead with these four. Here is where AHM stands on each, and
+              what you can ask for.
             </p>
           </div>
           <ul className="col-span-12 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:col-span-8">
             {notClaimed.map((row) => (
               <li key={row.claim} className="bg-paper p-6">
-                <p className="font-display text-sm font-bold tracking-[-0.01em] text-ink">Not claimed: {row.claim}</p>
+                <p className="font-display text-sm font-bold tracking-[-0.01em] text-ink">{row.claim}</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink/70">{row.position}</p>
               </li>
             ))}

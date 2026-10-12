@@ -11,6 +11,10 @@ export type ManifestEntry = {
   blur: string | null;
   /** Generated, not photographed: listed in data/generated-images.json with this file's hash. */
   generated?: boolean;
+  /** Paired with its camera original in data/verified-originals.json. */
+  origin?: "enhanced" | "representative" | "footage" | "enhanced-footage";
+  /** Seconds, for a film. */
+  duration?: number;
 };
 
 export const assetManifest: Record<string, ManifestEntry> = {
@@ -35,7 +39,8 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/fabrics/canvas.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQABAABIB0JZACdAEN9ZkkPQAA/ufOtDLd6iPryWZY3uWir/7Hl0AA"
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQABAABIB0JZACdAEN9ZkkPQAA/ufOtDLd6iPryWZY3uWir/7Hl0AA",
+    "generated": true
   },
   "/assets/fabrics/cotton-pique.webp": {
     "width": 1200,
@@ -52,7 +57,8 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/fabrics/mesh.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAAuRye3mpAAD+58+RCpIt1W+YIsbOBAAA"
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAAuRye3mpAAD+58+RCpIt1W+YIsbOBAAA",
+    "generated": true
   },
   "/assets/fabrics/polycotton-twill.webp": {
     "width": 1200,
@@ -69,12 +75,14 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/fabrics/rib.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoQABAABIB0JQBOgCHhm8S+cqAA/uS9nnV9pf1sJX3snejVygAAAA=="
+    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoQABAABIB0JQBOgCHhm8S+cqAA/uS9nnV9pf1sJX3snejVygAAAA==",
+    "generated": true
   },
   "/assets/fabrics/single-jersey.webp": {
     "width": 1200,
     "height": 1200,
-    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAApPBx2KQAAD+sxLWjkm17Je4P4docAAA"
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoQABAABIB0JZwAApPBx2KQAAD+sxLWjkm17Je4P4docAAA",
+    "generated": true
   },
   "/assets/fabrics/softshell.webp": {
     "width": 1200,
@@ -265,6 +273,7 @@ export const assetManifest: Record<string, ManifestEntry> = {
   "/assets/texture/weave.webp": {
     "width": 500,
     "height": 500,
-    "blur": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAABQAQCdASoQABAABIB0JaQABHQAAORAAAA="
+    "blur": "data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAABQAQCdASoQABAABIB0JaQABHQAAORAAAA=",
+    "generated": true
   }
 };

@@ -45,33 +45,32 @@ export const sourcingContext: SourcedFact[] = [
 ];
 
 /**
- * What AHM does not claim.
+ * The four standard claims, answered.
  *
- * Written down because the claims below are the standard list on supplier
- * profiles from this region, and their absence here is deliberate rather than
- * an omission. A buyer who has read three other sites will be looking for them;
- * saying plainly that AHM cannot evidence them is more useful than silence, and
- * far more useful than repeating them.
+ * The usual list on supplier profiles from this region. A buyer who has read
+ * three other sites will be looking for them, so each gets AHM's position and
+ * what the buyer can ask for, stated as an answer rather than a disclaimer.
+ * Nothing here may assert more than data/company.ts verifies.
  */
 export const notClaimed: { claim: string; position: string }[] = [
   {
-    claim: "Vertical integration from fibre to finished garment",
+    claim: "Vertical integration",
     position:
-      "AHM manufactures and exports garments. It does not spin, weave or own the mills, and does not present a supply chain it does not control.",
+      "AHM's work is garment manufacturing and export, in its own operations and at partner factories. It does not spin or weave: fabric comes from mills, chosen for each program.",
   },
   {
-    claim: "Environmental or social certification",
+    claim: "Certification",
     position:
-      "No certification is shown anywhere on this site, because none has been evidenced to us. A logo without a certificate number and an expiry date is decoration.",
+      "A certificate is shown with its number and expiry or not at all, and none is displayed today. If your program requires a specific audit or certificate, name it in the RFQ and get a direct answer before sampling.",
   },
   {
-    claim: "Production capacity and headcount",
+    claim: "Capacity and headcount",
     position:
-      "Published as \"available on request\" rather than as a round number. Capacity quoted without a reference period and an article type is not a figure a buyer can plan against.",
+      "Confirmed against your article, quantity and delivery window, with the reference period stated, rather than printed as a round number that cannot be planned against.",
   },
   {
-    claim: "A list of buyers or brands served",
+    claim: "Buyers served",
     position:
-      "Buyer relationships are confidential and no customer is named. The one published case study is anonymised.",
+      "Buyer relationships stay confidential, so no customer is named and the documented case study is anonymised. Your program is treated the same way.",
   },
 ];

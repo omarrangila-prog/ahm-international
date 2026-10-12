@@ -196,18 +196,24 @@ export const privacySections = privacySectionsFor(delivery);
  * What the product images are, from the same manifest that labels them. Until
  * October 2026 this said they were photographs of production and that the
  * site published no illustrations of garments; every garment image was
- * generated. It now describes whichever is deployed.
+ * generated. It now describes whichever is deployed, class by class, in the
+ * words of the marks themselves (lib/provenance.ts).
  */
-export function imagerySection(generated: boolean): LegalSection {
+export function imagerySection(generated: boolean, enhanced = false): LegalSection {
+  const enhancedLine = enhanced
+    ? ["Images marked \u201cActual product \u00b7 enhanced\u201d are photographs of actual products, digitally retouched. Each has been paired with its camera original and checked that it still shows the same garment."]
+    : [];
   return {
     heading: "Product imagery",
     body: generated
       ? [
-          "Product images on this site are AI-generated illustrations of representative articles, labelled \u201cAI illustration\u201d where they appear. They are not photographs of AHM International\u2019s production, not construction references and not an offer of a specific garment. Ask for photographs or a physical sample before relying on any construction detail.",
+          "Every image on this site is labelled by origin. Those marked \u201cAI render\u201d are AI-generated images of the article types AHM International manufactures. They are not photographs of its production, not construction references and not an offer of a specific garment. Ask for a physical sample before relying on any construction detail.",
+          ...enhancedLine,
           "No customer is named anywhere on this site, and garments carrying a third party\u2019s brand mark are not published here. A photograph of a facility, where one is published, is a photograph of that facility, and a partner\u2019s facility is labelled as a partner\u2019s.",
         ]
       : [
           "Photographs show articles manufactured to buyer specification. They are construction references, not an offer of a specific garment, and no customer is named anywhere on this site. Garments carrying a third party\u2019s brand mark are not published here.",
+          ...enhancedLine,
           "Where a product type has no photograph yet, the article is listed without an image.",
         ],
   };
@@ -229,7 +235,10 @@ export const termsSections: LegalSection[] = [
       "No price, minimum quantity, sampling cost or lead time is published on this site, because each depends on the article. All four are quoted in writing against a specification.",
     ],
   },
-  imagerySection(Object.values(assetManifest).some((e) => e.generated)),
+  imagerySection(
+    Object.values(assetManifest).some((e) => e.generated),
+    Object.values(assetManifest).some((e) => e.origin === "enhanced"),
+  ),
   {
     heading: "Quotation requests",
     body: [

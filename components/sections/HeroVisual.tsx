@@ -78,7 +78,7 @@ function LayDown() {
           </li>
         ))}
         {layDown.some((item) => resolveAsset(item.key).generated) && (
-          <li className="label mt-1 text-ink">AI illustrations, not photographs</li>
+          <li className="label mt-1 text-ink">AI renders</li>
         )}
       </ul>
 

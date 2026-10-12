@@ -69,7 +69,7 @@ function build(): string {
   section("Straight answers to common commercial questions (/request-a-quote)");
   for (const a of commercialAnswers) out.push(`Q: ${a.question} A: ${a.answer}`);
 
-  section("What AHM does not claim (/verification)");
+  section("Standard supplier claims, answered (/verification)");
   for (const n of notClaimed) out.push(`${n.claim}: ${n.position}`);
 
   section("Verifying AHM (/verification)");

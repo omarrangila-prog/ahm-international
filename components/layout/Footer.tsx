@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { footerNav } from "@/data/nav";
 import { company, publicValue } from "@/data/company";
-import { assetManifest } from "@/data/asset-manifest";
 import { Logo } from "@/components/ui/Logo";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { EmailLink, PhoneLink, WhatsAppLink } from "@/components/ui/ContactActions";
@@ -20,9 +19,6 @@ export function Footer() {
   const email = publicValue(company.email);
   const phone = publicValue(company.phone);
   const whatsapp = publicValue(company.whatsapp);
-  // Says what the product images are while any of them is generated, and
-  // stops saying it by itself once they have all been replaced by photographs.
-  const anyGenerated = Object.values(assetManifest).some((e) => e.generated);
   const linkedin = publicValue(company.social.linkedin);
   const instagram = publicValue(company.social.instagram);
   const year = new Date().getFullYear();
@@ -182,12 +178,12 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
-            <span className="max-w-md text-paper/70">
-              {anyGenerated
-                ? "Product visuals are AI illustrations of representative articles, not photographs of production."
-                : "Product visuals shown as representative articles."}{" "}
-              Commercial terms confirmed in writing.
-            </span>
+            {/* Each image carries its own mark; the footer points to what the
+                marks mean rather than repeating a disclaimer on every page. */}
+            <Link href="/verification#imagery" className="inline-block py-1.5 text-paper/70 transition-colors hover:text-lime">
+              How images are labelled
+            </Link>
+            <span className="max-w-md py-1.5 text-paper/70">Commercial terms confirmed in writing.</span>
           </div>
         </div>
       </div>

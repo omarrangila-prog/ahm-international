@@ -13,6 +13,10 @@
       "sha256": "a75ce863decb00ddeb98b21b7e08edc7941bf5acab5841b7b8062919e78ea943",
       "evidence": "Generation prompt asset-pack/prompts/export__cartons.prompt.txt"
     },
+    "/assets/fabrics/canvas.webp": {
+      "sha256": "51384e1904bca963db811584844a8420d7c4d5ae3a7e73899ffe648ac32b200b",
+      "evidence": "Built by scripts/optimize-images.mjs from the supplied fabric texture library (01_Woven_Workwear/05_cotton-canvas.jpg, assets-master/fabric-textures/, from AHM_60_Individual_HQ_Fabric_Textures.zip), whose README says: \"These are generated visual texture references for website/design use. They are not laboratory-certified fabric samples.\""
+    },
     "/assets/fabrics/cotton-pique.webp": {
       "sha256": "d053f4a532ab7c4ab854f472afa20449600bf286cbe36e8b7622970237ea79ab",
       "evidence": "Generation prompt asset-pack/prompts/fabrics__cotton-pique.prompt.txt"
@@ -21,6 +25,10 @@
       "sha256": "50112d73e69c70bea6da3a988081942ddbb033661204ddb7753ecb219e37821b",
       "evidence": "Generation prompt asset-pack/prompts/fabrics__fleece.prompt.txt"
     },
+    "/assets/fabrics/mesh.webp": {
+      "sha256": "05d17699f75755839604c6530e02d3d83b4278c3c5bbc4737094dd6ce5a9a82e",
+      "evidence": "Built by scripts/optimize-images.mjs from the supplied fabric texture library (04_Technical_Performance/36_mesh-fabric.jpg, assets-master/fabric-textures/, from AHM_60_Individual_HQ_Fabric_Textures.zip), whose README says: \"These are generated visual texture references for website/design use. They are not laboratory-certified fabric samples.\""
+    },
     "/assets/fabrics/polycotton-twill.webp": {
       "sha256": "67feb0d74551f413386cfeb9876cbcc6e9c7984a4f75c2dd2a1a1292e2bb6f94",
       "evidence": "Generation prompt asset-pack/prompts/fabrics__polycotton-twill.prompt.txt"
@@ -28,6 +36,14 @@
     "/assets/fabrics/polyester-performance.webp": {
       "sha256": "7b099036480327ad732c590fefb9f77a381f505a2ad4f7d499f184d16a169c62",
       "evidence": "Generation prompt asset-pack/prompts/fabrics__polyester-performance.prompt.txt"
+    },
+    "/assets/fabrics/rib.webp": {
+      "sha256": "94ff379768a824e77a0172fd7a0367556faec647be77abaae2489972bafd5385",
+      "evidence": "Built by scripts/optimize-images.mjs from the supplied fabric texture library (03_Knits_Fleece/34_rib-knit.jpg, assets-master/fabric-textures/, from AHM_60_Individual_HQ_Fabric_Textures.zip), whose README says: \"These are generated visual texture references for website/design use. They are not laboratory-certified fabric samples.\""
+    },
+    "/assets/fabrics/single-jersey.webp": {
+      "sha256": "b18865df82cdab38ac88c3da51c26aa31470bb81d025e47ea3e6b9f6e3d5a23a",
+      "evidence": "Built by scripts/optimize-images.mjs from the supplied fabric texture library (03_Knits_Fleece/33_jersey-knit.jpg, assets-master/fabric-textures/, from AHM_60_Individual_HQ_Fabric_Textures.zip), whose README says: \"These are generated visual texture references for website/design use. They are not laboratory-certified fabric samples.\""
     },
     "/assets/fabrics/softshell.webp": {
       "sha256": "6d0b07e4fb7cb2790ffdf7b0a25d2100d49c3b2dae83d4839fcdde4169bf8341",
@@ -51,99 +67,99 @@
     },
     "/assets/products/photography/denim-utility-jacket.webp": {
       "sha256": "57c644c587bb3b2460b8c4705c9a0ceeddde7ae45c164fb281c9e529442ca7bc",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_denim_utility_jacket_flat_lay.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/henley-green.webp": {
       "sha256": "12cb0bc93f0ce615bbf4711293cf76f893111f0e8b67d9e34eebdb0c75f37a0f",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master forest_green_henley_shirt_flat_lay.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/henley-navy.webp": {
       "sha256": "c2b98bb1c4e24fac9cbacbca4cd8039c3c8c1bdd08fe02bdc79616ff8b5b9ff3",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_henley_shirt_flat_lay.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/henley-tee-navy.webp": {
       "sha256": "5ad150df8f9b63b3c1dcbab5a914ea395bf083d1c059b2097c0707f925802b4e",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_henley_t_shirt_product_shot.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/henley-waffle-navy.webp": {
       "sha256": "58d95d9f6bb8ef94c682cbe6db7b8c72acd3113e428a7bb36d63c9bc68831646",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_blue_waffle_henley_shirt.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/hoodie-navy-alt.webp": {
       "sha256": "7e92b9415b55230869d11ac080dd7dacb5a2bd66e69ff879b59cedd72375cb56",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_blue_hoodie_flat_lay.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/hoodie-navy.webp": {
       "sha256": "6ae3a61db2646e6bd21ad02e2cfaae28f9825957acceb6945be9269718d00825",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_blue_pullover_hoodie_on_white.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/lounge-pant-grid.webp": {
       "sha256": "7662f924d1de4ee31dd1188b53eec04c1557d86a788e99ca3edd6ef11d89275e",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master cream_navy_grid_lounge_pants.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/pant-camo.webp": {
       "sha256": "40aae3285cd9b4911c0dab84c2eb8c190a4a1560337c1765dccca8ec4acac600",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master woodland_camo_elastic_cuff_pants.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/polo-dress-navy.webp": {
       "sha256": "1ee06926fb1f5e12d42032f005c868ac4fded45ebab9f253b3f3f3f86395ad44",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_polo_shirt_dress_product_photo.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/polo-taupe-long-sleeve.webp": {
       "sha256": "8863131cfc2ad9786b5edb218ac5619afc3f8dbcf53ab5f7c4bd81d0e1b2bd8a",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master taupe_long_sleeve_polo_flat_lay.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/polo-yellow.webp": {
       "sha256": "e0c94c3fb0f2aa3627deedb6bfbd351e6abbe6e06d900a7237df8e86074dfc04",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master pale_yellow_polo_shirt_flat_lay.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/scarf-camel.webp": {
       "sha256": "ff4d844bf7dd385555abbca49d5254343bfdc6aaa67d485571fdc827a66f4267",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master camel_scarf_with_fringed_ends.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/scarf-herringbone.webp": {
       "sha256": "f9e3f792dc4d002786e12ec3a963996934f45df97295d5fede89105ca9ca2d84",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master charcoal_herringbone_scarf_on_white.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/scarf-navy-looped.webp": {
       "sha256": "1135cb8b65caeb668cc4c764c977a0d050e86155eee73d9def175d1605ce3acb",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_blue_scarf_in_looped_arrangement.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/scarf-navy.webp": {
       "sha256": "dbb7efbbb050631f08bad2c2ff4c6b1f0df929fcae46bf6f94c68a35081e176a",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master midnight_navy_fringed_scarf.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/scarf-plaid-maroon.webp": {
       "sha256": "82a81b2bb56ce84ff5d2de0b4ff86039b5feebea0ee32d97388fb2e22c6eda4e",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master maroon_plaid_scarf_with_fringed_tassels.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/scarf-plaid-olive.webp": {
       "sha256": "0fbc953ca2808b6e353987970fff17e910ff7b8246bfc10b7c16f423b97bc6d9",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master olive_plaid_fringed_scarf.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/thermal-sage-alt.webp": {
       "sha256": "21608e8ad6c89745d1f00398df9cb9a1b45ab5de2efeadd70917cfdec9dae979",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master sage_waffle_knit_thermal_shirt_mockup.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/thermal-sage.webp": {
       "sha256": "bdfab4208865a7f6fdb4e35a60cdef54b5e1a5cb4486fea90c1d16f40e3eb3cd",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master sage_waffle_knit_thermal_shirt.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/photography/utility-bomber-charcoal.webp": {
       "sha256": "392b64264b51aa356e2d6a6e55dfaeeff2fde46ad32d0d69347874f260dbc59b",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master charcoal_utility_bomber_jacket.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/work-vest-orange.webp": {
       "sha256": "877272e233bfad322e4c390c4a76fbe956422687f87822a82b782e1479ad510c",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master bright_orange_buttoned_waistcoat.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/zip-hoodie-grey.webp": {
       "sha256": "7d783b41a6596feb5fcb94f3a0df5e736672b0a51d805b43c6ee2bcb96c08bc0",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master light_gray_sparkle_trimmed_zip_hoodie.png carries a signed OpenAI content credential (C2PA): software gpt-image, action c2pa.created, source type trainedAlgorithmicMedia, no input image recorded."
     },
     "/assets/products/photography/zip-hoodie-navy.webp": {
       "sha256": "6f25bf2c008157b510c03e8d4fc3c3fb56fd92f4bd74359ad4fde7643db2f6f8",
-      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images"
+      "evidence": "Built by scripts/build-photography.mjs from assets-master/product-photography/, whose 24 masters all share their filenames with asset-pack/AHM_All_Individual_Generated_Product_Images/ (10 byte-identical); that folder's README describes its contents as generated product images Master navy_blue_full_zip_hoodie_product_photo.png carries no content credential; the README above is the evidence."
     },
     "/assets/products/polos/polo-fabric-macro.webp": {
       "sha256": "8c1e24791ee4bd4960fcbf6f740ec1921f6733407918325091519f796cdf8a33",
@@ -152,6 +168,10 @@
     "/assets/products/tshirts/tee-fabric-macro.webp": {
       "sha256": "1ff4796963678f1183d528583897c6662316e279d8a4eada1f13d5cce4ce4c23",
       "evidence": "Generation prompt asset-pack/prompts/products__tshirts__tee-fabric-macro.prompt.txt"
+    },
+    "/assets/texture/weave.webp": {
+      "sha256": "84e2a72541dfb276d0568807e71855c5b9a0bcbc31d3e46e0380f3d642dda6b2",
+      "evidence": "The site ground: cut from 01_Woven_Workwear/05_cotton-canvas.jpg in the supplied fabric texture library (commit 849dcfe), whose README says its contents are generated texture references. Decorative CSS background, so no mark is rendered, but it is not a photograph of cloth."
     },
     "asset-pack/generated-hold/case-studies/uniform-apron-program/detail.webp": {
       "sha256": "6bb72d9399cc338a7884a0e1fe7d683cffa1bfa07345adb40a9d94ae940dc4cf",

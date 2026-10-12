@@ -1,0 +1,4 @@
+{
+  "about": "Published files paired with the camera original they were made from, by content hash. Written by npm run provenance:pair, which measures the pairing rather than taking it on trust: see that script. scripts/scan-assets.mjs gives a file listed here the origin recorded here (enhanced, representative, footage or enhanced-footage), wherever it sits. The originals themselves are kept in assets-master/originals/, which is never committed or deployed.",
+  "files": {}
+}

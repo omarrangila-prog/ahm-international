@@ -10,6 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 import { FacilityGallery, type GalleryItem } from "@/components/sections/FacilityGallery";
 import { facilityPhotos, type Facility } from "@/data/facility-gallery";
 import { resolveAsset } from "@/data/assets";
+import { provenanceMark } from "@/lib/provenance";
 import { company, displayValue } from "@/data/company";
 import {
   capabilityMatrix,
@@ -80,7 +81,9 @@ const faqs = [
 function galleryItems(facility: Facility): GalleryItem[] {
   return facilityPhotos(facility).map((p) => {
     const r = resolveAsset(p.asset);
-    return { src: r.src, width: r.width, height: r.height, alt: r.alt, blur: r.blurDataURL, caption: p.caption, label: p.label };
+    // An enhanced photograph says so, here and in the enlarged view.
+    const mark = provenanceMark(r.origin, "facility");
+    return { src: r.src, width: r.width, height: r.height, alt: r.alt, blur: r.blurDataURL, caption: p.caption, label: mark ? `${p.label} · ${mark}` : p.label };
   });
 }
 
@@ -141,11 +144,9 @@ export default function ManufacturingNetworkPage() {
               </dl>
               {ownPhotos.length > 0 && <FacilityGallery items={ownPhotos} title="Photographs of AHM's own facility" />}
               <p className="mt-6 text-sm leading-relaxed text-ink/70">
-                {ownPhotos.length > 0
-                  ? "Photographed at AHM's own facility."
-                  : "Photographs of the facility are not published yet."}{" "}
-                Figures above are given during commercial discussion rather than printed without the evidence
-                behind them, and a visit or your own inspection agency is the reliable way to see the floor.
+                {ownPhotos.length > 0 ? "Photographed at AHM's own facility. " : ""}
+                Figures above are confirmed during commercial discussion with the evidence behind them. A visit, or
+                your own inspection agency, is the way to see the floor.
               </p>
             </article>
 
@@ -168,8 +169,8 @@ export default function ManufacturingNetworkPage() {
                   the approved sample and the commercial relationship stay with AHM whichever floor makes the bulk.
                 </li>
                 <li className="text-sm leading-relaxed text-ink/75">
-                  <span className="font-medium text-ink">Which partner makes which article</span> is not published.
-                  Ask about your own order before you place it.
+                  <span className="font-medium text-ink">Ask where your order will be made</span> before you place
+                  it, and whether that floor is AHM&apos;s own or a partner&apos;s.
                 </li>
               </ul>
               {partnerPhotos.length > 0 && (
@@ -239,10 +240,9 @@ export default function ManufacturingNetworkPage() {
               </p>
               {!showRoute && (
                 <p>
-                  Whether a family is made in AHM&apos;s own operations or at a partner is not published yet, so
-                  the table does not guess. Capacity and minimum quantity are available after specification review:
-                  they depend on fabric, colour count and decoration, and a figure given without them would be a
-                  guess too.
+                  Ask whether your product family is made in AHM&apos;s own operations or at a partner. Capacity
+                  and minimum quantity follow specification review, because they depend on fabric, colour count
+                  and decoration.
                 </p>
               )}
             </div>

@@ -31,7 +31,9 @@
     "weight": "node scripts/weight-audit.mjs",
     "a11y": "node scripts/a11y-audit.mjs",
     "console": "node scripts/console-audit.mjs",
-    "mail:check": "node scripts/mail-check.mjs"
+    "mail:check": "node scripts/mail-check.mjs",
+    "provenance:pair": "node scripts/provenance-pair.mjs",
+    "film:build": "node scripts/build-film.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",

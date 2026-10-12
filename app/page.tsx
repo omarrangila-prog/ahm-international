@@ -1,3 +1,4 @@
+import { FilmBand } from "@/components/sections/FilmBand";
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
@@ -43,6 +44,7 @@ export default function HomePage() {
       {/* 01 · Hero */}                         <Hero />
       {/*      Capability strip */}             <TrustStrip />
       {/* 02 · Manufacturing model (ink) */}    <ManufacturingModel />
+      {/*      Production film, once verified */} <FilmBand id="process" eyebrow="Production" />
       {/* 03 · Flagship products */}            <ProductUniverse />
       {/*      Material and construction */}    <MaterialIntelligence />
       {/* 04 · How we make your product */}     <DevelopmentTimeline />

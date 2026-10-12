@@ -13,7 +13,7 @@ cannot disagree with what the site renders.
 | Canonical file in place | 42 |
 | Showing a stand-in | 9 |
 | **Leaving a visible gap** | **101** |
-| Rendering a generated image, labelled "AI illustration" | 47 |
+| Rendering a generated image, marked "AI render" | 51 |
 
 Slots below marked **GAP** render nothing. Shoot those first.
 
@@ -929,6 +929,20 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Macro view of bonded softshell fabric
 - **Used by:** `data/materials.ts`, `data/products.ts`
 
+### fabrics.canvas — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/canvas.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of heavyweight cotton canvas
+- **Used by:** `data/guides-sourcing.ts`, `data/materials.ts`
+
+### fabrics.singleJersey — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/single-jersey.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of single jersey knit structure
+- **Used by:** `data/materials.ts`, `data/products.ts`
+
 ### products.polo.fabric — generated, wants a photograph
 
 - **Path:** `/assets/products/polos/polo-fabric-macro.webp`
@@ -1079,6 +1093,20 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/scarf-plaid-olive.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Olive plaid fringed scarf
+- **Used by:** no component yet
+
+### fabrics.rib — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/rib.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of 1x1 rib collar and cuff trim
+- **Used by:** no component yet
+
+### fabrics.mesh — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/mesh.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of breathable polyester mesh
 - **Used by:** no component yet
 
 ## In place

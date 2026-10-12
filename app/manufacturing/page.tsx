@@ -7,6 +7,7 @@ import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { pageMetadata } from "@/lib/seo";
+import { FilmBand } from "@/components/sections/FilmBand";
 
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Manufacturing Process",
@@ -85,7 +86,7 @@ export default function ManufacturingPage() {
               as="h2"
               id="approach-heading"
               className="mt-5 font-display text-h1 text-paper"
-              lines={[{ text: "What we do" }, { text: "and do not" }, { text: "claim." }]}
+              lines={[{ text: "How we work," }, { text: "in plain" }, { text: "terms." }]}
             />
           </div>
           <div className="col-span-12 lg:col-span-7">
@@ -97,11 +98,11 @@ export default function ManufacturingPage() {
                 },
                 {
                   q: "Production capacity",
-                  a: "Not published. We confirm feasibility against your quantity, article and schedule during commercial discussion rather than advertising a figure.",
+                  a: "Confirmed against your quantity, article and schedule during commercial discussion, so the figure you receive is one you can plan against.",
                 },
                 {
                   q: "Certifications",
-                  a: "Certification status is confirmed in writing during commercial discussion. We do not display accreditations we cannot evidence with a certificate.",
+                  a: "Confirmed in writing during commercial discussion, with the certificate number and expiry for each one.",
                 },
                 {
                   q: "Minimum quantity and lead time",
@@ -122,6 +123,7 @@ export default function ManufacturingPage() {
         </div>
       </Section>
 
+      <FilmBand id="process" eyebrow="Production" />
       <CtaBand
         headingLines={[{ text: "SEND ONE" }, { text: "SPECIFICATION." }]}
         body="A single style is enough to see how the process runs. We review it and come back with construction, materials and commercial FOB costing."

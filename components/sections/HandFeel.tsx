@@ -22,7 +22,7 @@ import { cn, numeral } from "@/lib/utils";
  * side under "Construction" than from any amount of prose about weave.
  *
  * Where a factor has no field behind it the cell says so rather than going
- * blank. `factorValue` returns null and the row reads "Not published" — the same
+ * blank. `factorValue` returns null and the row reads "Confirmed on the swatch" — the same
  * honesty the rest of this site applies to facts it cannot evidence, applied
  * here to fabric properties AHM does not currently publish.
  */
@@ -115,7 +115,7 @@ export function HandFeel() {
                     value ? "text-ink/75" : "text-ink/65",
                   )}
                 >
-                  {value ?? "Not published for this construction"}
+                  {value ?? "Confirmed on the swatch"}
                 </dd>
               </div>
             );
