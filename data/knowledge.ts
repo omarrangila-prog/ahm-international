@@ -67,6 +67,16 @@ export const guideTopics: Record<string, TopicId[]> = {
   "garment-inspection-explained": ["quality-control"],
   "evaluating-apparel-samples": ["quality-control", "sourcing-procurement"],
   "sourcing-uniforms-from-pakistan": ["uniforms-workwear", "sourcing-procurement", "import-export"],
+  "weave-types-explained": ["fabric-science", "textile-education"],
+  "fibres-compared-for-garments": ["fabric-science", "textile-education"],
+  "fabric-finishes-explained": ["fabric-science", "quality-control"],
+  "fabric-testing-for-buyers": ["quality-control", "fabric-science"],
+  "stitches-and-seams-explained": ["apparel-manufacturing", "quality-control"],
+  "decoration-methods-compared": ["printing-embroidery", "product-comparisons"],
+  "fob-vs-other-incoterms": ["import-export", "sourcing-procurement", "product-comparisons"],
+  "export-documents-for-apparel": ["import-export"],
+  "apron-types-and-specification": ["apron-manufacturing", "apparel-manufacturing"],
+  "workwear-fabric-by-job": ["uniforms-workwear", "fabric-science"],
 };
 
 /** The glossary's own groups, mapped onto topics. Every term is also Textile Education. */
@@ -103,6 +113,16 @@ const tools: KnowledgeEntry[] = [
   { id: "tool-compare", kind: "tool", title: "Fabric compare", href: "/materials#compare-heading", summary: "Put two constructions side by side on the published fields.", topics: ["fabric-science", "product-comparisons"], aliases: ["compare fabrics", "fabric comparison"], text: "weight composition construction" },
   { id: "tool-handfeel", kind: "tool", title: "Hand-feel factors", href: "/materials#handfeel-heading", summary: "Same weight, different cloth: the factors behind how a fabric feels.", topics: ["fabric-science", "textile-education"], aliases: ["fabric feel", "softness", "drape"], text: "same weight different cloth" },
   { id: "tool-incoterms", kind: "tool", title: "Incoterms chain", href: "/export#incoterms-heading", summary: "Who pays and where risk passes, drawn as two different things.", topics: ["import-export"], aliases: ["incoterms", "fob vs cif", "fob vs cfr", "fob vs exw", "who pays freight", "risk transfer"], text: "fob cfr cif dap risk cost buyer seller" },
+  { id: "tool-fabric-weight", kind: "tool", title: "Fabric metres and kilograms", href: "/resources/calculators#fabric-weight", summary: "Weight of a length of fabric, and metres in a given weight.", topics: ["fabric-science", "import-export"], aliases: ["metres to kg", "meters to kg", "kg to meters", "fabric length to weight", "roll weight"], text: "gsm width length kilograms" },
+  { id: "tool-fabric-price", kind: "tool", title: "Fabric price: per kilo, per metre, per yard", href: "/resources/calculators#fabric-price", summary: "Compare a price per kilo with a price per metre or yard.", topics: ["fabric-science", "sourcing-procurement"], aliases: ["fabric price per meter", "price per kg to price per meter", "compare fabric quotations"], text: "gsm width price conversion" },
+  { id: "tool-consumption", kind: "tool", title: "Fabric requirement from a marker", href: "/resources/calculators#consumption", summary: "Fabric per garment and per order from a real marker length.", topics: ["apparel-manufacturing", "sourcing-procurement"], aliases: ["fabric consumption", "fabric consumption calculator", "marker consumption", "yardage calculator", "how much fabric per garment"], text: "marker length garments allowance efficiency" },
+  { id: "tool-cost", kind: "tool", title: "FOB cost builder", href: "/resources/calculators#cost-builder", summary: "Add up your own cost lines to an FOB price per piece.", topics: ["sourcing-procurement", "import-export"], aliases: ["fob costing", "garment costing", "cost sheet", "fob price calculator", "garment cost calculator"], text: "fabric make trims decoration packing overhead margin" },
+  { id: "tool-cartons", kind: "tool", title: "Carton volume and container share", href: "/resources/calculators#cartons", summary: "Cartons, cubic metres and how much of a container an order takes.", topics: ["import-export"], aliases: ["cbm calculator", "carton cbm", "container loading", "container capacity", "packing list"], text: "carton length width height cbm 20ft 40ft high cube" },
+  { id: "tool-size-run", kind: "tool", title: "Size run splitter", href: "/resources/calculators#size-run", summary: "Divide an order across sizes from a ratio.", topics: ["apparel-manufacturing", "sourcing-procurement"], aliases: ["size ratio", "size breakdown", "size set", "size split"], text: "ratio sizes order quantity" },
+  { id: "tool-tolerance", kind: "tool", title: "Tolerance checker", href: "/resources/calculators#tolerance", summary: "The range a specification allows, and whether a measurement is inside it.", topics: ["quality-control", "apparel-manufacturing"], aliases: ["gsm tolerance", "measurement tolerance", "plus minus", "acceptable range"], text: "specification percentage deviation" },
+  { id: "tool-decoration", kind: "tool", title: "Decoration method chooser", href: "/resources/calculators#decoration", summary: "Which logo methods are worth asking about for your fabric and artwork.", topics: ["printing-embroidery", "product-comparisons"], aliases: ["embroidery or screen print", "which print method", "dtf or screen printing", "sublimation or embroidery", "choose decoration"], text: "embroidery screen print dtf vinyl sublimation fabric logo" },
+  { id: "tool-yarn", kind: "tool", title: "Yarn count converter", href: "/resources/calculators#yarn", summary: "Convert between Ne, Nm, tex and denier.", topics: ["fabric-science", "textile-education"], aliases: ["ne to tex", "tex to denier", "yarn count", "cotton count", "denier converter"], text: "english cotton count metric tex denier" },
+  { id: "tool-units", kind: "tool", title: "Unit converter", href: "/resources/calculators#units", summary: "Length, area and mass in the units a specification mixes.", topics: ["textile-education", "apparel-manufacturing"], aliases: ["inches to cm", "yards to meters", "oz to grams", "unit conversion", "measurement converter"], text: "inch yard ounce pound centimetre metre gram" },
 ];
 
 /** Pages that explain AHM or sell: findable, and marked as commercial. */

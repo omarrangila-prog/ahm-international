@@ -216,6 +216,8 @@ export const gsmGuide: Guide = {
     { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Why metres per garment are not a weight formula." },
     { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights, finishes and applications." },
     { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "What a complete apparel specification contains." },
+    { label: "Weaves explained", href: "/resources/weave-types-explained", description: "Plain, twill, satin and canvas: weave is a separate question from weight." },
+    { label: "Fabric testing for buyers", href: "/resources/fabric-testing-for-buyers", description: "How weight and other properties are tested." },
   ],
   tools: [
     { label: "GSM calculator", href: "/materials#gsm-heading", description: "Convert oz/yd² and gsm, weigh a swatch, size a roll." },

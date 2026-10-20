@@ -3,6 +3,8 @@ import type { FaqItem } from "@/components/ui/Faq";
 import type { AssetKey } from "./assets";
 import { sourcingGuides } from "./guides-sourcing";
 import { gsmGuide } from "./guide-gsm";
+import { fabricGuides } from "./guides-fabric";
+import { practiceGuides } from "./guides-practice";
 
 /**
  * BUYER RESOURCE LIBRARY
@@ -138,6 +140,7 @@ export const guides: Guide[] = [
       { label: "Product development", href: "/development", description: "How a specification becomes an executable manufacturing document." },
       { label: "Send a tech pack", href: "/send-tech-pack", description: "Upload for review and commercial FOB costing." },
       { label: "Sampling process", href: "/manufacturing/sampling", description: "Proto, fit, size set and pre-production samples." },
+      { label: "Stitches and seams explained", href: "/resources/stitches-and-seams-explained", description: "The stitch and seam vocabulary a tech pack uses." },
     ],
     seoTitle: "Tech Pack Checklist for Apparel Buyers",
     seoDescription:
@@ -239,6 +242,8 @@ export const guides: Guide[] = [
       { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Why fabric metres come from the marker, not GSM." },
       { label: "Request an FOB quote", href: "/request-a-quote", description: "Send a specification and get costed against it." },
       { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights and applications." },
+      { label: "FOB vs FCA, EXW, CFR and CIF", href: "/resources/fob-vs-other-incoterms", description: "Who does what, and where risk passes, under each rule." },
+      { label: "Export documents for apparel", href: "/resources/export-documents-for-apparel", description: "The documents that move a shipment." },
     ],
     seoTitle: "How Garment FOB Costing Works",
     seoDescription:
@@ -330,6 +335,8 @@ export const guides: Guide[] = [
       { label: "Polyester dyeing for buyers", href: "/resources/polyester-dyeing-for-buyers", description: "Why polyester-rich shades need lab dips and heat discipline." },
       { label: "Apron manufacturing", href: "/products/aprons", description: "The category where 65/35 is most commonly specified." },
       { label: "Fabric sourcing", href: "/manufacturing/fabric-sourcing", description: "Lab dips, shade control and incoming inspection." },
+      { label: "Workwear fabric by job", href: "/resources/workwear-fabric-by-job", description: "What each kind of work asks of a garment." },
+      { label: "Fibres compared for garments", href: "/resources/fibres-compared-for-garments", description: "Cotton, polyester, nylon and blends side by side." },
     ],
     seoTitle: "65/35 Poly-Cotton for Workwear",
     seoDescription:
@@ -622,6 +629,7 @@ export const guides: Guide[] = [
       { label: "Polos and t-shirts", href: "/products/polos-tshirts", description: "The category where decoration route matters most." },
       { label: "Materials", href: "/materials", description: "How construction affects which route is viable." },
       { label: "Benchmark a style", href: "/benchmark-a-style", description: "Send a logo and a garment for a route recommendation." },
+      { label: "Decoration methods compared", href: "/resources/decoration-methods-compared", description: "Six methods side by side, with approvals to require." },
     ],
     seoTitle: "Embroidery vs Screen Printing",
     seoDescription:
@@ -906,6 +914,7 @@ export const guides: Guide[] = [
       { label: "Materials and fabric tools", href: "/materials", description: "GSM and shrinkage calculators on the materials page." },
       { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "Where shrinkage belongs in a complete specification." },
       { label: "Quality", href: "/quality", description: "Inspection against an approved standard, not a surprise after wash." },
+      { label: "Fabric testing for buyers", href: "/resources/fabric-testing-for-buyers", description: "Which test answers which question." },
     ],
     seoTitle: "Fabric Shrinkage Guide for Buyers",
     seoDescription:
@@ -1403,6 +1412,7 @@ export const guides: Guide[] = [
       { label: "Apron manufacturing", href: "/products/aprons", description: "Bib, waist and service aprons to specification." },
       { label: "65/35 poly-cotton for workwear", href: "/resources/poly-cotton-for-workwear", description: "Why the blend shows up on aprons." },
       { label: "About AHM", href: "/about", description: "What we evidence on the public record." },
+      { label: "Types of aprons and how to specify one", href: "/resources/apron-types-and-specification", description: "Every dimension and option a specification needs." },
     ],
     seoTitle: "Bib Apron Construction Guide",
     seoDescription:
@@ -1410,6 +1420,8 @@ export const guides: Guide[] = [
   },
   // Kept in their own file: see data/guides-sourcing.ts.
   ...sourcingGuides,
+  ...fabricGuides,
+  ...practiceGuides,
 ];
 
 export function getGuide(slug: string) {
@@ -1428,13 +1440,10 @@ export const plannedGuides: { title: string; category: Guide["category"] }[] = [
   { title: "Uniform Polo Fabric Selection Guide", category: "Fabric guide" },
   { title: "Best Fabrics for Work Shirts", category: "Fabric guide" },
   { title: "Hoodie and Fleece Weight Guide", category: "Fabric guide" },
-  { title: "Workwear Fabric Guide", category: "Fabric guide" },
-  { title: "Twill Fabric for Uniforms Explained", category: "Fabric guide" },
   { title: "How Apparel Size Sets Work", category: "Buyer guide" },
   { title: "What Is a Pre-Production Sample?", category: "Buyer guide" },
   { title: "Apparel Packing Requirements for Export", category: "Commercial guide" },
   { title: "Denim Wash Types for Buyers", category: "Fabric guide" },
-  { title: "Sewing Construction for Tech Packs", category: "Buyer guide" },
   { title: "Apparel Merchandising Checklist", category: "Buyer guide" },
   { title: "Knitwear Development Stages", category: "Buyer guide" },
   { title: "Sportswear Fabric Selection", category: "Fabric guide" },

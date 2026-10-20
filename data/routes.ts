@@ -81,6 +81,7 @@ export const routes: RouteEntry[] = [
   // Resources
   { path: "/resources", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/glossary", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/resources/calculators", priority: 0.7, changeFrequency: "monthly" },
   ...guides.map((g) => ({
     path: `/resources/${g.slug}`,
     priority: 0.65,

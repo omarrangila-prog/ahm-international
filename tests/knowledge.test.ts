@@ -117,3 +117,30 @@ test("the GSM guide never presents a range as an AHM production specification", 
   assert.doesNotMatch(text, /AHM (produces|makes|stocks|guarantees)/i);
   assert.match(text, /not AHM production specifications/);
 });
+
+/* ---------------------- guides that nobody has reviewed yet ---------------------- */
+
+test("a guide marked updated claims no review, and names no AHM capability it cannot back", () => {
+  const unreviewed = guides.filter((g) => g.updated);
+  assert.ok(unreviewed.length >= 11, "the GSM guide and the ten new guides");
+  for (const g of unreviewed) {
+    const body = JSON.stringify(g);
+    assert.doesNotMatch(body, /reviewed by|technically reviewed|peer.reviewed/i, `${g.slug} claims a review`);
+    assert.doesNotMatch(body, /\bAHM (guarantees|certifies|has an in-house|owns|operates)\b|\bwe (test|certify|guarantee)\b/i, `${g.slug} claims an AHM capability`);
+    // Where a choice depends on a factory, a guide must say to ask, not assert.
+    assert.doesNotMatch(body, /\bour (factory|machines|laboratory|lab)\b/i, `${g.slug} speaks for a factory`);
+  }
+});
+
+test("every tool a guide points to lives on a real page", () => {
+  const paths = new Set(routes.map((r) => r.path));
+  for (const g of guides) for (const t of g.tools ?? []) assert.ok(paths.has(t.href.split("#")[0]), `${g.slug} -> ${t.href}`);
+});
+
+test("every calculator has a search entry that points at its own section", () => {
+  const ids = ["fabric-weight", "fabric-price", "consumption", "cost-builder", "cartons", "size-run", "tolerance", "decoration", "yarn", "units"];
+  for (const id of ids) assert.ok(entries.some((e) => e.href === `/resources/calculators#${id}`), `no search entry for #${id}`);
+  assert.equal(search(index, "cbm calculator")[0].entry.href, "/resources/calculators#cartons");
+  assert.equal(search(index, "ne to tex")[0].entry.href, "/resources/calculators#yarn");
+  assert.equal(search(index, "fob price calculator")[0].entry.href, "/resources/calculators#cost-builder");
+});
