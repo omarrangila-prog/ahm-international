@@ -2,6 +2,7 @@ import type { ContentBlock } from "./sourcing";
 import type { FaqItem } from "@/components/ui/Faq";
 import type { AssetKey } from "./assets";
 import { sourcingGuides } from "./guides-sourcing";
+import { gsmGuide } from "./guide-gsm";
 
 /**
  * BUYER RESOURCE LIBRARY
@@ -34,6 +35,15 @@ export type Guide = {
   blocks: ContentBlock[];
   faqs: FaqItem[];
   related: { label: string; href: string; description: string }[];
+  /**
+   * Set when the guide was rewritten and has not yet had the team's review. The
+   * page then says "Updated", never "Reviewed", and the schema omits reviewedBy:
+   * a review that did not happen is not claimed. Remove it when the team has
+   * reviewed the text, and move LAST_REVIEWED forward for the guide.
+   */
+  updated?: { label: string; iso: string };
+  /** Calculators and explorers that work the guide's numbers. Shown after the body. */
+  tools?: { label: string; href: string; description: string }[];
   seoTitle: string;
   seoDescription: string;
 };
@@ -411,89 +421,7 @@ export const guides: Guide[] = [
   },
 
   /* ================================================================== */
-  {
-    slug: "fabric-gsm-guide",
-    category: "Fabric guide",
-    title: "Fabric GSM Guide for Apparel Buyers",
-    headline: "What GSM\nreally tells you.",
-    intro:
-      "GSM is the most quoted and least understood number in an apparel specification. What it measures, what it does not, and typical ranges by product category.",
-    summary:
-      "GSM means grams per square metre. The weight of a fabric, not its quality, durability or density. Two fabrics at the same GSM can behave completely differently depending on fibre, yarn and construction. GSM is useful for comparing like with like within one construction family, and misleading when used to compare across them.",
-    readingTime: "5 min read",
-    heroAsset: "development.swatches",
-    blocks: [
-      {
-        type: "prose",
-        heading: "What GSM does not tell you",
-        body: [
-          "GSM measures mass per unit area. That is all. It says nothing about fibre content, yarn quality, knit or weave structure, finish, or how the fabric will behave after washing.",
-          "The practical consequence: a 200 gsm cotton jersey and a 200 gsm poly-cotton pique are the same weight and almost nothing else. One is soft and drapes; the other is structured and holds shape. Both are correct for different programs, and GSM alone will not tell you which.",
-          "Buyers sometimes use a higher GSM as a proxy for higher quality. It is not one. A heavier fabric costs more, ships heavier and can be less comfortable. None of which are quality improvements if the weight is not doing something useful.",
-        ],
-      },
-      {
-        type: "table",
-        heading: "Typical ranges by category",
-        intro:
-          "Orientation for scoping a program. These are common market ranges, not a stock list. The correct weight for your program depends on how the garment is worn and washed.",
-        columns: ["Product", "Typical range", "What moves it within the range"],
-        rows: [
-          ["T-shirt (single jersey)", "140-200 gsm", "Heavier for durability and opacity; lighter for heat and drape"],
-          ["Polo (pique)", "180-220 gsm", "Heavier for structure and shape retention over long programs"],
-          ["Woven shirting (poplin)", "115-150 gsm", "Heavier for opacity and crease recovery"],
-          ["Woven shirting (twill / oxford)", "150-220 gsm", "Heavier for utility and abrasion resistance"],
-          ["Apron / work twill", "195-280 gsm", "Heavier where soiling and abrasion are severe"],
-          ["Work trouser", "200-320 gsm", "Heavier for abrasion; reinforcement often better than weight"],
-          ["Sweatshirt / fleece", "260-380 gsm", "Heavier for warmth; affects both cost and freight"],
-          ["Softshell", "260-340 gsm", "Bonded construction; weight reflects the backing layer"],
-        ],
-      },
-      {
-        type: "list",
-        heading: "How to use GSM well",
-        items: [
-          { term: "Compare within a construction", detail: "Comparing 190 gsm pique with 210 gsm pique is meaningful. Comparing pique with fleece by GSM is not." },
-          { term: "Pair it with composition", detail: "GSM plus fibre content plus construction is a usable specification. GSM alone is not." },
-          { term: "Specify a tolerance", detail: "Fabric weight varies in production. A tolerance of a few per cent is normal and should be agreed rather than disputed." },
-          { term: "Remember freight", detail: "Weight moves through the whole chain. On a large program, thirty grams per garment is a measurable freight line." },
-          { term: "Check it against the wash", detail: "Some fabrics gain apparent weight through finishing that washes out. Confirm weight after the finishing process, not before." },
-        ],
-      },
-      {
-        type: "callout",
-        heading: "If you do not know the GSM you need",
-        body:
-          "Describe the requirement instead: how the garment is worn, how often it is washed, what it has to survive, and what it should feel like. A manufacturer can convert that into a weight and construction, and will usually offer two or three options at different price points. Specifying a number you are unsure of is more likely to produce the wrong fabric than saying you are unsure.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Is GSM the same as oz/yd²?",
-        answer:
-          "They measure the same thing in different units. One ounce per square yard is roughly 33.9 grams per square metre, so a 6 oz fabric is about 203 gsm. American specifications often use ounces; most of the rest of the world uses GSM.",
-      },
-      {
-        question: "Does higher GSM mean the garment lasts longer?",
-        answer:
-          "Not reliably. Fibre quality, yarn construction and reinforcement placement affect service life more than weight does. A well-reinforced 220 gsm trouser will usually outlast an unreinforced 280 gsm one.",
-      },
-      {
-        question: "Can you match a fabric weight exactly?",
-        answer:
-          "Within a normal production tolerance, yes. Fabric weight varies slightly between production lots, which is why a tolerance is agreed as part of the specification rather than treated as a fixed number.",
-      },
-    ],
-    related: [
-      { label: "Materials and fabric selection", href: "/materials", description: "Construction families, typical weights, finishes and applications." },
-      { label: "Fabric shrinkage guide", href: "/resources/fabric-shrinkage-guide", description: "Length vs width, test methods and residual tolerance." },
-      { label: "Fabric consumption basics", href: "/resources/fabric-consumption-basics", description: "Why metres per garment are not a weight formula." },
-      { label: "Tech pack checklist", href: "/resources/tech-pack-checklist", description: "What a complete apparel specification contains." },
-    ],
-    seoTitle: "Fabric GSM Guide for Apparel Buyers",
-    seoDescription:
-      "What GSM measures and what it does not, typical weight ranges by category, and how to use fabric weight in a specification.",
-  },
+  gsmGuide,
 
   /* ================================================================== */
   {

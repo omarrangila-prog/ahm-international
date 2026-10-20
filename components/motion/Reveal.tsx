@@ -21,6 +21,7 @@ export function Reveal({
   direction = "up",
   className,
   as: Tag = "div",
+  id,
 }: {
   children: React.ReactNode;
   /** Seconds. */
@@ -28,12 +29,15 @@ export function Reveal({
   direction?: Direction;
   className?: string;
   as?: "div" | "section" | "li" | "article" | "span";
+  /** An in-page anchor, so a section can be linked to. */
+  id?: string;
 }) {
   const { ref, inView } = useInView<HTMLElement>({ margin: "0px 0px -12% 0px" });
 
   return (
     <Tag
       ref={ref as React.Ref<never>}
+      id={id}
       data-reveal=""
       data-reveal-dir={direction}
       data-inview={inView ? "true" : "false"}

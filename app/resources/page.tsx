@@ -5,7 +5,9 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { KnowledgeSearch } from "@/components/sections/KnowledgeSearch";
 import { guides, plannedGuides } from "@/data/guides";
+import { guideTopics, knowledgeEntries, queryGroups, topics } from "@/data/knowledge";
 import { buyerStories } from "@/data/buyerStories";
 import { REVIEWED_BY, LAST_REVIEWED } from "@/data/editorial";
 import { pageMetadata } from "@/lib/seo";
@@ -16,23 +18,74 @@ const guideCategories = ["Buyer guide", "Commercial guide", "Fabric guide"] as c
 const categoryId = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 export const metadata: Metadata = pageMetadata({
-  title: "Buyer Resources & Fabric Guides",
+  title: "Apparel Knowledge Center: Fabric and FOB",
   description:
-    "Practical guides for apparel buyers: tech pack checklists, FOB costing, fabric selection and GSM, from our development team.",
+    "Expert guidance on apparel fabrics, manufacturing, quality, customisation, international sourcing and FOB export: guides, calculators and a glossary.",
   path: "/resources",
 });
+
+/** What a first-time visitor might type, shown as one-click examples. */
+const SEARCH_EXAMPLES = ["what is gsm", "fob manufacturing", "poly-cotton workwear", "embroidery vs screen printing"];
 
 export default function ResourcesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Resources"
-        headingLines={[{ text: "Written for" }, { text: "people who", className: "text-ink" }, { text: "buy garments." }]}
-        intro="Technical guidance from the development side of the table. Each guide answers a question buyers actually ask before an order, and none of them require you to be a customer."
-        trail={[{ name: "Resources", path: "/resources" }]}
+        eyebrow="Apparel Knowledge Center"
+        headingLines={[{ text: "Understand fabrics." }, { text: "Master manufacturing.", className: "text-ink" }, { text: "Source with confidence." }]}
+        intro="Expert guidance on apparel fabrics, manufacturing, quality, customisation, international sourcing and FOB export. Each guide answers a question buyers actually ask, and none of them require you to be a customer."
+        trail={[{ name: "Knowledge Center", path: "/resources" }]}
         zone="paper"
         primaryCta={{ label: "Request FOB Quote", href: "/request-a-quote" }}
       />
+
+      <Section zone="paper" spacing="md" aria-label="Search the Knowledge Center">
+        <div className="shell-wide">
+          <KnowledgeSearch
+            entries={knowledgeEntries().map((e) => ({ ...e, summary: e.summary.length > 170 ? `${e.summary.slice(0, 167).trimEnd()}...` : e.summary }))}
+            topics={topics}
+            known={queryGroups.map(({ queries, target }) => ({ queries, target }))}
+            examples={SEARCH_EXAMPLES}
+          />
+        </div>
+      </Section>
+
+      <Section zone="paper" spacing="md" aria-labelledby="topics-heading">
+        <div className="shell-wide">
+          <Eyebrow>Topics</Eyebrow>
+          <MaskedHeading
+            as="h2"
+            id="topics-heading"
+            className="mt-5 font-display text-h1 text-ink"
+            lines={[{ text: "Browse by" }, { text: "subject." }]}
+          />
+          <ul className="mt-10 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {topics.map((topic) => {
+              const inTopic = guides.filter((g) => (guideTopics[g.slug] ?? []).includes(topic.id));
+              return (
+                <li key={topic.id} className="bg-paper p-6">
+                  <h3 className="font-display text-lg font-bold tracking-[-0.025em] text-ink">{topic.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{topic.blurb}</p>
+                  {inTopic.length > 0 ? (
+                    <ul className="mt-4 space-y-1.5 border-t border-line pt-4">
+                      {inTopic.slice(0, 4).map((g) => (
+                        <li key={g.slug}>
+                          <Link href={`/resources/${g.slug}`} className="text-sm text-ink underline-offset-4 hover:underline">
+                            {g.title}
+                          </Link>
+                        </li>
+                      ))}
+                      {inTopic.length > 4 && <li className="text-sm text-ink/65">and {inTopic.length - 4} more guides</li>}
+                    </ul>
+                  ) : (
+                    <p className="mt-4 border-t border-line pt-4 text-sm text-ink/65">In development.</p>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Section>
 
       <Section zone="paper" spacing="md" aria-labelledby="tools-heading">
         <div className="shell-wide">

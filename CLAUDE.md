@@ -514,6 +514,36 @@ data. While none qualifies it returns 404 and is `noindex` in `data/routes.ts`,
 so it is outside the sitemap and nothing links to it. It appears by itself the
 day the first article is paired.
 
+## The Knowledge Center is /resources, and search is local
+
+`/resources` is the Apparel Knowledge Center: search, ten topic hubs, the tools,
+and the guide library. The URL did not change, so existing links and rankings
+were kept. Its model is `data/knowledge.ts`; the full audit, query map, gap
+analysis, roadmap and review checklist are in `docs/knowledge-center.md`.
+
+- **Topics are declared once** (`guideTopics`). A test fails the build if a
+  guide has none, so a topic's page, count and search filter cannot disagree.
+- **Search runs in the browser** (`lib/knowledge-search.ts`): nothing typed
+  leaves the page. It drops question words, stems plurals and "-ing", maps unit
+  variants ("g/m²", "oz/yd²") to one word, corrects one wrong letter (the more
+  common neighbour wins, a tie is not guessed), and tops up a thin result with
+  labelled "related" matches. Analytics get a count and a topic, never the
+  words: typed text can hold a name, and the privacy policy does not cover
+  storing it. Recording the words needs a policy line first.
+- **Search Console queries are grouped by intent in `queryGroups`**, one page
+  per intent. They came without impressions, clicks or positions, so nothing
+  claims a volume or a rank. Do not add a page per phrasing.
+- **A rewritten guide sets `updated`, not a review.** The page then says
+  "Updated" and "Written by the team", and the Article schema carries
+  `dateModified` and omits `reviewedBy`. Remove `updated` only when a person
+  has actually reviewed the text, and move `LAST_REVIEWED` with it.
+- **Worked examples are asserted against the code.** The `formula` block type
+  carries a formula, its terms and worked examples; every figure in the GSM
+  guide is checked against `lib/gsm.ts` in `tests/knowledge.test.ts`. Add the
+  assertion with the example.
+- **GSM ranges are market orientation, never AHM specifications.** The guide
+  says so and a test holds it.
+
 ## The facility gallery is attributed by path
 
 `/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and

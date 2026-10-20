@@ -40,7 +40,12 @@ export type AnalyticsEvent =
   | "assistant_open"
   | "assistant_question"
   | "assistant_link"
-  | "assistant_handoff";
+  | "assistant_handoff"
+  // Knowledge Center search. Never carries what the visitor typed: a count and
+  // a topic, so zero-result searches can be counted without storing text that
+  // might contain a name or an address.
+  | "knowledge_search"
+  | "knowledge_search_miss";
 
 type Payload = Record<string, string | number | boolean | undefined>;
 

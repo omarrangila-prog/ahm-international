@@ -185,8 +185,13 @@ export function articleSchema(input: {
   title: string;
   description: string;
   path: string;
-  reviewedBy: string;
-  lastReviewed: string;
+  /** Names the reviewer only when a review actually happened. */
+  reviewedBy?: string;
+  lastReviewed?: string;
+  /** Publisher and author. The team, never an invented individual. */
+  author: string;
+  /** ISO date of the last substantive edit, when known. */
+  dateModified?: string;
   section: string;
 }) {
   return {
@@ -198,8 +203,9 @@ export function articleSchema(input: {
     articleSection: input.section,
     inLanguage: "en",
     isAccessibleForFree: true,
-    author: { "@type": "Organization", name: input.reviewedBy, url: SITE_URL },
-    reviewedBy: { "@type": "Organization", name: input.reviewedBy },
+    author: { "@type": "Organization", name: input.author, url: SITE_URL },
+    ...(input.reviewedBy ? { reviewedBy: { "@type": "Organization", name: input.reviewedBy } } : {}),
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
     publisher: { "@id": `${SITE_URL}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${input.path}` },
   };
