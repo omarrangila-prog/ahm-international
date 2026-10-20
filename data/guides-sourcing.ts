@@ -341,6 +341,7 @@ export const sourcingGuides: Guide[] = [
       { label: "The apparel sampling process", href: "/resources/apparel-sampling-process", description: "The samples bulk is inspected against." },
       { label: "How to evaluate a sample", href: "/resources/evaluating-apparel-samples", description: "Checking a sample before you approve it." },
       { label: "Carton marking", href: "/resources/carton-marking-for-apparel", description: "The packing half of a final inspection." },
+      { label: "Stitches and seams explained", href: "/resources/stitches-and-seams-explained", description: "The sewing defects an inspection looks for." },
     ],
     seoTitle: "Garment Inspection Explained",
     seoDescription:

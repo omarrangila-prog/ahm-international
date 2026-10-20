@@ -103,6 +103,11 @@ export default function ResourcesPage() {
           <ul className="mt-10 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
+                href: "/resources/calculators",
+                label: "All calculators",
+                description: "Fabric price and weight, marker consumption, FOB cost builder, carton CBM, size runs, tolerance, yarn count, units and a decoration chooser.",
+              },
+              {
                 href: "/materials#gsm-heading",
                 label: "GSM calculator",
                 description: "Convert oz/yd² and gsm, weigh a swatch, size a roll.",

@@ -1,6 +1,7 @@
-# Apparel Knowledge Center: audit, plan and first batch
+# Apparel Knowledge Center: audit, plan and first two batches
 
-20 October 2026. Branch `knowledge-center-1`.
+20 October 2026. Batch 1 on `knowledge-center-1` (PR #7), batch 2 on
+`knowledge-center-2` (section 13).
 
 This covers the owner's two briefs (the Knowledge Center brief and the Global
 Apparel Intelligence master specification). Both ask for far more than one
@@ -292,3 +293,115 @@ Run on 20 October 2026 against the branch, dev server, desktop and mobile.
 no field data exists. The resources page now ships the search component and
 about 15 kB of search text; it is a client island on one route and does not
 touch the homepage.
+
+## 13. Batch 2: ten calculators and ten new guides
+
+The owner asked for the deferred items: more articles and every kind of
+calculator. Neither can honestly be "everything", so this batch covers what can
+be made accurate from public, checkable knowledge, and leaves anything that
+needs AHM's own facts.
+
+### Calculators: `/resources/calculators`
+
+Ten tools, each showing its formula and its assumptions and limits. The
+arithmetic is in `lib/calculators.ts`, separate from the interface and tested
+against worked examples a reader can repeat by hand (`tests/calculators.test.ts`,
+10 tests). Together with the five on `/materials` and `/export`, that is fifteen.
+
+| Tool | What it does | Where its number comes from |
+|---|---|---|
+| Fabric metres and kilograms | Weight of a length of fabric, and metres in a weight | GSM and width entered |
+| Fabric price | Per kg, per metre and per yard on one basis | A price you enter |
+| Fabric requirement from a marker | Fabric per garment and per order | A real marker length; the allowance is yours |
+| FOB cost builder | Adds cost lines to an FOB price per piece | Every line is yours; no rate is built in |
+| Carton volume and container share | Cartons, CBM, share of 20 ft, 40 ft and 40 ft high cube | Your carton; nominal container volumes |
+| Size run splitter | Splits an order by ratio into whole garments | Your ratio |
+| Tolerance checker | Allowed range, and whether a measurement is inside it | Your tolerance |
+| Decoration method chooser | Which methods are worth asking about, and why | General properties of each process |
+| Yarn count converter | Ne, Nm, tex, denier | Defined constants; Ne from 840 yd per lb |
+| Unit converter | Length, area, mass | Exact defined factors |
+
+Rules that held while building them:
+- **No tool contains a price, rate, yield or factory fact.** Where a result
+  needs one, it is an input. This is why there is no "fabric per garment by
+  garment type": consumption comes from the marker, and the calculator asks for
+  the marker.
+- **Blank is not zero.** An empty or unreadable box gives no result, not a
+  result computed from zero.
+- **The decoration chooser prices nothing and promises no wash life**, and a
+  test fails if any of its reasons contain a currency symbol, "cheapest" or
+  "guarantee". Every result ends in the same instruction: get a strike-off or
+  sew-out on the real fabric and wash it.
+- **Container volumes are nominal** (33.2, 67.7 and 76.3 m³) and the tool says a
+  real load fills less. Verify these against the forwarder's own figures before
+  relying on them; they are the commonly published internal volumes.
+
+### Guides: ten new, 666 to 962 words each
+
+| Guide | Topic | Fills this gap |
+|---|---|---|
+| Fabric weaves explained | Fabric Science | weaves (plain, twill, satin, canvas, ripstop) |
+| Fibres compared for garments | Fabric Science | cotton, polyester, nylon, viscose, wool, blends |
+| Fabric finishes explained | Fabric Science | easy-care, stain-release, DWR, pre-shrinking, with trade-offs |
+| Fabric testing for buyers | Quality Control | which test answers which question; methods named |
+| Stitches and seams explained | Manufacturing | ISO 4915 and 4916, bartacks, defects |
+| Decoration methods compared | Printing | six methods incl. DTF, sublimation, DTG; approvals |
+| FOB vs FCA, EXW, CFR and CIF | Import and Export | Incoterms 2020 allocation; why FCA for containers |
+| Export documents for apparel | Import and Export | invoice, packing list, bill of lading, HS chapters 61 and 62 |
+| Types of aprons and how to specify one | Apron Manufacturing | types, straps, every dimension to state |
+| Workwear fabric by job | Uniforms and Workwear | kitchens, facilities, retail, warehouse |
+
+Each is linked from at least one existing guide, assigned topics, and listed in
+search. Three backlog titles that these now cover were removed from the
+"writing next" list.
+
+**What the guides do not do.** They state no AHM capability, equipment, test or
+capacity, no price, freight rate, duty or country-specific customs rule, and
+name standards only so a buyer can ask for them, with the note that the
+edition in the buyer's own contract governs. A test fails the build if an
+unreviewed guide claims a review or speaks for "our factory".
+
+**They are unreviewed.** All ten carry "Updated October 2026", not "Reviewed".
+Some statements deserve a specialist's eye before the label changes, in
+particular the Incoterms table, the standards cited in the testing guide, the
+finish trade-offs (formaldehyde, fluorinated repellents) and the container
+volumes in the calculators.
+
+### Verification (batch 2)
+
+| Check | Result |
+|---|---|
+| Unit tests | 193 / 193 (180 before; 10 calculator tests and 3 guard tests added) |
+| Browser: every calculator | Worked examples entered by hand reproduced: 100 m at 200 gsm and 150 cm is 30 kg; marker 2.4 m / 6 garments, 1,000 pcs, 3% is 412 m; FOB per piece 6.51; 9 cartons, 0.648 m³; sizes 167/333/333/167; Ne 30 is 19.68 tex, 177.2 denier, Nm 50.8; 36 in is 914.4 mm; reset works |
+| Mobile (390 px) | no horizontal overflow |
+| Console | no errors |
+| Audits (links, audit, seo:deep, images:gaps, contrast, targets, axe, responsive, console) | see the end of this section |
+
+### Not done, and why
+
+- **"All knowledge in the world."** Not a sensible target for a buyer-facing
+  site, and not possible to keep accurate. 32 guides, 15 calculators and a
+  glossary are what a buyer can use and the team can maintain and review.
+- **Diagrams** of weaves and stitches. They must be drawn, checked and
+  accessible; a generated picture of a stitch can be wrong in ways that look
+  right.
+- **AHM-specific depth** (which strap hardware, which decoration is in-house,
+  what is tested in-house, MOQs, lead times). These need the owner's facts.
+- **Review.** Nobody has reviewed the new text.
+
+### Audit results (batch 2, 20 October 2026)
+
+| Check | Result |
+|---|---|
+| `npm test` | 193 pass, 0 fail |
+| typecheck, lint | clean |
+| links | no broken internal links |
+| audit, seo:deep | pass; four over-long meta descriptions were shortened to 155 characters or fewer |
+| images:gaps | 0 empty frames across 97 routes |
+| contrast | no text below WCAG AA, 97 routes |
+| targets | no 2.5.8 failures |
+| a11y (axe) | no violations, 21 routes at 2 widths |
+| responsive | no defects, 12 viewports x 22 routes |
+| console | no exceptions, errors or failed requests, 97 routes |
+
+The links audit scans source files, not routes, so its "pages scanned" count does not track new URLs.
