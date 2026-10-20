@@ -29,7 +29,22 @@ export type ContentBlock =
   | { type: "list"; heading: string; intro?: string; items: { term: string; detail: string }[] }
   | { type: "table"; heading: string; intro?: string; columns: string[]; rows: string[][] }
   | { type: "steps"; heading: string; intro?: string; steps: { title: string; body: string }[] }
-  | { type: "callout"; heading: string; body: string };
+  | { type: "callout"; heading: string; body: string }
+  /**
+   * A formula with its terms and worked examples. For arithmetic a reader can
+   * check on their own calculator; every figure in `examples` is asserted
+   * against lib/gsm.ts by tests/knowledge.test.ts, so the text cannot drift
+   * from the code that computes it.
+   */
+  | {
+      type: "formula";
+      heading: string;
+      intro?: string;
+      formula: string;
+      terms?: { symbol: string; meaning: string }[];
+      examples: { label: string; working: string; result: string }[];
+      limits?: string;
+    };
 
 export type SourcingPillar = {
   slug: string;

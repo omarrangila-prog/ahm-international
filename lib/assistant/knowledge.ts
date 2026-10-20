@@ -44,6 +44,8 @@ function blockText(block: ContentBlock): string {
       return `${block.heading}: ${block.intro ? `${block.intro} ` : ""}${block.steps.map((s, i) => `${i + 1}. ${s.title}: ${s.body}`).join(" ")}`;
     case "callout":
       return `${block.heading}: ${block.body}`;
+    case "formula":
+      return `${block.heading}: ${block.formula}. ${block.examples.map((e) => `${e.label}: ${e.working} = ${e.result}`).join("; ")}${block.limits ? ` ${block.limits}` : ""}`;
   }
 }
 
