@@ -543,6 +543,18 @@ analysis, roadmap and review checklist are in `docs/knowledge-center.md`.
   assertion with the example.
 - **GSM ranges are market orientation, never AHM specifications.** The guide
   says so and a test holds it.
+- **Calculators are arithmetic, never a quotation** (`lib/calculators.ts`,
+  `/resources/calculators`). None holds a price, rate, yield or factory fact;
+  where a result needs one it is an input, and a blank box is not a zero. That
+  is why there is no consumption-by-garment-type tool: the marker tool asks for
+  the marker. Container volumes are nominal and labelled so. The decoration
+  chooser is rules, not a calculation, prices nothing, promises no wash life,
+  and a test fails if its text contains a currency symbol or "guarantee".
+- **Guides that set `updated` are unreviewed.** `data/guides-fabric.ts`,
+  `data/guides-practice.ts` and the GSM guide are general, checkable trade
+  knowledge. A test fails if one claims a review, claims an AHM capability, or
+  speaks for "our factory". Where a choice depends on a factory, the guide says
+  to ask, never what AHM does.
 
 ## The facility gallery is attributed by path
 
