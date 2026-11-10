@@ -10,6 +10,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { Measurement } from "@/components/analytics/Measurement";
 import { PublicChrome, ArrivalCapture } from "@/components/layout/PublicChrome";
+import { VisitCounter } from "@/components/analytics/VisitCounter";
 import { AssistantLauncher } from "@/components/assistant/AssistantLauncher";
 import { assistantEnabled } from "@/lib/assistant/config";
 import { organizationSchema, websiteSchema, siteConfig } from "@/lib/seo";
@@ -150,6 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <AssistantLauncher email={publicValue(company.email)} whatsapp={publicValue(company.whatsapp)} />
           )}
           <ArrivalCapture />
+          <VisitCounter />
         </PublicChrome>
 
         <script

@@ -556,6 +556,29 @@ analysis, roadmap and review checklist are in `docs/knowledge-center.md`.
   speaks for "our factory". Where a choice depends on a factory, the guide says
   to ask, never what AHM does.
 
+## Daily visit counts are first-party, and /pipeline/traffic reads them
+
+`components/analytics/VisitCounter.tsx` keeps a tally in page memory (pages
+opened, referrer host, utm_source, a few event names) and posts it once, when
+the visitor leaves, to `/api/m`. The route skips crawlers by user agent, rate
+limits in memory, and adds the batch to `<ns>analytics/<UTC day>/<shard>.json`
+(`lib/traffic/`). Rules that matter:
+
+- **No identifier of any kind.** No cookie, no storage, no IP or user agent kept.
+  So "unique visitors" cannot be produced and must not be shown; a visit is a
+  first page view in a tab, and a reload counts as another.
+- **Event names only.** Search counts never carry the words typed. A test fails
+  if a counted event is one nothing emits.
+- **One write per visit**, not per click, to keep Blob request counts down.
+  Shards (3) avoid ETag retries when two visitors leave together.
+- **Platforms come from `classifySource`**: utm_source wins over the referrer, an
+  unknown host keeps its own row. Suffix matches are anchored so `notgoogle.com`
+  is not Google.
+- **Google queries are not here.** What people typed into Google is only in Search
+  Console. The page says so.
+- The privacy and cookie text describe the counter only where the private store
+  exists (`tests/legal-claims.test.ts`). Change one with the other.
+
 ## The facility gallery is attributed by path
 
 `/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and

@@ -152,3 +152,16 @@ test("the privacy policy names Google only when analytics are on", () => {
   assert.match(on, /Google, as the analytics provider/);
   assert.doesNotMatch(off, /Google/);
 });
+
+test("the visit counter is disclosed only where its totals can be stored", () => {
+  const on = privacySectionsFor({ mail: true, webhook: false, storage: true }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  const off = privacySectionsFor({ mail: true, webhook: false }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  assert.match(on, /daily total/i);
+  assert.match(on, /no cookie, IP address, browser details or identifier/i);
+  assert.doesNotMatch(off, /daily total/i);
+
+  const cookiesOn = cookieSectionsFor(false, { register: true }).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  const cookiesOff = cookieSectionsFor(false, { register: false }).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  assert.match(cookiesOn, /No cookie to count visits/);
+  assert.doesNotMatch(cookiesOff, /daily total/i);
+});

@@ -56,12 +56,17 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
     {
       heading: "What we collect",
       body: [
-        "Only what you send us, and where an enquiry came from. There are no visitor accounts, no profiling and no tracking of you across other websites.",
+        `Only what you send us, where an enquiry came from${storage ? ", and anonymous daily visit totals" : ""}. There are no visitor accounts, no profiling and no tracking of you across other websites.`,
       ],
       list: [
         "Quotation requests: your name, company, business email, and country. Optionally a job title, phone number, website, and the commercial details of your enquiry. Product, quantity, materials, decoration, target price, destination and delivery window.",
         `Files you attach: tech packs, sketches, bills of materials, size specifications and reference images. Accepted formats are ${ACCEPTED_LABEL}; DOC and XLS are also accepted. ${uploadLimitsText(storage ? "direct" : "form")}`,
         "Where an enquiry came from: the page you first opened on this visit, the website that linked you here, and any campaign tags in that link (such as utm_source). Your browser sends these to every site it visits. This site keeps them in the open page only, writes nothing to your device, and passes them to us only if you send an enquiry.",
+        ...(storage
+          ? [
+              "Visit counts: when you open a page, the site adds one to a daily total for that page, and one to the total for the website that linked you here (for example Google or LinkedIn). It also counts how often the Knowledge Center search and the contact buttons are used, without recording what was typed. These totals hold no cookie, IP address, browser details or identifier, so a total cannot be traced back to you.",
+            ]
+          : []),
         ...(assistant
           ? ["Questions you type into the sourcing assistant, and its answers, while the conversation is open in your browser. See “The sourcing assistant” below."]
           : []),
@@ -89,6 +94,9 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
         analytics
           ?"Google Analytics 4 measures which pages are used, and only if you choose Allow when asked. Declining loads nothing. You can change your choice at any time on the cookie policy page, and withdrawing it deletes the analytics cookies."
           : "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
+        ...(storage
+          ? ["Separately, the site keeps its own daily totals of visits, described under What we collect. They are counts only, with no cookie and nothing that identifies you, so there is nothing to consent to or to withdraw."]
+          : []),
       ],
     },
     {
@@ -307,7 +315,12 @@ export function cookieSectionsFor(analytics: boolean, { register = false }: { re
         analytics
           ? "Your analytics choice is remembered in your browser's local storage so you are not asked on every page. It is not a cookie, holds only \"granted\" or \"denied\", and is never sent to us."
           : "No preference cookie: the site has no theme switch, no language selector and no visitor login, so there is nothing to remember between visits.",
-        "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage, and reach us only with an enquiry you send.",
+        register
+          ? "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage. They reach us with an enquiry you send, and as one count added to a daily total that holds no identifier."
+          : "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage, and reach us only with an enquiry you send.",
+        ...(register
+          ? ["No cookie to count visits: the site adds each page you open to a daily total kept in our own storage, with no cookie, no IP address and no identifier, so the totals cannot be traced to you."]
+          : []),
         ...(register
           ? [
               "A sign-in cookie for AHM staff, set only on the internal enquiry register (under /pipeline) after a staff member signs in. It is strictly necessary for that sign-in, is never set for visitors, and is never sent with a request for a public page.",
