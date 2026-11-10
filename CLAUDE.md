@@ -610,6 +610,29 @@ kidswear and the three new ones) have no callouts until a photograph exists; the
 new families' image slots are pending entries in `data/assets.ts` and appear on
 the shot list. The products page counts its families from the data.
 
+## The second round of families is "development available"
+
+On 10 November 2026 the owner confirmed seven more areas: chef trousers and
+kitchen textiles, coveralls, knitted sweaters, sportswear and team kits,
+sleepwear, towels and bathrobes, and padded jackets (`data/products.ts`, items
+in `data/items-range.ts`, guides in `data/guides-range.ts`). Each needs
+equipment or a standard of its own, so they are `development_available`, not
+`current_capability`, until a shipped order is documented. Upgrade one only on
+that evidence. Children's sleepwear, oven gloves and protective coveralls name
+the standard to qualify and claim none.
+
+## Search, AI assistants and what happens off the site
+
+`/llms.txt` lists every family, item and guide with a title and one sentence
+taken from the page itself (`app/llms.txt/route.ts`), then every other route.
+It holds no instructions to a model and nothing the pages do not say.
+`robots.txt` is open to all crawlers, AI crawlers included. IndexNow's key file
+is `/indexnow-key.txt`; it 404s until `INDEXNOW_KEY` is set. The steps only the
+owner can take (Search Console, Bing Webmaster Tools, Business Profile,
+directories, LinkedIn posts) are in `docs/visibility-kit.md`. Posting to other
+people's sites, buying links and mass-produced articles are listed there as
+things not to do.
+
 ## Every catalogue article has its own page
 
 `/products/<family>/<item>` (`app/products/[slug]/[item]/page.tsx`), one per

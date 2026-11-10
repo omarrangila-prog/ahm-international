@@ -3,6 +3,7 @@ import type { CapabilityStatus } from "./verification";
 import { itemsCore } from "./items-core";
 import { itemsService } from "./items-service";
 import { itemsSpecialist } from "./items-specialist";
+import { itemsRange } from "./items-range";
 
 /**
  * ITEM PAGES
@@ -32,7 +33,7 @@ import { itemsSpecialist } from "./items-specialist";
 export type { Term, Measurement, ProductItem } from "./item-helpers";
 import type { ProductItem } from "./item-helpers";
 
-export const productItems: ProductItem[] = [...itemsCore, ...itemsService, ...itemsSpecialist];
+export const productItems: ProductItem[] = [...itemsCore, ...itemsService, ...itemsSpecialist, ...itemsRange];
 
 export function getItem(family: string, slug: string): ProductItem | undefined {
   return productItems.find((i) => i.family === family && i.slug === slug);

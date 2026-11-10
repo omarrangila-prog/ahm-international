@@ -431,6 +431,166 @@ export const productFaqs: Record<string, FaqItem[]> = {
         "Recycled polyester and recycled cotton blends are available fabric options. If the bag will carry a recycled-content claim, the claim needs certification such as GRS from the fabric supply chain; ask for the evidence before you print it.",
     },
   ],
+  "kitchen-textiles": [
+    {
+      question: "What makes a good chef trouser?",
+      answer:
+        "A waist that adjusts (elastic, drawcord or both), a cut that allows squatting and lifting, deep pockets, and a fabric that survives hot commercial laundering. Baggy chef trousers are traditional for airflow; slimmer cuts are common now. Specify the waist, leg and fabric.",
+    },
+    {
+      question: "Cotton or linen union for tea towels?",
+      answer:
+        "Cotton terry and cotton twill are absorbent and soft; linen union (a cotton-linen blend) dries glass and cutlery without lint. Choose for the job, and specify size, weight, hem and hanging loop.",
+    },
+    {
+      question: "Are your oven gloves heat-rated?",
+      answer:
+        "An oven glove is protective, so its heat resistance has to be tested to a standard the buyer nominates. We build to that standard with the wadding and construction it needs, and make no heat claim without the test.",
+    },
+    {
+      question: "Can table linen be made to a hotel's colours?",
+      answer:
+        "Yes. Napkins and tablecloths are dyed or yarn-dyed to an approved standard, with mitred corners and hems specified, and chosen to keep their colour through hotel laundering.",
+    },
+  ],
+
+  coveralls: [
+    {
+      question: "What is the difference between a coverall and a bib-and-brace overall?",
+      answer:
+        "A coverall (boiler suit) is one piece with sleeves, covering the whole body. A bib-and-brace overall is a trouser with a bib and shoulder braces, worn over a shirt. Coveralls protect more; bib overalls are cooler and easier to take off.",
+    },
+    {
+      question: "Why do coveralls have a two-way zip?",
+      answer:
+        "A zip that opens from the bottom as well as the top lets the wearer open the coverall for comfort or the toilet without unzipping it fully.",
+    },
+    {
+      question: "Can coveralls be flame-resistant or anti-static?",
+      answer:
+        "Only when they are made from certified fabric to a standard the buyer nominates, such as the EN ISO 11612 or EN 1149 families in Europe, and certified as finished garments. An ordinary poly-cotton coverall is not protective clothing.",
+    },
+    {
+      question: "How should coverall sizes work?",
+      answer:
+        "By chest size and by length, since people of one chest size differ in height. Regular and tall lengths in each chest size fit far more wearers.",
+    },
+  ],
+
+  knitwear: [
+    {
+      question: "What does gauge mean in knitwear?",
+      answer:
+        "Gauge is the number of needles per inch on the knitting machine. A low gauge (3 to 7) makes a chunky knit; a high gauge (12 to 16) makes a fine, smooth one. Gauge, yarn and stitch together decide how a sweater looks and feels.",
+    },
+    {
+      question: "What is fully fashioned knitwear?",
+      answer:
+        "Each piece is knitted to its shape, so edges are finished and seams are linked rather than cut and overlocked. Cut-and-sew knitwear is cut from knitted panels, which is cheaper and less refined.",
+    },
+    {
+      question: "Which yarn pills least?",
+      answer:
+        "Long-staple, tightly spun yarns pill less. Acrylic and short-fibre blends tend to pill more. Pilling is tested on the sample, and the yarn chosen for the result the buyer needs.",
+    },
+    {
+      question: "Can a logo be knitted into a sweater?",
+      answer:
+        "Yes, as a jacquard or intarsia motif knitted into the fabric, or added afterwards as embroidery or a woven badge. Knitted-in logos have limits on fine detail.",
+    },
+  ],
+
+  sportswear: [
+    {
+      question: "What is sublimation printing for team kits?",
+      answer:
+        "The design is printed onto paper with sublimation dyes and transferred into polyester fabric with heat, so the colour becomes part of the fibre. It does not crack or peel and allows unlimited colours, but needs polyester and a light base.",
+    },
+    {
+      question: "How are player names and numbers handled?",
+      answer:
+        "From a roster: each player's name, number and size on one list. Names and numbers can be sublimated into the design or applied as heat transfers.",
+    },
+    {
+      question: "What fabric suits a team jersey?",
+      answer:
+        "Polyester interlock or mesh, light and quick-drying, sometimes with mesh panels for ventilation. Recycled polyester works the same way for sublimation.",
+    },
+    {
+      question: "Can you match a club's colours exactly?",
+      answer:
+        "Colours are matched to the club's references on a strike-off before production. Sublimated colours can look different on different fabrics, so approve on the actual fabric.",
+    },
+  ],
+
+  sleepwear: [
+    {
+      question: "Do children's pyjamas have special rules?",
+      answer:
+        "Yes. In the United States, children's sleepwear must meet strict flammability standards (16 CFR 1615 and 1616) or be tight-fitting within set dimensions, and children's products need third-party testing. Other markets have their own rules. Children's sleepwear is qualified before development.",
+    },
+    {
+      question: "Which fabric is softest for pyjamas?",
+      answer:
+        "Cotton and modal jersey feel soft and stretchy; brushed cotton flannel is warm; cotton voile and poplin are cool and crisp. Choose for the season and the market.",
+    },
+    {
+      question: "Can pyjamas be made for hotels?",
+      answer:
+        "Yes, as guest sleepwear or spa wear in the hotel's colours, with an embroidered logo, chosen to survive hotel laundering.",
+    },
+    {
+      question: "How are pyjama sets packed?",
+      answer:
+        "As a folded set, polybagged or boxed for retail, with top and bottom kept together by size. Packing is set in the buyer's instruction.",
+    },
+  ],
+
+  "towels-bathrobes": [
+    {
+      question: "What GSM should a hotel towel be?",
+      answer:
+        "Many hotel bath towels sit around 500-600 gsm. Lighter towels dry faster and cost less to launder; heavier towels feel more luxurious. Choose for the guest experience and the laundry.",
+    },
+    {
+      question: "What is zero-twist towelling?",
+      answer:
+        "Towelling woven with loop yarn that has very little twist, so the loops are softer and more absorbent. It is usually less durable than ring-spun loops in heavy laundering.",
+    },
+    {
+      question: "Terry or waffle bathrobes for a hotel?",
+      answer:
+        "Terry robes are thick, warm and absorbent; waffle robes are lighter, dry faster and pack smaller. Spas often use waffle; hotel rooms often use terry.",
+    },
+    {
+      question: "How do towels keep their colour in hotel laundries?",
+      answer:
+        "Hotels often use bleach, so whites are the default. Coloured towels need dyes chosen for colourfastness to the hotel's chemicals, tested before bulk.",
+    },
+  ],
+
+  "padded-jackets": [
+    {
+      question: "Down or synthetic fill?",
+      answer:
+        "Down is lighter and warmer for its weight and packs small, but loses warmth when wet and needs traceable sourcing. Synthetic fill keeps some warmth when wet, is easier to wash and costs less. Workwear programs usually choose synthetic.",
+    },
+    {
+      question: "What is fill power?",
+      answer:
+        "A measure of how much space an ounce of down fills, a guide to its quality and warmth for its weight. Synthetic fill is specified by weight in grams per square metre instead.",
+    },
+    {
+      question: "What is the difference between stitch-through and baffle quilting?",
+      answer:
+        "Stitch-through quilting sews shell and lining together, which is simpler but leaves cold spots along the seams. Baffle construction adds fabric walls between the layers, so the fill is even and warmer.",
+    },
+    {
+      question: "Can down be sourced responsibly?",
+      answer:
+        "Yes, with traceability to a standard such as the Responsible Down Standard, which certifies animal welfare in the supply chain. If your program requires it, nominate it at the start.",
+    },
+  ],
 };
 
 export function getProductFaqs(slug: string): FaqItem[] {

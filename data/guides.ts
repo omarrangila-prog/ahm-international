@@ -6,6 +6,7 @@ import { gsmGuide } from "./guide-gsm";
 import { fabricGuides } from "./guides-fabric";
 import { practiceGuides } from "./guides-practice";
 import { productGuides } from "./guides-products";
+import { rangeGuides } from "./guides-range";
 
 /**
  * BUYER RESOURCE LIBRARY
@@ -1424,6 +1425,7 @@ export const guides: Guide[] = [
   ...fabricGuides,
   ...practiceGuides,
   ...productGuides,
+  ...rangeGuides,
 ];
 
 export function getGuide(slug: string) {

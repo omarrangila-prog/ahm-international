@@ -21,8 +21,8 @@ import { rateLimit, clientKey } from "@/lib/rate-limit";
  *     the misuse IndexNow asks publishers to avoid, so bulk submission is opt-in
  *     via `all: true` and intended for launch, not for routine deploys.
  *
- * The key file must also be served at `/{key}.txt` containing the key — see
- * `app/[key]/route.ts` note in the SEO documentation.
+ * The key file is served at /indexnow-key.txt (app/indexnow-key.txt/route.ts),
+ * which is the keyLocation this route names.
  */
 
 export const runtime = "nodejs";
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       host,
       key,
-      keyLocation: `${company.siteUrl}/${key}.txt`,
+      keyLocation: `${company.siteUrl}/indexnow-key.txt`,
       urlList: urls,
     }),
   });

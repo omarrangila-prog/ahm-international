@@ -28,6 +28,7 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Uniform Tops", href: "/products/polos-tshirts" },
       { label: "Work Bottoms", href: "/products/bottoms" },
       { label: "Service Apparel", href: "/products/uniform-workwear" },
+      { label: "Coveralls", href: "/products/coveralls" },
     ],
   },
   {
@@ -39,6 +40,7 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Sweatshirts", href: "/products/fleece-sweatshirts" },
       { label: "Hoodies", href: "/products/fleece-sweatshirts" },
       { label: "Fleece", href: "/products/fleece-sweatshirts" },
+      { label: "Knitted Sweaters", href: "/products/knitwear" },
     ],
   },
   {
@@ -58,6 +60,7 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Softshell", href: "/products/outerwear" },
       { label: "Lightweight Jackets", href: "/products/outerwear" },
       { label: "Vests", href: "/products/outerwear" },
+      { label: "Puffer Jackets", href: "/products/padded-jackets" },
     ],
   },
   {
@@ -66,6 +69,8 @@ export const megaMenu: MegaMenuGroup[] = [
     links: [
       { label: "Chef Wear", href: "/products/hospitality-food-service" },
       { label: "Server Apparel", href: "/products/hospitality-food-service" },
+      { label: "Kitchen Textiles", href: "/products/kitchen-textiles" },
+      { label: "Towels & Bathrobes", href: "/products/towels-bathrobes" },
       { label: "Aprons", href: "/products/aprons" },
     ],
   },
@@ -76,6 +81,7 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Denim", href: "/products/denim" },
       { label: "Joggers & Lounge", href: "/products/athleisure" },
       { label: "Performance Knits", href: "/products/athleisure" },
+      { label: "Sportswear & Team Kits", href: "/products/sportswear" },
     ],
   },
   {
@@ -85,6 +91,7 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Women's Uniform", href: "/products/womenswear" },
       { label: "Women's Knits", href: "/products/womenswear" },
       { label: "Kidswear", href: "/products/kidswear" },
+      { label: "Sleepwear", href: "/products/sleepwear" },
     ],
   },
   {
