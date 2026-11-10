@@ -110,7 +110,7 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
 
   const enquiriesInRange = days.reduce((n, d) => n + enquiriesOn(d), 0);
   const apronEnquiries = leads.filter((l) => days.includes(l.createdAt.slice(0, 10)) && /apron/i.test(l.category)).length;
-  const maxVisits = Math.max(1, ...totals.map((d) => d.visits));
+  const maxVisitors = Math.max(1, ...totals.map((d) => d.uniques));
 
   return (
     <>
@@ -118,7 +118,8 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
       <div className="shell-wide py-8">
         <h1 className="font-display text-h2 text-ink">Website traffic</h1>
         <p className="mt-2 max-w-2xl text-sm text-ink/75">
-          Daily totals counted by this website itself, with no cookie and nothing that identifies a visitor. Days are UTC,
+          Daily totals counted by this website itself. Visitors are counted with one cookie that holds only a date, and
+          nothing identifies a person. Days are UTC,
           so a day here runs from 5 am to 5 am Karachi time.
           {firstDay ? ` Counting began on ${longDay(firstDay)}; earlier days are empty because nothing was counted.` : " Nothing has been counted yet."}
         </p>
@@ -148,13 +149,21 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
         <section aria-labelledby="headline" className="mt-6">
           <h2 id="headline" className="sr-only">Headline figures</h2>
           <dl className="grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-4">
-            <Figure label="Visits today" value={todayT?.visits ?? 0} note={`${todayT?.views ?? 0} page views`} />
-            <Figure label="Visits yesterday" value={yesterdayT?.visits ?? 0} note={`${yesterdayT?.views ?? 0} page views`} />
-            <Figure label="Visits, last 7 days" value={week.visits} note={`${week.views} page views`} />
+            <Figure
+              label="Visitors today"
+              value={todayT?.uniques ?? 0}
+              note={`${todayT?.newVisitors ?? 0} new · ${todayT?.visits ?? 0} visits · ${todayT?.views ?? 0} page views`}
+            />
+            <Figure
+              label="Visitors yesterday"
+              value={yesterdayT?.uniques ?? 0}
+              note={`${yesterdayT?.newVisitors ?? 0} new · ${yesterdayT?.visits ?? 0} visits · ${yesterdayT?.views ?? 0} page views`}
+            />
+            <Figure label="New visitors, last 7 days" value={week.newVisitors} note={`${week.visits} visits · ${week.views} page views`} />
             {range === 7 ? (
               <Figure label="Page views per visit" value={all.visits ? (all.views / all.visits).toFixed(1) : "—"} note="last 7 days" />
             ) : (
-              <Figure label={`Visits, last ${range} days`} value={all.visits} note={`${all.views} page views`} />
+              <Figure label={`New visitors, last ${range} days`} value={all.newVisitors} note={`${all.visits} visits · ${all.views} page views`} />
             )}
             <Figure
               label="Searches on the site"
@@ -170,12 +179,14 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
         <section aria-labelledby="daily" className="mt-8 border border-line p-5">
           <h2 id="daily" className="font-display text-h3 text-ink">Day by day</h2>
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[40rem] text-left text-sm">
-              <caption className="sr-only">Visits, page views, searches, contact clicks and enquiries for each day</caption>
+            <table className="w-full min-w-[48rem] text-left text-sm">
+              <caption className="sr-only">Visitors, new visitors, visits, page views, searches, contact clicks and enquiries for each day</caption>
               <thead className="text-xs text-ink/70">
                 <tr>
                   <th scope="col" className="pb-2 font-medium">Day</th>
-                  <th scope="col" className="pb-2 font-medium">Visits</th>
+                  <th scope="col" className="pb-2 font-medium">Visitors</th>
+                  <th scope="col" className="w-14 pb-2 text-right font-medium">New</th>
+                  <th scope="col" className="w-14 pb-2 text-right font-medium">Visits</th>
                   <th scope="col" className="w-20 pb-2 text-right font-medium">Page views</th>
                   <th scope="col" className="w-20 pb-2 text-right font-medium">Searches</th>
                   <th scope="col" className="w-24 pb-2 text-right font-medium">Found nothing</th>
@@ -191,12 +202,14 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
                       <th scope="row" className="whitespace-nowrap py-2 pr-3 font-normal text-ink">{longDay(d.day)}</th>
                       <td className="py-2 pr-3">
                         <span className="flex items-center gap-3">
-                          <span className="w-8 font-mono text-ink">{d.visits}</span>
+                          <span className="w-8 font-mono text-ink">{d.uniques}</span>
                           <span className="h-2 flex-1 bg-ink/12" aria-hidden="true">
-                            <span className="block h-full bg-ink" style={{ width: `${(d.visits / maxVisits) * 100}%` }} />
+                            <span className="block h-full bg-ink" style={{ width: `${(d.uniques / maxVisitors) * 100}%` }} />
                           </span>
                         </span>
                       </td>
+                      <td className="py-2 text-right font-mono text-ink/75">{d.newVisitors}</td>
+                      <td className="py-2 text-right font-mono text-ink/75">{d.visits}</td>
                       <td className="py-2 text-right font-mono text-ink/75">{d.views}</td>
                       <td className="py-2 text-right font-mono text-ink/75">{e.knowledge_search ?? 0}</td>
                       <td className="py-2 text-right font-mono text-ink/75">{e.knowledge_search_miss ?? 0}</td>
@@ -257,9 +270,15 @@ export default async function TrafficPage({ searchParams }: { searchParams: Prom
           <h2 id="limits" className="font-display text-base font-bold text-ink">What these numbers are, and are not</h2>
           <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 text-sm text-ink/80">
             <li>
-              A <strong>visit</strong> is a first page view in a browser tab. There are no cookies and no identifiers, so the same
-              person on two days is two visits, and a page reload counts as a new one. Unique visitors cannot be counted this way
-              and are not shown.
+              A <strong>visitor</strong> is a browser counted once per day by the <code>ahm_seen</code> cookie, which holds only
+              the date it was last counted. <strong>New</strong> means no cookie yet. One person on a phone and a laptop is two
+              visitors, and someone who clears cookies is new again. Visitors who switch the cookie off, block cookies or send
+              Global Privacy Control are counted as visits only.
+            </li>
+            <li>
+              A <strong>visit</strong> is a first page view in a browser tab, so a page reload counts as a new one. Visitors over
+              several days are not added up: one browser on three days is three visitor-days, which is why the period figures
+              show new visitors instead.
             </li>
             <li>
               Crawlers and obvious scripts are skipped by their browser name. Some get through, and some visitors block the

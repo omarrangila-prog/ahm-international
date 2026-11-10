@@ -64,7 +64,8 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
         "Where an enquiry came from: the page you first opened on this visit, the website that linked you here, and any campaign tags in that link (such as utm_source). Your browser sends these to every site it visits. This site keeps them in the open page only, writes nothing to your device, and passes them to us only if you send an enquiry.",
         ...(storage
           ? [
-              "Visit counts: when you open a page, the site adds one to a daily total for that page, and one to the total for the website that linked you here (for example Google or LinkedIn). It also counts how often the Knowledge Center search and the contact buttons are used, without recording what was typed. These totals hold no cookie, IP address, browser details or identifier, so a total cannot be traced back to you.",
+              "Visit counts: when you open a page, the site adds one to a daily total for that page, and one to the total for the website that linked you here (for example Google or LinkedIn). It also counts how often the Knowledge Center search and the contact buttons are used, without recording what was typed. The totals hold no IP address, browser details or identifier, so a total cannot be traced back to you.",
+              "Unique visitors: one cookie, ahm_seen, holds the date your browser was last counted, so a browser is counted once a day and as new or returning. It holds nothing else and is never shared. It expires after 13 months, and you can switch it off on the cookie page; a browser sending Global Privacy Control is not given it.",
             ]
           : []),
         ...(assistant
@@ -95,7 +96,7 @@ export function privacySectionsFor(delivery: EnquiryDelivery, analytics: boolean
           ?"Google Analytics 4 measures which pages are used, and only if you choose Allow when asked. Declining loads nothing. You can change your choice at any time on the cookie policy page, and withdrawing it deletes the analytics cookies."
           : "No analytics provider is currently installed. The site contains an analytics layer that stays inactive unless a provider is configured, and if one is added it will be behind a consent mechanism and this policy will be updated before it is switched on.",
         ...(storage
-          ? ["Separately, the site keeps its own daily totals of visits, described under What we collect. They are counts only, with no cookie and nothing that identifies you, so there is nothing to consent to or to withdraw."]
+          ? ["Separately, the site keeps its own daily visit totals, described under What we collect, and sets one cookie of its own to count visitors. That cookie holds a date and nothing else, is set without asking, and can be switched off on the cookie page."]
           : []),
       ],
     },
@@ -301,7 +302,9 @@ export function cookieSectionsFor(analytics: boolean, { register = false }: { re
       body: [
         analytics
           ? "This website sets no advertising cookies and no third-party marketing pixels. Analytics cookies are set only if you allow them, and nothing is loaded if you decline."
-          : "This website sets no advertising cookies, no tracking cookies and no third-party marketing pixels. There is no consent banner because there is currently nothing to consent to.",
+          : register
+            ? "This website sets no advertising cookies and no third-party marketing pixels. It sets one cookie of its own, ahm_seen, to count visitors. The cookie holds a date and nothing else, it is set without asking, and you can switch it off on this page."
+            : "This website sets no advertising cookies, no tracking cookies and no third-party marketing pixels. There is no consent banner because there is currently nothing to consent to.",
       ],
     },
     {
@@ -310,7 +313,7 @@ export function cookieSectionsFor(analytics: boolean, { register = false }: { re
       list: [
         analytics
           ? "Analytics cookies, only if you choose Allow: Google Analytics 4 sets cookies whose names begin with _ga to count visits and see which pages are used. They are not set before you choose, and never if you decline."
-          : "No analytics cookie: no analytics provider is installed. The site includes an inactive analytics layer that sends nothing unless a provider is configured.",
+          : "No third-party analytics cookie: no analytics provider is installed. The site includes an inactive analytics layer that sends nothing unless a provider is configured.",
         "No advertising or social cookie: there are no embedded social widgets, no advertising tags and no remarketing pixels.",
         analytics
           ? "Your analytics choice is remembered in your browser's local storage so you are not asked on every page. It is not a cookie, holds only \"granted\" or \"denied\", and is never sent to us."
@@ -319,7 +322,9 @@ export function cookieSectionsFor(analytics: boolean, { register = false }: { re
           ? "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage. They reach us with an enquiry you send, and as one count added to a daily total that holds no identifier."
           : "Nothing for campaign tracking: the page you arrived on and any campaign tags in the link are held in the open page only, not in a cookie or browser storage, and reach us only with an enquiry you send.",
         ...(register
-          ? ["No cookie to count visits: the site adds each page you open to a daily total kept in our own storage, with no cookie, no IP address and no identifier, so the totals cannot be traced to you."]
+          ? [
+              "One visit-count cookie, ahm_seen, set by this site on your first page. Its value is a date, the last day your browser was counted, so each browser counts once a day as a new or returning visitor. It is not an identifier, is never shared, is used only for this site's own totals and expires after 13 months. It is set without asking because it holds nothing about you. Switch it off below: the cookie then reads \"off\", and your visits are still added to the page totals but you are not counted as a visitor. A browser sending Global Privacy Control is never given the date cookie.",
+            ]
           : []),
         ...(register
           ? [

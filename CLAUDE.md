@@ -562,11 +562,22 @@ analysis, roadmap and review checklist are in `docs/knowledge-center.md`.
 opened, referrer host, utm_source, a few event names) and posts it once, when
 the visitor leaves, to `/api/m`. The route skips crawlers by user agent, rate
 limits in memory, and adds the batch to `<ns>analytics/<UTC day>/<shard>.json`
-(`lib/traffic/`). Rules that matter:
+(`lib/traffic/`). It renders only where the private store exists, and the legal
+text describes it on the same condition. Rules that matter:
 
-- **No identifier of any kind.** No cookie, no storage, no IP or user agent kept.
-  So "unique visitors" cannot be produced and must not be shown; a visit is a
-  first page view in a tab, and a reload counts as another.
+- **The one cookie holds a date.** `ahm_seen` is the last UTC day this browser
+  was counted, nothing else: no ID, no random value (a test reads the client
+  and fails on one). Absent means a new visitor, an older date a returning one,
+  today's date "already counted". 13 months, first-party, SameSite=Lax.
+- **It is set without asking, by the owner's decision of 10 November 2026**,
+  against the recommendation to ask first. The cookie page says so plainly and
+  carries an opt-out switch (`VisitorCountingSwitch`) that writes "off"; Global
+  Privacy Control is treated as an opt-out. Do not widen what the cookie holds:
+  anything that identifies a browser turns it into a tracking cookie and the
+  policy text into a false statement.
+- **Unique visitors are per day.** One browser on three days is three
+  visitor-days, so the dashboard shows daily uniques and new visitors, never a
+  summed "unique visitors this month". Two devices are two visitors.
 - **Event names only.** Search counts never carry the words typed. A test fails
   if a counted event is one nothing emits.
 - **One write per visit**, not per click, to keep Blob request counts down.
@@ -576,8 +587,28 @@ limits in memory, and adds the batch to `<ns>analytics/<UTC day>/<shard>.json`
   is not Google.
 - **Google queries are not here.** What people typed into Google is only in Search
   Console. The page says so.
-- The privacy and cookie text describe the counter only where the private store
-  exists (`tests/legal-claims.test.ts`). Change one with the other.
+
+## Every product family carries the apron page's depth
+
+The owner asked on 10 November 2026 for every family to get what /products/aprons
+has, and confirmed that AHM makes medical scrubs, caps and headwear, and bags and
+totes (three families added then; kidswear existed and moved to current capability,
+its infant articles keeping their qualification status).
+`tests/product-depth.test.ts` holds it for every family, including any added later:
+
+- the benchmark offer (`benchmark()` in `data/products.ts`), the owner's four steps
+  in order and no figure in any of them;
+- at least three FAQs of its own, no question shared between families;
+- at least one guide linking to it (`data/guides-products.ts` has one per family);
+- a menu entry.
+
+Construction points are only drawn on an image that shows them, in percent of
+the image. `ConstructionCallouts` takes the image's aspect so a 4:5 photograph is
+not letterboxed in a square frame, which put every marker a tenth of the width
+off. Families without a usable image (woven shirts, hospitality, womenswear,
+kidswear and the three new ones) have no callouts until a photograph exists; the
+new families' image slots are pending entries in `data/assets.ts` and appear on
+the shot list. The products page counts its families from the data.
 
 ## The facility gallery is attributed by path
 

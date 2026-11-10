@@ -111,3 +111,36 @@ test("every counted event is one the site actually emits", async () => {
     assert.ok(emitted.has(name) || knowledge.includes(`"${name}"`), `${name} is counted but nothing emits it`);
   }
 });
+
+test("the cookie answers new, returning, or already counted, and never more", async () => {
+  const { visitorFromCookie, SEEN_OFF } = await import("../lib/traffic/model.ts");
+  assert.equal(visitorFromCookie(null, "2026-11-10"), "new");
+  assert.equal(visitorFromCookie("garbage", "2026-11-10"), "new");
+  assert.equal(visitorFromCookie("2026-11-09", "2026-11-10"), "returning");
+  assert.equal(visitorFromCookie("2026-11-10", "2026-11-10"), null);
+  assert.equal(visitorFromCookie(SEEN_OFF, "2026-11-10"), null);
+});
+
+test("a unique visitor is counted with its visit and its platform, and only with a visit", () => {
+  let day = emptyDay("d");
+  day = applyBatch(day, { views: ["/"], ref: "www.google.com", utm: null, landed: true, uv: "new", events: {} });
+  day = applyBatch(day, { views: ["/products/aprons"], ref: "chatgpt.com", utm: null, landed: true, uv: "returning", events: {} });
+  day = applyBatch(day, { views: ["/resources"], ref: null, utm: null, landed: true, uv: null, events: {} });
+  day = applyBatch(day, { views: ["/x"], ref: null, utm: null, landed: false, uv: "new", events: {} });
+  assert.equal(day.visits, 3);
+  assert.equal(day.uniques, 2);
+  assert.equal(day.newVisitors, 1);
+  assert.deepEqual(day.uniqueSources, { google: 1, chatgpt: 1 });
+  assert.equal(parseBatch(JSON.stringify({ views: ["/"], landed: true, uv: "evil" }))?.uv, null);
+});
+
+test("the cookie holds a date, lives thirteen months, and has nothing to identify", async () => {
+  const { readFileSync } = await import("node:fs");
+  const client = readFileSync("lib/traffic/client.ts", "utf8");
+  const { SEEN_MAX_AGE } = await import("../lib/traffic/model.ts");
+  assert.equal(SEEN_MAX_AGE, 395 * 86400);
+  // The only values ever written are a day key, "off", or nothing.
+  const writes = [...client.matchAll(/writeSeen\(([^)]*)\)/g)].map((m) => m[1]).filter((a) => a !== "value: string");
+  assert.deepEqual(writes.sort(), ["SEEN_OFF", "today"]);
+  assert.doesNotMatch(client, /random|uuid|crypto/i);
+});

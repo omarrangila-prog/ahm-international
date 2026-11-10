@@ -5,13 +5,36 @@
  *
  * The whole design is that a total cannot be traced to a person. A visit is a
  * number added to a day's tally with a path, a platform and an event name. No
- * cookie is set, no IP address or user agent is kept, and no identifier exists
- * to join two visits together, so "unique visitors" is not a figure this can
- * produce and is not claimed. A visit is a first page view in a page's memory;
- * a full reload starts another, so visits run a little high.
+ * IP address or user agent is kept, and no identifier exists to join two
+ * visits together. A visit is a first page view in a page's memory; a full
+ * reload starts another, so visits run a little high.
+ *
+ * Unique visitors come from one first-party cookie, `ahm_seen`, whose value is
+ * a date and nothing else: the last UTC day this browser was counted. A browser
+ * without it is new; one with an earlier date is returning; one with today's
+ * date has been counted already. The count needs no identifier because the
+ * question "has this browser been counted today" is answered by the browser.
  */
 
 export const SHARDS = 3;
+
+export const SEEN_COOKIE = "ahm_seen";
+/** The opt-out value. Kept as long as a date would be, so the choice is remembered. */
+export const SEEN_OFF = "off";
+/** Thirteen months, the longest audience-measurement cookie lifetime European regulators accept. */
+export const SEEN_MAX_AGE = 60 * 60 * 24 * 395;
+
+export type VisitorKind = "new" | "returning";
+
+/**
+ * What this browser counts as today, from the cookie's value. Null means
+ * "do not count a visitor": counted already today, or switched off.
+ */
+export function visitorFromCookie(value: string | null, today: string): VisitorKind | null {
+  if (value === SEEN_OFF) return null;
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return "new";
+  return value === today ? null : "returning";
+}
 const MAX_PATHS = 150;
 const MAX_SOURCES = 60;
 const MAX_VIEWS_PER_BATCH = 40;
@@ -42,6 +65,8 @@ export type Batch = {
   utm: string | null;
   /** True once per visit: counts the visit itself. */
   landed: boolean;
+  /** Set once per browser per day, from the cookie: counts a unique visitor. */
+  uv?: VisitorKind | null;
   events: Partial<Record<CountedEvent, number>>;
 };
 
@@ -49,6 +74,12 @@ export type DayTotals = {
   day: string;
   visits: number;
   views: number;
+  /** Browsers counted once today by the cookie. */
+  uniques: number;
+  /** Of those, browsers with no cookie: first seen today. */
+  newVisitors: number;
+  /** Unique visitors by platform key. */
+  uniqueSources: Record<string, number>;
   /** Visits by platform key (see classifySource). */
   sources: Record<string, number>;
   /** Page views by path. */
@@ -62,6 +93,9 @@ export const emptyDay = (day: string): DayTotals => ({
   day,
   visits: 0,
   views: 0,
+  uniques: 0,
+  newVisitors: 0,
+  uniqueSources: {},
   sources: {},
   paths: {},
   landings: {},
@@ -188,9 +222,10 @@ export function parseBatch(raw: unknown): Batch | null {
   const ref = typeof v.ref === "string" && /^[a-z0-9.-]{1,120}$/i.test(v.ref) ? v.ref : null;
   const utm = typeof v.utm === "string" ? clean(v.utm, 40) || null : null;
   const landed = v.landed === true;
+  const uv = v.uv === "new" || v.uv === "returning" ? v.uv : null;
 
   if (views.length === 0 && Object.keys(events).length === 0) return null;
-  return { views, ref, utm, landed, events };
+  return { views, ref, utm, landed, uv, events };
 }
 
 // ---------------------------------------------------------------- tally
@@ -204,6 +239,9 @@ function bump(map: Record<string, number>, key: string, by: number, cap: number)
 export function applyBatch(day: DayTotals, batch: Batch): DayTotals {
   const next: DayTotals = {
     ...day,
+    uniques: day.uniques ?? 0,
+    newVisitors: day.newVisitors ?? 0,
+    uniqueSources: { ...(day.uniqueSources ?? {}) },
     sources: { ...day.sources },
     paths: { ...day.paths },
     landings: { ...day.landings },
@@ -217,6 +255,13 @@ export function applyBatch(day: DayTotals, batch: Batch): DayTotals {
     next.visits += 1;
     bump(next.sources, classifySource(batch.ref, batch.utm).key, 1, MAX_SOURCES);
     bump(next.landings, batch.views[0], 1, MAX_PATHS);
+    // A unique visitor is counted with the visit it arrived on, so its
+    // platform is the one that brought it today.
+    if (batch.uv) {
+      next.uniques += 1;
+      if (batch.uv === "new") next.newVisitors += 1;
+      bump(next.uniqueSources, classifySource(batch.ref, batch.utm).key, 1, MAX_SOURCES);
+    }
   }
   for (const [name, count] of Object.entries(batch.events) as [CountedEvent, number][]) {
     next.events[name] = (next.events[name] ?? 0) + count;
@@ -233,6 +278,9 @@ export function mergeDay(day: string, parts: DayTotals[]): DayTotals {
   for (const part of parts) {
     out.visits += part.visits;
     out.views += part.views;
+    out.uniques += part.uniques ?? 0;
+    out.newVisitors += part.newVisitors ?? 0;
+    add(out.uniqueSources, part.uniqueSources ?? {});
     add(out.sources, part.sources);
     add(out.paths, part.paths);
     add(out.landings, part.landings);
@@ -264,6 +312,10 @@ export function summarise(days: DayTotals[]) {
   return {
     visits: total.visits,
     views: total.views,
+    /** A sum of daily uniques: one browser on three days counts three times. */
+    visitorDays: total.uniques,
+    newVisitors: total.newVisitors,
+    uniqueSources: rank(total.uniqueSources),
     searches: total.events.knowledge_search ?? 0,
     searchMisses: total.events.knowledge_search_miss ?? 0,
     contacts: (total.events.email_click ?? 0) + (total.events.phone_click ?? 0) + (total.events.whatsapp_click ?? 0),

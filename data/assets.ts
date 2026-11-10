@@ -281,6 +281,16 @@ export const assetRegistry = {
   "renders.waistApron": pendingPhoto("waist-apron", "Three-pocket waist apron"),
   "renders.chefCoat": pendingPhoto("chef-coat", "Double-breasted chef coat", "light"),
   "renders.chefBeanie": pendingPhoto("chef-beanie", "Chef beanie"),
+  // Families added 10 November 2026 on the owner's confirmation that AHM makes
+  // them. No image exists yet; each slot is on the shot list until one does.
+  "renders.scrubTop": pendingPhoto("scrub-top", "V-neck scrub top with chest and lower patch pockets"),
+  "renders.scrubTrouser": pendingPhoto("scrub-trouser", "Drawcord scrub trouser"),
+  "renders.labCoat": pendingPhoto("lab-coat", "Button-front lab coat"),
+  "renders.bucketHat": pendingPhoto("bucket-hat", "Bucket hat with stitched brim"),
+  "renders.truckerCap": pendingPhoto("trucker-cap", "Trucker cap with mesh back"),
+  "renders.toteBag": pendingPhoto("tote-bag", "Canvas tote bag with webbing handles"),
+  "renders.drawstringBag": pendingPhoto("drawstring-bag", "Drawstring bag"),
+  "renders.toolBag": pendingPhoto("tool-bag", "Canvas tool bag with pockets"),
   "renders.classicPolo": pendingPhoto("classic-polo", "Classic short-sleeve polo"),
   "renders.longSleevePolo": pendingPhoto("long-sleeve-polo", "Long-sleeve uniform polo"),
   "renders.crewNeckTee": pendingPhoto("crew-neck-tee", "Crew-neck uniform T-shirt", "light"),

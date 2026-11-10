@@ -244,6 +244,7 @@ export default async function ProductCategoryPage({ params }: Params) {
                   />
                 }
                 points={category.callouts.points}
+                aspect={resolveAsset(category.callouts.asset).aspect}
                 note={`${calloutSurface(resolveAsset(category.callouts.asset).origin)} ${category.callouts.note}`}
               />
             </div>

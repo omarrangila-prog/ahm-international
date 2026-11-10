@@ -9,10 +9,10 @@ cannot disagree with what the site renders.
 
 | | Count |
 |---|---|
-| Slots defined | 152 |
+| Slots defined | 160 |
 | Canonical file in place | 42 |
 | Showing a stand-in | 9 |
-| **Leaving a visible gap** | **101** |
+| **Leaving a visible gap** | **109** |
 | Rendering a generated image, marked "AI render" | 51 |
 
 Slots below marked **GAP** render nothing. Shoot those first.
@@ -41,7 +41,7 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/development/tech-pack.webp`
 - **Master size:** 3840 × 2160 (16:9 landscape)
 - **Subject:** Technical pack open on the development table beside a reference garment
-- **Used by:** `app/development/page.tsx`, `app/about/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+- **Used by:** `app/development/page.tsx`, `app/about/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/sourcing.ts`, `data/guides-products.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/guides-practice.ts`, `data/process.ts`, `data/guides.ts`
 
 ### factory.sewing — **GAP**
 
@@ -99,6 +99,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Pressing and finishing station
 - **Used by:** `app/image-sitemap.xml/route.ts`, `app/quality/page.tsx`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/products.ts`
 
+### development.measurement — **GAP**
+
+- **Path:** `/assets/development/measurement.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Garment being measured against the approved size specification
+- **Used by:** `app/quality/page.tsx`, `data/guides-fabric.ts`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+
 ### development.pattern — **GAP**
 
 - **Path:** `/assets/development/pattern.webp`
@@ -113,12 +120,12 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Sample garment on a form during a fit review
 - **Used by:** `data/capabilities.ts`, `data/manufacturing.ts`, `data/verification.ts`, `data/process.ts`
 
-### development.measurement — **GAP**
+### photo.poloNavyEmbroidered — **GAP**
 
-- **Path:** `/assets/development/measurement.webp`
-- **Master size:** 3840 × 2160 (16:9 landscape)
-- **Subject:** Garment being measured against the approved size specification
-- **Used by:** `app/quality/page.tsx`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+- **Path:** `/assets/products/photography/polo-navy-embroidered.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy uniform polo with embroidered logos
+- **Used by:** `data/guides-practice.ts`, `data/products.ts`, `data/guides.ts`
 
 ### factory.embroidery — **GAP**
 
@@ -154,13 +161,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Button-front utility work shirt, front view
 - **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
-
-### photo.poloNavyEmbroidered — **GAP**
-
-- **Path:** `/assets/products/photography/polo-navy-embroidered.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy uniform polo with embroidered logos
-- **Used by:** `data/products.ts`, `data/guides.ts`
 
 ### factory.printing — **GAP**
 
@@ -258,6 +258,62 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/chef-beanie.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Chef beanie
+- **Used by:** `data/products.ts`
+
+### renders.scrubTop — **GAP**
+
+- **Path:** `/assets/products/photography/scrub-top.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** V-neck scrub top with chest and lower patch pockets
+- **Used by:** `data/products.ts`
+
+### renders.scrubTrouser — **GAP**
+
+- **Path:** `/assets/products/photography/scrub-trouser.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Drawcord scrub trouser
+- **Used by:** `data/products.ts`
+
+### renders.labCoat — **GAP**
+
+- **Path:** `/assets/products/photography/lab-coat.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Button-front lab coat
+- **Used by:** `data/products.ts`
+
+### renders.bucketHat — **GAP**
+
+- **Path:** `/assets/products/photography/bucket-hat.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Bucket hat with stitched brim
+- **Used by:** `data/products.ts`
+
+### renders.truckerCap — **GAP**
+
+- **Path:** `/assets/products/photography/trucker-cap.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Trucker cap with mesh back
+- **Used by:** `data/products.ts`
+
+### renders.toteBag — **GAP**
+
+- **Path:** `/assets/products/photography/tote-bag.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Canvas tote bag with webbing handles
+- **Used by:** `data/products.ts`
+
+### renders.drawstringBag — **GAP**
+
+- **Path:** `/assets/products/photography/drawstring-bag.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Drawstring bag
+- **Used by:** `data/products.ts`
+
+### renders.toolBag — **GAP**
+
+- **Path:** `/assets/products/photography/tool-bag.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Canvas tool bag with pockets
 - **Used by:** `data/products.ts`
 
 ### renders.crewNeckTee — **GAP**
@@ -748,14 +804,21 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/aprons/apron-black-front.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Black bib apron with a divided patch pocket, adjustable neck strap and waist ties, front view
-- **Used by:** `app/image-sitemap.xml/route.ts`, `app/case-studies/page.tsx`, `app/case-studies/[slug]/page.tsx`, `app/products/[slug]/page.tsx`, `app/not-found.tsx`, `components/products/ProductIndex.tsx`, `components/sections/CaseStudyFeature.tsx`, `components/sections/HeroVisual.tsx`, `data/guides-sourcing.ts`, `data/industries.ts`, `data/products.ts`, `data/guides.ts`
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/case-studies/page.tsx`, `app/case-studies/[slug]/page.tsx`, `app/products/[slug]/page.tsx`, `app/not-found.tsx`, `components/products/ProductIndex.tsx`, `components/sections/CaseStudyFeature.tsx`, `components/sections/HeroVisual.tsx`, `data/guides-sourcing.ts`, `data/guides-practice.ts`, `data/industries.ts`, `data/products.ts`, `data/guides.ts`
 
 ### fabrics.polycottonTwill — generated, wants a photograph
 
 - **Path:** `/assets/fabrics/polycotton-twill.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Macro view of poly-cotton twill weave
-- **Used by:** `app/sustainability/page.tsx`, `data/guides-sourcing.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+- **Used by:** `app/sustainability/page.tsx`, `data/guides-sourcing.ts`, `data/guides-fabric.ts`, `data/guides-products.ts`, `data/capabilities.ts`, `data/manufacturing.ts`, `data/guides-practice.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+
+### photo.utilityBomberCharcoal — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/utility-bomber-charcoal.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Charcoal utility bomber jacket
+- **Used by:** `app/image-sitemap.xml/route.ts`, `components/products/ProductIndex.tsx`, `components/sections/HeroVisual.tsx`, `data/guides-products.ts`, `data/industries.ts`, `data/products.ts`
 
 ### photo.poloTaupeLongSleeve — generated, wants a photograph
 
@@ -764,19 +827,26 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Taupe long-sleeve uniform polo
 - **Used by:** `app/image-sitemap.xml/route.ts`, `components/products/ProductIndex.tsx`, `components/sections/BuyerChallenge.tsx`, `components/sections/HeroVisual.tsx`, `data/industries.ts`, `data/products.ts`
 
-### photo.utilityBomberCharcoal — generated, wants a photograph
+### fabrics.woven — generated, wants a photograph
 
-- **Path:** `/assets/products/photography/utility-bomber-charcoal.webp`
+- **Path:** `/assets/fabrics/woven.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Charcoal utility bomber jacket
-- **Used by:** `app/image-sitemap.xml/route.ts`, `components/products/ProductIndex.tsx`, `components/sections/HeroVisual.tsx`, `data/industries.ts`, `data/products.ts`
+- **Subject:** Macro view of woven shirting fabric
+- **Used by:** `data/guides-sourcing.ts`, `data/guides-fabric.ts`, `data/guides-products.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
 
 ### development.swatches — generated, wants a photograph
 
 - **Path:** `/assets/development/fabric-swatches.webp`
 - **Master size:** 3840 × 2160 (16:9 landscape)
 - **Subject:** Fabric swatch cards fanned out for material selection
-- **Used by:** `app/materials/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/manufacturing.ts`, `data/process.ts`, `data/guides.ts`
+- **Used by:** `app/materials/page.tsx`, `components/sections/DevelopmentLab.tsx`, `data/manufacturing.ts`, `data/guide-gsm.ts`, `data/process.ts`
+
+### export.cartonMarking — generated, wants a photograph
+
+- **Path:** `/assets/export/carton-marking.webp`
+- **Master size:** 3840 × 2160 (16:9 landscape)
+- **Subject:** Shipping marks and carton labelling applied to an export carton
+- **Used by:** `app/image-sitemap.xml/route.ts`, `app/export/page.tsx`, `data/manufacturing.ts`, `data/guides-practice.ts`, `data/guides.ts`
 
 ### fabrics.cottonPique — generated, wants a photograph
 
@@ -785,19 +855,40 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Macro view of cotton pique knit structure
 - **Used by:** `data/manufacturing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
 
-### fabrics.woven — generated, wants a photograph
+### fabrics.canvas — generated, wants a photograph
 
-- **Path:** `/assets/fabrics/woven.webp`
+- **Path:** `/assets/fabrics/canvas.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Macro view of woven shirting fabric
-- **Used by:** `data/guides-sourcing.ts`, `data/materials.ts`, `data/products.ts`, `data/guides.ts`
+- **Subject:** Macro view of heavyweight cotton canvas
+- **Used by:** `data/guides-sourcing.ts`, `data/guides-products.ts`, `data/materials.ts`, `data/products.ts`
 
-### export.cartonMarking — generated, wants a photograph
+### photo.loungePantGrid — generated, wants a photograph
 
-- **Path:** `/assets/export/carton-marking.webp`
-- **Master size:** 3840 × 2160 (16:9 landscape)
-- **Subject:** Shipping marks and carton labelling applied to an export carton
-- **Used by:** `app/image-sitemap.xml/route.ts`, `app/export/page.tsx`, `data/manufacturing.ts`, `data/guides.ts`
+- **Path:** `/assets/products/photography/lounge-pant-grid.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Cream and navy grid lounge trouser
+- **Used by:** `components/products/ProductIndex.tsx`, `data/guides-products.ts`, `data/products.ts`
+
+### photo.zipHoodieNavy — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/zip-hoodie-navy.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy full-zip hooded fleece
+- **Used by:** `data/guides-products.ts`, `data/industries.ts`, `data/products.ts`
+
+### photo.denimUtilityJacket — generated, wants a photograph
+
+- **Path:** `/assets/products/photography/denim-utility-jacket.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Navy denim utility jacket
+- **Used by:** `components/products/ProductIndex.tsx`, `data/guides-products.ts`, `data/products.ts`
+
+### fabrics.polyesterPerformance — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/polyester-performance.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of performance polyester knit
+- **Used by:** `data/guides-fabric.ts`, `data/materials.ts`, `data/guides.ts`
 
 ### export.cartons — generated, wants a photograph
 
@@ -852,20 +943,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** High-visibility orange buttoned work vest
 - **Used by:** `data/industries.ts`, `data/products.ts`
 
-### photo.loungePantGrid — generated, wants a photograph
-
-- **Path:** `/assets/products/photography/lounge-pant-grid.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Cream and navy grid lounge trouser
-- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
-
-### photo.zipHoodieNavy — generated, wants a photograph
-
-- **Path:** `/assets/products/photography/zip-hoodie-navy.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy full-zip hooded fleece
-- **Used by:** `data/industries.ts`, `data/products.ts`
-
 ### photo.hoodieNavy — generated, wants a photograph
 
 - **Path:** `/assets/products/photography/hoodie-navy.webp`
@@ -879,13 +956,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Navy waffle-knit henley
 - **Used by:** `data/industries.ts`, `data/products.ts`
-
-### photo.denimUtilityJacket — generated, wants a photograph
-
-- **Path:** `/assets/products/photography/denim-utility-jacket.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Navy denim utility jacket
-- **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
 
 ### photo.henleyTeeNavy — generated, wants a photograph
 
@@ -908,13 +978,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Woodland camouflage elastic-cuff trouser
 - **Used by:** `components/products/ProductIndex.tsx`, `data/products.ts`
 
-### fabrics.polyesterPerformance — generated, wants a photograph
-
-- **Path:** `/assets/fabrics/polyester-performance.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Macro view of performance polyester knit
-- **Used by:** `data/materials.ts`, `data/guides.ts`
-
 ### fabrics.fleece — generated, wants a photograph
 
 - **Path:** `/assets/fabrics/fleece.webp`
@@ -929,19 +992,19 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Macro view of bonded softshell fabric
 - **Used by:** `data/materials.ts`, `data/products.ts`
 
-### fabrics.canvas — generated, wants a photograph
-
-- **Path:** `/assets/fabrics/canvas.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Macro view of heavyweight cotton canvas
-- **Used by:** `data/guides-sourcing.ts`, `data/materials.ts`
-
 ### fabrics.singleJersey — generated, wants a photograph
 
 - **Path:** `/assets/fabrics/single-jersey.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Macro view of single jersey knit structure
 - **Used by:** `data/materials.ts`, `data/products.ts`
+
+### fabrics.mesh — generated, wants a photograph
+
+- **Path:** `/assets/fabrics/mesh.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Macro view of breathable polyester mesh
+- **Used by:** `data/guides-products.ts`, `data/products.ts`
 
 ### products.polo.fabric — generated, wants a photograph
 
@@ -1100,13 +1163,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/fabrics/rib.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Macro view of 1x1 rib collar and cuff trim
-- **Used by:** no component yet
-
-### fabrics.mesh — generated, wants a photograph
-
-- **Path:** `/assets/fabrics/mesh.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Macro view of breathable polyester mesh
 - **Used by:** no component yet
 
 ## In place

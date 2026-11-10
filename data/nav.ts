@@ -87,6 +87,15 @@ export const megaMenu: MegaMenuGroup[] = [
       { label: "Kidswear", href: "/products/kidswear" },
     ],
   },
+  {
+    title: "Scrubs & Accessories",
+    href: "/products/medical-scrubs",
+    links: [
+      { label: "Medical Scrubs", href: "/products/medical-scrubs" },
+      { label: "Caps & Headwear", href: "/products/caps-headwear" },
+      { label: "Bags & Totes", href: "/products/bags-totes" },
+    ],
+  },
 ];
 
 /** Footer columns. */

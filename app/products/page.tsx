@@ -11,10 +11,14 @@ import { productCategories } from "@/data/products";
 import { pageMetadata, itemListSchema } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 
+// Counted from the data. The heading said "Twelve" in words, and stayed
+// twelve the day three families were added.
+const WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty"];
+const count = WORDS[productCategories.length] ?? String(productCategories.length);
+
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Product Range",
-  description:
-    "Twelve apparel families made to buyer specification in Karachi: uniform and workwear, polos, fleece, aprons, woven shirts, bottoms, outerwear and more.",
+  description: `${count} apparel families made to buyer specification in Karachi: uniforms, polos, fleece, aprons, scrubs, caps, bags, outerwear and more.`,
   path: "/products",
 });
 
@@ -36,7 +40,7 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Product range"
         headingLines={[
-          { text: "Twelve families." },
+          { text: `${count} families.` },
           { text: "One specification", className: "text-ink" },
           { text: "standard." },
         ]}
@@ -47,7 +51,7 @@ export default function ProductsPage() {
         secondaryCta={{ label: "Send a Tech Pack", href: "/send-tech-pack" }}
       />
 
-      {/* Twelve families as a list that opens in place, not twelve cards.
+      {/* Every family as a list that opens in place, not a wall of cards.
           See components/products/ProductIndex.tsx. */}
       <Section zone="paper" spacing="none" aria-labelledby="range-heading">
         <div className="shell-wide pb-24">

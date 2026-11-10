@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Apparel Calculators for Buyers",
   description:
-    "Free apparel calculators: fabric weight and price, marker consumption, FOB cost builder, carton CBM, size runs, tolerance, yarn count, unit conversion and a decoration chooser.",
+    "Free apparel calculators: fabric weight and price, marker consumption, FOB cost builder, carton CBM, size runs, tolerance, yarn count and unit conversion.",
   path: "/resources/calculators",
 });
 

@@ -95,7 +95,7 @@ export const fabricGuides: Guide[] = [
     tools: [{ label: "Fabric compare", href: "/materials#compare-heading", description: "Put two constructions side by side on the published fields." }],
     seoTitle: "Fabric Weaves Explained",
     seoDescription:
-      "How plain weave, twill, satin, canvas and ripstop are built, how each behaves, and why weave and fabric weight are separate questions in a garment specification.",
+      "How plain weave, twill, satin, canvas and ripstop are built, how each behaves, and why weave and fabric weight are separate questions in a specification.",
   },
 
   /* ================================================================== */
