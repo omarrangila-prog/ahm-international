@@ -147,9 +147,10 @@ pass `tooth={false}` for a section that must stay flat.
 35 of the 63 photographed samples were built from originals in
 `asset-pack/client-branded-hold/` — the folder that exists because those
 garments carry a customer's mark. The originals were held out of the master
-set; the derivatives were built and deployed anyway, so Armani Exchange,
-Nautica, CarMax, TapouT, Virginia Tech, Hannaford, D'Agostino, Food City and
-Pampers/Ukrop's were live on the product pages.
+set; the derivatives were built and deployed anyway, so customers' and
+third parties' marks were live on the product pages. Which marks is recorded in
+`asset-pack/client-branded-hold/README.md`, not here: a client's name does not
+belong in notes that could ever be published.
 
 They are deleted from `public/assets/products/photography/`. Each withdrawn key
 carries an unbranded `fallbackSrc` in `data/assets.ts` — a studio render of the
