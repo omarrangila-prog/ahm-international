@@ -9,10 +9,10 @@ cannot disagree with what the site renders.
 
 | | Count |
 |---|---|
-| Slots defined | 160 |
+| Slots defined | 161 |
 | Canonical file in place | 42 |
 | Showing a stand-in | 9 |
-| **Leaving a visible gap** | **109** |
+| **Leaving a visible gap** | **110** |
 | Rendering a generated image, marked "AI render" | 51 |
 
 Slots below marked **GAP** render nothing. Shoot those first.
@@ -316,6 +316,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Subject:** Canvas tool bag with pockets
 - **Used by:** `data/products.ts`
 
+### renders.denimWorkTrouser — **GAP**
+
+- **Path:** `/assets/products/photography/denim-work-trouser.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Denim work trouser with tool pockets
+- **Used by:** `data/products.ts`
+
 ### renders.crewNeckTee — **GAP**
 
 - **Path:** `/assets/products/photography/crew-neck-tee.webp`
@@ -475,6 +482,13 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/hoodie-heather-graphic.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Heather grey zip hoodie with placement print
+- **Used by:** `data/products.ts`
+
+### photo.denimWorkShirt — **GAP**
+
+- **Path:** `/assets/products/photography/denim-work-shirt.webp`
+- **Master size:** 3000 × 3000 (1:1 square)
+- **Subject:** Indigo denim work shirt with chest pocket
 - **Used by:** `data/products.ts`
 
 ### photo.joggerGreyGraphic — **GAP**
@@ -790,13 +804,6 @@ Ranked by whether the slot is empty, then by how many pages ask for it.
 - **Path:** `/assets/products/photography/work-trouser.webp`
 - **Master size:** 3000 × 3000 (1:1 square)
 - **Subject:** Uniform work trouser
-- **Used by:** no component yet
-
-### photo.denimWorkShirt — **GAP**
-
-- **Path:** `/assets/products/photography/denim-work-shirt.webp`
-- **Master size:** 3000 × 3000 (1:1 square)
-- **Subject:** Indigo denim work shirt with chest pocket
 - **Used by:** no component yet
 
 ### products.apron.front — generated, wants a photograph

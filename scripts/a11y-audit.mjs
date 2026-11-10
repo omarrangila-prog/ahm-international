@@ -38,6 +38,7 @@ const ROUTES = [
   "/products",
   "/products/polos-tshirts",
   "/products/aprons",
+  "/products/aprons/bib-apron",
   "/benchmark-a-style",
   "/manufacturing-network",
   "/verification",

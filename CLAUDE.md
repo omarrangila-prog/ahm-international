@@ -610,6 +610,33 @@ kidswear and the three new ones) have no callouts until a photograph exists; the
 new families' image slots are pending entries in `data/assets.ts` and appear on
 the shot list. The products page counts its families from the data.
 
+## Every catalogue article has its own page
+
+`/products/<family>/<item>` (`app/products/[slug]/[item]/page.tsx`), one per
+article, from `data/items.ts` and the three content files beside it. Asked for
+by the owner on 10 November 2026, against the recommendation to start with the
+main items; built so forty-two pages do not read as one page forty-two times.
+
+- **One garment, one URL.** Where the catalogue lists a garment under two
+  families or two names (the chef coat; "Bib Apron" and "Three-Pocket Bib
+  Apron"), `names` holds them all and every card opens the one page. 46 article
+  names, 42 pages.
+- **Written per garment.** Points of measure, construction choices, logo
+  positions, specification rows and questions are the item's own;
+  `tests/product-items.test.ts` fails on a shared intro, summary, title,
+  description or question, including one repeated from a family FAQ.
+- **Shared things are read, not copied:** decoration methods, the benchmark
+  process, image and capability status come from the family and its article.
+  Construction points appear only when a family marked them on the same image.
+  `image: false` hides an article image that is a different garment (the
+  work trouser card uses a pull-on camo jogger).
+- **Same claims rules.** No price, MOQ or lead time; only the bib apron may
+  mention documented export; children's and protective items name the
+  standard to qualify rather than claiming conformity.
+- **The browser catalogue gets a name-to-URL map** (`data/item-index.ts`), not
+  the item data, so /products does not ship forty-two pages of text. A test
+  holds the map equal to what `items.ts` derives.
+
 ## The facility gallery is attributed by path
 
 `/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and

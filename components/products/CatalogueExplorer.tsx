@@ -188,7 +188,7 @@ export function CatalogueExplorer() {
           {results.map((e) => (
             <li key={e.id}>
               <Link
-                href={`/products/${e.categorySlug}`}
+                href={e.href}
                 className="group flex h-full flex-col border border-ink/15 bg-paper transition-colors duration-300 hover:border-ink/40"
               >
                 {/* No plate when nothing resolves: the article name and its

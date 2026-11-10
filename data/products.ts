@@ -577,9 +577,9 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "development_available",
     subcategories: ["Denim Shirts", "Denim Jackets", "Denim Bottoms", "Workwear Denim"],
     articles: [
-      { name: "Denim Work Shirt", asset: "photo.denimUtilityJacket", note: "Twin chest pockets, felled seams, buyer-specified closure" },
+      { name: "Denim Work Shirt", asset: "photo.denimWorkShirt", note: "Twin chest pockets, felled seams, buyer-specified closure" },
       { name: "Denim Utility Jacket", asset: "photo.denimUtilityJacket", note: "Four-pocket construction, reinforced stress points" },
-      { name: "Denim Work Trouser", asset: "photo.pantCamo", note: "Triple-needle seams, bar-tacked pockets" },
+      { name: "Denim Work Trouser", asset: "renders.denimWorkTrouser", note: "Triple-needle seams, bar-tacked pockets" },
     ],
     specification: [
       { label: "Fabric options", value: "Rigid and stretch denim, left-hand and right-hand twill" },

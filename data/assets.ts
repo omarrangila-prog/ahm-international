@@ -291,6 +291,9 @@ export const assetRegistry = {
   "renders.toteBag": pendingPhoto("tote-bag", "Canvas tote bag with webbing handles"),
   "renders.drawstringBag": pendingPhoto("drawstring-bag", "Drawstring bag"),
   "renders.toolBag": pendingPhoto("tool-bag", "Canvas tool bag with pockets"),
+  // The denim shirt and trouser cards showed the denim jacket and a camo
+  // jogger. A card names one garment, so each now waits for its own image.
+  "renders.denimWorkTrouser": pendingPhoto("denim-work-trouser", "Denim work trouser with tool pockets"),
   "renders.classicPolo": pendingPhoto("classic-polo", "Classic short-sleeve polo"),
   "renders.longSleevePolo": pendingPhoto("long-sleeve-polo", "Long-sleeve uniform polo"),
   "renders.crewNeckTee": pendingPhoto("crew-neck-tee", "Crew-neck uniform T-shirt", "light"),

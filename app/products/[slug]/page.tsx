@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ConstructionCallouts } from "@/components/products/ConstructionCallouts";
 import { FilmBand } from "@/components/sections/FilmBand";
-import type { Origin } from "@/lib/provenance";
+import { calloutSurface } from "@/lib/provenance";
 import { filmSlots, type FilmId } from "@/data/films";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
@@ -21,6 +21,7 @@ import { IndustryCard } from "@/components/products/IndustryCard";
 import { Button } from "@/components/ui/Button";
 import { productCategories, getCategory, SPEC_DISCLAIMER } from "@/data/products";
 import { getProductFaqs } from "@/data/product-faqs";
+import { itemForArticle, itemPath } from "@/data/items";
 import { industries } from "@/data/industries";
 import { processStages } from "@/data/process";
 import { caseStudies } from "@/data/caseStudies";
@@ -57,20 +58,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     description: category.seoDescription,
     path: `/products/${category.slug}`,
   });
-}
-
-/** What the callouts are drawn on, from the image's record rather than the copy. */
-function calloutSurface(origin: Origin): string {
-  switch (origin) {
-    case "enhanced":
-      return "Marked on an enhanced photograph of the actual product.";
-    case "representative":
-      return "Marked on a representative render of an AHM sample.";
-    case "ai-render":
-      return "Marked on an AI render of the style.";
-    default:
-      return "Marked on a photograph of the style.";
-  }
 }
 
 export default async function ProductCategoryPage({ params }: Params) {
@@ -199,12 +186,31 @@ export default async function ProductCategoryPage({ params }: Params) {
                   <div className="flex flex-1 flex-col justify-between p-5">
                     <div>
                       <h3 className="font-display text-base font-bold tracking-[-0.02em] text-ink">
-                        {article.name}
+                        {itemForArticle(article.name) ? (
+                          <Link
+                            href={itemPath(itemForArticle(article.name)!)}
+                            className="underline-offset-4 hover:underline"
+                          >
+                            {article.name}
+                          </Link>
+                        ) : (
+                          article.name
+                        )}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-ink/65">{article.note}</p>
                     </div>
                     <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                      <p className="label text-ink/70">Representative article</p>
+                      {itemForArticle(article.name) ? (
+                        <Link
+                          href={itemPath(itemForArticle(article.name)!)}
+                          className="inline-flex min-h-6 items-center gap-1 py-1 text-sm font-medium text-ink underline underline-offset-4"
+                        >
+                          Full specification
+                          <span className="sr-only"> for the {article.name}</span>
+                        </Link>
+                      ) : (
+                        <p className="label text-ink/70">Representative article</p>
+                      )}
                       <Link
                         href={`/request-a-quote?${new URLSearchParams({ category: category.name, style: article.name, source: `${category.slug}_article` })}`}
                         className="inline-flex min-h-6 items-center gap-1 py-1 text-sm font-medium text-ink underline-offset-4 hover:underline"

@@ -22,7 +22,7 @@ const VIEWPORTS = [
 ];
 
 /* One route per template, plus the conversion pages. */
-const ROUTES = ["/", "/products", "/products/aprons", "/manufacturing", "/manufacturing/sampling",
+const ROUTES = ["/", "/products", "/products/aprons", "/products/aprons/bib-apron", "/manufacturing", "/manufacturing/sampling",
   "/industries", "/industries/grocery", "/materials", "/export", "/capabilities", "/quality",
   "/resources", "/resources/fabric-gsm-guide", "/case-studies", "/case-studies/us-uniform-apron-program",
   "/request-a-quote", "/send-tech-pack", "/contact", "/about", "/manufacturing-network", "/verification", "/sourcing"];

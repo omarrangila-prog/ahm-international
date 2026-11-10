@@ -58,3 +58,17 @@ export function provenanceSentence(origin: Origin, subject: Subject = "product")
 export function isRendered(origin: Origin): boolean {
   return origin === "ai-render" || origin === "representative";
 }
+
+/** What the callouts are drawn on, from the image's record rather than the copy. */
+export function calloutSurface(origin: Origin): string {
+  switch (origin) {
+    case "enhanced":
+      return "Marked on an enhanced photograph of the actual product.";
+    case "representative":
+      return "Marked on a representative render of an AHM sample.";
+    case "ai-render":
+      return "Marked on an AI render of the style.";
+    default:
+      return "Marked on a photograph of the style.";
+  }
+}
