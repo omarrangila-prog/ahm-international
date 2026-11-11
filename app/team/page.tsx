@@ -4,7 +4,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { ThreadTree } from "@/components/team/ThreadTree";
-import { organisation, teamPublished, teamTotal } from "@/data/team";
+import { organisation, teamPublished } from "@/data/team";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -26,15 +26,14 @@ const asOf = (iso: string | null) =>
  */
 export default function TeamPage() {
   if (!teamPublished()) notFound();
-  const total = teamTotal();
   const date = asOf(organisation.asOf);
 
   return (
     <>
       <PageHero
         eyebrow="Our team"
-        headingLines={[{ text: "The people" }, { text: "behind every", className: "text-ink" }, { text: "program." }]}
-        intro={`How AHM International is organised${total > 0 ? `: ${total.toLocaleString("en-GB")} people across ${organisation.departments.length} departments` : ""}${date ? `, as of ${date}` : ""}. Partner factories are shown apart, because their people are not AHM's staff.`}
+        headingLines={[{ text: "200+ people." }, { text: "1,000+ more", className: "text-ink" }, { text: "in partner factories." }]}
+        intro="AHM runs a hybrid model: its own cutting and stitching floor of 200 employees, more people across development, quality and export, and more than 1,000 workers in the partner factories it produces with. Buyers deal with one commercial team for all of it."
         trail={[
           { name: "About", path: "/about" },
           { name: "Our team", path: "/team" },
@@ -49,7 +48,7 @@ export default function TeamPage() {
           <ThreadTree org={organisation} />
           {organisation.source && (
             <p className="mt-12 max-w-prose text-xs leading-relaxed text-ink/70">
-              Structure and numbers supplied by {organisation.source}. People are named with their agreement.
+              Figures supplied by {organisation.source}{date ? `, as of ${date}` : ""}. Partner factories&rsquo; workers are their own staff and are shown apart from AHM&rsquo;s team.
             </p>
           )}
         </div>

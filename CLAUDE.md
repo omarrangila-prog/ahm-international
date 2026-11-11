@@ -661,20 +661,23 @@ main items; built so forty-two pages do not read as one page forty-two times.
   the item data, so /products does not ship forty-two pages of text. A test
   holds the map equal to what `items.ts` derives.
 
-## The team page waits for real people
+## The team page shows the owner's figures, and nothing more
 
 `/team` draws the organisation as thread (`components/team/ThreadTree.tsx`):
-the company as a ball of yarn, departments hanging from a warp line, sub-teams
-as knots on a strand, one spine down the left on a phone. CSS and one SVG,
-nothing measured in the browser, so it lays out for any number of departments.
+a figures band, then the company as a ball of yarn with a thread to each
+branch ending on a spool. AHM's own teams hang on a solid twisted thread; the
+partner factories on a loose dashed one, because their people are not AHM's.
+One SVG whose curves are computed from the number of branches on wide screens,
+one spine down the left on a phone.
 
-`data/team.ts` ships empty, so the page 404s, is noindex and outside the
-sitemap, and the About link to it is conditional, until the owner supplies the
-structure with a `source`. Totals are sums of the figures given, never
-estimates; a department without a figure shows none. A named person carries
-`consent: true`, and partner-factory staff are a separate figure never added
-to AHM's total. The owner asked for "200+"; that number appears only if the
-departments add up to it.
+The figures are the owner's of 11 November 2026 (`data/team.ts`): 200
+employees in cutting and stitching, more in development, quality and export
+(no figure given, so none shown and the total reads "200+"), and more than
+1,000 workers across partner factories, shown apart and never added to AHM's
+total. The other teams are named by the functions the site already describes,
+not by invented departments. Add a department or a figure only from the owner;
+a named person needs `consent: true`. Emptying `departments` (or `source`)
+takes the page, its sitemap entry and its links down together.
 
 ## The facility gallery is attributed by path
 

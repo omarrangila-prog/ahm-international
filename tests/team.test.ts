@@ -51,3 +51,14 @@ test("every named person in the real data has consent recorded", () => {
   ];
   for (const p of people) assert.equal(p.consent, true);
 });
+
+test("the published figures are the owner's: 200 in cutting and stitching, a floor overall, partners apart", async () => {
+  const { totalIsFloor, formatCount } = await import("../data/team.ts");
+  assert.ok(teamPublished());
+  assert.equal(teamTotal(), 200);
+  assert.ok(totalIsFloor(), "other teams have no figure, so the total shows as 200+");
+  assert.equal(formatCount(teamTotal(), totalIsFloor()), "200+");
+  assert.equal(organisation.partnerFactories?.headcount, 1000);
+  assert.equal(formatCount(1000, true), "1,000+");
+  assert.match(organisation.source ?? "", /owner/i);
+});
