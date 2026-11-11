@@ -661,6 +661,21 @@ main items; built so forty-two pages do not read as one page forty-two times.
   the item data, so /products does not ship forty-two pages of text. A test
   holds the map equal to what `items.ts` derives.
 
+## The team page waits for real people
+
+`/team` draws the organisation as thread (`components/team/ThreadTree.tsx`):
+the company as a ball of yarn, departments hanging from a warp line, sub-teams
+as knots on a strand, one spine down the left on a phone. CSS and one SVG,
+nothing measured in the browser, so it lays out for any number of departments.
+
+`data/team.ts` ships empty, so the page 404s, is noindex and outside the
+sitemap, and the About link to it is conditional, until the owner supplies the
+structure with a `source`. Totals are sums of the figures given, never
+estimates; a department without a figure shows none. A named person carries
+`consent: true`, and partner-factory staff are a separate figure never added
+to AHM's total. The owner asked for "200+"; that number appears only if the
+departments add up to it.
+
 ## The facility gallery is attributed by path
 
 `/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and
