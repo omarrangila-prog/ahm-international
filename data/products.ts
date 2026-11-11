@@ -197,7 +197,7 @@ export const productCategories: ProductCategory[] = [
         { x: 50, y: 82, title: "Rib hem and cuffs", body: "A knitted rib band at the hem and cuffs. Rib composition, and how it recovers after washing, are worth testing on the sample." },
       ],
     },
-    seoTitle: "Uniform & Workwear Manufacturing",
+    seoTitle: "Uniform & Workwear Manufacturer, Karachi",
     seoDescription:
       "Work shirts, service apparel, chef wear and hi-vis produced to buyer specification in Karachi, Pakistan and supplied FOB.",
   },
@@ -384,7 +384,7 @@ export const productCategories: ProductCategory[] = [
         },
       ],
     },
-    seoTitle: "Apron Manufacturing for Uniform Programs",
+    seoTitle: "Apron Manufacturer in Pakistan",
     seoDescription:
       "Bib, waist and chef aprons made to your specification. Documented FOB export of poly-cotton uniform aprons to the United States.",
   },
