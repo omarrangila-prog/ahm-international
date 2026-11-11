@@ -7,6 +7,8 @@
  * shippable before a GA4 property exists, and keeps consent handling in one place.
  */
 
+import { countEvent } from "./traffic/client";
+
 export type AnalyticsEvent =
   | "hero_rfq_click"
   | "product_view"
@@ -58,6 +60,10 @@ declare global {
 
 export function track(event: AnalyticsEvent, payload: Payload = {}) {
   if (typeof window === "undefined") return;
+
+  // Daily totals for the staff dashboard: the event name only, in page memory,
+  // sent once when the visitor leaves. Independent of the GA consent below.
+  countEvent(event);
 
   const detail = { event, ...payload };
 

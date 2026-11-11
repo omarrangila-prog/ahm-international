@@ -1,4 +1,5 @@
 import { productCategories } from "./products";
+import { productItems, itemPath } from "./items";
 import { manufacturingStages } from "./manufacturing";
 import { sourcingPillars } from "./sourcing";
 import { industries } from "./industries";
@@ -52,6 +53,11 @@ export const routes: RouteEntry[] = [
   ...productCategories.map((c) => ({
     path: `/products/${c.slug}`,
     priority: 0.85,
+    changeFrequency: "monthly" as const,
+  })),
+  ...productItems.map((i) => ({
+    path: itemPath(i),
+    priority: 0.75,
     changeFrequency: "monthly" as const,
   })),
 

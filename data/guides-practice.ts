@@ -514,6 +514,7 @@ export const practiceGuides: Guide[] = [
       { question: "How do I specify durability?", answer: "State the number of washes and the wash regime, and require tests for shrinkage, colourfastness, pilling and abrasion after that laundering." },
     ],
     related: [
+      { label: "Uniform & Workwear", href: "/products/uniform-workwear", description: "Work shirts, jackets and uniform made to your specification." },
       { label: "Poly-cotton for workwear", href: "/resources/poly-cotton-for-workwear", description: "How the blend ratio changes uniforms and aprons." },
       { label: "Sourcing uniforms from Pakistan", href: "/resources/sourcing-uniforms-from-pakistan", description: "How a uniform program is developed and shipped." },
       { label: "Fabric testing for buyers", href: "/resources/fabric-testing-for-buyers", description: "Which tests answer which questions." },

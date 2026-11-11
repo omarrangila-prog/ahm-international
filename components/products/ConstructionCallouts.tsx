@@ -18,13 +18,29 @@ import { cn } from "@/lib/utils";
 
 type Point = { x: number; y: number; title: string; body: string };
 
-export function ConstructionCallouts({ image, points, note }: { image: React.ReactNode; points: Point[]; note: string }) {
+/**
+ * `aspect` is the image's width over height. The frame takes the same shape,
+ * so a point placed in percent of the picture lands on the picture: in a
+ * square frame a 4:5 photograph is letterboxed and every marker drifts
+ * sideways by up to a tenth of the width.
+ */
+export function ConstructionCallouts({
+  image,
+  points,
+  note,
+  aspect = 1,
+}: {
+  image: React.ReactNode;
+  points: Point[];
+  note: string;
+  aspect?: number;
+}) {
   const [active, setActive] = useState<number | null>(null);
 
   return (
     <div className="grid grid-cols-12 gap-y-10 lg:gap-x-14">
       <div className="col-span-12 lg:col-span-6">
-        <div className="relative aspect-square w-full bg-white">
+        <div className="relative mx-auto w-full max-w-[34rem] bg-white" style={{ aspectRatio: aspect }}>
           {image}
           {points.map((p, i) => (
             <span

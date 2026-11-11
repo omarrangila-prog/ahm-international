@@ -147,9 +147,10 @@ pass `tooth={false}` for a section that must stay flat.
 35 of the 63 photographed samples were built from originals in
 `asset-pack/client-branded-hold/` — the folder that exists because those
 garments carry a customer's mark. The originals were held out of the master
-set; the derivatives were built and deployed anyway, so Armani Exchange,
-Nautica, CarMax, TapouT, Virginia Tech, Hannaford, D'Agostino, Food City and
-Pampers/Ukrop's were live on the product pages.
+set; the derivatives were built and deployed anyway, so customers' and
+third parties' marks were live on the product pages. Which marks is recorded in
+`asset-pack/client-branded-hold/README.md`, not here: a client's name does not
+belong in notes that could ever be published.
 
 They are deleted from `public/assets/products/photography/`. Each withdrawn key
 carries an unbranded `fallbackSrc` in `data/assets.ts` — a studio render of the
@@ -555,6 +556,110 @@ analysis, roadmap and review checklist are in `docs/knowledge-center.md`.
   knowledge. A test fails if one claims a review, claims an AHM capability, or
   speaks for "our factory". Where a choice depends on a factory, the guide says
   to ask, never what AHM does.
+
+## Daily visit counts are first-party, and /pipeline/traffic reads them
+
+`components/analytics/VisitCounter.tsx` keeps a tally in page memory (pages
+opened, referrer host, utm_source, a few event names) and posts it once, when
+the visitor leaves, to `/api/m`. The route skips crawlers by user agent, rate
+limits in memory, and adds the batch to `<ns>analytics/<UTC day>/<shard>.json`
+(`lib/traffic/`). It renders only where the private store exists, and the legal
+text describes it on the same condition. Rules that matter:
+
+- **The one cookie holds a date.** `ahm_seen` is the last UTC day this browser
+  was counted, nothing else: no ID, no random value (a test reads the client
+  and fails on one). Absent means a new visitor, an older date a returning one,
+  today's date "already counted". 13 months, first-party, SameSite=Lax.
+- **It is set without asking, by the owner's decision of 10 November 2026**,
+  against the recommendation to ask first. The cookie page says so plainly and
+  carries an opt-out switch (`VisitorCountingSwitch`) that writes "off"; Global
+  Privacy Control is treated as an opt-out. Do not widen what the cookie holds:
+  anything that identifies a browser turns it into a tracking cookie and the
+  policy text into a false statement.
+- **Unique visitors are per day.** One browser on three days is three
+  visitor-days, so the dashboard shows daily uniques and new visitors, never a
+  summed "unique visitors this month". Two devices are two visitors.
+- **Event names only.** Search counts never carry the words typed. A test fails
+  if a counted event is one nothing emits.
+- **One write per visit**, not per click, to keep Blob request counts down.
+  Shards (3) avoid ETag retries when two visitors leave together.
+- **Platforms come from `classifySource`**: utm_source wins over the referrer, an
+  unknown host keeps its own row. Suffix matches are anchored so `notgoogle.com`
+  is not Google.
+- **Google queries are not here.** What people typed into Google is only in Search
+  Console. The page says so.
+
+## Every product family carries the apron page's depth
+
+The owner asked on 10 November 2026 for every family to get what /products/aprons
+has, and confirmed that AHM makes medical scrubs, caps and headwear, and bags and
+totes (three families added then; kidswear existed and moved to current capability,
+its infant articles keeping their qualification status).
+`tests/product-depth.test.ts` holds it for every family, including any added later:
+
+- the benchmark offer (`benchmark()` in `data/products.ts`), the owner's four steps
+  in order and no figure in any of them;
+- at least three FAQs of its own, no question shared between families;
+- at least one guide linking to it (`data/guides-products.ts` has one per family);
+- a menu entry.
+
+Construction points are only drawn on an image that shows them, in percent of
+the image. `ConstructionCallouts` takes the image's aspect so a 4:5 photograph is
+not letterboxed in a square frame, which put every marker a tenth of the width
+off. Families without a usable image (woven shirts, hospitality, womenswear,
+kidswear and the three new ones) have no callouts until a photograph exists; the
+new families' image slots are pending entries in `data/assets.ts` and appear on
+the shot list. The products page counts its families from the data.
+
+## The second round of families is "development available"
+
+On 10 November 2026 the owner confirmed seven more areas: chef trousers and
+kitchen textiles, coveralls, knitted sweaters, sportswear and team kits,
+sleepwear, towels and bathrobes, and padded jackets (`data/products.ts`, items
+in `data/items-range.ts`, guides in `data/guides-range.ts`). Each needs
+equipment or a standard of its own, so they are `development_available`, not
+`current_capability`, until a shipped order is documented. Upgrade one only on
+that evidence. Children's sleepwear, oven gloves and protective coveralls name
+the standard to qualify and claim none.
+
+## Search, AI assistants and what happens off the site
+
+`/llms.txt` lists every family, item and guide with a title and one sentence
+taken from the page itself (`app/llms.txt/route.ts`), then every other route.
+It holds no instructions to a model and nothing the pages do not say.
+`robots.txt` is open to all crawlers, AI crawlers included. IndexNow's key file
+is `/indexnow-key.txt`; it 404s until `INDEXNOW_KEY` is set. The steps only the
+owner can take (Search Console, Bing Webmaster Tools, Business Profile,
+directories, LinkedIn posts) are in `docs/visibility-kit.md`. Posting to other
+people's sites, buying links and mass-produced articles are listed there as
+things not to do.
+
+## Every catalogue article has its own page
+
+`/products/<family>/<item>` (`app/products/[slug]/[item]/page.tsx`), one per
+article, from `data/items.ts` and the three content files beside it. Asked for
+by the owner on 10 November 2026, against the recommendation to start with the
+main items; built so forty-two pages do not read as one page forty-two times.
+
+- **One garment, one URL.** Where the catalogue lists a garment under two
+  families or two names (the chef coat; "Bib Apron" and "Three-Pocket Bib
+  Apron"), `names` holds them all and every card opens the one page. 46 article
+  names, 42 pages.
+- **Written per garment.** Points of measure, construction choices, logo
+  positions, specification rows and questions are the item's own;
+  `tests/product-items.test.ts` fails on a shared intro, summary, title,
+  description or question, including one repeated from a family FAQ.
+- **Shared things are read, not copied:** decoration methods, the benchmark
+  process, image and capability status come from the family and its article.
+  Construction points appear only when a family marked them on the same image.
+  `image: false` hides an article image that is a different garment (the
+  work trouser card uses a pull-on camo jogger).
+- **Same claims rules.** No price, MOQ or lead time; only the bib apron may
+  mention documented export; children's and protective items name the
+  standard to qualify rather than claiming conformity.
+- **The browser catalogue gets a name-to-URL map** (`data/item-index.ts`), not
+  the item data, so /products does not ship forty-two pages of text. A test
+  holds the map equal to what `items.ts` derives.
 
 ## The facility gallery is attributed by path
 

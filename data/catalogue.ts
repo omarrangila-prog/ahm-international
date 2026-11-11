@@ -1,6 +1,7 @@
 import { productCategories, type ProductCategory, type ProductArticle } from "./products";
 import type { CapabilityStatus } from "./verification";
 import type { AssetKey } from "./assets";
+import { itemHrefByName } from "./item-index";
 
 /**
  * CATALOGUE
@@ -24,6 +25,8 @@ export type CatalogueEntry = {
   asset: AssetKey;
   /** The category this article belongs to. */
   categorySlug: string;
+  /** The article's own page, or its family's when it has none. */
+  href: string;
   categoryName: string;
   zone: ProductCategory["zone"];
   /** Article override where present, otherwise the category's own status. */
@@ -45,6 +48,7 @@ function build(): CatalogueEntry[] {
         note: a.note,
         asset: a.asset,
         categorySlug: c.slug,
+        href: itemHrefByName[a.name] ?? `/products/${c.slug}`,
         categoryName: c.name,
         zone: c.zone,
         capabilityStatus: a.capabilityStatus ?? c.capabilityStatus,

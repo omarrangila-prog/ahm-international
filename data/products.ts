@@ -116,6 +116,38 @@ export const SPEC_DISCLAIMER =
 
 export const DISCUSS = "Discuss with commercial team" as const;
 
+/**
+ * The cost-comparison offer, for one family.
+ *
+ * The process is the one the owner described for aprons in the brief of 10
+ * October 2026: reference in, construction reviewed, open points clarified,
+ * FOB quotation out. On 10 November 2026 the owner asked for every family to
+ * carry the apron page's treatment, so each family states the same four steps
+ * with the construction points a reviewer reads for that garment. No step
+ * produces a number before the last one.
+ */
+function benchmark(plural: string, singular: string, review: string): NonNullable<ProductCategory["costComparison"]> {
+  return {
+    heading: `Already sourcing ${plural}? Let us benchmark your current style.`,
+    intro: `Share your existing specification, construction requirements and estimated quantity for a manufacturing and FOB costing review of the same ${singular}. There is no instant price: a comparison is only useful when both quotations describe the same article.`,
+    steps: [
+      {
+        title: "You send the reference",
+        body: `The current ${singular}'s tech pack, or clear photographs with its measurements. Add the quantity and destination.`,
+      },
+      { title: "AHM reviews the construction", body: review },
+      {
+        title: "Open points are clarified",
+        body: "Anything the reference leaves open is asked about before costing, so the price answers the question you asked.",
+      },
+      {
+        title: "An FOB quotation is prepared",
+        body: `On the same basis as the ${singular} you buy now, so the two can be compared line by line. The final price depends on the confirmed specification and commercial approval.`,
+      },
+    ],
+  };
+}
+
 export const productCategories: ProductCategory[] = [
   {
     slug: "uniform-workwear",
@@ -154,7 +186,18 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.utilityBomberCharcoal",
     detailAssets: ["products.wovenShirt.detail", "factory.sewing", "fabrics.polycottonTwill"],
     photography: ["photo.utilityBomberCharcoal", "photo.workVestOrange", "photo.denimUtilityJacket", "photo.pantCamo"],
-    seoTitle: "Uniform & Workwear Manufacturing",
+    costComparison: benchmark("work jackets, shirts or uniforms", "garment", "Fabric and weight, pocket layout, closures and hardware, reinforcement at stress points, colour standard, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.utilityBomberCharcoal",
+      note: "Lining, stitch types, seam finishes and labels are specified per order and are not shown here. No feature above is standard on every jacket.",
+      points: [
+        { x: 37, y: 26, title: "Snap-tab collar", body: "Tabs fastened with press studs at the collar. Hardware type and finish are specified per order, and press studs are worth a pull test on the sample." },
+        { x: 66, y: 36, title: "Zipped chest pocket", body: "An angled zip pocket on the chest. Zip type and length, and the pocket bag fabric, are set in the specification." },
+        { x: 26, y: 64, title: "Vertical hand pockets", body: "Welt hand pockets in the front panels. Pocket depth and whether the openings are reinforced are specified per order." },
+        { x: 50, y: 82, title: "Rib hem and cuffs", body: "A knitted rib band at the hem and cuffs. Rib composition, and how it recovers after washing, are worth testing on the sample." },
+      ],
+    },
+    seoTitle: "Uniform & Workwear Manufacturer, Karachi",
     seoDescription:
       "Work shirts, service apparel, chef wear and hi-vis produced to buyer specification in Karachi, Pakistan and supplied FOB.",
   },
@@ -192,6 +235,17 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "products.polo.front",
     detailAssets: ["products.polo.detail", "products.tee.detail", "products.polo.fabric"],
     photography: ["photo.poloBlackEmbroidered", "photo.poloBlackCrest", "photo.poloBlackService", "photo.poloRoyalEmbroidered", "photo.poloNavyCorporate", "photo.poloCream", "photo.poloGreenRibbed", "photo.henleyGreen", "photo.teeGreyBranded", "photo.teeHeatherGraphic", "photo.teeGreyGraphic", "photo.poloMaroon", "photo.poloWhiteTagged", "photo.henleyWaffleNavy", "photo.poloNavyGrocery", "photo.henleyNavy", "photo.henleyTeeNavy", "photo.poloDressNavy", "photo.poloNavyEmbroidered", "photo.poloNavyTipped", "photo.poloLime", "photo.poloYellow", "photo.teePink", "photo.poloRedColourblock", "photo.poloRedGrocery", "photo.poloRed", "photo.teeSkyBlue", "photo.poloTaupeLongSleeve", "photo.poloWhite", "photo.poloWhiteTipped", "photo.poloWhiteEmbroidered"],
+    costComparison: benchmark("polos or T-shirts", "polo or T-shirt", "Knit construction and weight, collar and cuff, placket length and buttons, neck finish, colour standard, decoration placement, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.poloTaupeLongSleeve",
+      note: "Fabric, stitch types, labels and packing are specified per order and are not shown here. No feature above is standard on every polo.",
+      points: [
+        { x: 42, y: 17, title: "Collar", body: "A polo collar. Whether it is flat-knit or self-fabric, its height and any tipping are specified per order." },
+        { x: 50, y: 27, title: "Button placket", body: "A short placket with buttons. Placket length, the number of buttons and the button type are set in the specification." },
+        { x: 13, y: 86, title: "Rib cuffs", body: "Long sleeves finished with a rib cuff. Cuff depth and rib composition follow the specification." },
+        { x: 50, y: 87, title: "Straight hem", body: "A straight hem on this style. Side vents and a longer back hem are options to specify, not defaults." },
+      ],
+    },
     seoTitle: "Polo Shirt & T-Shirt Manufacturing",
     seoDescription:
       "Cotton pique, performance polyester and CVC uniform knits made to your specification in Karachi, Pakistan. Supplied FOB.",
@@ -230,6 +284,17 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "products.fleece.front",
     detailAssets: ["products.fleece.detail", "products.fleece.fabric", "products.fleece.back"],
     photography: ["photo.hoodieWhite", "photo.sleevelessHoodieBlack", "photo.zipHoodieGreyGraphic", "photo.hoodieHeatherGraphic", "photo.zipHoodieGrey", "photo.hoodieBlack", "photo.zipHoodieNavy", "photo.hoodieNavyAlt", "photo.hoodieNavy", "photo.hoodiePinkGraphic", "photo.sweaterRedStriped", "photo.thermalSage", "photo.thermalSageAlt", "photo.sleevelessHoodieWhite"],
+    costComparison: benchmark("hoodies, sweatshirts or fleece", "garment", "Fabric type, weight and back finish, hood construction, zip and pockets, rib trims, colour standard, decoration placement, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.zipHoodieNavy",
+      note: "Fabric weight, stitch types, labels and packing are specified per order and are not shown here. No feature above is standard on every hoodie.",
+      points: [
+        { x: 50, y: 17, title: "Hood", body: "A hood sewn into the neckline. Panel count, lining, drawcord and eyelets are specified per order; this one shows no drawcord." },
+        { x: 49.5, y: 42, title: "Full-length zip", body: "A centre-front zip from hem to neck. Zip gauge, puller and whether a chin guard is added are set in the specification." },
+        { x: 37, y: 70, title: "Split pouch pockets", body: "A pouch pocket either side of the zip. Pocket shape, and whether the openings are bar-tacked, follow the specification." },
+        { x: 50, y: 84, title: "Rib hem and cuffs", body: "Rib bands at the hem and cuffs. Rib composition and recovery after washing are worth testing on the sample." },
+      ],
+    },
     seoTitle: "Fleece & Sweatshirt Manufacturing",
     seoDescription:
       "Fleece jackets, hoodies and sweatshirts in brushed fleece, French terry and anti-pill polar fleece. Made to spec in Karachi, supplied FOB.",
@@ -319,7 +384,7 @@ export const productCategories: ProductCategory[] = [
         },
       ],
     },
-    seoTitle: "Apron Manufacturing for Uniform Programs",
+    seoTitle: "Apron Manufacturer in Pakistan",
     seoDescription:
       "Bib, waist and chef aprons made to your specification. Documented FOB export of poly-cotton uniform aprons to the United States.",
   },
@@ -356,6 +421,7 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "products.wovenShirt.front",
     detailAssets: ["products.wovenShirt.detail", "fabrics.woven", "factory.finishing"],
     photography: [],
+    costComparison: benchmark("woven shirts", "shirt", "Fabric and weight, collar and cuff construction, fusing, pocket layout, buttons, seam type, colour standard, labels and packing, read from the reference rather than assumed."),
     seoTitle: "Woven Shirt Manufacturing",
     seoDescription:
       "Poplin, twill and oxford uniform shirting produced to your specification in Karachi, Pakistan and supplied FOB.",
@@ -393,6 +459,16 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "products.bottoms.front",
     detailAssets: ["products.bottoms.detail", "fabrics.polycottonTwill", "factory.cutting"],
     photography: ["photo.pleatedTrouserKhaki", "photo.chinoBeige", "photo.loungePantGrid", "photo.joggerGreyGraphic", "photo.pantCamo"],
+    costComparison: benchmark("work trousers or shorts", "trouser or short", "Fabric and weight, waistband and closure, pocket layout and reinforcement, seam type, hem, colour standard, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.pantCamo",
+      note: "This image shows a pull-on style. Work trouser features such as a fly, belt loops and reinforced pockets are specified per order and are not shown here.",
+      points: [
+        { x: 50, y: 5, title: "Elasticated waistband", body: "A gathered elastic waistband. Elastic width, and whether a drawcord is added, are specified per order." },
+        { x: 60, y: 48, title: "All-over print", body: "A camouflage print across the whole garment. A printed fabric is approved on a strike-off for colour and registration before bulk." },
+        { x: 30, y: 95, title: "Elasticated ankle cuffs", body: "Elastic at the ankle gathers the leg. A straight hem is the alternative, and the choice goes in the specification." },
+      ],
+    },
     seoTitle: "Work Trouser & Bottoms Manufacturing",
     seoDescription:
       "Work trousers, uniform pants and shorts in twill, canvas and stretch woven, made to your specification in Karachi and supplied FOB.",
@@ -431,6 +507,17 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "products.outerwear.front",
     detailAssets: ["products.outerwear.detail", "fabrics.softshell", "factory.sewing"],
     photography: ["photo.workVestOrange", "photo.utilityBomberCharcoal", "photo.denimUtilityJacket", "photo.vestOrangePrinted"],
+    costComparison: benchmark("jackets or vests", "jacket or vest", "Shell fabric and weight, lining and insulation, zip and closures, pockets, cuffs and hem, colour standard, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.utilityBomberCharcoal",
+      note: "Shell fabric, lining, insulation, labels and packing are specified per order and are not shown here. No feature above is standard on every jacket.",
+      points: [
+        { x: 50, y: 14, title: "Stand collar with rib lining", body: "A stand collar lined with knitted rib at the neck. Collar height and the rib are set in the specification." },
+        { x: 49.5, y: 50, title: "Full-length front zip", body: "A centre-front zip from hem to collar. Zip gauge and puller, and whether a storm flap or chin guard is added, are specified per order." },
+        { x: 30, y: 20, title: "Shoulder tabs", body: "A tab fastened with a press stud at each shoulder. A styling detail: specify it, or leave it off and save a component." },
+        { x: 12, y: 82, title: "Rib cuffs", body: "Knitted rib cuffs hold the sleeve at the wrist. Cuff depth and rib composition follow the specification." },
+      ],
+    },
     seoTitle: "Outerwear & Softshell Manufacturing",
     seoDescription:
       "Softshell, lightweight jackets and vests produced to your specification in Karachi and supplied FOB from Port Qasim.",
@@ -472,6 +559,7 @@ export const productCategories: ProductCategory[] = [
     applications: ["Hospitality", "Food Service", "Events", "Facilities"],
     heroAsset: "products.apron.front",
     detailAssets: ["products.apron.detail", "fabrics.polycottonTwill", "factory.sewing"],
+    costComparison: benchmark("chef coats, aprons or service uniforms", "garment", "Fabric and weight for the laundry it will face, closures, pockets, reinforcement, colour standard, decoration placement, labels and packing, read from the reference rather than assumed."),
     seoTitle: "Hospitality & Food Service Uniforms",
     seoDescription:
       "Chef wear, aprons, server apparel and front-desk uniforms produced to your specification in Karachi and supplied FOB from Port Qasim.",
@@ -489,9 +577,9 @@ export const productCategories: ProductCategory[] = [
     capabilityStatus: "development_available",
     subcategories: ["Denim Shirts", "Denim Jackets", "Denim Bottoms", "Workwear Denim"],
     articles: [
-      { name: "Denim Work Shirt", asset: "photo.denimUtilityJacket", note: "Twin chest pockets, felled seams, buyer-specified closure" },
+      { name: "Denim Work Shirt", asset: "photo.denimWorkShirt", note: "Twin chest pockets, felled seams, buyer-specified closure" },
       { name: "Denim Utility Jacket", asset: "photo.denimUtilityJacket", note: "Four-pocket construction, reinforced stress points" },
-      { name: "Denim Work Trouser", asset: "photo.pantCamo", note: "Triple-needle seams, bar-tacked pockets" },
+      { name: "Denim Work Trouser", asset: "renders.denimWorkTrouser", note: "Triple-needle seams, bar-tacked pockets" },
     ],
     specification: [
       { label: "Fabric options", value: "Rigid and stretch denim, left-hand and right-hand twill" },
@@ -511,6 +599,18 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.denimUtilityJacket",
     detailAssets: ["photo.denimUtilityJacket", "fabrics.woven", "factory.cutting"],
     photography: ["photo.denimUtilityJacket"],
+    costComparison: benchmark("denim", "denim garment", "Denim weight, weave and stretch, wash and its reference, shrinkage, seam type, hardware, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.denimUtilityJacket",
+      note: "Denim weight, wash, shrinkage, stitch types and labels are specified per order and are not shown here. No feature above is standard on every jacket.",
+      points: [
+        { x: 50, y: 16, title: "Rib stand collar", body: "A stand collar with a knitted rib lining. Collar height and the rib are set in the specification." },
+        { x: 34, y: 27, title: "Snap-tab collar", body: "Tabs fastened with press studs. Hardware type and finish are specified per order; denim washes can mark hardware, so the wash is tested with it." },
+        { x: 66, y: 39, title: "Zipped chest pocket", body: "An angled zip pocket on the chest. Zip type and length are set in the specification." },
+        { x: 40, y: 52, title: "Panel seams with topstitching", body: "Vertical panel seams with topstitching down the front. Thread colour and stitch density are part of the specification." },
+        { x: 50, y: 81, title: "Rib hem", body: "A knitted rib band at the hem. Rib composition, and how it takes the wash, are confirmed on the sample." },
+      ],
+    },
     seoTitle: "Denim Manufacturing & Development",
     seoDescription:
       "Denim shirts, jackets and bottoms developed to your weight, weave and wash specification in Karachi and supplied FOB from Port Qasim.",
@@ -551,6 +651,17 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.loungePantGrid",
     detailAssets: ["photo.hoodieHeatherGraphic", "fabrics.fleece", "factory.sewing"],
     photography: ["photo.joggerGreyGraphic", "photo.loungePantGrid", "photo.sleevelessHoodieBlack", "photo.sleevelessHoodieWhite"],
+    costComparison: benchmark("joggers, lounge or performance knits", "garment", "Fabric type, weight and stretch, waistband and drawcord, seam type, hems, colour standard, decoration placement, labels and packing, read from the reference rather than assumed."),
+    callouts: {
+      asset: "photo.loungePantGrid",
+      note: "Fabric, stitch types, labels and packing are specified per order and are not shown here. No feature above is standard on every lounge pant.",
+      points: [
+        { x: 50, y: 16, title: "Drawcord waist", body: "A drawcord threaded through the waistband. Cord type, length and its ends are specified per order." },
+        { x: 38, y: 7, title: "Knitted waistband", body: "A wide knitted band at the waist. Band depth and elastic inside it follow the specification." },
+        { x: 70, y: 55, title: "Check pattern", body: "A check across the fabric. Whether a check is printed or yarn-dyed changes the cost and how it wears, and is specified per order." },
+        { x: 25, y: 85, title: "Wide straight leg", body: "A wide leg with no cuff. Leg opening and inseam are graded from the size specification." },
+      ],
+    },
     seoTitle: "Athleisure & Performance Knits",
     seoDescription:
       "Joggers, lounge bottoms and performance knit tops developed to your specification in Karachi and supplied FOB from Port Qasim.",
@@ -591,6 +702,7 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.poloCream",
     detailAssets: ["photo.hoodiePinkGraphic", "fabrics.cottonPique", "factory.sewing"],
     photography: ["photo.poloCream", "photo.teePink", "photo.hoodiePinkGraphic"],
+    costComparison: benchmark("women's uniform", "garment", "Fabric and weight, the women's block and its grading, darts and shaping, closures, colour standard, labels and packing, read from the reference rather than assumed."),
     seoTitle: "Womenswear Uniform & Knitwear",
     seoDescription:
       "Women's uniform tops, knits and woven shirts developed on a dedicated block to your specification in Karachi and supplied FOB.",
@@ -605,7 +717,10 @@ export const productCategories: ProductCategory[] = [
     intro:
       "Children's garments carry safety requirements that adult apparel does not. Cords, small parts and flammability are qualification questions, answered before development starts.",
     zone: "paper",
-    capabilityStatus: "development_available",
+    // Owner confirmed on 10 November 2026 that AHM makes kids and baby wear.
+    // The infant articles keep their own qualification status: the destination
+    // market's safety rules still have to be met before development.
+    capabilityStatus: "current_capability",
     subcategories: ["Infant Bodysuits", "Kids' Knits", "Kids' Uniform"],
     articles: [
       { name: "Infant Bodysuit", asset: "photo.onesieWhitePrint", capabilityStatus: "technical_qualification_required", note: "Children's safety requirements are qualified against the destination market's standard before development" },
@@ -630,9 +745,412 @@ export const productCategories: ProductCategory[] = [
     heroAsset: "photo.onesieWhitePrint",
     detailAssets: ["photo.onesieWhiteText", "fabrics.singleJersey", "factory.sewing"],
     photography: ["photo.onesieWhitePrint", "photo.onesieWhiteText"],
+    costComparison: benchmark("children's apparel", "garment", "Fabric and weight, neck and fastenings, cords and small parts against the destination market's requirements, print chemistry, labels and packing, read from the reference rather than assumed."),
     seoTitle: "Kidswear & Infant Apparel",
     seoDescription:
       "Infant bodysuits, kids' knits and school uniform developed against destination-market safety requirements in Karachi and supplied FOB.",
+  },
+  /*
+   * The three families below were added on 10 November 2026, when the owner
+   * confirmed that AHM makes medical scrubs, caps and headwear, and bags and
+   * totes. Nothing about them is documented beyond that: no export, capacity
+   * or client is claimed, the specification frames describe the product class,
+   * and every program-specific value stays with the commercial team.
+   */
+  {
+    slug: "medical-scrubs",
+    index: 13,
+    name: "Medical Scrubs",
+    shortName: "Scrubs",
+    programNoun: "scrubs",
+    headline: "Scrubs that survive\nthe hospital wash.",
+    intro:
+      "Scrubs are laundered hotter and more often than almost any other uniform. Fabric, colour fastness and seam strength are chosen for that wash and confirmed by testing.",
+    zone: "paper",
+    capabilityStatus: "current_capability",
+    subcategories: ["Scrub Tops", "Scrub Trousers", "Lab Coats", "Scrub Jackets"],
+    articles: [
+      { name: "V-Neck Scrub Top", asset: "renders.scrubTop", note: "Chest and lower patch pockets, side vents to specification" },
+      { name: "Drawcord Scrub Trouser", asset: "renders.scrubTrouser", note: "Drawcord or elastic waist, cargo pocket option" },
+      { name: "Lab Coat", asset: "renders.labCoat", note: "Notched collar, button front, three-pocket layout to specification" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Poly-cotton poplin and twill, polyester-viscose with elastane, 100% cotton" },
+      { label: "Typical program weight", value: "130-210 gsm" },
+      { label: "Laundering", value: "Fabric and dyes chosen for the end user's wash process and confirmed by wash testing" },
+      { label: "Functional finishes", value: "Fluid-repellent or antimicrobial finishes only to a buyer-nominated standard, with test evidence. No claim is made without it" },
+      { label: "Construction", value: "Bar-tacked pocket corners and reinforced crotch seam, to specification" },
+      { label: "Colour", value: "Dyed to an approved lab dip, including a department's colour code" },
+      { label: "Sizing", value: "Unisex or cut-for-gender blocks, regular, petite and tall lengths to the buyer's size specification" },
+      { label: "Labelling", value: "Main, care, size and country-of-origin labels" },
+      { label: "Packing", value: "Folded, polybag, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Heat transfer", "Screen print"],
+    applications: ["Healthcare", "Facilities"],
+    heroAsset: "renders.scrubTop",
+    detailAssets: ["fabrics.woven", "fabrics.polycottonTwill"],
+    costComparison: benchmark("scrubs", "scrub set", "Fabric, weight and stretch, the wash it must survive, pocket layout and reinforcement, waistband, colour code, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Medical Scrubs Manufacturing",
+    seoDescription:
+      "Scrub tops, scrub trousers and lab coats made to your specification in Karachi, Pakistan, with fabric chosen for the laundry. Supplied FOB.",
+  },
+  {
+    slug: "caps-headwear",
+    index: 14,
+    name: "Caps & Headwear",
+    shortName: "Headwear",
+    programNoun: "headwear",
+    headline: "Caps built to\ncarry a logo.",
+    intro:
+      "A cap is a small article with a lot of decisions in it: panels, crown, peak, closure and the logo on the front. Each one is specified rather than left to the sample.",
+    zone: "ink",
+    capabilityStatus: "current_capability",
+    subcategories: ["Six-Panel Caps", "Trucker Caps", "Bucket Hats", "Chef Skull Caps", "Visors"],
+    articles: [
+      { name: "Structured Six-Panel Cap", asset: "renders.uniformCap", note: "Buckram-backed front panels, embroidery-ready" },
+      { name: "Trucker Cap", asset: "renders.truckerCap", note: "Mesh back panels, foam or fabric front, snapback closure" },
+      { name: "Bucket Hat", asset: "renders.bucketHat", note: "Rows of stitching on the brim, eyelets to specification" },
+      { name: "Chef Skull Cap", asset: "renders.chefBeanie", note: "Laundry-stable construction, elastic or tie back" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Cotton twill, brushed cotton, poly-cotton, polyester mesh, canvas" },
+      { label: "Crown", value: "Structured with buckram or unstructured; high, mid or low profile" },
+      { label: "Peak", value: "Pre-curved or flat, stiffener to specification" },
+      { label: "Closure", value: "Snapback, strap and buckle, hook and loop, elastic fit or fitted sizes" },
+      { label: "Sizing", value: "One size adjustable or fitted sizes, head circumference confirmed against the size specification" },
+      { label: "Sweatband and taping", value: "Cotton or performance sweatband, taped inner seams" },
+      { label: "Labelling", value: "Main, care and country-of-origin labels" },
+      { label: "Packing", value: "Nested or individually bagged, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "3D puff embroidery", "Woven badges", "Applied patches", "Screen print", "Heat transfer"],
+    applications: ["Corporate", "Events", "Hospitality", "Food Service", "Retail", "Facilities"],
+    heroAsset: "renders.uniformCap",
+    detailAssets: ["fabrics.woven", "fabrics.mesh"],
+    costComparison: benchmark("caps or hats", "cap", "Fabric, crown structure and profile, peak, closure, sweatband, the logo's method and size, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Cap & Headwear Manufacturing",
+    seoDescription:
+      "Six-panel caps, trucker caps, bucket hats and chef skull caps made to your specification in Karachi, Pakistan, and supplied FOB.",
+  },
+  {
+    slug: "bags-totes",
+    index: 15,
+    name: "Bags & Totes",
+    shortName: "Bags & Totes",
+    programNoun: "bag",
+    headline: "Totes and bags\nthat carry the load.",
+    intro:
+      "A bag is judged by its handles. Fabric weight, handle length and how the handles are anchored decide whether it carries a full load or tears at the seam.",
+    zone: "lime",
+    capabilityStatus: "current_capability",
+    subcategories: ["Canvas Totes", "Shopping Bags", "Drawstring Bags", "Tool Bags", "Pouches"],
+    articles: [
+      { name: "Canvas Tote", asset: "renders.toteBag", note: "Self-fabric or webbing handles, gusset to specification" },
+      { name: "Drawstring Bag", asset: "renders.drawstringBag", note: "Cord channel, reinforced corners" },
+      { name: "Tool Bag", asset: "renders.toolBag", note: "Heavy canvas, outside pockets, webbing handles" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Cotton canvas and duck, poly-cotton twill, polyester, recycled polyester" },
+      { label: "Typical program weight", value: "180-540 gsm, by bag type (heavy canvas is often quoted as 10-16 oz)" },
+      { label: "Handles", value: "Self-fabric or webbing, length and width to specification, anchored with box-and-cross stitching or bar tacks" },
+      { label: "Body", value: "Flat, bottom gusset or full gusset, to specification" },
+      { label: "Closure", value: "Open top, zip, press stud, magnetic snap or drawcord" },
+      { label: "Lining and pockets", value: "Unlined or lined, inside and outside pockets to specification" },
+      { label: "Load", value: "The load a bag must carry is stated by the buyer and checked on the sample" },
+      { label: "Labelling", value: "Main, care and country-of-origin labels" },
+      { label: "Packing", value: "Flat-packed and bundled or individually bagged, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Screen print", "Embroidery", "Heat transfer", "Woven labels", "Applied patches"],
+    applications: ["Retail", "Grocery", "Events", "Corporate"],
+    heroAsset: "renders.toteBag",
+    detailAssets: ["fabrics.canvas", "fabrics.woven"],
+    costComparison: benchmark("bags or totes", "bag", "Fabric and weight, dimensions and gusset, handle length, width and anchoring, closure, pockets, the load it must carry, decoration, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Tote Bag & Canvas Bag Manufacturing",
+    seoDescription:
+      "Canvas totes, drawstring bags, shopping bags and tool bags made to your specification in Karachi, Pakistan, and supplied FOB.",
+  },
+  /*
+   * Second round, 10 November 2026: the owner confirmed AHM makes chef trousers
+   * and kitchen textiles, coveralls, knitted sweaters, sportswear and team kits,
+   * sleepwear, towels and bathrobes, and padded jackets. Each needs specialist
+   * equipment or a standard of its own (knitting machines, sublimation, terry
+   * looms, fill), so they are listed as development available until a shipped
+   * order is documented. Nothing about volume, clients or export is claimed.
+   */
+  {
+    slug: "kitchen-textiles",
+    index: 16,
+    name: "Chef Trousers & Kitchen Textiles",
+    shortName: "Kitchen Textiles",
+    programNoun: "kitchen textile",
+    headline: "Chef trousers and\nthe kitchen around them.",
+    intro:
+      "The rest of a kitchen program: chef trousers that move and survive the laundry, and the tea towels, oven gloves and table linen that go through the same wash.",
+    zone: "paper",
+    capabilityStatus: "development_available",
+    subcategories: ["Chef Trousers", "Tea Towels", "Oven Gloves", "Table Linen"],
+    articles: [
+      { name: "Chef Trouser", asset: "renders.chefTrouser", note: "Elasticated or drawcord waist, baggy or slim leg" },
+      { name: "Tea Towel", asset: "renders.teaTowel", note: "Cotton or linen union, hemmed, hanging loop" },
+      { name: "Oven Glove", asset: "renders.ovenGlove", note: "Quilted cotton with heat-resistant wadding, to specification" },
+      { name: "Table Napkin", asset: "renders.tableNapkin", note: "Woven cotton or poly-cotton, mitred corners" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Poly-cotton and cotton twill, cotton and linen-union towelling, cotton and poly-cotton table linen" },
+      { label: "Typical program weight", value: "150-260 gsm for trousers; towels and linen to the article" },
+      { label: "Laundering", value: "Chosen for commercial laundering and confirmed by wash testing" },
+      { label: "Heat protection", value: "Oven gloves only to a buyer-nominated standard, with test evidence" },
+      { label: "Colour", value: "Dyed or yarn-dyed to an approved standard, including classic checks" },
+      { label: "Labelling", value: "Main, care and country-of-origin labels" },
+      { label: "Packing", value: "Folded and banded or polybagged, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Woven labels", "Screen print", "Yarn-dyed patterns"],
+    applications: ["Hospitality", "Food Service", "Retail", "Grocery"],
+    heroAsset: "renders.chefTrouser",
+    detailAssets: ["fabrics.polycottonTwill", "fabrics.woven"],
+    costComparison: benchmark("chef trousers or kitchen textiles", "article", "Fabric and weight, waistband and pockets for trousers, size, hem and loop for textiles, the laundry it must survive, colour, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Chef Trousers & Kitchen Textiles",
+    seoDescription:
+      "Chef trousers, tea towels, oven gloves and table napkins made to your specification in Karachi, Pakistan, for commercial laundering. Supplied FOB.",
+  },
+  {
+    slug: "coveralls",
+    index: 17,
+    name: "Coveralls & Overalls",
+    shortName: "Coveralls",
+    programNoun: "coverall",
+    headline: "Coveralls built\nfor the whole shift.",
+    intro:
+      "One-piece coveralls and bib-and-brace overalls for workshops, plants and maintenance crews, where the crotch, the zips and the knees take the strain.",
+    zone: "ink",
+    capabilityStatus: "development_available",
+    subcategories: ["Boiler Suits", "Zip-Front Coveralls", "Bib-and-Brace Overalls"],
+    articles: [
+      { name: "Zip-Front Work Coverall", asset: "renders.workCoverall", note: "Two-way zip, elasticated back waist, tool pockets" },
+      { name: "Bib-and-Brace Overall", asset: "renders.bibOverall", note: "Adjustable braces, bib pocket, knee-pad pockets option" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Poly-cotton twill, cotton drill, canvas" },
+      { label: "Typical program weight", value: "200-320 gsm" },
+      { label: "Closure", value: "Two-way zip, press-stud storm flap, or buttons" },
+      { label: "Fit", value: "Elasticated back waist, action back pleats, adjustable cuffs" },
+      { label: "Protective claims", value: "Flame-resistant, anti-static or chemical protection only to a buyer-nominated standard, with test evidence" },
+      { label: "Labelling", value: "Main, care, size and country-of-origin labels" },
+      { label: "Packing", value: "Folded, polybag, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Screen print", "Reflective tape", "Applied patches"],
+    applications: ["Industrial", "Facilities"],
+    heroAsset: "renders.workCoverall",
+    detailAssets: ["fabrics.polycottonTwill", "fabrics.canvas"],
+    costComparison: benchmark("coveralls or overalls", "coverall", "Fabric and weight, zip and closures, pocket layout, back waist and pleats, reinforcement at crotch and knees, any protective standard, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Coverall & Overall Manufacturing",
+    seoDescription:
+      "Zip-front coveralls, boiler suits and bib-and-brace overalls made to your specification in Karachi, Pakistan, and supplied FOB.",
+  },
+  {
+    slug: "knitwear",
+    index: 18,
+    name: "Knitted Sweaters & Cardigans",
+    shortName: "Knitwear",
+    programNoun: "knitwear",
+    headline: "Knitwear, by gauge,\nyarn and stitch.",
+    intro:
+      "Flat-knitted sweaters, cardigans and knit vests for corporate, school and retail programs, specified by gauge, yarn and stitch rather than by weight alone.",
+    zone: "paper",
+    capabilityStatus: "development_available",
+    subcategories: ["Crew-Neck Sweaters", "V-Neck Cardigans", "Knit Vests"],
+    articles: [
+      { name: "Crew-Neck Sweater", asset: "renders.knitSweater", note: "Rib neck, cuffs and hem; gauge and yarn to specification" },
+      { name: "V-Neck Cardigan", asset: "renders.knitCardigan", note: "Button front, pockets optional, fully fashioned or cut and sewn" },
+      { name: "Knit Vest", asset: "renders.knitVest", note: "Sleeveless V-neck pullover, rib armholes" },
+    ],
+    specification: [
+      { label: "Yarn options", value: "Cotton, acrylic, wool and wool blends, cotton-acrylic blends" },
+      { label: "Gauge", value: "Needles per inch on the knitting machine, to specification" },
+      { label: "Stitch", value: "Jersey, rib, cable or pattern stitches to an approved swatch" },
+      { label: "Construction", value: "Fully fashioned, or cut and sewn from knitted panels" },
+      { label: "Pilling", value: "Yarn and finish chosen for pilling resistance, tested on the sample" },
+      { label: "Colour", value: "Yarn-dyed to an approved lab dip" },
+      { label: "Labelling", value: "Main, care with the right washing instruction, size and country-of-origin labels" },
+      { label: "Packing", value: "Folded, polybag, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Jacquard knitted logo", "Woven badges"],
+    applications: ["Corporate", "Retail", "Hospitality"],
+    heroAsset: "renders.knitSweater",
+    detailAssets: ["fabrics.rib"],
+    costComparison: benchmark("sweaters or cardigans", "knitted garment", "Yarn and its count, gauge and stitch, construction, trims and buttons, colour, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Knitted Sweater Manufacturing",
+    seoDescription:
+      "Knitted sweaters, cardigans and knit vests made to your gauge, yarn and stitch specification in Karachi, Pakistan, and supplied FOB.",
+  },
+  {
+    slug: "sportswear",
+    index: 19,
+    name: "Sportswear & Team Kits",
+    shortName: "Sportswear",
+    programNoun: "team kit",
+    headline: "Team kits, printed\ninto the fabric.",
+    intro:
+      "Sublimated jerseys, training shorts and track jackets for clubs, schools and events, where the design is dyed into polyester and each player's name and number is a line in the order.",
+    zone: "lime",
+    capabilityStatus: "development_available",
+    subcategories: ["Team Jerseys", "Training Shorts", "Track Jackets", "Training Tops"],
+    articles: [
+      { name: "Sublimated Team Jersey", asset: "renders.teamJersey", note: "All-over sublimation, names and numbers per player" },
+      { name: "Training Short", asset: "renders.trainingShort", note: "Elastic and drawcord waist, mesh or knit, inner brief option" },
+      { name: "Track Jacket", asset: "renders.trackJacket", note: "Full zip, tricot or polyester knit, contrast panels" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Polyester interlock, polyester mesh, tricot, recycled polyester" },
+      { label: "Typical program weight", value: "130-260 gsm" },
+      { label: "Decoration", value: "Sublimation for all-over designs; heat transfer and embroidery for badges" },
+      { label: "Personalisation", value: "Names and numbers per player from a roster" },
+      { label: "Performance claims", value: "Moisture management or UV claims only with a test result" },
+      { label: "Labelling", value: "Main, care, size and country-of-origin labels" },
+      { label: "Packing", value: "Per player or per size, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Sublimation", "Heat transfer", "Embroidery", "Applied patches"],
+    applications: ["Events", "Retail", "Corporate"],
+    heroAsset: "renders.teamJersey",
+    detailAssets: ["fabrics.mesh", "fabrics.polyesterPerformance"],
+    costComparison: benchmark("team kits", "kit", "Fabric and weight, cut and sizes, the design and its sublimation, names and numbers, trims, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Sportswear & Team Kit Manufacturing",
+    seoDescription:
+      "Sublimated team jerseys, training shorts and track jackets made to your design in Karachi, Pakistan, with names and numbers. Supplied FOB.",
+  },
+  {
+    slug: "sleepwear",
+    index: 20,
+    name: "Sleepwear & Pyjamas",
+    shortName: "Sleepwear",
+    programNoun: "sleepwear",
+    headline: "Sleepwear, soft\nand by the rules.",
+    intro:
+      "Woven and jersey pyjama sets and nightshirts for retail and hospitality, where softness is the specification and, for children's sizes, flammability rules come first.",
+    zone: "paper",
+    capabilityStatus: "development_available",
+    subcategories: ["Woven Pyjama Sets", "Jersey Pyjama Sets", "Nightshirts"],
+    articles: [
+      { name: "Woven Pyjama Set", asset: "renders.wovenPyjamas", note: "Notch-collar shirt with piping, drawcord trouser" },
+      { name: "Jersey Pyjama Set", asset: "renders.knitPyjamas", note: "Soft jersey top and bottom, cuffed or straight leg" },
+      { name: "Nightshirt", asset: "renders.nightshirt", note: "Woven, button placket, curved hem" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Cotton poplin, flannel, voile, cotton and modal jersey" },
+      { label: "Typical program weight", value: "100-220 gsm" },
+      { label: "Children's sleepwear", value: "Children's sizes meet the destination market's sleepwear flammability rules, qualified before development" },
+      { label: "Trims", value: "Piping, buttons, drawcords and elastic to specification" },
+      { label: "Colour and print", value: "Dyed, printed or yarn-dyed to an approved standard" },
+      { label: "Labelling", value: "Main, care, size and country-of-origin labels" },
+      { label: "Packing", value: "Folded set, polybag or box, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Screen print", "Piping", "Woven labels"],
+    applications: ["Retail", "Hospitality"],
+    heroAsset: "renders.wovenPyjamas",
+    detailAssets: ["fabrics.woven", "fabrics.singleJersey"],
+    costComparison: benchmark("pyjamas or sleepwear", "set", "Fabric and weight, collar, piping and buttons, waistband, print or check, sizes, any children's sleepwear rule, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Sleepwear & Pyjama Manufacturing",
+    seoDescription:
+      "Woven and jersey pyjama sets and nightshirts made to your specification in Karachi, Pakistan. Children's sleepwear qualified to market rules.",
+  },
+  {
+    slug: "towels-bathrobes",
+    index: 21,
+    name: "Towels & Bathrobes",
+    shortName: "Towels & Robes",
+    programNoun: "towel",
+    headline: "Towels and robes\nfor hotels and spas.",
+    intro:
+      "Terry towels and bathrobes for hotels, spas and retail, specified by GSM, loop yarn and absorbency, and built to survive the laundry a hotel puts them through.",
+    zone: "ink",
+    capabilityStatus: "development_available",
+    subcategories: ["Bath Towels", "Hand and Face Towels", "Terry Bathrobes", "Waffle Bathrobes"],
+    articles: [
+      { name: "Terry Bath Towel", asset: "renders.bathTowel", note: "Cotton terry, dobby border, hemmed ends" },
+      { name: "Shawl-Collar Terry Bathrobe", asset: "renders.terryBathrobe", note: "Shawl collar, belt and loops, patch pockets" },
+      { name: "Waffle Bathrobe", asset: "renders.waffleBathrobe", note: "Lightweight waffle weave, kimono or shawl collar" },
+    ],
+    specification: [
+      { label: "Fabric options", value: "Cotton terry, zero-twist and ring-spun loop yarns, cotton waffle, velour" },
+      { label: "Typical weight", value: "Towels about 400-700 gsm; robes to the fabric" },
+      { label: "Construction", value: "Dobby or plain border, hemmed ends, double-stitched edges" },
+      { label: "Absorbency and shrinkage", value: "Confirmed by testing after washing" },
+      { label: "Colour", value: "Dyed to an approved standard; bleach-safe whites for hotel laundries" },
+      { label: "Labelling", value: "Main, care and country-of-origin labels" },
+      { label: "Packing", value: "Folded and banded, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Jacquard woven border", "Woven labels"],
+    applications: ["Hospitality", "Retail"],
+    heroAsset: "renders.bathTowel",
+    detailAssets: ["fabrics.woven"],
+    costComparison: benchmark("towels or bathrobes", "article", "Fabric, GSM and loop yarn, size, border, hems, collar and pockets for robes, colour and laundry, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Towel & Bathrobe Manufacturing",
+    seoDescription:
+      "Terry towels and terry and waffle bathrobes for hotels, spas and retail, made to your GSM and specification in Karachi, Pakistan. Supplied FOB.",
+  },
+  {
+    slug: "padded-jackets",
+    index: 22,
+    name: "Puffer & Padded Jackets",
+    shortName: "Padded Jackets",
+    programNoun: "padded jacket",
+    headline: "Warmth, quilted\nin by design.",
+    intro:
+      "Quilted puffer jackets, padded gilets and work parkas, where warmth comes from the fill and its weight, and the quilting decides whether it stays where it was put.",
+    zone: "ink",
+    capabilityStatus: "development_available",
+    subcategories: ["Puffer Jackets", "Padded Gilets", "Padded Parkas"],
+    articles: [
+      { name: "Quilted Puffer Jacket", asset: "renders.pufferJacket", note: "Synthetic or down fill, stitch-through quilting, zip front" },
+      { name: "Padded Gilet", asset: "renders.paddedGilet", note: "Sleeveless, quilted, zip pockets" },
+      { name: "Padded Work Parka", asset: "renders.paddedParka", note: "Hip or thigh length, padded hood, storm flap" },
+    ],
+    specification: [
+      { label: "Shell options", value: "Nylon or polyester taffeta, ripstop, polyester oxford" },
+      { label: "Fill", value: "Synthetic wadding by g/m², or down by fill power and down-to-feather ratio" },
+      { label: "Down sourcing", value: "Down only with traceability to a buyer-nominated standard, such as the Responsible Down Standard" },
+      { label: "Quilting", value: "Stitch-through or box baffle, channel size to specification" },
+      { label: "Water repellency", value: "DWR finish confirmed by spray test" },
+      { label: "Labelling", value: "Main, care, fill content and country-of-origin labels" },
+      { label: "Packing", value: "Folded or rolled, polybag, carton pack to buyer instruction" },
+      { label: "Minimum quantity", value: null },
+      { label: "Sampling", value: null },
+      { label: "Lead time", value: null },
+    ],
+    decoration: ["Embroidery", "Heat transfer", "Applied patches", "Reflective prints"],
+    applications: ["Corporate", "Industrial", "Retail", "Events"],
+    heroAsset: "renders.pufferJacket",
+    detailAssets: ["fabrics.softshell"],
+    costComparison: benchmark("padded or puffer jackets", "jacket", "Shell fabric, fill type and weight, quilting, zip and pockets, hood, finish, labels and packing, read from the reference rather than assumed."),
+    seoTitle: "Puffer & Padded Jacket Manufacturing",
+    seoDescription:
+      "Quilted puffer jackets, padded gilets and work parkas with synthetic or down fill, made to your specification in Karachi, Pakistan. Supplied FOB.",
   },
 ];
 

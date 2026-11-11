@@ -208,6 +208,389 @@ export const productFaqs: Record<string, FaqItem[]> = {
         "Folded and polybagged, or hanging, to your packing instruction. Outerwear is bulky, so carton configuration has a real effect on freight cost and is worth confirming before production rather than at dispatch.",
     },
   ],
+  "hospitality-food-service": [
+    {
+      question: "Which fabric is best for chef coats?",
+      answer:
+        "Most chef coats are poly-cotton or 100% cotton twill or drill. Poly-cotton dries faster, creases less and keeps its colour through industrial laundering; cotton breathes better and is often preferred near heat. The right choice depends on the kitchen and on who launders the coats, so tell us both.",
+    },
+    {
+      question: "Can front-of-house and back-of-house uniforms match?",
+      answer:
+        "Yes, if colour is approved across the program rather than garment by garment. A knit polo, a woven shirt and a twill apron take dye differently, so the lab dips for each are approved against each other as well as against your standard.",
+    },
+    {
+      question: "Do you offer stain-release or soil-release finishes?",
+      answer:
+        "They are available subject to the fabric selected, and their performance after laundering is confirmed by testing you approve. A finish weakens with washing, so ask what the test measures and after how many washes, rather than accepting a description.",
+    },
+    {
+      question: "Can chef coats have press studs instead of knot buttons?",
+      answer:
+        "Yes. Closure is a specification decision: knot buttons, press studs or removable studs. Press studs are worth a pull test on the sample, and removable studs need a plan for losses in the laundry.",
+    },
+    {
+      question: "Do you make chef hats and skull caps?",
+      answer:
+        "Chef skull caps and beanies are part of the range, and are listed with our caps and headwear as well. Like the rest of chef wear, they are built for the laundry they will face.",
+    },
+  ],
+
+  denim: [
+    {
+      question: "What weight of denim should a work garment use?",
+      answer:
+        "Work shirts commonly sit around 6 to 8 oz per square yard, jackets and work trousers higher, often 10 to 14 oz. The weight is a balance between durability and comfort in the climate the wearer works in, and it is confirmed on a swatch and a sample, not from the number alone.",
+    },
+    {
+      question: "How much will a denim garment shrink?",
+      answer:
+        "That depends on whether the fabric is sanforised and on the wash. Shrinkage is measured on the fabric and on the washed garment at development, and the pattern is adjusted for it, which is why the wash is fixed before the pattern is finalised.",
+    },
+    {
+      question: "Can you match an existing wash?",
+      answer:
+        "We develop a wash against a physical reference you approve. Washes vary from lot to lot by nature, so agree a tolerance band, ideally a light and a dark limit sample, before bulk.",
+    },
+    {
+      question: "Who supplies rivets, buttons and zips?",
+      answer:
+        "Hardware can be nominated by you or proposed against your requirement. Denim washes are hard on hardware, so whatever is chosen should go through the wash on the sample before it is approved.",
+    },
+    {
+      question: "Is stretch denim suitable for workwear?",
+      answer:
+        "A small percentage of elastane improves comfort and movement, at some cost to durability and to recovery over many washes. For heavy-duty work, rigid denim or a low stretch content is the usual choice; test recovery on the sample.",
+    },
+  ],
+
+  athleisure: [
+    {
+      question: "What fabrics are used for joggers and lounge pants?",
+      answer:
+        "Usually brushed-back fleece or French terry for joggers, and jersey, interlock or a woven for lounge pants. Weight, hand feel and stretch decide how the garment wears, so they are confirmed on a physical sample rather than from a specification sheet.",
+    },
+    {
+      question: "How do you control stretch and recovery?",
+      answer:
+        "Through the fabric: elastane content, knit construction and finishing. Recovery is checked on the development sample after washing, because a fabric that recovers well new can bag at the knee after a few washes.",
+    },
+    {
+      question: "Can athleisure carry printed or sublimated designs?",
+      answer:
+        "Yes, with the method chosen for the fabric. Sublimation needs a high polyester content and a light ground; screen printing and heat transfer suit cotton-rich fabrics. The method and the fabric are decided together.",
+    },
+    {
+      question: "Do you make both joggers and matching tops?",
+      answer:
+        "Yes. Where a set must match, the fabrics are developed and colour-approved together, since a top and a bottom in different constructions take dye differently.",
+    },
+    {
+      question: "What sizes can you produce?",
+      answer:
+        "Your size specification, graded from an approved base size. Athleisure fits vary widely, so a size set is checked on fit models before bulk.",
+    },
+  ],
+
+  womenswear: [
+    {
+      question: "Why not grade a women's size from the men's pattern?",
+      answer:
+        "Because the proportions differ: bust, waist, hip and shoulder do not scale together. A women's garment cut from a scaled men's pattern fits badly across the bust and hip. A separate block, developed and fitted on its own, is what makes a women's uniform fit.",
+    },
+    {
+      question: "Can men's and women's uniforms match exactly?",
+      answer:
+        "In colour, fabric and branding, yes, by approving them as one program. The cut differs by design: placket direction, darts, sleeve length and hem shape are set for each block.",
+    },
+    {
+      question: "Do you produce extended and inclusive size ranges?",
+      answer:
+        "We work to your size specification, including extended ranges. Larger sizes are graded and fitted, not just enlarged, so tell us the full range at development.",
+    },
+    {
+      question: "What garments are in a women's uniform range?",
+      answer:
+        "Typically polos, T-shirts, woven shirts and blouses, knit layers and outerwear, cut on women's blocks. Send the articles you run today and we will review them as a set.",
+    },
+    {
+      question: "Is maternity wear available?",
+      answer:
+        "Maternity uniform is a specialist block with its own fit requirements. Ask us about your requirement and we will tell you what can be developed for it, rather than adapting a standard pattern.",
+    },
+  ],
+
+  kidswear: [
+    {
+      question: "Which safety rules apply to children's clothing?",
+      answer:
+        "They are set by the destination market. In the United States the Consumer Product Safety Improvement Act requires third-party testing and a Children's Product Certificate, with rules on lead, small parts and flammability; drawstrings on children's upper outerwear are restricted. In the UK and EU, EN 14682 covers cords and drawstrings. Name your markets at the start so the requirements are set before development.",
+    },
+    {
+      question: "Who is responsible for the certificate?",
+      answer:
+        "Under US rules the importer or the domestic manufacturer issues the Children's Product Certificate, based on tests by an accepted third-party laboratory. We work to the requirement you nominate and support the testing; the certificate itself is the importer's.",
+    },
+    {
+      question: "Are press studs on baby wear safe?",
+      answer:
+        "Press studs are small parts, so attachment strength matters. They are specified nickel-free where skin contact applies, and pull-tested to the standard your market requires, on the sample and in production.",
+    },
+    {
+      question: "Can children's garments be printed?",
+      answer:
+        "Yes, with print chemistry chosen for the market's restricted-substance limits. Ask for the ink system and its test evidence, especially for infant wear, which is often mouthed.",
+    },
+    {
+      question: "Do you make school uniform?",
+      answer:
+        "School uniform is part of the kidswear range: polos, shirts, trousers and knit layers made to the school's specification and colours. Send the current garments or the school's specification for review.",
+    },
+  ],
+
+  "medical-scrubs": [
+    {
+      question: "Which fabric is best for scrubs?",
+      answer:
+        "Poly-cotton is the long-standing choice: durable, quick-drying and colour-fast under hot laundering. Polyester-viscose with elastane gives stretch and a softer hand and is common in modern fits; 100% cotton is cooler but shrinks and fades more. The choice follows the laundry the scrubs will go through.",
+    },
+    {
+      question: "Can scrubs be antimicrobial or fluid-repellent?",
+      answer:
+        "Finishes exist for both, but a claim needs evidence. We apply a functional finish only to a standard you nominate, with test results, and do not describe a garment as antimicrobial or fluid-repellent without them. In some markets antimicrobial claims are also regulated, so check yours.",
+    },
+    {
+      question: "Are scrubs medical devices or PPE?",
+      answer:
+        "Standard scrubs are workwear. Garments sold as protection against infection or fluids, such as surgical gowns, fall under medical device or personal protective equipment rules and need certification. Tell us what the garment will be sold as, and we will tell you whether it is something we can make.",
+    },
+    {
+      question: "Can you match a hospital's colour codes?",
+      answer:
+        "Yes. Colours are dyed to an approved lab dip, so a department's colour can be matched to your reference and held across reorders.",
+    },
+    {
+      question: "What sizes and fits do scrubs come in?",
+      answer:
+        "Whatever your size specification sets: unisex or cut-for-gender, with regular, petite and tall lengths where the range needs them. A size set is checked before bulk.",
+    },
+  ],
+
+  "caps-headwear": [
+    {
+      question: "What is the difference between a structured and an unstructured cap?",
+      answer:
+        "A structured cap has a stiff buckram lining behind the front panels, so the crown holds its shape and gives a flat surface for a logo. An unstructured cap has no backing and sits lower and softer on the head. Choose structured for crisp embroidery, unstructured for a relaxed look.",
+    },
+    {
+      question: "Which closure should a uniform cap use?",
+      answer:
+        "Adjustable closures (snapback, strap and buckle, or hook and loop) let one size fit most heads, which simplifies a uniform program. Fitted caps look neater but need a size run. The choice goes in the specification.",
+    },
+    {
+      question: "Can the logo be 3D embroidery?",
+      answer:
+        "3D puff embroidery raises the design over a foam underlay and suits bold, simple shapes on a structured front. Fine detail and small text work better flat. Send the artwork and we will advise on the method.",
+    },
+    {
+      question: "How are caps packed for export?",
+      answer:
+        "Nested in stacks or individually bagged, in cartons sized so the crowns are not crushed. The packing instruction is worth fixing early, because it affects both the condition of the caps on arrival and the freight.",
+    },
+    {
+      question: "Do you make headwear for kitchens?",
+      answer:
+        "Yes: chef skull caps and beanies built for repeated laundering, with elastic or tie backs. They appear in our hospitality range too.",
+    },
+  ],
+
+  "bags-totes": [
+    {
+      question: "What fabric weight should a tote bag use?",
+      answer:
+        "It depends on the load and the use. Light promotional totes use lighter cotton or polyester; reusable shopping and tool bags use heavier canvas, often quoted as 10 to 16 oz per square yard. Tell us what the bag must carry and we will propose a fabric to sample.",
+    },
+    {
+      question: "How strong are the handles?",
+      answer:
+        "As strong as their anchoring. Handles are usually anchored with a box-and-cross stitch or bar tacks, and their length, width and fabric are set in the specification. State the load the bag must carry, and check it on the sample.",
+    },
+    {
+      question: "What is a gusset and do I need one?",
+      answer:
+        "A gusset is a panel that gives a bag depth, at the bottom or around the sides. A flat tote is cheapest and folds flat; a gusseted bag carries boxes and bulky items better. Specify its width.",
+    },
+    {
+      question: "Can bags be printed all over?",
+      answer:
+        "Screen printing suits logos and spot designs on canvas; heat transfer and sublimation suit full-colour designs on suitable fabrics, sublimation needing polyester. The method follows the artwork and the fabric.",
+    },
+    {
+      question: "Can you make bags from recycled fabric?",
+      answer:
+        "Recycled polyester and recycled cotton blends are available fabric options. If the bag will carry a recycled-content claim, the claim needs certification such as GRS from the fabric supply chain; ask for the evidence before you print it.",
+    },
+  ],
+  "kitchen-textiles": [
+    {
+      question: "What makes a good chef trouser?",
+      answer:
+        "A waist that adjusts (elastic, drawcord or both), a cut that allows squatting and lifting, deep pockets, and a fabric that survives hot commercial laundering. Baggy chef trousers are traditional for airflow; slimmer cuts are common now. Specify the waist, leg and fabric.",
+    },
+    {
+      question: "Cotton or linen union for tea towels?",
+      answer:
+        "Cotton terry and cotton twill are absorbent and soft; linen union (a cotton-linen blend) dries glass and cutlery without lint. Choose for the job, and specify size, weight, hem and hanging loop.",
+    },
+    {
+      question: "Are your oven gloves heat-rated?",
+      answer:
+        "An oven glove is protective, so its heat resistance has to be tested to a standard the buyer nominates. We build to that standard with the wadding and construction it needs, and make no heat claim without the test.",
+    },
+    {
+      question: "Can table linen be made to a hotel's colours?",
+      answer:
+        "Yes. Napkins and tablecloths are dyed or yarn-dyed to an approved standard, with mitred corners and hems specified, and chosen to keep their colour through hotel laundering.",
+    },
+  ],
+
+  coveralls: [
+    {
+      question: "What is the difference between a coverall and a bib-and-brace overall?",
+      answer:
+        "A coverall (boiler suit) is one piece with sleeves, covering the whole body. A bib-and-brace overall is a trouser with a bib and shoulder braces, worn over a shirt. Coveralls protect more; bib overalls are cooler and easier to take off.",
+    },
+    {
+      question: "Why do coveralls have a two-way zip?",
+      answer:
+        "A zip that opens from the bottom as well as the top lets the wearer open the coverall for comfort or the toilet without unzipping it fully.",
+    },
+    {
+      question: "Can coveralls be flame-resistant or anti-static?",
+      answer:
+        "Only when they are made from certified fabric to a standard the buyer nominates, such as the EN ISO 11612 or EN 1149 families in Europe, and certified as finished garments. An ordinary poly-cotton coverall is not protective clothing.",
+    },
+    {
+      question: "How should coverall sizes work?",
+      answer:
+        "By chest size and by length, since people of one chest size differ in height. Regular and tall lengths in each chest size fit far more wearers.",
+    },
+  ],
+
+  knitwear: [
+    {
+      question: "What does gauge mean in knitwear?",
+      answer:
+        "Gauge is the number of needles per inch on the knitting machine. A low gauge (3 to 7) makes a chunky knit; a high gauge (12 to 16) makes a fine, smooth one. Gauge, yarn and stitch together decide how a sweater looks and feels.",
+    },
+    {
+      question: "What is fully fashioned knitwear?",
+      answer:
+        "Each piece is knitted to its shape, so edges are finished and seams are linked rather than cut and overlocked. Cut-and-sew knitwear is cut from knitted panels, which is cheaper and less refined.",
+    },
+    {
+      question: "Which yarn pills least?",
+      answer:
+        "Long-staple, tightly spun yarns pill less. Acrylic and short-fibre blends tend to pill more. Pilling is tested on the sample, and the yarn chosen for the result the buyer needs.",
+    },
+    {
+      question: "Can a logo be knitted into a sweater?",
+      answer:
+        "Yes, as a jacquard or intarsia motif knitted into the fabric, or added afterwards as embroidery or a woven badge. Knitted-in logos have limits on fine detail.",
+    },
+  ],
+
+  sportswear: [
+    {
+      question: "What is sublimation printing for team kits?",
+      answer:
+        "The design is printed onto paper with sublimation dyes and transferred into polyester fabric with heat, so the colour becomes part of the fibre. It does not crack or peel and allows unlimited colours, but needs polyester and a light base.",
+    },
+    {
+      question: "How are player names and numbers handled?",
+      answer:
+        "From a roster: each player's name, number and size on one list. Names and numbers can be sublimated into the design or applied as heat transfers.",
+    },
+    {
+      question: "What fabric suits a team jersey?",
+      answer:
+        "Polyester interlock or mesh, light and quick-drying, sometimes with mesh panels for ventilation. Recycled polyester works the same way for sublimation.",
+    },
+    {
+      question: "Can you match a club's colours exactly?",
+      answer:
+        "Colours are matched to the club's references on a strike-off before production. Sublimated colours can look different on different fabrics, so approve on the actual fabric.",
+    },
+  ],
+
+  sleepwear: [
+    {
+      question: "Do children's pyjamas have special rules?",
+      answer:
+        "Yes. In the United States, children's sleepwear must meet strict flammability standards (16 CFR 1615 and 1616) or be tight-fitting within set dimensions, and children's products need third-party testing. Other markets have their own rules. Children's sleepwear is qualified before development.",
+    },
+    {
+      question: "Which fabric is softest for pyjamas?",
+      answer:
+        "Cotton and modal jersey feel soft and stretchy; brushed cotton flannel is warm; cotton voile and poplin are cool and crisp. Choose for the season and the market.",
+    },
+    {
+      question: "Can pyjamas be made for hotels?",
+      answer:
+        "Yes, as guest sleepwear or spa wear in the hotel's colours, with an embroidered logo, chosen to survive hotel laundering.",
+    },
+    {
+      question: "How are pyjama sets packed?",
+      answer:
+        "As a folded set, polybagged or boxed for retail, with top and bottom kept together by size. Packing is set in the buyer's instruction.",
+    },
+  ],
+
+  "towels-bathrobes": [
+    {
+      question: "What GSM should a hotel towel be?",
+      answer:
+        "Many hotel bath towels sit around 500-600 gsm. Lighter towels dry faster and cost less to launder; heavier towels feel more luxurious. Choose for the guest experience and the laundry.",
+    },
+    {
+      question: "What is zero-twist towelling?",
+      answer:
+        "Towelling woven with loop yarn that has very little twist, so the loops are softer and more absorbent. It is usually less durable than ring-spun loops in heavy laundering.",
+    },
+    {
+      question: "Terry or waffle bathrobes for a hotel?",
+      answer:
+        "Terry robes are thick, warm and absorbent; waffle robes are lighter, dry faster and pack smaller. Spas often use waffle; hotel rooms often use terry.",
+    },
+    {
+      question: "How do towels keep their colour in hotel laundries?",
+      answer:
+        "Hotels often use bleach, so whites are the default. Coloured towels need dyes chosen for colourfastness to the hotel's chemicals, tested before bulk.",
+    },
+  ],
+
+  "padded-jackets": [
+    {
+      question: "Down or synthetic fill?",
+      answer:
+        "Down is lighter and warmer for its weight and packs small, but loses warmth when wet and needs traceable sourcing. Synthetic fill keeps some warmth when wet, is easier to wash and costs less. Workwear programs usually choose synthetic.",
+    },
+    {
+      question: "What is fill power?",
+      answer:
+        "A measure of how much space an ounce of down fills, a guide to its quality and warmth for its weight. Synthetic fill is specified by weight in grams per square metre instead.",
+    },
+    {
+      question: "What is the difference between stitch-through and baffle quilting?",
+      answer:
+        "Stitch-through quilting sews shell and lining together, which is simpler but leaves cold spots along the seams. Baffle construction adds fabric walls between the layers, so the fill is even and warmer.",
+    },
+    {
+      question: "Can down be sourced responsibly?",
+      answer:
+        "Yes, with traceability to a standard such as the Responsible Down Standard, which certifies animal welfare in the supply chain. If your program requires it, nominate it at the start.",
+    },
+  ],
 };
 
 export function getProductFaqs(slug: string): FaqItem[] {

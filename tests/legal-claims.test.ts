@@ -152,3 +152,24 @@ test("the privacy policy names Google only when analytics are on", () => {
   assert.match(on, /Google, as the analytics provider/);
   assert.doesNotMatch(off, /Google/);
 });
+
+test("the visit counter is disclosed only where its totals can be stored", () => {
+  const on = privacySectionsFor({ mail: true, webhook: false, storage: true }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  const off = privacySectionsFor({ mail: true, webhook: false }, false).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  assert.match(on, /daily total/i);
+  assert.match(on, /no IP address, browser details or identifier/i);
+  assert.match(on, /ahm_seen/);
+  assert.match(on, /switch it off/i);
+  assert.doesNotMatch(off, /daily total/i);
+
+  const cookiesOn = cookieSectionsFor(false, { register: true }).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  const cookiesOff = cookieSectionsFor(false, { register: false }).flatMap((s) => [...s.body, ...(s.list ?? [])]).join(" ");
+  // The cookie is named, its content and lifetime stated, and the opt-out given.
+  assert.match(cookiesOn, /ahm_seen/);
+  assert.match(cookiesOn, /13 months/);
+  assert.match(cookiesOn, /set without asking/);
+  assert.match(cookiesOn, /Global Privacy Control/);
+  // Without the store there is no counter, so neither the cookie nor a banner is claimed.
+  assert.doesNotMatch(cookiesOff, /ahm_seen/);
+  assert.match(cookiesOff, /nothing to consent to/);
+});

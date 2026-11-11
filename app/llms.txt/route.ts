@@ -1,6 +1,9 @@
 import { indexableRoutes } from "@/data/routes";
 import { company } from "@/data/company";
 import { siteConfig } from "@/lib/seo";
+import { productCategories } from "@/data/products";
+import { productItems, itemPath } from "@/data/items";
+import { guides } from "@/data/guides";
 
 /**
  * GET /llms.txt
@@ -19,19 +22,41 @@ import { siteConfig } from "@/lib/seo";
 export const dynamic = "force-static";
 
 export async function GET() {
-  const grouped = new Map<string, string[]>();
+  // Products, items and guides carry a title and a one-line description, the
+  // form the llms.txt convention asks for, taken from the same text the pages
+  // render. Every other indexable route is listed by section after them.
+  const url = (path: string) => `${company.siteUrl}${path}`;
+  const firstSentence = (text: string) => (text.match(/^.*?[.!?](\s|$)/)?.[0] ?? text).trim();
+  const described = new Set<string>();
+  const line = (title: string, path: string, description: string) => {
+    described.add(path);
+    return `- [${title}](${url(path)}): ${firstSentence(description)}`;
+  };
 
+  const productLines = productCategories.map((c) => line(c.name, `/products/${c.slug}`, c.intro)).join("\n");
+  const itemLines = productCategories
+    .map((c) => {
+      const items = productItems.filter((i) => i.family === c.slug);
+      if (items.length === 0) return "";
+      return `### ${c.name}\n\n${items.map((i) => line(i.title, itemPath(i), i.summary)).join("\n")}`;
+    })
+    .filter(Boolean)
+    .join("\n\n");
+  const guideLines = guides
+    .filter((g) => g.blocks.length > 0)
+    .map((g) => line(g.title, `/resources/${g.slug}`, g.summary))
+    .join("\n");
+
+  const grouped = new Map<string, string[]>();
   for (const route of indexableRoutes) {
+    if (described.has(route.path)) continue;
     const segment = route.path === "/" ? "Home" : route.path.split("/")[1];
     const label = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ");
     const list = grouped.get(label) ?? [];
-    list.push(`${company.siteUrl}${route.path}`);
+    list.push(`- ${url(route.path)}`);
     grouped.set(label, list);
   }
-
-  const sections = [...grouped.entries()]
-    .map(([label, urls]) => `## ${label}\n\n${urls.map((u) => `- ${u}`).join("\n")}`)
-    .join("\n\n");
+  const sections = [...grouped.entries()].map(([label, urls]) => `### ${label}\n\n${urls.join("\n")}`).join("\n\n");
 
   const body = `# ${company.name}
 
@@ -57,7 +82,19 @@ size, machinery count, years in business, certifications, minimum order quantity
 lead time. Pricing, MOQ, sampling
 cost and lead time depend on the specific article and are quoted against a buyer's specification.
 
-## Pages
+## Product families
+
+${productLines}
+
+## Products
+
+${itemLines}
+
+## Buyer guides
+
+${guideLines}
+
+## Other pages
 
 ${sections}
 

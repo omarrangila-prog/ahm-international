@@ -44,10 +44,9 @@ the folder that exists precisely because those garments carry a customer's
 mark. The originals were held out of the master set; the web derivatives were
 built and deployed anyway, so the marks were live on the site.
 
-Confirmed by inspection, not by filename: an Armani Exchange hangtag, a
-Virginia Tech hoodie, TapouT graphics, a Hardcore logo jogger, Nautica, CarMax,
-Hannaford, D'Agostino, Food City, County Market, Army Navy, Arizona, and infant
-bodysuits carrying **Pampers** and **Ukrop's**.
+Confirmed by inspection, not by filename: customer, retailer, licensed and
+third-party marks across the set, including on infant bodysuits. The list is in
+`asset-pack/client-branded-hold/README.md`.
 
 What was done:
 

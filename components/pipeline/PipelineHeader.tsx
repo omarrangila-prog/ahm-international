@@ -4,7 +4,7 @@ import { can, ROLE_LABEL } from "@/lib/pipeline/staff";
 import type { Staff } from "@/lib/pipeline/session";
 import { cn } from "@/lib/utils";
 
-export function PipelineHeader({ staff, active }: { staff: Staff; active?: "board" | "reports" }) {
+export function PipelineHeader({ staff, active }: { staff: Staff; active?: "board" | "reports" | "traffic" }) {
   const item = (on: boolean) =>
     cn(
       "inline-flex h-10 items-center border-b-2 px-1 text-sm font-medium transition-colors",
@@ -24,6 +24,9 @@ export function PipelineHeader({ staff, active }: { staff: Staff; active?: "boar
             </Link>
             <Link href="/pipeline/reports" className={item(active === "reports")} aria-current={active === "reports" ? "page" : undefined}>
               Reports
+            </Link>
+            <Link href="/pipeline/traffic" className={item(active === "traffic")} aria-current={active === "traffic" ? "page" : undefined}>
+              Traffic
             </Link>
             {can(staff.role, "export") && (
               // A plain anchor: the export is a file download, not a page to prefetch.

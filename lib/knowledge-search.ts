@@ -99,18 +99,24 @@ export function buildIndex(entries: KnowledgeEntry[], known: { queries: string[]
 
 /**
  * A word the index does not contain, replaced by its one-edit neighbour. When
- * several words are one edit away, the one more entries use wins ("shrinkge"
- * is closer to the common "shrinkage" than to "shrink"); a tie is not guessed.
+ * several words are one edit away, the one more entries use wins. Between two
+ * used equally often, a word one letter longer than the typed one wins over
+ * the rest, because a dropped letter is the most common typing slip:
+ * "shrinkge" is "shrinkage" missing an "a" before it is "shrink" with a stray
+ * "g". Any other tie is not guessed.
  */
 function correct(token: string, vocabulary: Map<string, number>): string {
   if (vocabulary.has(token) || token.length < 5) return token;
+  // Rank: entries first, then "the typed word is missing one letter".
+  const rank = (v: string, count: number) => count * 2 + (v.length === token.length + 1 ? 1 : 0);
   let best: string | null = null;
-  let bestCount = 0;
+  let bestRank = 0;
   let tied = false;
   for (const [v, count] of vocabulary) {
     if (v.length < 4 || !editDistanceAtMostOne(token, v)) continue;
-    if (count > bestCount) [best, bestCount, tied] = [v, count, false];
-    else if (count === bestCount) tied = true;
+    const r = rank(v, count);
+    if (r > bestRank) [best, bestRank, tied] = [v, r, false];
+    else if (r === bestRank) tied = true;
   }
   return best && !tied ? best : token;
 }
