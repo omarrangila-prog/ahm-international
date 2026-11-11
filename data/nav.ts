@@ -111,6 +111,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
+      { label: "Our team", href: "/team" },
       { label: "Manufacturing network", href: "/manufacturing-network" },
       { label: "Business verification", href: "/verification" },
       { label: "Capabilities", href: "/capabilities" },

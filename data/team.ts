@@ -36,8 +36,10 @@ export type Unit = {
   /** One sentence on what the unit does. */
   role?: string;
   lead?: Person;
-  /** People in this unit, not counting its sub-units. */
+  /** People in this unit, including its lead, not counting its sub-units. */
   headcount?: number;
+  /** The figure is a floor the owner gave as "N+", shown with a plus. */
+  plus?: boolean;
   children?: Unit[];
 };
 
@@ -49,14 +51,39 @@ export type Organisation = {
   leadership: Person[];
   departments: Unit[];
   /** People at partner factories working on AHM programs, if the owner gives a figure. Never added to the team total. */
-  partnerFactories?: { headcount: number; note: string };
+  partnerFactories?: { headcount: number; plus?: boolean; note: string };
 };
 
+/*
+ * Supplied by the owner on 11 November 2026: about 200 employees in cutting
+ * and stitching, more in the other teams (no figure given), and more than
+ * 1,000 workers across the partner factories AHM works with ("hybrid"). The
+ * other teams are named by the functions the site already describes AHM
+ * performing (company.manufacturingModel), not by invented departments, and
+ * carry no number until the owner gives one.
+ */
 export const organisation: Organisation = {
-  source: null,
-  asOf: null,
+  source: "AHM International (owner)",
+  asOf: "2026-11-11",
   leadership: [],
-  departments: [],
+  departments: [
+    {
+      id: "production",
+      name: "Cutting & Stitching",
+      role: "AHM's own production floor: the cutting room and the sewing lines.",
+      headcount: 200,
+    },
+    {
+      id: "office",
+      name: "Development, Quality & Export",
+      role: "Product development and sampling, buyer communication, quality coordination and FOB export from Karachi.",
+    },
+  ],
+  partnerFactories: {
+    headcount: 1000,
+    plus: true,
+    note: "Workers across the partner factories AHM produces with. They are the partners' own staff, not AHM's.",
+  },
 };
 
 /** People in a unit including every sub-unit, counting only figures that were given. */
@@ -73,6 +100,15 @@ export function hasFigure(unit: Unit): boolean {
 export function teamTotal(org: Organisation = organisation): number {
   return org.leadership.length + org.departments.reduce((n, d) => n + unitTotal(d), 0);
 }
+
+/** Whether the team total is a floor: some unit has no figure, or a figure given as "N+". */
+export function totalIsFloor(org: Organisation = organisation): boolean {
+  const walk = (u: Unit): boolean => u.plus === true || u.headcount === undefined && !(u.children ?? []).some(hasFigure) || (u.children ?? []).some(walk);
+  return org.departments.some(walk);
+}
+
+/** "200+", "1,000+", "48": a figure as the page prints it. */
+export const formatCount = (n: number, plus = false) => `${n.toLocaleString("en-GB")}${plus ? "+" : ""}`;
 
 /** The page exists only once a real structure, with its source, has been supplied. */
 export function teamPublished(org: Organisation = organisation): boolean {
