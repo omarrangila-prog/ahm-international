@@ -7,6 +7,7 @@ import { SmartImage, SIZES } from "@/components/ui/SmartImage";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { ArrowLink } from "@/components/ui/Button";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
+import { teamPublished } from "@/data/team";
 import { WhyAhm } from "@/components/sections/WhyAhm";
 import { company, publicValue, NOT_PUBLISHED } from "@/data/company";
 import { hasAsset } from "@/data/assets";
@@ -230,6 +231,10 @@ export default function AboutPage() {
         guidesFor="/about"
         title="Explore next"
         links={[
+          // Appears by itself once data/team.ts holds the real structure.
+          ...(teamPublished()
+            ? [{ label: "Our team", href: "/team", description: "How AHM is organised, department by department." }]
+            : []),
           { label: "Manufacturing capabilities", href: "/capabilities", description: "Thirteen capabilities, each described by what it produces for you." },
           { label: "U.S. uniform apron program", href: "/case-studies/us-uniform-apron-program", description: "The documented FOB program, anonymised." },
           { label: "Sourcing from Karachi", href: "/garment-manufacturer-karachi", description: "Why the manufacturer's city affects your schedule." },

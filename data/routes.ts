@@ -8,6 +8,7 @@ import { caseStudies } from "./caseStudies";
 import { guides } from "./guides";
 import { buyerStories } from "./buyerStories";
 import { portfolioItems } from "./portfolio";
+import { teamPublished } from "./team";
 
 /**
  * ROUTE REGISTRY
@@ -112,6 +113,7 @@ export const routes: RouteEntry[] = [
   { path: "/verification", priority: 0.7, changeFrequency: "monthly" },
   // Exists only once a photographed article does (data/portfolio.ts).
   { path: "/our-work", priority: 0.8, changeFrequency: "monthly", noindex: portfolioItems().length === 0 },
+  { path: "/team", priority: 0.7, changeFrequency: "monthly", noindex: !teamPublished() },
   { path: "/sustainability", priority: 0.5, changeFrequency: "yearly" },
 
   // Legal. Low priority but genuinely indexable — a procurement reviewer looks
