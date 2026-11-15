@@ -679,6 +679,31 @@ not by invented departments. Add a department or a figure only from the owner;
 a named person needs `consent: true`. Emptying `departments` (or `source`)
 takes the page, its sitemap entry and its links down together.
 
+## Seven language landing pages, and a daily guides routine
+
+`/de /fr /es /ar /it /nl /pl` (`app/[lang]/page.tsx`, content in
+`data/locales.ts`), asked for by the owner on 16 November 2026. Each is written
+in its language and says only what the English site says: the own-and-partner
+model, the owner's team figures, the documented apron export, FOB Port Qasim,
+the four-step process, and (EU languages only) the GSP+ note to check. Product
+names link to the English pages and say so. `lang`/`dir` sit on the page
+wrapper, so Arabic runs right to left. hreflang joins the seven and the English
+home (x-default English) in page metadata and in the sitemap. The footer lists
+them by their own names. Not yet read by native speakers: `reviewed: false`.
+
+The `[lang]` segment makes `@next/next/no-html-link-for-pages` think any
+one-segment path is a language page; three deliberate `<a>` links carry a
+disable comment saying so. `tests/locales.test.ts` holds completeness, the
+owner's figures, no price, quantity, lead time or certificate, and hreflang.
+
+A cloud routine ("AHM daily buyer guides", claude.ai/code/routines) writes up
+to five guides a day into `data/guides-daily-<YYYY>-<MM>.ts` and merges them to
+main if typecheck, lint, tests and build pass (the owner chose automatic
+publishing). It needs the Claude GitHub App on the repository to push, and its
+network does not reach some government sites, so it writes from search results
+and keeps claims conservative. Its guides follow every rule above; a test that
+fails is a reason to drop the guide, never to change the test.
+
 ## The facility gallery is attributed by path
 
 `/manufacturing-network` shows a gallery under "AHM-Owned Manufacturing" and

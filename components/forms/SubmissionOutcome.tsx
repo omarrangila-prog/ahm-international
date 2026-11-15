@@ -102,6 +102,7 @@ export function SubmissionOutcome({
           )}
           {!email && !whatsapp && (
             <li>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- a full load after a failed submission; the rule mistakes /contact for a /[lang] page */}
               <a href="/contact" className="inline-block py-1 font-medium text-ink underline underline-offset-4">
                 Contact the commercial team
               </a>

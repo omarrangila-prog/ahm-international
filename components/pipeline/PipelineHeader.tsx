@@ -30,6 +30,7 @@ export function PipelineHeader({ staff, active }: { staff: Staff; active?: "boar
             </Link>
             {can(staff.role, "export") && (
               // A plain anchor: the export is a file download, not a page to prefetch.
+              // eslint-disable-next-line @next/next/no-html-link-for-pages -- a download, not a page
               <a href="/pipeline/export" className={item(false)}>
                 Export CSV
               </a>

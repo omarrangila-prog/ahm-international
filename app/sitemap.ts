@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { indexableRoutes } from "@/data/routes";
 import { contentDates } from "@/data/content-dates";
 import { company } from "@/data/company";
+import { hreflangAlternates, localeCodes } from "@/data/locales";
 
 /**
  * XML sitemap.
@@ -34,6 +35,8 @@ function groupFor(routePath: string): string {
   }
 }
 
+const isLanguageSet = (path: string) => path === "/" || (localeCodes as string[]).includes(path.slice(1));
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const fallback = new Date();
 
@@ -44,6 +47,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: stamp ? new Date(stamp) : fallback,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
+      // The English home and the language pages name each other, so a crawler
+      // reads them as one page in eight languages rather than eight pages.
+      ...(isLanguageSet(route.path) ? { alternates: { languages: hreflangAlternates(company.siteUrl) } } : {}),
     };
   });
 }

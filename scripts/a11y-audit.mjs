@@ -40,6 +40,8 @@ const ROUTES = [
   "/products/aprons",
   "/products/aprons/bib-apron",
   "/team",
+  "/de",
+  "/ar",
   "/benchmark-a-style",
   "/manufacturing-network",
   "/verification",
