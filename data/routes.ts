@@ -9,6 +9,7 @@ import { guides } from "./guides";
 import { buyerStories } from "./buyerStories";
 import { portfolioItems } from "./portfolio";
 import { teamPublished } from "./team";
+import { localePages } from "./locales";
 
 /**
  * ROUTE REGISTRY
@@ -114,6 +115,8 @@ export const routes: RouteEntry[] = [
   // Exists only once a photographed article does (data/portfolio.ts).
   { path: "/our-work", priority: 0.8, changeFrequency: "monthly", noindex: portfolioItems().length === 0 },
   { path: "/team", priority: 0.7, changeFrequency: "monthly", noindex: !teamPublished() },
+  // One landing page per buyer language (data/locales.ts).
+  ...localePages.map((l) => ({ path: `/${l.code}`, priority: 0.8, changeFrequency: "monthly" as const })),
   { path: "/sustainability", priority: 0.5, changeFrequency: "yearly" },
 
   // Legal. Low priority but genuinely indexable — a procurement reviewer looks

@@ -1,5 +1,7 @@
 import { FilmBand } from "@/components/sections/FilmBand";
 import type { Metadata } from "next";
+import { hreflangAlternates } from "@/data/locales";
+import { company } from "@/data/company";
 import { Hero } from "@/components/sections/Hero";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ManufacturingModel } from "@/components/sections/ManufacturingModel";
@@ -24,6 +26,8 @@ export const metadata: Metadata = {
   // Absolute — the root template is already "%s | AHM International". A string
   // title here would suffix the brand twice in the browser tab.
   title: { absolute: "AHM International | Apron & Uniform Manufacturer, Pakistan" },
+  // The language landing pages, tied to this one with hreflang (data/locales.ts).
+  alternates: { canonical: `${company.siteUrl}/`, languages: hreflangAlternates(company.siteUrl) },
 };
 
 /**

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { footerNav } from "@/data/nav";
+import { localePages } from "@/data/locales";
 import { company, publicValue } from "@/data/company";
 import { Logo } from "@/components/ui/Logo";
 import { MaskedHeading } from "@/components/motion/MaskedHeading";
@@ -58,6 +59,20 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Languages: the landing pages in each buyer language, named in their own language. */}
+          <div className="col-span-12">
+            <p className="label mb-3 text-paper/65">Languages</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-1">
+              {localePages.map((l) => (
+                <li key={l.code}>
+                  <Link href={`/${l.code}`} hrefLang={l.hreflang} lang={l.hreflang} className="inline-block py-1.5 text-sm text-paper/80 transition-colors hover:text-lime">
+                    {l.native}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Contact */}
           {/* The four link columns fill the row beside the brand, so contact

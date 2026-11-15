@@ -90,6 +90,8 @@ export default function GlobalError({
             >
               Try again
             </button>
+            {/* The root layout has failed, so the router may be gone: a full page load. The lint rule mistakes the path for a /[lang] page. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a
               href="/request-a-quote"
               style={{
